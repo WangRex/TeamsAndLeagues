@@ -12,7 +12,7 @@ p {margin: 0;}
 html, body{
   	font-family: 'Roboto', sans-serif;
     font-size: 100%;
-  	background:#000;
+  	background-color: #f8f8f8;
   	overflow-x: hidden;
 }
 body a{
@@ -219,7 +219,7 @@ body a{
   min-width: 0;
 }
 .navbar-default.sidebar {
-  background-color: #000;
+  background-color: #f8f8f8;
   font-family: 'Roboto', sans-serif;
 }
 nav.top1.navbar.navbar-default.navbar-static-top {
@@ -238,11 +238,11 @@ nav.top1.navbar.navbar-default.navbar-static-top {
 	display:inline-block;
 }
 i.nav_icon {
-  color: #fff;
+  color: #000;
   margin-right:6px;
 }
 .sidebar ul li a{
-  color: #999;
+  color: #000;
   font-size:14px;
 }
 .form-control {
