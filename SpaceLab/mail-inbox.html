@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SpaceLab</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Fonts from Font Awsome -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <!-- CSS Animate -->
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <!-- Custom styles for this theme -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- iCheck-->
+    <link rel="stylesheet" href="assets/plugins/icheck/css/_all.css">
+    <!-- Fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
+    <!-- Feature detection -->
+    <script src="assets/js/modernizr-2.6.2.min.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <section id="container">
+        <header id="header">
+            <!--logo start-->
+            <div class="brand">
+                <a href="index.html" class="logo">
+                    <span>Space</span>Lab</a>
+            </div>
+            <!--logo end-->
+            <div class="toggle-navigation toggle-left">
+                <button type="button" class="btn btn-default" id="toggle-left" data-toggle="tooltip" data-placement="right" title="Toggle Navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div class="user-nav">
+                <ul>
+                    <li class="dropdown messages">
+                        <span class="badge badge-danager animated bounceIn" id="new-messages">5</span>
+                        <button type="button" class="btn btn-default dropdown-toggle options" id="toggle-mail" data-toggle="dropdown">
+                            <i class="fa fa-envelope"></i>
+                        </button>
+                        <ul class="dropdown-menu alert animated fadeInDown">
+                            <li>
+                                <h1>You have
+                                    <strong>5</strong>new messages</h1>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="profile-photo">
+                                        <img src="assets/img/avatar.gif" alt="" class="img-circle">
+                                    </div>
+                                    <div class="message-info">
+                                        <span class="sender">James Bagian</span>
+                                        <span class="time">30 mins</span>
+                                        <div class="message-content">Lorem ipsum dolor sit amet, elit rutrum felis sed erat augue fusce</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <div class="profile-photo">
+                                        <img src="assets/img/avatar1.gif" alt="" class="img-circle">
+                                    </div>
+                                    <div class="message-info">
+                                        <span class="sender">Jeffrey Ashby</span>
+                                        <span class="time">2 hour</span>
+                                        <div class="message-content">hendrerit pellentesque, iure tincidunt, faucibus vitae dolor aliquam</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <div class="profile-photo">
+                                        <img src="assets/img/avatar2.gif" alt="" class="img-circle">
+                                    </div>
+                                    <div class="message-info">
+                                        <span class="sender">John Douey</span>
+                                        <span class="time">3 hours</span>
+                                        <div class="message-content">Penatibus suspendisse sit pellentesque eu accumsan condimentum nec</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <div class="profile-photo">
+                                        <img src="assets/img/avatar3.gif" alt="" class="img-circle">
+                                    </div>
+                                    <div class="message-info">
+                                        <span class="sender">Ellen Baker</span>
+                                        <span class="time">7 hours</span>
+                                        <div class="message-content">Sem dapibus in, orci bibendum faucibus tellus, justo arcu</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="profile-photo">
+                                        <img src="assets/img/avatar4.gif" alt="" class="img-circle">
+                                    </div>
+                                    <div class="message-info">
+                                        <span class="sender">Ivan Bella</span>
+                                        <span class="time">6 hours</span>
+                                        <div class="message-content">Curabitur metus faucibus sapien elit, ante molestie sapien</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li><a href="#">Check all messages <i class="fa fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li class="profile-photo">
+                        <img src="assets/img/avatar.png" alt="" class="img-circle">
+                    </li>
+                    <li class="dropdown settings">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      Mike Adams <i class="fa fa-angle-down"></i>
+                    </a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li>
+                                <a href="#"><i class="fa fa-user"></i> Profile</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-calendar"></i> Calendar</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge badge-danager" id="user-inbox">5</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-power-off"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="toggle-navigation toggle-right">
+                            <button type="button" class="btn btn-default" id="toggle-right">
+                                <i class="fa fa-comment"></i>
+                            </button>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </header>
+        <!--sidebar start-->
+        <aside class="sidebar">
+            <div id="leftside-navigation" class="nano">
+                <ul class="nano-content">
+                    <li>
+                        <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>UI Elements</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+
+                            <li><a href="ui-alerts-notifications.html">Alerts &amp; Notifications</a>
+                            </li>
+                            <li><a href="ui-panels.html">Panels</a>
+                            </li>
+                            <li><a href="ui-buttons.html">Buttons</a>
+                            </li>
+                            <li><a href="ui-slider-progress.html">Sliders &amp; Progress</a>
+                            </li>
+                            <li><a href="ui-modals-popups.html">Modals &amp; Popups</a>
+                            </li>
+                            <li><a href="ui-icons.html">Icons</a>
+                            </li>
+                            <li><a href="ui-grid.html">Grid</a>
+                            </li>
+                            <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a>
+                            </li>
+                            <li><a href="ui-nestable-list.html">Nestable Lists</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fa fa-table"></i><span>Tables</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="tables-basic.html">Basic Tables</a>
+                            </li>
+
+                            <li><a href="tables-data.html">Data Tables</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fa fa fa-tasks"></i><span>Forms</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="forms-components.html">Components</a>
+                            </li>
+                            <li><a href="forms-validation.html">Validation</a>
+                            </li>
+                            <li><a href="forms-mask.html">Mask</a>
+                            </li>
+                            <li><a href="forms-wizard.html">Wizard</a>
+                            </li>
+                            <li><a href="forms-multiple-file.html">Multiple File Upload</a>
+                            </li>
+                            <li><a href="forms-wysiwyg.html">WYSIWYG Editor</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu active">
+                        <a href="javascript:void(0);"><i class="fa fa-envelope"></i><span>Mail</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li class="active"><a href="mail-inbox.html">Inbox</a>
+                            </li>
+                            <li><a href="mail-compose.html">Compose Mail</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i><span>Charts</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="charts-chartjs.html">Chartjs</a>
+                            </li>
+                            <li><a href="charts-morris.html">Morris</a>
+                            </li>
+                            <li><a href="charts-c3.html">C3 Charts</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fa fa-map-marker"></i><span>Maps</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="map-google.html">Google Map</a>
+                            </li>
+                            <li><a href="map-vector.html">Vector Map</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="typography.html"><i class="fa fa-text-height"></i><span>Typography</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fa fa-file"></i><span>Pages</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="pages-blank.html">Blank Page</a>
+                            </li>
+                            <li><a href="pages-login.html">Login</a>
+                            </li>
+                            <li><a href="pages-sign-up.html">Sign Up</a>
+                            </li>
+                            <li><a href="pages-calendar.html">Calendar</a>
+                            </li>
+                            <li><a href="pages-timeline.html">Timeline</a>
+                            </li>
+                            <li><a href="pages-404.html">404</a>
+                            </li>
+                            <li><a href="pages-500.html">500</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section class="main-content-wrapper">
+            <section id="main-content">
+                <!--mail wrapper start-->
+                <div class="row">
+                    <div class="col-md-2 col-sm-12" id="compose-wrapper">
+                        <div class="panel">
+                            <aside class="panel-body">
+                                <a href="mail-compose.html" class="btn btn-primary btn-block">Compose Mail</a>
+                                <ul class="nav nav-pills nav-stacked compose-nav">
+                                    <li class="active">
+                                        <a href="#"> <i class="fa fa-inbox"></i> Inbox
+                                            <span class="label label-danger pull-right inbox-notification">83</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-star-o"></i> Starred
+                                            <span class="label label-warning pull-right inbox-notification">8</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-envelope-o"></i> Sent Mail</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-bookmark-o"></i> Important</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-pencil-square-o"></i> Drafts
+                                            <span class="label label-info pull-right inbox-notification">1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-trash-o"></i> Trash</a>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+
+                        <div class="panel">
+                            <aside class="panel-body">
+                                <button class="btn btn-default btn-block">Manage Labels</button>
+                                <ul class="nav nav-pills nav-stacked compose-nav">
+                                    <li>
+                                        <a href="#"> <i class="fa fa-bookmark danger-txt"></i> Urgent
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-bookmark warning-txt"></i> Social
+                                            <span class="label label-warning pull-right"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-bookmark primary-txt"></i> Follow-up</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-bookmark success-txt"></i> Work Inquiry</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-bookmark info-txt"></i> Save
+                                            <span class="label label-info pull-right inbox-notification"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-bookmark default-txt"></i> ToDo</a>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 col-sm-12" id="inbox-wrapper">
+
+                        <section class="panel">
+                            <header class="panel-heading wht-bg">
+                                <h4 class="gen-case">Inbox (83)
+                                    <form action="#" class="pull-right mail-src-position">
+                                        <div class="input-append">
+                                            <input type="text" class="form-control " placeholder="Search Mail">
+                                        </div>
+                                    </form>
+                                </h4>
+                            </header>
+                            <div class="panel-body minimal">
+                                <div class="mail-option">
+                                    <div class="pull-left mail-checkbox ">
+                                        <input type="checkbox">
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                                            All
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">None</a>
+                                            </li>
+                                            <li><a href="#">Read</a>
+                                            </li>
+                                            <li><a href="#">Unread</a>
+                                            </li>
+                                            <li><a href="#">Starred</a>
+                                            </li>
+                                            <li><a href="#">Unstarred</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a data-original-title="Refresh" data-placement="top" data-toggle="tooltip" href="#" class="btn btn-default btn-sm tooltips">
+                                            <i class=" fa fa-refresh"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                                            More
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-ban"></i> Spam</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <ul class="inbox-pag pull-right">
+                                        <li>
+                                            <span>1-50 of 83</span>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-default btn-sm" href="#"><i class="fa fa-angle-left  pag-left"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-default btn-sm" href="#"><i class="fa fa-angle-right pag-right"></i></a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-inbox table-hover">
+                                        <tbody>
+                                            <tr class="unread">
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Dribbble</span>
+                                                        [Dribbble] Work Inquiry from Google Inc.</a>
+                                                </td>
+                                                <td class="text-right">April 20 <i class="fa fa-paperclip"></i>
+                                                </td>
+                                            </tr>
+                                            <tr class="unread">
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">James Bagian</span>
+                                                        Development - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 20
+                                                    <span class="label label-danger pull-right">urgent</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="unread">
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Jeffrey Ashby</span>
+                                                        Progress - Sed ut perspiciatis unde omnis iste natus..</a>
+                                                </td>
+                                                <td class="text-right">April 20 <i class="fa fa-paperclip"></i>
+                                                </td>
+                                            </tr>
+                                            <tr class="unread">
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">John Douey</span>
+                                                        Touch Base - Reprehenderit qui in ea voluptate velit esse quam</a>
+                                                </td>
+                                                <td class="text-right">April 20</td>
+                                            </tr>
+                                            <tr class="unread">
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ellen Baker</span>
+                                                        Timeline - Nam libero tempore, cum soluta nobis</a>
+                                                </td>
+                                                <td class="text-right">April 20
+                                                    <span class="label label-info pull-right">save</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        New Follower - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 19<i class="fa fa-paperclip"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">John Doue</span>
+                                                        UX Perspective - Reprehenderit qui in ea voluptate velit esse quam</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Mailchimp - Sed ut perspiciatis unde omnis iste natus..</a>
+                                                </td>
+                                                <td class="text-right">April 19<i class="fa fa-paperclip"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Design Work - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 19
+                                                    <span class="label label-warning pull-right">social</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ellen Baker</span>
+                                                        Freelance - Sed ut perspiciatis unde omnis iste natus</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Timeline - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">James Bagian</span>
+                                                        Check it - Maiores alias consequatur aut perferendis doloribus</a>
+                                                </td>
+                                                <td class="text-right">April 19<i class="fa fa-paperclip"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Bookmark this - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 19
+                                                    <span class="label label-danger pull-right">urgent</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Lunch? - Nam libero tempore, cum soluta nobis</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Coffee Break - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ellen Baker</span>
+                                                        Beta testing - Praesentium voluptatum deleniti atque corrupti quos</a>
+                                                </td>
+                                                <td class="text-right">April 19<i class="fa fa-paperclip"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Prod Servers - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Design Work - Omnis voluptas assumenda est, omnis dolor repellendus</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Authentic Goods - Culpa qui officia deserunt mollitia animi, id est laborum et</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">John Doue</span>
+                                                        SASS Work - Elit vitae ridiculus nonummy vestibulum</a>
+                                                </td>
+                                                <td class="text-right">April 19<i class="fa fa-paperclip"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="mail-checkbox">
+                                                </td>
+                                                <td><i class="fa fa-star-o"></i>
+                                                </td>
+                                                <td class="message">
+                                                    <a href="#">
+                                                        <span class="title">Ivan Bella</span>
+                                                        Almost there - Reiciendis voluptatibus maiores alias consequatur aut</a>
+                                                </td>
+                                                <td class="text-right">April 19</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                    <div class="col-md-6 col-sm-12" id="view-mail-wrapper">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <header>
+                                    <h2>UX Perspective</h2>
+                                    <p class="pull-right">Today, April 20, 2:45 PM</p>
+                                </header>
+                                <div class="row view-mail-header">
+                                    <div class="col-md-8 ">
+                                        <img src="assets/img/avatar4.gif" alt="" class="img-circle">
+                                        <strong><a href="#">Ivan Bella</a>
+                                        </strong>to <a href="#">Me</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="view-mail-reply pull-right">
+                                            <button class="btn btn-sm btn-primary"><i class="fa fa-reply"></i> Reply</button>
+                                            <button class="btn  btn-sm btn-default tooltips" data-original-title="Print" type="button" data-toggle="tooltip" data-placement="top" title="Print"><i class="fa fa-print"></i> 
+                                            </button>
+                                            <button class="btn btn-default btn-sm tooltips" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title="Trash"><i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="panel view-mail-body">
+                                            <div class="panel-body">
+                                                <p>Hello Mike,</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                                                <p>Regards,
+                                                    <br>Ivan Bella</p>
+                                            </div>
+                                            <div class="panel-footer">
+                                                <h5>Attchments (1 file, 15.3 KB)</h5>
+                                                <br>
+                                                <span class="label label-default">Photoshop</span>
+                                                <a href="#">
+                                                    <span class="attchments">mockups.psd</span>
+                                                </a>
+                                                <button class="btn btn-sm btn-primary pull-right">Download</button>
+                                                <button class="btn btn-sm btn-default pull-right"><i class="fa fa-share-square-o"></i> Share</button>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!--mail wrapper end-->
+            </section>
+        </section>
+        <!--main content end-->
+        <!--sidebar right start-->
+        <aside class="sidebarRight">
+            <div id="rightside-navigation">
+                <div class="sidebar-heading"><i class="fa fa-user"></i> Contacts</div>
+                <div class="sidebar-title">online</div>
+                <div class="list-contacts">
+                    <a href="javascript:void(0)" class="list-item">
+                        <div class="list-item-image">
+                            <img src="assets/img/avatar.gif" class="img-circle">
+                        </div>
+                        <div class="list-item-content">
+                            <h4>James Bagian</h4>
+                            <p>Los Angeles, CA</p>
+                        </div>
+                        <div class="item-status item-status-online"></div>
+                    </a>
+                    <a href="javascript:void(0)" class="list-item">
+                        <div class="list-item-image">
+                            <img src="assets/img/avatar1.gif" class="img-circle">
+                        </div>
+                        <div class="list-item-content">
+                            <h4>Jeffrey Ashby</h4>
+                            <p>New York, NY</p>
+                        </div>
+                        <div class="item-status item-status-online"></div>
+                    </a>
+                    <a href="javascript:void(0)" class="list-item">
+                        <div class="list-item-image">
+                            <img src="assets/img/avatar2.gif" class="img-circle">
+                        </div>
+                        <div class="list-item-content">
+                            <h4>John Douey</h4>
+                            <p>Dallas, TX</p>
+                        </div>
+                        <div class="item-status item-status-online"></div>
+                    </a>
+                    <a href="javascript:void(0)" class="list-item">
+                        <div class="list-item-image">
+                            <img src="assets/img/avatar3.gif" class="img-circle">
+                        </div>
+                        <div class="list-item-content">
+                            <h4>Ellen Baker</h4>
+                            <p>London</p>
+                        </div>
+                        <div class="item-status item-status-away"></div>
+                    </a>
+                </div>
+
+                <div class="sidebar-title">offline</div>
+                <div class="list-contacts">
+                    <a href="javascript:void(0)" class="list-item">
+                        <div class="list-item-image">
+                            <img src="assets/img/avatar4.gif" class="img-circle">
+                        </div>
+                        <div class="list-item-content">
+                            <h4>Ivan Bella</h4>
+                            <p>Tokyo, Japan</p>
+                        </div>
+                        <div class="item-status"></div>
+                    </a>
+                    <a href="javascript:void(0)" class="list-item">
+                        <div class="list-item-image">
+                            <img src="assets/img/avatar5.gif" class="img-circle">
+                        </div>
+                        <div class="list-item-content">
+                            <h4>Gerald Carr</h4>
+                            <p>Seattle, WA</p>
+                        </div>
+                        <div class="item-status"></div>
+                    </a>
+                    <a href="javascript:void(0)" class="list-item">
+                        <div class="list-item-image">
+                            <img src="assets/img/avatar6.gif" class="img-circle">
+                        </div>
+                        <div class="list-item-content">
+                            <h4>Viktor Gorbatko</h4>
+                            <p>Palo Alto, CA</p>
+                        </div>
+                        <div class="item-status"></div>
+                    </a>
+                </div>
+            </div>
+        </aside>
+        <!--sidebar right end-->
+    </section>
+    <!--Global JS-->
+    <script src="assets/js/jquery-1.10.2.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/waypoints/waypoints.min.js"></script>
+    <script src="assets/js/application.js"></script>
+    <!--Page Level JS-->
+    <script src="assets/plugins/icheck/js/icheck.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-green'
+        });
+        $('.tooltips').tooltip()
+
+    });
+    </script>
+
+</body>
+
+</html>
