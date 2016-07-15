@@ -1,0 +1,50 @@
+<!--main content start-->
+<div class="content">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-2" id="events">
+            <h2 id="calender-current-day"></h2>
+            <h3 id="calender-current-date"></h3>
+            <div id="external-events">
+                <div class="events-heading">&nbsp;Draggable Events</div>
+                <div class='external-event'>My Event 1</div>
+                <div class='external-event'>My Event 2</div>
+                <div class='external-event'>My Event 3</div>
+                <div class='external-event'>My Event 4</div>
+                <div class='external-event'>My Event 5</div>
+                <div class="checkbox">
+                    <input type="checkbox" value="1" id='drop-remove'>
+                    <label for="drop-remove">Remove after drop</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" id="cal">
+            <div class="full-cal-header">
+                <div class="pull-left">
+                    <div class="btn-group ">
+                        <button class="btn btn-info" id="cal-prev"><i class="fa fa-angle-left"></i>
+                        </button>
+                        <button class="btn btn-info" id="cal-next"><i class="fa fa-angle-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <div data-toggle="buttons-radio" class="btn-group">
+                        <button class="btn btn-primary active" type="button" id="change-view-month">月视图</button>
+                        <button class="btn btn-primary " type="button" id="change-view-week">周视图</button>
+                        <button class="btn btn-primary" type="button" id="change-view-day">日视图</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id='calendar'></div>
+        </div>
+    </div>
+    <br>
+</div>
+</div>
+</div>
+<!--main content end-->
+<!--Page Level JS-->
+<script src="assets/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="assets/plugins/fullcalendar/js/calendar.js"></script>
+<script src="assets/js/moment.js"></script>

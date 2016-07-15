@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SpaceLab</title>
+    <title>球队联盟</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Favicon -->
@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="assets/plugins/todo/css/todos.css">
     <!-- Morris  -->
     <link rel="stylesheet" href="assets/plugins/morris/css/morris.css">
+    <!-- Calendar -->
+    <link rel="stylesheet" href="assets/plugins/fullcalendar/css/fullcalendar.css">
     <!-- Fonts -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
@@ -46,7 +48,7 @@
             <!--logo start-->
             <div class="brand">
                 <a href="index.html" class="logo">
-                    <span>Space</span>Lab</a>
+                    <span>球队联盟</span></a>
             </div>
             <!--logo end-->
             <div class="toggle-navigation toggle-left">
@@ -63,8 +65,8 @@
                         </button>
                         <ul class="dropdown-menu alert animated fadeInDown">
                             <li>
-                                <h1>You have
-                                    <strong>5</strong>new messages</h1>
+                                <h1>您有
+                                    <strong>5</strong>条新消息</h1>
                             </li>
                             <li>
                                 <a href="#">
@@ -129,7 +131,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li><a href="#">Check all messages <i class="fa fa-angle-right"></i></a>
+                            <li><a href="#">查看所有消息 <i class="fa fa-angle-right"></i></a>
                             </li>
                         </ul>
 
@@ -139,20 +141,20 @@
                     </li>
                     <li class="dropdown settings">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                      Mike Adams <i class="fa fa-angle-down"></i>
+                      小囍囍 <i class="fa fa-angle-down"></i>
                     </a>
                         <ul class="dropdown-menu animated fadeInDown">
                             <li>
-                                <a href="#"><i class="fa fa-user"></i> Profile</a>
+                                <a href="#"><i class="fa fa-user"></i> 个人信息</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-calendar"></i> Calendar</a>
+                                <a href="#"><i class="fa fa-calendar"></i> 日历</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge badge-danager" id="user-inbox">5</span></a>
+                                <a href="#"><i class="fa fa-envelope"></i> 收件箱 <span class="badge badge-danager" id="user-inbox">5</span></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-power-off"></i> Logout</a>
+                                <a href="#"><i class="fa fa-power-off"></i> 注销</a>
                             </li>
                         </ul>
                     </li>
@@ -172,7 +174,7 @@
             <div id="leftside-navigation" class="nano">
                 <ul class="nano-content">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                        <a href="javascript:void(0);" onclick="indexModule.loadPage('calendar');"><i class="fa fa-gamepad"></i><span>赛事管理</span></a>
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>UI Elements</span><i class="arrow fa fa-angle-right pull-right"></i></a>
@@ -288,8 +290,8 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="dashboard-tile detail tile-red">
                             <div class="content">
-                                <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500"></h1>
-                                <p>New Users</p>
+                                <h1 class="text-left timer" data-from="0" data-to="100" data-speed="2500"></h1>
+                                <p>新用户</p>
                             </div>
                             <div class="icon"><i class="fa fa-users"></i>
                             </div>
@@ -299,7 +301,7 @@
                         <div class="dashboard-tile detail tile-turquoise">
                             <div class="content">
                                 <h1 class="text-left timer" data-from="0" data-to="56" data-speed="2500"></h1>
-                                <p>New Comments</p>
+                                <p>新评论</p>
                             </div>
                             <div class="icon"><i class="fa fa-comments"></i>
                             </div>
@@ -309,7 +311,7 @@
                         <div class="dashboard-tile detail tile-blue">
                             <div class="content">
                                 <h1 class="text-left timer" data-from="0" data-to="32" data-speed="2500"></h1>
-                                <p>New Messages</p>
+                                <p>新比赛</p>
                             </div>
                             <div class="icon"><i class="fa fa fa-envelope"></i>
                             </div>
@@ -319,7 +321,7 @@
                         <div class="dashboard-tile detail tile-purple">
                             <div class="content">
                                 <h1 class="text-left timer" data-to="105" data-speed="2500"></h1>
-                                <p>New Sales</p>
+                                <p>活跃球队数</p>
                             </div>
                             <div class="icon"><i class="fa fa-bar-chart-o"></i>
                             </div>
@@ -327,44 +329,12 @@
                     </div>
                 </div>
                 <!--tiles end-->
-                <!--dashboard charts and map start-->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Sales for 2014</h3>
-                                <div class="actions pull-right">
-                                    <i class="fa fa-chevron-down"></i>
-                                    <i class="fa fa-times"></i>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div id="sales-chart" style="height: 250px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Office locations</h3>
-                                <div class="actions pull-right">
-                                    <i class="fa fa-chevron-down"></i>
-                                    <i class="fa fa-times"></i>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="map" id="map" style="height: 250px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--dashboard charts and map end-->
                 <!--ToDo start-->
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">To do list</h3>
+                                <h3 class="panel-title">代办事项</h3>
                                 <div class="actions pull-right">
                                     <i class="fa fa-chevron-down"></i>
                                     <i class="fa fa-times"></i>
@@ -380,7 +350,7 @@
                                             </section>
                                         </div>
                                         <div class="form-group">
-                                            <button id="todo-enter" class="btn btn-primary pull-right">Submit</button>
+                                            <button id="todo-enter" class="btn btn-primary pull-right">提交</button>
                                             <div id='todo-count'></div>
                                         </div>
                                     </div>
@@ -388,142 +358,35 @@
 
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Server Status</h3>
-                                        <div class="actions pull-right">
-                                            <i class="fa fa-chevron-down"></i>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-
-                                        <span class="sublabel">Memory Usage</span>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-bar-info" style="width: 20%">20%</div>
-                                        </div>
-                                        <!-- progress -->
-
-                                        <span class="sublabel">CPU Usage</span>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-bar-default" style="width: 60%">60%</div>
-                                        </div>
-                                        <!-- progress -->
-
-                                        <span class="sublabel">Disk Usage</span>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-bar-primary" style="width: 80%">80%</div>
-                                        </div>
-                                        <!-- progress -->
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-solid-info">
+                </div>
+                <!--ToDo end-->
+                <!--charts start-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Weather</h3>
+                                <h3 class="panel-title">球队统计</h3>
                                 <div class="actions pull-right">
                                     <i class="fa fa-chevron-down"></i>
                                     <i class="fa fa-times"></i>
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h3 class="text-center small-thin uppercase">Today</h3>
-                                        <div class="text-center">
-                                            <canvas id="clear-day" width="110" height="110"></canvas>
-                                            <h4>62°C</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 class="text-center small-thin uppercase">Tonight</h3>
-                                        <div class="text-center">
-                                            <canvas id="partly-cloudy-night" width="110" height="110"></canvas>
-                                            <h4>44°C</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h6 class="text-center small-thin uppercase">Mon</h6>
-                                        <div class="text-center">
-                                            <canvas id="partly-cloudy-day" width="32" height="32"></canvas>
-                                            <span>48°C</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <h6 class="text-center small-thin uppercase">Mon</h6>
-                                        <div class="text-center">
-                                            <canvas id="rain" width="32" height="32"></canvas>
-                                            <span>39°C</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <h6 class="text-center small-thin uppercase">Tue</h6>
-                                        <div class="text-center">
-                                            <canvas id="sleet" width="32" height="32"></canvas>
-                                            <span>32°C</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <h6 class="text-center small-thin uppercase">Wed</h6>
-                                        <div class="text-center">
-                                            <canvas id="snow" width="32" height="32"></canvas>
-                                            <span>28°C</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <h6 class="text-center small-thin uppercase">Thu</h6>
-                                        <div class="text-center">
-                                            <canvas id="wind" width="32" height="32"></canvas>
-                                            <span>40°C</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <h6 class="text-center small-thin uppercase">Fri</h6>
-                                        <div class="text-center">
-                                            <canvas id="fog" width="32" height="32"></canvas>
-                                            <span>42°C</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h4>Browser Summary</h4>
-                                <div id="donut-example"></div>
+                                <div id="sales-chart" style="height: 250px;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!--ToDo end-->
+                <!--charts end-->
             </section>
         </section>
         <!--main content end-->
         <!--sidebar right start-->
         <aside class="sidebarRight">
             <div id="rightside-navigation ">
-                <div class="sidebar-heading"><i class="fa fa-user"></i> Contacts</div>
-                <div class="sidebar-title">online</div>
+                <div class="sidebar-heading"><i class="fa fa-user"></i> 联系人</div>
+                <div class="sidebar-title">在线</div>
                 <div class="list-contacts">
                     <a href="javascript:void(0)" class="list-item">
                         <div class="list-item-image">
@@ -567,7 +430,7 @@
                     </a>
                 </div>
 
-                <div class="sidebar-title">offline</div>
+                <div class="sidebar-title">离线</div>
                 <div class="list-contacts">
                     <a href="javascript:void(0)" class="list-item">
                         <div class="list-item-image">
@@ -606,6 +469,7 @@
     </section>
     <!--Global JS-->
     <script src="assets/js/jquery-1.10.2.min.js"></script>
+    <script src="assets/plugins/fullcalendar/js/jquery-ui-1.10.1.custom.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/plugins/waypoints/waypoints.min.js"></script>
     <script src="assets/js/application.js"></script>
@@ -638,13 +502,12 @@
     <script src="assets/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
     <!-- ToDo List  -->
     <script src="assets/plugins/todo/js/todos.js"></script>
+    <!-- index  -->
+    <script src="assets/js/index.js"></script>
     <!--Load these page level functions-->
     <script>
     $(document).ready(function() {
         app.timer();
-        app.map();
-        app.weather();
-        app.morrisPie();
     });
     </script>   
 
