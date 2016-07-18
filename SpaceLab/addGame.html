@@ -14,8 +14,14 @@
             <div class="panel-body">
                 <form class="form-horizontal form-border">
                     <div class="form-group">
-                        <label for="dtp_input1" class="col-md-2 control-label">比赛时间</label>
-                        <div class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                        <label for="dtp_input1" class="col-sm-2 control-label">比赛时间</label>
+                        <div class="input-group date form_datetime col-sm-3" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input1" value="" />
+                        <div class="input-group date form_datetime col-sm-3" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
                             <input class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -24,72 +30,33 @@
                         <br/>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Input Password</label>
+                        <label class="col-sm-3 control-label">比赛规则</label>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control">
+                            <input type="text" class="form-control" placeholder="比赛规则">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Placeholder Input</label>
+                        <label class="col-sm-3 control-label">赛事奖项</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="Placeholder text">
+                            <input type="text" class="form-control" placeholder="赛事奖项">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Disabled Input</label>
+                        <label class="col-sm-3 control-label">举办地点</label>
                         <div class="col-sm-6">
-                            <input type="text" disabled="disabled" class="form-control" placeholder="Disabled input text">
+                            <input type="text" class="form-control" placeholder="举办地点">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Readonly Input</label>
+                        <label class="col-sm-3 control-label">赛事名称</label>
                         <div class="col-sm-6">
-                            <input type="text" readonly="readonly" class="form-control" value="Readonly input text">
+                            <input type="text" class="form-control" placeholder="赛事名称">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Textarea</label>
+                        <label class="col-sm-3 control-label">赛事简介</label>
                         <div class="col-sm-6">
                             <textarea class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group has-success">
-                        <label class="col-sm-3 control-label" for="inputSuccess1">Input with success</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="inputSuccess1">
-                        </div>
-                    </div>
-                    <div class="form-group has-warning">
-                        <label class="col-sm-3 control-label" for="inputWarning1">Input with warning</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="inputWarning1">
-                        </div>
-                    </div>
-                    <div class="form-group has-error">
-                        <label class="col-sm-3 control-label" for="inputError1">Input with error</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="inputError1">
-                        </div>
-                    </div>
-                    <div class="form-group has-success  has-feedback">
-                        <label class="col-sm-3 control-label" for="inputSuccess2">Input with success icon</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="inputSuccess2">
-                            <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-                        </div>
-                    </div>
-                    <div class="form-group has-warning  has-feedback">
-                        <label class="col-sm-3 control-label" for="inputWarning2">Input with warning icon</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="inputWarning2">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                        </div>
-                    </div>
-                    <div class="form-group has-error  has-feedback">
-                        <label class="col-sm-3 control-label" for="inputError2">Input with error icon</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="inputError2">
-                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                         </div>
                     </div>
                 </form>
