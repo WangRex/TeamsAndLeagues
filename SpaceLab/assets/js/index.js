@@ -4,7 +4,6 @@ var indexModule = (function(im) {
 			if(callback) {
 				callback();
 			}
-			moment().calendar();
 		});
 	}
     im.extendFunc = function() {
