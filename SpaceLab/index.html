@@ -17,7 +17,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Fonts from Font Awsome -->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
     <!-- CSS Animate -->
     <link rel="stylesheet" href="assets/css/animate.css">
     <!-- Custom styles for this theme -->
@@ -78,7 +78,6 @@
                                     </div>
                                 </a>
                             </li>
-
                             <li>
                                 <a href="#">
                                     <div class="profile-photo">
@@ -91,7 +90,6 @@
                                     </div>
                                 </a>
                             </li>
-
                             <li>
                                 <a href="#">
                                     <div class="profile-photo">
@@ -104,7 +102,6 @@
                                     </div>
                                 </a>
                             </li>
-
                             <li>
                                 <a href="#">
                                     <div class="profile-photo">
@@ -132,7 +129,6 @@
                             <li><a href="#">查看所有消息 <i class="fa fa-angle-right"></i></a>
                             </li>
                         </ul>
-
                     </li>
                     <li class="profile-photo">
                         <img src="assets/img/avatar.png" alt="" class="img-circle">
@@ -163,7 +159,6 @@
                             </button>
                         </div>
                     </li>
-
                 </ul>
             </div>
         </header>
@@ -171,8 +166,23 @@
         <aside class="sidebar">
             <div id="leftside-navigation" class="nano">
                 <ul class="nano-content">
-                    <li class="active">
-                        <a href="javascript:void(0);" onclick="indexModule.loadPage('calendar');"><i class="fa fa-gamepad"></i><span>赛事管理</span></a>
+                    <li class="active sub-menu">
+                        <a href="javascript:void(0);" onclick="indexModule.loadPage('calendar');"><i class="fa fa-gamepad"></i><span>赛事一览</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fa fa-table"></i><span>赛事管理</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="javascript:void(0);" onclick="indexModule.loadPage('addGame');">赛事创建</a>
+                            </li>
+                            <li><a href="tables-data.html">比赛报名</a>
+                            </li>
+                            <li><a href="tables-data.html">赛制安排</a>
+                            </li>
+                            <li><a href="tables-data.html">比赛录入</a>
+                            </li>
+                            <li><a href="tables-data.html">赛事数据</a>
+                            </li>
+                        </ul>
                     </li>
                     <!--<li class="sub-menu">
                         <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>UI Elements</span><i class="arrow fa fa-angle-right pull-right"></i></a>
@@ -277,7 +287,6 @@
                     </li>-->
                 </ul>
             </div>
-
         </aside>
         <!--sidebar left end
         <!--main content start-->
@@ -353,7 +362,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -427,7 +435,6 @@
                         <div class="item-status item-status-away"></div>
                     </a>
                 </div>
-
                 <div class="sidebar-title">离线</div>
                 <div class="list-contacts">
                     <a href="javascript:void(0)" class="list-item">
@@ -507,8 +514,7 @@
     $(document).ready(function() {
         app.timer();
     });
-    </script>   
-
+    </script>
 </body>
 
 </html>
