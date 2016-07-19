@@ -49,13 +49,16 @@ $(document).ready(function() {
             "targets": [5],
             "data": "gameId",
             "render": function(data, type, full) {
-            	var str = "<a href='/view?id=" + data + "'>查看</a>";
-            	if(full.gameStatus == "0"){
-            		str = "<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;" + str;
-            	}
+                var str = "<a href='/view?id=" + data + "'>查看</a>";
+                if (full.gameStatus == "0") {
+                    str = "<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;" + str;
+                }
                 return str;
             }
-        }]
+        }],
+        "aaSorting": [
+            [0, "desc"]
+        ]
     });
 });
 </script>
