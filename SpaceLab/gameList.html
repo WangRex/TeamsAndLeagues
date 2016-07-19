@@ -49,7 +49,11 @@ $(document).ready(function() {
             "targets": [5],
             "data": "gameId",
             "render": function(data, type, full) {
-                return "<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;<a href='/view?id=" + data + "'>查看</a>";
+            	var str = "<a href='/view?id=" + data + "'>查看</a>";
+            	if(full.gameStatus == "0"){
+            		str = "<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;" + str;
+            	}
+                return str;
             }
         }]
     });
