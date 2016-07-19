@@ -1,0 +1,6 @@
+.input-group[class*=form_datetime] {
+	float: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 0px;
+}

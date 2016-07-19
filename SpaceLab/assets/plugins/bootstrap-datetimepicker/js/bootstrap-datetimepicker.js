@@ -392,7 +392,7 @@
     },
 
     getUTCDate: function () {
-      return this.date;
+      return this.date || new Date();
     },
 
     getInitialDate: function () {
