@@ -13,7 +13,7 @@ var indexModule = (function(im) {
         // console.log(data);
         //{gameTime: "", gameRule: "1", gamePrize: "", gamePlace: "", gameName: "", gameBrief: ""}
         $.ajax({
-            type: 'post',
+            type: 'get',
             dataType: "json",
             url: 'assets/json/addGame.json',
             data: data,
