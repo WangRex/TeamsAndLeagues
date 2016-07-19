@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal form-border">
+                <form class="form-horizontal form-border" id="addGameForm">
                     <div class="form-group">
                         <label for="dtp_input1" class="col-sm-3 control-label">比赛时间</label>
                         <div class="input-group date form_datetime col-sm-6" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
@@ -23,13 +23,13 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
-                        <input type="hidden" id="dtp_input1" value="" />
+                        <input type="hidden" id="dtp_input1" value="" name="gameTime" />
                         <br/>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">比赛规则</label>
                         <div class="col-sm-6">
-                            <select class="form-control input-sm">
+                            <select class="form-control input-sm" name="gameRule">
                                 <option value="1">规则1</option>
                                 <option value="2">规则2</option>
                                 <option value="3">规则3</option>
@@ -39,25 +39,30 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">赛事奖项</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="赛事奖项">
+                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">举办地点</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="举办地点">
+                            <input type="text" class="form-control" placeholder="举办地点" name="gamePlace">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">赛事名称</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="赛事名称">
+                            <input type="text" class="form-control" placeholder="赛事名称" name="gameName">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">赛事简介</label>
                         <div class="col-sm-6">
-                            <textarea class="form-control"></textarea>
+                            <textarea class="form-control" name="gameBrief"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input type="button" class="btn btn-primary" onclick="indexModule.addGame();" value="添加">
                         </div>
                     </div>
                 </form>
@@ -65,8 +70,28 @@
         </div>
     </div>
 </div>
+<!-- Basic Modal -->
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">提示信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="addGameContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Basic Modal -->
 <!--Global JS-->
 <script src="assets/js/application.js"></script>
+<!--Page JS-->
+<script src="assets/plugins/jQuery.widgets.serializeJson/jquery.widgets.serializeJson.js"></script>
 <script type="text/javascript">
 $('.form_datetime').datetimepicker({
     //language:  'fr',
