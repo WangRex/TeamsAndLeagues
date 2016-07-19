@@ -1,9 +1,11 @@
 var indexModule = (function(im) {
     im.loadPage = function(pageName, callback) {
         $("#main-content").load(pageName + ".html", function() {
+        	app.bread();
             if (callback) {
                 callback();
             }
+
         });
     }
     im.addGame = function() {
@@ -11,7 +13,7 @@ var indexModule = (function(im) {
         // console.log(data);
         //{gameTime: "", gameRule: "1", gamePrize: "", gamePlace: "", gameName: "", gameBrief: ""}
         $.ajax({
-            type: 'get',
+            type: 'post',
             dataType: "json",
             url: 'assets/json/addGame.json',
             data: data,
