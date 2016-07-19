@@ -3,7 +3,7 @@ var indexModule = (function(im) {
         $("#main-content").load(pageName + ".html", function() {
             app.bread();
             if (callback) {
-                callback();
+                callback;
             }
 
         });
@@ -35,6 +35,9 @@ var indexModule = (function(im) {
             $clone.remove();
             $(this).find('.modal-content').css("margin-top", top);
         });
+    }
+    im.initDataTable = function(id) {
+    	$("#" + id).dataTable();
     }
     im.extendFunc = function() {
         console.log("This is the extend function!");

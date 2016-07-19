@@ -1,0 +1,57 @@
+<!-- DataTables-->
+<link rel="stylesheet" href="assets/plugins/dataTables/css/dataTables.css">
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">比赛清单</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table id="gameList" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>比赛时间</th>
+                            <th>举办地点</th>
+                            <th>赛事名称</th>
+                            <th>比赛规则</th>
+                            <th>赛事奖项</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Page Leve JS -->
+<script src="assets/plugins/dataTables/js/jquery.dataTables.js"></script>
+<script src="assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+<script>
+$(document).ready(function() {
+    $('#gameList').DataTable({
+        "ajax": "assets/json/gameList.json",
+        "columns": [{
+            "data": "gameTime"
+        }, {
+            "data": "gamePlace"
+        }, {
+            "data": "gameName"
+        }, {
+            "data": "gameRule"
+        }, {
+            "data": "gamePrize"
+        }],
+        "columnDefs": [{
+            "targets": [5],
+            "data": "gameId",
+            "render": function(data, type, full) {
+                return "<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;<a href='/view?id=" + data + "'>查看</a>";
+            }
+        }]
+    });
+});
+</script>
