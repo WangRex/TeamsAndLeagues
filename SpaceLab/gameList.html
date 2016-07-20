@@ -35,7 +35,7 @@ $(document).ready(function() {
     $('#gameList').DataTable({
         "ajax": "assets/json/gameList.json",
         "columns": [{
-            "data": "gameTime"
+            "data": "gameStartTime"
         }, {
             "data": "gamePlace"
         }, {
@@ -51,7 +51,7 @@ $(document).ready(function() {
             "render": function(data, type, full) {
                 var str = "<a href='/view?id=" + data + "'>查看</a>";
                 if (full.gameStatus == "0") {
-                    str = "<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;" + str;
+                    str += "&nbsp;&nbsp;<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;<a href='/share?id=" + data + "'>分享</a>";
                 }
                 return str;
             }

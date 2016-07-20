@@ -16,12 +16,18 @@
                 <form class="form-horizontal form-border" id="addGameForm">
                     <div class="form-group">
                         <label for="dtp_input1" class="col-sm-3 control-label">比赛时间</label>
-                        <div class="input-group date form_datetime col-sm-6" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                        <div class="input-group date form_datetime col-sm-3" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
                             <input class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
-                        <input type="hidden" id="dtp_input1" value="" name="gameTime" />
+                        <input type="hidden" id="dtp_input1" value="" name="gameStartTime" />
+                        <div class="input-group date form_datetime col-sm-3" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input1" value="" name="gameEndTime" />
                         <br/>
                     </div>
                     <div class="form-group">
