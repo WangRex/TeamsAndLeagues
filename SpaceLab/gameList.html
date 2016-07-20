@@ -27,6 +27,24 @@
         </div>
     </div>
 </div>
+<!-- Start Insert Data Modal -->
+<div class="modal fade" id="insertDataModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">赛事信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="addGameContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Insert Data Modal -->
 <!--Page Leve JS -->
 <script src="assets/plugins/dataTables/js/jquery.dataTables.min.js"></script>
 <script src="assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
@@ -35,7 +53,7 @@ $(document).ready(function() {
     $('#gameList').DataTable({
         "ajax": "assets/json/gameList.json",
         "columns": [{
-            "data": "gameStartTime"
+            "data": "gameStartDate"
         }, {
             "data": "gamePlace"
         }, {
@@ -49,7 +67,7 @@ $(document).ready(function() {
             "targets": [5],
             "data": "gameId",
             "render": function(data, type, full) {
-                var str = "<a href='/view?id=" + data + "'>查看</a>";
+                var str = "<a href='javascript:void(0);' onclick='indexModule.popupModal(" + '"insertDataModal"' + ");'>查看</a>";
                 if (full.gameStatus == "0") {
                     str += "&nbsp;&nbsp;<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;<a href='/share?id=" + data + "'>分享</a>";
                 }

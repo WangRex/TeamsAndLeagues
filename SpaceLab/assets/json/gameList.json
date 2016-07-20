@@ -1,6 +1,6 @@
 {
     "data": [{
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -8,7 +8,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -16,7 +16,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -24,7 +24,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -32,7 +32,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/23",
+        "gameStartDate": "2016/07/23",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -40,7 +40,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "0"
     }, {
-        "gameStartTime": "2016/07/23",
+        "gameStartDate": "2016/07/23",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -48,7 +48,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "0"
     }, {
-        "gameStartTime": "2016/07/24",
+        "gameStartDate": "2016/07/24",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -56,7 +56,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "0"
     }, {
-        "gameStartTime": "2016/07/24",
+        "gameStartDate": "2016/07/24",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -64,7 +64,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "0"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -72,7 +72,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -80,7 +80,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -88,7 +88,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -96,7 +96,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -104,7 +104,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -112,7 +112,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -120,7 +120,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -128,7 +128,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -136,7 +136,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -144,7 +144,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -152,7 +152,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -160,7 +160,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -168,7 +168,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -176,7 +176,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -184,7 +184,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -192,7 +192,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -200,7 +200,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -208,7 +208,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -216,7 +216,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -224,7 +224,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -232,7 +232,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -240,7 +240,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -248,7 +248,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -256,7 +256,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -264,7 +264,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -272,7 +272,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -280,7 +280,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -288,7 +288,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -296,7 +296,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -304,7 +304,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -312,7 +312,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -320,7 +320,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -328,7 +328,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -336,7 +336,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -344,7 +344,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -352,7 +352,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -360,7 +360,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -368,7 +368,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -376,7 +376,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -384,7 +384,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -392,7 +392,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -400,7 +400,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -408,7 +408,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -416,7 +416,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -424,7 +424,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",
@@ -432,7 +432,7 @@
         "gamePrize": "$320,800",
         "gameStatus": "1"
     }, {
-        "gameStartTime": "2016/07/16",
+        "gameStartDate": "2016/07/16",
         "gameId": "1",
         "gamePlace": "大连体育场",
         "gameName": "世纪大战",

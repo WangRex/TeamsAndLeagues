@@ -36,8 +36,13 @@ var indexModule = (function(im) {
             $(this).find('.modal-content').css("margin-top", top);
         });
     }
+    im.popupModal = function(modalId) {
+        $('.modal').on('show.bs.modal', im.fixModal);
+        $(window).on('resize', im.fixModal);
+        $("#" + modalId).modal('show');
+    }
     im.initDataTable = function(id) {
-    	$("#" + id).dataTable();
+        $("#" + id).dataTable();
     }
     im.extendFunc = function() {
         console.log("This is the extend function!");
