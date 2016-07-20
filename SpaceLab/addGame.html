@@ -16,13 +16,13 @@
                 <form class="form-horizontal form-border" id="addGameForm">
                     <div class="form-group">
                         <label for="dtp_input2" class="col-sm-3 control-label">比赛时间</label>
-                        <div class="input-group date form_date col-sm-3" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             <input class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         <input type="hidden" id="dtp_input2" value="" name="gameStartTime" />
-                        <div class="input-group date form_date col-sm-3" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             <input class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -102,6 +102,7 @@ $('.form_date').datetimepicker({
     todayHighlight: 1,
     startView: 2,
     minView: 2,
+    language: 'zh-CN', //汉化 
     forceParse: 0
 });
 </script>
