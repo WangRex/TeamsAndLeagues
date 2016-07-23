@@ -50,7 +50,7 @@
 <script src="assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
 <script>
 $(document).ready(function() {
-    $('#gameList').DataTable({
+    var settings = {
         "ajax": "assets/json/gameList.json",
         "columns": [{
             "data": "gameStartDate"
@@ -67,7 +67,7 @@ $(document).ready(function() {
             "targets": [5],
             "data": "gameId",
             "render": function(data, type, full) {
-                var str = "<a href='javascript:void(0);' onclick='indexModule.popupModal(" + '"insertDataModal"' + ");'>查看</a>";
+                var str = "<a href='javascript:void(0);' onclick='indexModule.loadGameDetailsPage(" + '"gameDetails"' + ");'>查看</a>";
                 if (full.gameStatus == "0") {
                     str += "&nbsp;&nbsp;<a href='/update?id=" + data + "'>报名</a>&nbsp;&nbsp;<a href='/share?id=" + data + "'>分享</a>";
                 }
@@ -76,31 +76,8 @@ $(document).ready(function() {
         }],
         "aaSorting": [
             [0, "desc"]
-        ],
-        language: {
-            "sProcessing": "处理中...",
-            "sLengthMenu": "显示 _MENU_ 项结果",
-            "sZeroRecords": "没有匹配结果",
-            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
-            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-            "sInfoPostFix": "",
-            "sSearch": "搜索:",
-            "sUrl": "",
-            "sEmptyTable": "表中数据为空",
-            "sLoadingRecords": "载入中...",
-            "sInfoThousands": ",",
-            "oPaginate": {
-                "sFirst": "首页",
-                "sPrevious": "上页",
-                "sNext": "下页",
-                "sLast": "末页"
-            },
-            "oAria": {
-                "sSortAscending": ": 以升序排列此列",
-                "sSortDescending": ": 以降序排列此列"
-            }
-        }
-    });
+        ]
+    };
+    indexModule.initDataTable("gameList", settings);
 });
 </script>

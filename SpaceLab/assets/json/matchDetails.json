@@ -1,0 +1,6 @@
+{
+    "teamName": { "teamA": "大连队", "teamB": "皇马" },
+    "score": { "teamA": "5", "teamB": "0" },
+    "yellow": { "teamA": "0", "teamB": "5" },
+    "red": { "teamA": "0", "teamB": "5" }
+}
