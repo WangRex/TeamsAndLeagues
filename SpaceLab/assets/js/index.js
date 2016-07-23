@@ -92,6 +92,9 @@ var indexModule = (function(im) {
                 "targets": [4],
                 "render": function(data, type, full) {
                     var str = "<a href='javascript:void(0);' onclick='indexModule.getMatchDetails(" + '"matchDetailsModal"' + "," + full.matchId + ");'>查看</a>";
+                    if (full.status == "0") {
+                        str += "&nbsp;&nbsp;<a href='/addScore?id=" + data + "'>比赛录入</a>";
+                    }
                     return str;
                 }
             }]
