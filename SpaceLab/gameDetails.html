@@ -96,29 +96,90 @@
     </div>
 </div>
 <!-- End Basic Modal -->
-<script id="matchDetails-table-template" type="text/html">
-    <thead>
-        <tr>
-            <th>统计项目</th>
-            <th>{{teamName.teamA}}</th>
-            <th>{{teamName.teamB}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="active">
-            <td>得分</td>
-            <td>{{score.teamA}}</td>
-            <td>{{score.teamB}}</td>
-        </tr>
-        <tr class="warning">
-            <td>黄牌数</td>
-            <td>{{yellow.teamA}}</td>
-            <td>{{yellow.teamB}}</td>
-        </tr>
-        <tr class="danger">
-            <td>红牌数</td>
-            <td>{{red.teamA}}</td>
-            <td>{{red.teamB}}</td>
-        </tr>
-    </tbody>
+<!-- Start Add Match Details Modal -->
+<div class="modal fade" id="addMatchDetailsInitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">比赛数据录入</h4>
+            </div>
+            <div class="modal-body" style="height:353px;">
+                <form class="form-horizontal form-border" id="addMatchDetailsForm">
+                    <div class="form-group" id="teamNames">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <span>得分</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <span>黄牌数</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <span>红牌数</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input type="button" class="btn btn-primary" onclick="indexModule.addMatchDetails();" value="添加">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Add Match Details Modal -->
+<!-- Add Match Details Modal -->
+<div class="modal fade" id="addMatchDetailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">提示信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="addMatchDetailsContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Match Details Modal -->
+<script id="add-matchDetails-init-template" type="text/html">
+    <div class="col-sm-4" id="items">
+        统计项目
+    </div>
+    <div class="col-sm-4" id="teamAName">
+        {{teamName.teamA}}
+    </div>
+    <div class="col-sm-4" id="teamBName">
+        {{teamName.teamB}}
+    </div>
 </script>

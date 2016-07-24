@@ -93,7 +93,7 @@ var indexModule = (function(im) {
                 "render": function(data, type, full) {
                     var str = "<a href='javascript:void(0);' onclick='indexModule.getMatchDetails(" + '"matchDetailsModal"' + "," + full.matchId + ");'>查看</a>";
                     if (full.status == "0") {
-                        str += "&nbsp;&nbsp;<a href='/addScore?id=" + data + "'>比赛录入</a>";
+                        str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'>比赛录入</a>";
                     }
                     return str;
                 }
@@ -108,7 +108,7 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             url: 'assets/json/matchDetails.json',
-            data: {matchId: matchId},
+            data: { matchId: matchId },
             async: false,
             success: function(result) {
                 var html = template('matchDetails-table-template', result);
@@ -117,6 +117,43 @@ var indexModule = (function(im) {
         });
         im.popupModal(modalId);
     }
+
+    im.addMatchDetailsInit = function(modalId, matchId) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/addMatchDetailsInit.json',
+            data: { matchId: matchId },
+            async: false,
+            success: function(result) {
+                var html = template('add-matchDetails-init-template', result);
+                $("#teamNames").html(html);
+            }
+        });
+        im.popupModal(modalId);
+    }
+
+    im.addMatchDetails = function(modalId, matchId) {
+        var data = $("#addMatchDetailsForm").serializeJson();
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/addMatchDetails.json',
+            data: data,
+            async: false,
+            success: function(result) {
+                // console.log(result);
+                if (result.result == "success") {
+                    $("#addMatchDetailsInitModal").modal("hide");
+                }
+                $('.modal').on('show.bs.modal', im.fixModal);
+                $(window).on('resize', im.fixModal);
+                $("#addMatchDetailsContent").html(result.message);
+                $("#addMatchDetailsModal").modal('show');
+            }
+        });
+    }
+
     im.initDataTable = function(id, settings) {
         var defaultOptions = {
             language: {
