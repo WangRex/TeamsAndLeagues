@@ -1,6 +1,10 @@
 .input-group[class*=form_date] {
-	float: left;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-bottom: 0px;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0px;
+}
+
+.progress {
+    margin-bottom: 0px;
 }
