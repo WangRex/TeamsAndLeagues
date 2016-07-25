@@ -2,5 +2,9 @@
     "teamName": { "teamA": "大连队", "teamB": "皇马" },
     "score": { "teamA": "5", "teamB": "0" },
     "yellow": { "teamA": "0", "teamB": "5" },
-    "red": { "teamA": "0", "teamB": "5" }
+    "red": { "teamA": "0", "teamB": "5" },
+    "goalIn": { "teamA": "5", "teamB": "0" },
+    "secondary": { "teamA": "5", "teamB": "0" },
+    "lineUp": { "teamA": "2:5:3", "teamB": "2:5:3" },
+    "matchBrief": "这场比赛踢得好啊，漂亮！！！"
 }

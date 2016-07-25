@@ -111,11 +111,11 @@ var indexModule = (function(im) {
             data: { matchId: matchId },
             async: false,
             success: function(result) {
-                var html = template('matchDetails-table-template', result);
-                $("#matchDetails-table").html(html);
+                var html = template('matchDetails-div-template', result);
+                $("#matchDetails-div").html(html);
+                im.popupModal(modalId);
             }
         });
-        im.popupModal(modalId);
     }
 
     im.addMatchDetailsInit = function(modalId, matchId) {

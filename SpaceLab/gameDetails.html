@@ -72,8 +72,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">比赛数据</h4>
             </div>
-            <div class="modal-body" style="height:253px;">
-                <div class="col-md-12">
+            <div class="modal-body" style="height:700px;">
+                <div class="col-md-12" id="modal-content">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">比赛数据</h3>
@@ -82,9 +82,7 @@
                                 <i class="fa fa-times"></i>
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <table class="table" id="matchDetails-table">
-                            </table>
+                        <div class="panel-body" id="matchDetails-div">
                         </div>
                     </div>
                 </div>
@@ -104,41 +102,80 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">比赛数据录入</h4>
             </div>
-            <div class="modal-body" style="height:353px;">
+            <div class="modal-body" style="height:auto;">
                 <form class="form-horizontal form-border" id="addMatchDetailsForm">
-                    <div class="form-group" id="teamNames">
-                    </div>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <span>得分</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                            <input type="text" class="form-control" placeholder="得分" name="teamAScore">
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                            <input type="text" class="form-control" placeholder="得分" name="teamBScore">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <span>黄牌数</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                            <input type="text" class="form-control" placeholder="黄牌数" name="teamAYellow">
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                            <input type="text" class="form-control" placeholder="黄牌数" name="teamBYellow">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <span>红牌数</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                            <input type="text" class="form-control" placeholder="红牌数" name="teamARed">
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="赛事奖项" name="gamePrize">
+                            <input type="text" class="form-control" placeholder="红牌数" name="teamBRed">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <span>进球数</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="进球数" name="teamAGoalIn">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="进球数" name="teamBGoalIn">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <span>助攻数</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="助攻数" name="teamASecondary">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="助攻数" name="teamBSecondary">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <span>阵容</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="阵容" name="teamALineUp">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="阵容" name="teamBLineUp">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <span>比赛简述</span>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" name="matchBrief"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -147,8 +184,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
     </div>
@@ -172,6 +207,139 @@
     </div>
 </div>
 <!-- End Match Details Modal -->
+<script id="matchDetails-div-template" type="text/html">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">统计项目</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{teamName.teamA}}</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{teamName.teamB}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">得分</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{score.teamA}}</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{score.teamB}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">黄牌数</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{yellow.teamA}}</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{yellow.teamB}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">红牌数</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{red.teamA}}</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{red.teamB}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">进球数</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{goalIn.teamA}}</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{goalIn.teamB}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">助攻数</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{secondary.teamA}}</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{secondary.teamB}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">阵容</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{lineUp.teamA}}</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">{{lineUp.teamB}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel-body">比赛简述</div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="panel">
+                <div class="panel-body">{{matchBrief}}</div>
+            </div>
+        </div>
+    </div>
+</script>
 <script id="add-matchDetails-init-template" type="text/html">
     <div class="col-sm-4" id="items">
         统计项目
