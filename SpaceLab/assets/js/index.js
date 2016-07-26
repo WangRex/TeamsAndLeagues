@@ -83,6 +83,18 @@ var indexModule = (function(im) {
                 "data": "matchId"
             }],
             "columnDefs": [{
+                "targets": [0],
+                "render": function(data, type, full) {
+                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," +'"A"'+ ");'>" + data + "</a>";
+                    return str;
+                }
+            }, {
+                "targets": [1],
+                "render": function(data, type, full) {
+                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," +'"B"'+ ");'>" + data + "</a>";
+                    return str;
+                }
+            }, {
                 "targets": [2],
                 "render": function(data, type, full) {
                     var str = "未进行";
@@ -116,15 +128,15 @@ var indexModule = (function(im) {
     }
 
     im.loadEditGamePage = function(gameId) {
-        var params = {"gameId":gameId};
-        im.loadPage("editGame", im.loadEditGame,params);
+        var params = { "gameId": gameId };
+        im.loadPage("editGame", im.loadEditGame, params);
     }
     im.loadEditGame = function(params) {
         $.ajax({
             type: 'get',
             dataType: "json",
             url: 'assets/json/gameInfo.json',
-            data: {gameId: params.gameId},
+            data: { gameId: params.gameId },
             async: false,
             success: function(result) {
                 var html = template('gameDetails-template', result.gameInfo);
@@ -209,6 +221,20 @@ var indexModule = (function(im) {
         };
         var options = $.extend({}, defaultOptions, settings);
         $("#" + id).dataTable(options);
+    }
+
+    im.getTeamBrief = function(modalId, matchId, teamFlag) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/teamBrief.json',
+            data: { matchId: matchId, teamFlag: teamFlag },
+            async: false,
+            success: function(result) {
+                $("#teamBriefContent").html(result.teamBrief);
+                im.popupModal(modalId);
+            }
+        });
     }
     im.extendFunc = function() {
         console.log("This is the extend function!");
