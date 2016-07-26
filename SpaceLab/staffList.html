@@ -1,0 +1,118 @@
+<!-- DataTables-->
+<link rel="stylesheet" href="assets/plugins/dataTables/css/dataTables.css">
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">工作人员列表</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table id="staffList" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>角色</th>
+                            <th>联系电话</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Start Show Data Modal -->
+<div class="modal fade" id="showDataModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">工作人员信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="addStaffContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Show Data Modal -->
+<!-- Start Show Staff Modal -->
+<div class="modal fade" id="showStaffModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">工作人员信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="staffContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Show Staff Modal -->
+<!--Page Leve JS -->
+<script src="assets/plugins/dataTables/js/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+<script>
+$(document).ready(function() {
+    var settings = {
+        "ajax": "assets/json/staffList.json",
+        "columns": [{
+            "data": "staffName"
+        }, {
+            "data": "staffRole"
+        }, {
+            "data": "staffPhone"
+        }],
+        "columnDefs": [{
+            "targets": [3],
+            "data": "staffId",
+            "render": function(data, type, full) {
+                var str = "<a href='javascript:void(0);' onclick='indexModule.getStaff(" + data + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>&nbsp;&nbsp;<a href='javascript:void(0);' onclick='indexModule.loadEditGamePage(" + '"gameDetails"' + ");'><i class='fa fa-pencil-square-o' aria-hidden='true' title='编辑工作人员'></i></a>";
+                return str;
+            }
+        }],
+        "aaSorting": [
+            [0, "desc"]
+        ]
+    };
+    indexModule.initDataTable("staffList", settings);
+});
+</script>
+<script id="staff-template" type="text/html">
+    <div class="row">
+        <label class="col-sm-6 control-label">姓名</label>
+        <div class="col-sm-6">
+            <span>{{staffName}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-6 control-label">角色</label>
+        <div class="col-sm-6">
+            <span>{{staffRole}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-6 control-label">联系电话</label>
+        <div class="col-sm-6">
+            <span>{{staffPhone}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-6 control-label">个人简介</label>
+        <div class="col-sm-6">
+            <span>{{staffBrief}}</span>
+        </div>
+    </div>
+</script>

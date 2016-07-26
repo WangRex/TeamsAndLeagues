@@ -85,13 +85,13 @@ var indexModule = (function(im) {
             "columnDefs": [{
                 "targets": [0],
                 "render": function(data, type, full) {
-                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," +'"A"'+ ");'>" + data + "</a>";
+                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," + '"A"' + ");'>" + data + "</a>";
                     return str;
                 }
             }, {
                 "targets": [1],
                 "render": function(data, type, full) {
-                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," +'"B"'+ ");'>" + data + "</a>";
+                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," + '"B"' + ");'>" + data + "</a>";
                     return str;
                 }
             }, {
@@ -236,6 +236,7 @@ var indexModule = (function(im) {
             }
         });
     }
+
     im.addStaff = function() {
         var data = $("#addStaffForm").serializeJson();
         $.ajax({
@@ -249,6 +250,41 @@ var indexModule = (function(im) {
                 $(window).on('resize', im.fixModal);
                 $("#addStaffContent").html(result.message);
                 $("#basicModal").modal('show');
+            }
+        });
+    }
+
+    im.loadStaffPage = function(staffId) {
+        var params = { "staffId": staffId };
+        im.loadPage("staff", im.loadStaff, params);
+    }
+    im.loadStaff = function(params) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/staff.json',
+            data: params,
+            async: false,
+            success: function(result) {
+                var html = template('staff-template', result.gameInfo);
+                $("#staffContent").html(html);
+            }
+        });
+    }
+
+    im.getStaff = function(staffId) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/staff.json',
+            data: { staffId: staffId },
+            async: false,
+            success: function(result) {
+                $('.modal').on('show.bs.modal', im.fixModal);
+                $(window).on('resize', im.fixModal);
+                var html = template('staff-template', result);
+                $("#staffContent").html(html);
+                $("#showStaffModal").modal('show');
             }
         });
     }
