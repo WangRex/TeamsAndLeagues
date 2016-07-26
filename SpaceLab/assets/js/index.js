@@ -1,6 +1,10 @@
 var indexModule = (function(im) {
     im.loadPage = function(pageName, callback, params) {
-        $("#main-content").load(pageName + ".html", function() {
+        var Rand = Math.random(); 
+        $.ajaxSetup({
+            cache: false //关闭AJAX相应的缓存 
+        });
+        $("#main-content").load(pageName + ".html", function(response, status, xhr) {
             app.bread();
             if (callback) {
                 callback(params);
@@ -139,8 +143,8 @@ var indexModule = (function(im) {
             data: { gameId: params.gameId },
             async: false,
             success: function(result) {
-                var html = template('gameDetails-template', result.gameInfo);
-                $("#gameDetails").html(html);
+                var html = template('editGame-template', result.gameInfo);
+                $("#editGame").html(html);
             }
         });
     }
