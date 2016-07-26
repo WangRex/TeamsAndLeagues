@@ -157,7 +157,7 @@ var indexModule = (function(im) {
             async: false,
             success: function(result) {
                 var html = template('add-matchDetails-init-template', result);
-                $("#teamNames").html(html);
+                $("#addMatchDetailsTeamName").html(html);
             }
         });
         im.popupModal(modalId);
@@ -172,10 +172,6 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                // console.log(result);
-                if (result.result == "success") {
-                    $("#addMatchDetailsInitModal").modal("hide");
-                }
                 $('.modal').on('show.bs.modal', im.fixModal);
                 $(window).on('resize', im.fixModal);
                 $("#addMatchDetailsContent").html(result.message);
