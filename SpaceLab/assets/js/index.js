@@ -236,6 +236,22 @@ var indexModule = (function(im) {
             }
         });
     }
+    im.addStaff = function() {
+        var data = $("#addStaffForm").serializeJson();
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/addStaff.json',
+            data: data,
+            async: false,
+            success: function(result) {
+                $('.modal').on('show.bs.modal', im.fixModal);
+                $(window).on('resize', im.fixModal);
+                $("#addStaffContent").html(result.message);
+                $("#basicModal").modal('show');
+            }
+        });
+    }
     im.extendFunc = function() {
         console.log("This is the extend function!");
     }
