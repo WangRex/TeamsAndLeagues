@@ -1,6 +1,6 @@
 var indexModule = (function(im) {
     im.loadPage = function(pageName, callback, params) {
-        var Rand = Math.random(); 
+        var Rand = Math.random();
         $.ajaxSetup({
             cache: false //关闭AJAX相应的缓存 
         });
@@ -103,7 +103,11 @@ var indexModule = (function(im) {
                 "render": function(data, type, full) {
                     var str = "未进行";
                     if (data == "1") {
+                        str = "进行中";
+                    } else if (data == "2") {
                         str = "已结束";
+                    } else if (data == "3") {
+                        str = "已完结";
                     }
                     return str;
                 }
@@ -111,7 +115,7 @@ var indexModule = (function(im) {
                 "targets": [3],
                 "render": function(data, type, full) {
                     var str = "无比分";
-                    if (full.status == "1") {
+                    if (data) {
                         str = full.result;
                     }
                     return str;
@@ -121,6 +125,8 @@ var indexModule = (function(im) {
                 "render": function(data, type, full) {
                     var str = "<a href='javascript:void(0);' onclick='indexModule.getMatchDetails(" + '"matchDetailsModal"' + "," + full.matchId + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>";
                     if (full.status == "0") {
+                        str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'><i class='fa fa-user' aria-hidden='true' title='人员分配'></i></a>";
+                    } else if (full.status == "2") {
                         str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'><i class='fa fa-file-text-o' aria-hidden='true' title='比赛录入'></i></a>";
                     }
                     return str;
@@ -260,7 +266,7 @@ var indexModule = (function(im) {
 
     im.loadStaffPage = function(staffId) {
         var params = { "staffId": staffId };
-        im.loadPage("staff", im.loadStaff, params);
+        im.loadPage("editStaff", im.loadStaff, params);
     }
     im.loadStaff = function(params) {
         $.ajax({
@@ -270,8 +276,8 @@ var indexModule = (function(im) {
             data: params,
             async: false,
             success: function(result) {
-                var html = template('staff-template', result.gameInfo);
-                $("#staffContent").html(html);
+                var html = template('staffInfo-template', result);
+                $("#staffInfo").html(html);
             }
         });
     }
@@ -289,6 +295,24 @@ var indexModule = (function(im) {
                 var html = template('staff-template', result);
                 $("#staffContent").html(html);
                 $("#showStaffModal").modal('show');
+            }
+        });
+    }
+
+    im.editStaff = function(staffId) {
+        var data = $("#editStaffForm").serializeJson();
+        data.staffId = staffId;
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/editStaff.json',
+            data: data,
+            async: false,
+            success: function(result) {
+                $('.modal').on('show.bs.modal', im.fixModal);
+                $(window).on('resize', im.fixModal);
+                $("#editStaffContent").html(result.message);
+                $("#basicModal").modal('show');
             }
         });
     }

@@ -79,7 +79,7 @@ $(document).ready(function() {
             "targets": [3],
             "data": "staffId",
             "render": function(data, type, full) {
-                var str = "<a href='javascript:void(0);' onclick='indexModule.getStaff(" + data + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>&nbsp;&nbsp;<a href='javascript:void(0);' onclick='indexModule.loadEditGamePage(" + '"gameDetails"' + ");'><i class='fa fa-pencil-square-o' aria-hidden='true' title='编辑工作人员'></i></a>";
+                var str = "<a href='javascript:void(0);' onclick='indexModule.getStaff(" + data + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>&nbsp;&nbsp;<a href='javascript:void(0);' onclick='indexModule.loadStaffPage(" + data + ");'><i class='fa fa-pencil-square-o' aria-hidden='true' title='编辑工作人员'></i></a>";
                 return str;
             }
         }],
