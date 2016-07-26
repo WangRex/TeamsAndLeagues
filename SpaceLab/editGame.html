@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">赛事信息</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body" id="gameDetails">
+            </div>
+        </div>
+    </div>
+</div>
+<script id="gameDetails-template" type="text/html">
+    <form class="form-horizontal form-border" id="editGameForm">
+        <div class="form-group">
+            <label for="dtp_input2" class="col-sm-3 control-label">比赛时间</label>
+            <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control" size="16" type="text" class="form-control" value="{{gameStartTime}}" name="gameStartTime" readonly>
+            </div>
+            <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control" size="16" type="text" class="form-control" value="{{gameStartTime}}" name="gameEndTime" readonly>
+            </div>
+            <br/>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">比赛规则</label>
+            <div class="col-sm-6">
+                <input type="text" name="gameRule" class="form-control" value="{{gameRule}}" readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">赛事奖项</label>
+            <div class="col-sm-6">
+                <input type="text" name="gamePrize" class="form-control" value="{{gamePrize}}" readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">举办地点</label>
+            <div class="col-sm-6">
+                <input type="text" name="gamePlace" class="form-control" value="{{gamePlace}}" readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">赛事名称</label>
+            <div class="col-sm-6">
+                <input type="text" name="gameName" class="form-control" value="{{gameName}}" readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">赛事简介</label>
+            <div class="col-sm-6">
+                <textarea class="form-control" name="gameBrief" readonly="readonly">{{gameBrief}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">赛事通告</label>
+            <div class="col-sm-6">
+                <textarea class="form-control" name="gameInform"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-8">
+                <input type="button" class="btn btn-primary" onclick="indexModule.editGame();" value="修改">
+            </div>
+        </div>
+    </form>
+</script>
+
+<!-- Basic Modal -->
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">提示信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="editGameContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Basic Modal -->

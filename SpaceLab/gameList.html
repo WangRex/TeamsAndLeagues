@@ -67,7 +67,7 @@ $(document).ready(function() {
             "targets": [5],
             "data": "gameId",
             "render": function(data, type, full) {
-                var str = "<a href='javascript:void(0);' onclick='indexModule.loadGameDetailsPage(" + '"gameDetails"' + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>&nbsp;&nbsp;<a href='javascript:void(0);' onclick='indexModule.loadGameDetailsPage(" + '"gameDetails"' + ");'><i class='fa fa-pencil-square-o' aria-hidden='true' title='编辑赛事通告'></i></a>";
+                var str = "<a href='javascript:void(0);' onclick='indexModule.loadGameDetailsPage(" + '"gameDetails"' + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>&nbsp;&nbsp;<a href='javascript:void(0);' onclick='indexModule.loadEditGamePage(" + '"gameDetails"' + ");'><i class='fa fa-pencil-square-o' aria-hidden='true' title='编辑赛事通告'></i></a>";
                 if (full.gameStatus == "0") {
                     str += "&nbsp;&nbsp;<a href='/update?id=" + data + "'><i class='fa fa-table' aria-hidden='true' title='报名'></i></a>&nbsp;&nbsp;<a href='/share?id=" + data + "'><i class='fa fa-share-alt-square' aria-hidden='true' title='分享'></i></a>";
                 }

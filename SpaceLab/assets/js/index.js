@@ -1,17 +1,15 @@
 var indexModule = (function(im) {
-    im.loadPage = function(pageName, callback) {
+    im.loadPage = function(pageName, callback, params) {
         $("#main-content").load(pageName + ".html", function() {
             app.bread();
             if (callback) {
-                callback();
+                callback(params);
             }
 
         });
     }
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
-        // console.log(data);
-        //{gameTime: "", gameRule: "1", gamePrize: "", gamePlace: "", gameName: "", gameBrief: ""}
         $.ajax({
             type: 'get',
             dataType: "json",
@@ -19,10 +17,25 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                // console.log(result);
                 $('.modal').on('show.bs.modal', im.fixModal);
                 $(window).on('resize', im.fixModal);
                 $("#addGameContent").html(result.message);
+                $("#basicModal").modal('show');
+            }
+        });
+    }
+    im.editGame = function() {
+        var data = $("#editGameForm").serializeJson();
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/editGame.json',
+            data: data,
+            async: false,
+            success: function(result) {
+                $('.modal').on('show.bs.modal', im.fixModal);
+                $(window).on('resize', im.fixModal);
+                $("#editGameContent").html(result.message);
                 $("#basicModal").modal('show');
             }
         });
@@ -43,7 +56,6 @@ var indexModule = (function(im) {
     }
     im.loadGameDetailsPage = function(gameId) {
         im.loadPage("gameDetails", im.loadGameDetails);
-
     }
     im.loadGameDetails = function() {
         $.ajax({
@@ -91,9 +103,9 @@ var indexModule = (function(im) {
             }, {
                 "targets": [4],
                 "render": function(data, type, full) {
-                    var str = "<a href='javascript:void(0);' onclick='indexModule.getMatchDetails(" + '"matchDetailsModal"' + "," + full.matchId + ");'>查看</a>";
+                    var str = "<a href='javascript:void(0);' onclick='indexModule.getMatchDetails(" + '"matchDetailsModal"' + "," + full.matchId + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>";
                     if (full.status == "0") {
-                        str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'>比赛录入</a>";
+                        str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'><i class='fa fa-file-text-o' aria-hidden='true' title='比赛录入'></i></a>";
                     }
                     return str;
                 }
@@ -101,6 +113,24 @@ var indexModule = (function(im) {
         };
 
         im.initDataTable("gameDetails-table", settings);
+    }
+
+    im.loadEditGamePage = function(gameId) {
+        var params = {"gameId":gameId};
+        im.loadPage("editGame", im.loadEditGame,params);
+    }
+    im.loadEditGame = function(params) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/gameInfo.json',
+            data: {gameId: params.gameId},
+            async: false,
+            success: function(result) {
+                var html = template('gameDetails-template', result.gameInfo);
+                $("#gameDetails").html(html);
+            }
+        });
     }
 
     im.getMatchDetails = function(modalId, matchId) {
