@@ -1,9 +1,5 @@
 var indexModule = (function(im) {
     im.loadPage = function(pageName, callback, params) {
-        var Rand = Math.random();
-        $.ajaxSetup({
-            cache: false //关闭AJAX相应的缓存 
-        });
         $("#main-content").load(pageName + ".html", function(response, status, xhr) {
             app.bread();
             if (callback) {
@@ -21,10 +17,8 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                $('.modal').on('show.bs.modal', im.fixModal);
-                $(window).on('resize', im.fixModal);
                 $("#addGameContent").html(result.message);
-                $("#basicModal").modal('show');
+                im.popupModal("basicModal");
             }
         });
     }
@@ -37,10 +31,8 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                $('.modal').on('show.bs.modal', im.fixModal);
-                $(window).on('resize', im.fixModal);
                 $("#editGameContent").html(result.message);
-                $("#basicModal").modal('show');
+                im.popupModal("basicModal");
             }
         });
     }
@@ -125,7 +117,7 @@ var indexModule = (function(im) {
                 "render": function(data, type, full) {
                     var str = "<a href='javascript:void(0);' onclick='indexModule.getMatchDetails(" + '"matchDetailsModal"' + "," + full.matchId + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>";
                     if (full.status == "0") {
-                        str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'><i class='fa fa-user' aria-hidden='true' title='人员分配'></i></a>";
+                        str = "<a href='javascript:void(0);' onclick='indexModule.allocateStaffInit(" + '"allocateStaffInitModal"' + "," + data + ");'><i class='fa fa-user' aria-hidden='true' title='人员分配'></i></a>";
                     } else if (full.status == "2") {
                         str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'><i class='fa fa-file-text-o' aria-hidden='true' title='比赛录入'></i></a>";
                     }
@@ -256,10 +248,8 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                $('.modal').on('show.bs.modal', im.fixModal);
-                $(window).on('resize', im.fixModal);
                 $("#addStaffContent").html(result.message);
-                $("#basicModal").modal('show');
+                im.popupModal("basicModal");
             }
         });
     }
@@ -290,11 +280,9 @@ var indexModule = (function(im) {
             data: { staffId: staffId },
             async: false,
             success: function(result) {
-                $('.modal').on('show.bs.modal', im.fixModal);
-                $(window).on('resize', im.fixModal);
                 var html = template('staff-template', result);
                 $("#staffContent").html(html);
-                $("#showStaffModal").modal('show');
+                im.popupModal("showStaffModal");
             }
         });
     }
@@ -309,10 +297,43 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                $('.modal').on('show.bs.modal', im.fixModal);
-                $(window).on('resize', im.fixModal);
                 $("#editStaffContent").html(result.message);
-                $("#basicModal").modal('show');
+                im.popupModal("basicModal");
+            }
+        });
+    }
+
+    im.allocateStaffInit = function(modalId, matchId, teamFlag) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/matchInfo.json',
+            data: { matchId: matchId, teamFlag: teamFlag },
+            async: false,
+            success: function(result) {
+                var html = template('match-info-template', result);
+                $("#matchInfo").html(html);
+                $("#allocateStaffBtn").on("click", function() {
+                    im.allocateStaff(matchId);
+                    $("#allocateStaffInitModal").modal("hide");
+                });
+                im.popupModal(modalId);
+            }
+        });
+    }
+
+    im.allocateStaff = function(matchId) {
+        var data = $("#allocateStaffForm").serializeJson();
+        data.matchId = matchId;
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/allocateStaff.json',
+            data: data,
+            async: false,
+            success: function(result) {
+                $("#modal-content-div").html(result.message);
+                im.popupModal("allocateStaffModal");
             }
         });
     }

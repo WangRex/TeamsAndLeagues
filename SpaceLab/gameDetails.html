@@ -376,3 +376,86 @@
         {{teamName.teamB}}
     </div>
 </script>
+<!-- Start Allocate Staff Modal -->
+<div class="modal fade" id="allocateStaffInitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">工作人员分配</h4>
+            </div>
+            <div class="modal-body" style="height:auto;">
+                <form class="form-horizontal form-border" id="allocateStaffForm">
+                    <div class="form-group" id="matchInfo">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">教练</label>
+                        <div class="col-sm-6">
+                            <select class="form-control input-sm" name="coacher">
+                                <option value="1">林冲</option>
+                                <option value="2">秦明</option>
+                                <option value="3">呼延灼</option>
+                                <option value="4">花荣</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">裁判</label>
+                        <div class="col-sm-6">
+                            <select class="form-control input-sm" name="referee">
+                                <option value="1">宋江</option>
+                                <option value="2">卢俊义</option>
+                                <option value="3">吴用</option>
+                                <option value="4">公孙胜</option>
+                                <option value="5">关胜</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input type="button" class="btn btn-primary" id="allocateStaffBtn" value="分配">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Add Match Details Modal -->
+<script id="match-info-template" type="text/html">
+    <div class="col-md-6 col-md-offset-3">
+        <label class="col-sm-6">球队A</label>
+        <div class="col-sm-6">
+            <span>{{teamA}}</span>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <label class="col-sm-6">球队B</label>
+        <div class="col-sm-6">
+            <span>{{teamB}}</span>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <label class="col-sm-6">比赛时间</label>
+        <div class="col-sm-6">
+            <span>{{matchDate}}</span>
+        </div>
+    </div>
+</script>
+<!-- Basic Modal -->
+<div class="modal fade" id="allocateStaffModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">分配工作人员</h4>
+            </div>
+            <div class="modal-body" id="modal-content-div">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Basic Modal -->
