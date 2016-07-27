@@ -1,3 +1,7 @@
+<link href="assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="assets/css/custom.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary">
@@ -16,14 +20,13 @@
 <script id="editGame-template" type="text/html">
     <form class="form-horizontal form-border" id="editGameForm">
         <div class="form-group">
-            <label for="dtp_input2" class="col-sm-3 control-label">比赛时间</label>
-            <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                <input class="form-control" size="16" type="text" class="form-control" value="{{gameStartTime}}" name="gameStartTime" readonly>
+            <label class="col-sm-3 control-label">比赛时间</label>
+            <div class="col-sm-3">
+                <input type="text" name="gameRule" class="form-control" value="{{gameStartTime}}" readonly="readonly">
             </div>
-            <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                <input class="form-control" size="16" type="text" class="form-control" value="{{gameStartTime}}" name="gameEndTime" readonly>
+            <div class="col-sm-3">
+                <input type="text" name="gameRule" class="form-control" value="{{gameEndTime}}" readonly="readonly">
             </div>
-            <br/>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">比赛规则</label>
@@ -50,6 +53,14 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="dtp_input2" class="col-sm-3 control-label">报名截止</label>
+            <div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control" size="16" type="text" value="{{applyEnd}}" name="applyEnd" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">赛事简介</label>
             <div class="col-sm-6">
                 <textarea class="form-control" name="gameBrief" readonly="readonly">{{gameBrief}}</textarea>
@@ -68,7 +79,6 @@
         </div>
     </form>
 </script>
-
 <!-- Basic Modal -->
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

@@ -143,6 +143,16 @@ var indexModule = (function(im) {
             success: function(result) {
                 var html = template('editGame-template', result.gameInfo);
                 $("#editGame").html(html);
+                $('.form_date').datetimepicker({
+                    weekStart: 1,
+                    todayBtn: 1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    startView: 2,
+                    minView: 2,
+                    language: 'zh-CN', //汉化 
+                    forceParse: 0
+                });
             }
         });
     }
