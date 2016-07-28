@@ -280,6 +280,7 @@ var indexModule = (function(im) {
                 $("#staffInfo").html(html);
                 $('#editStaffRole').selectpicker({
                     liveSearch: true,
+                    noneSelectedText: result.staffRole,
                     maxOptions: 1
                 });
             }
