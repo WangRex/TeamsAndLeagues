@@ -1,3 +1,5 @@
+<!-- Bootstrap Selector -->
+<link rel="stylesheet" href="assets/plugins/bootstrap-select/css/bootstrap-select.css">
 <link href="assets/css/custom.css" rel="stylesheet" media="screen">
 <div class="row">
     <div class="col-md-12">
@@ -20,7 +22,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">角色</label>
                         <div class="col-sm-6">
-                            <select class="form-control input-sm" name="staffRole">
+                            <select id="addStaffRole" class="show-tick form-control" multiple name="staffRole">
                                 <option value="1">裁判</option>
                                 <option value="2">教练</option>
                                 <option value="2">摄像</option>
@@ -68,3 +70,14 @@
     </div>
 </div>
 <!-- End Basic Modal -->
+<!-- Bootstrap Selector -->
+<script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>
+<script>
+$(document).ready(function() {
+    $('#addStaffRole').selectpicker({
+        liveSearch: true,
+        maxOptions: 1
+    });
+});
+</script>

@@ -8,3 +8,10 @@
 .progress {
     margin-bottom: 0px;
 }
+
+.btn-default {
+    background-color: #fafafa;
+    border: #ccc solid 1px;
+    color: #717171;
+    font-size: 13px;
+}

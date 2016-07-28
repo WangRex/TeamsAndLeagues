@@ -278,6 +278,10 @@ var indexModule = (function(im) {
             success: function(result) {
                 var html = template('staffInfo-template', result);
                 $("#staffInfo").html(html);
+                $('#editStaffRole').selectpicker({
+                    liveSearch: true,
+                    maxOptions: 1
+                });
             }
         });
     }
