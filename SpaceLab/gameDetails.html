@@ -1,5 +1,7 @@
 <!-- DataTables-->
 <link rel="stylesheet" href="assets/plugins/dataTables/css/dataTables.css">
+<!-- Bootstrap Selector -->
+<link rel="stylesheet" href="assets/plugins/bootstrap-select/css/bootstrap-select.css">
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary">
@@ -391,7 +393,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">教练</label>
                         <div class="col-sm-6">
-                            <select class="form-control input-sm" name="coacher">
+                            <select class="form-control input-sm" name="coacher" id="coacher">
                                 <option value="1">林冲</option>
                                 <option value="2">秦明</option>
                                 <option value="3">呼延灼</option>
@@ -402,7 +404,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">裁判</label>
                         <div class="col-sm-6">
-                            <select class="form-control input-sm" name="referee">
+                            <select class="form-control input-sm" name="referee" id="referee">
                                 <option value="1">宋江</option>
                                 <option value="2">卢俊义</option>
                                 <option value="3">吴用</option>
@@ -459,3 +461,18 @@
     </div>
 </div>
 <!-- End Basic Modal -->
+<!-- Bootstrap Selector -->
+<script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>
+<script>
+$(document).ready(function() {
+    $('#coacher').selectpicker({
+        liveSearch: true,
+        maxOptions: 1
+    });
+    $('#referee').selectpicker({
+        liveSearch: true,
+        maxOptions: 1
+    });
+});
+</script>
