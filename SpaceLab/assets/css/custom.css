@@ -15,3 +15,18 @@
     color: #717171;
     font-size: 13px;
 }
+
+#main-content {
+    margin-left: 0px;
+}
+
+.complete-sign {
+	display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    width: 300px;
+    height: 300px
+}

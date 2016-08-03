@@ -128,7 +128,7 @@
         <!--sidebar left end
         <!--main content start-->
         <section class="main-content-wrapper">
-            <section id="main-content">
+            <section>
                 <!--tiles start-->
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
-                        <div class="dashboard-tile detail tile-blue">
+                        <div class="dashboard-tile detail tile-blue" id="newGame">
                             <div class="content">
                                 <h1 class="text-left timer" data-from="0" data-to="32" data-speed="2500"></h1>
                                 <p>新比赛</p>
@@ -173,39 +173,8 @@
                     </div>
                 </div>
                 <!--tiles end-->
-                <!--ToDo start-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">代办事项</h3>
-                                <div class="actions pull-right">
-                                    <i class="fa fa-chevron-down"></i>
-                                    <i class="fa fa-times"></i>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input id="new-todo" type="text" class="form-control" placeholder="What needs to be done?">
-                                            <section id='main'>
-                                                <ul id='todo-list'></ul>
-                                            </section>
-                                        </div>
-                                        <div class="form-group">
-                                            <button id="todo-enter" class="btn btn-primary pull-right">提交</button>
-                                            <div id='todo-count'></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--ToDo end-->
                 <!--charts start-->
-                <div class="row">
+                <div class="row" id="main-content">
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -226,6 +195,7 @@
         </section>
         <!--main content end-->
     </section>
+    <div class="complete-sign"><img src="assets/img/complete.jpg"></div>
     <!--Global JS-->
     <script src="assets/js/jquery-1.10.2.min.js"></script>
     <script src="assets/plugins/fullcalendar/js/jquery-ui-1.10.2.custom.min.js"></script>
@@ -269,6 +239,9 @@
     <script>
     $(document).ready(function() {
         app.timer();
+        $("#newGame").on("click", function() {
+            indexModule.loadPage("addGame");
+        });
     });
     </script>
 </body>
