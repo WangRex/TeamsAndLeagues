@@ -142,10 +142,10 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
-                        <div class="dashboard-tile detail tile-turquoise">
+                        <div class="dashboard-tile detail tile-turquoise" id="gameList">
                             <div class="content">
                                 <h1 class="text-left timer" data-from="0" data-to="56" data-speed="2500"></h1>
-                                <p>新评论</p>
+                                <p>赛事列表</p>
                             </div>
                             <div class="icon"><i class="fa fa-comments"></i>
                             </div>
@@ -241,6 +241,9 @@
         app.timer();
         $("#newGame").on("click", function() {
             indexModule.loadPage("addGame");
+        });
+        $("#gameList").on("click", function() {
+            indexModule.loadPage("gameList");
         });
     });
     </script>

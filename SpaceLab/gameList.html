@@ -1,29 +1,27 @@
 <!-- DataTables-->
 <link rel="stylesheet" href="assets/plugins/dataTables/css/dataTables.css">
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">赛事清单</h3>
-                <div class="actions pull-right">
-                    <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
-                </div>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">赛事清单</h3>
+            <div class="actions pull-right">
+                <i class="fa fa-chevron-down"></i>
+                <i class="fa fa-times"></i>
             </div>
-            <div class="panel-body">
-                <table id="gameList" class="display table table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>比赛时间</th>
-                            <th>举办地点</th>
-                            <th>赛事名称</th>
-                            <th>比赛规则</th>
-                            <th>赛事奖项</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+        </div>
+        <div class="panel-body">
+            <table id="gameListTable" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>比赛时间</th>
+                        <th>举办地点</th>
+                        <th>赛事名称</th>
+                        <th>比赛规则</th>
+                        <th>赛事奖项</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
@@ -78,6 +76,6 @@ $(document).ready(function() {
             [0, "desc"]
         ]
     };
-    indexModule.initDataTable("gameList", settings);
+    indexModule.initDataTable("gameListTable", settings);
 });
 </script>
