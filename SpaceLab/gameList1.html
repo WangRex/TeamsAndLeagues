@@ -1,54 +1,45 @@
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" type="text/css" href="/assets/css/nprogress.css">
-<script src="/assets/js/script.js"></script>
-<script type="text/javascript" src="/assets/js/nprogress.js"></script>
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel panel-solid-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">赛事信息</h3>
-                <div class="actions pull-right">
-                    <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
-                </div>
-            </div>
-            <div class="panel-body">
-                <p>世纪大战</p>
-                <p>大连队-皇家马德里</p>
-            </div>
-            <div class="panel-footer">比赛时间</div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-solid-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">赛事信息</h3>
-                <div class="actions pull-right">
-                    <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
-                </div>
-            </div>
-            <div class="panel-body">
-                <p>世纪大战2</p>
-                <p>大连队-庄河队</p>
-            </div>
-            <div class="panel-footer">比赛时间</div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-solid-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">赛事信息</h3>
-                <div class="actions pull-right">
-                    <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
-                </div>
-            </div>
-            <div class="panel-body">
-                <p>世纪大战3</p>
-                <p>大连队-甘井子队</p>
-            </div>
-            <div class="panel-footer">比赛时间</div>
-        </div>
-    </div>
+<div class="row" id="row0">
 </div>
+<script id="match-info-template" type="text/html">
+    <div class="col-md-4">
+        <div class="panel panel-solid-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">赛事信息</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <p>赛事名称：{{gameName}}</p>
+                <p>赛事地点：{{gamePlace}}</p>
+                <p>赛事时间：{{gameStartDate}}-{{gameEndDate}}</p>
+                <p>赛事赛制：{{gameRule}}</p>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        type: 'get',
+        dataType: "json",
+        url: 'assets/json/gameList.json',
+        async: false,
+        success: function(result) {
+        	var num = 0;
+            $.each(result.data, function(idx, obj) {
+            	console.log(idx);
+            	console.log(obj);
+            	if(idx % 3 == 0 && idx != 0) {
+            		num ++ ;
+            		var div = $("<div class='row' id='row" + num + "'></div>");
+            		$("#row" + Number(num-1)).after(div);
+            	}
+                var html = template('match-info-template', obj);
+                $("#row" + num).append(html);
+            });
+        }
+    });
+});
+</script>
