@@ -4,10 +4,11 @@
     	"gameEndTime":"2016/07/26",
         "gameName": "世纪大战",
         "gamePlace": "大连体育场",
-        "gameRule": "规则1",
+        "gameRule": "淘汰赛",
         "gamePrize": "$320,800",
         "applyEnd": "2016/08/26",
         "gameBrief":"这是一场世纪大战，很流弊的。",
-        "gameInform":"最新通告！！！！！"
+        "gameInform":"最新通告！！！！！",
+        "gameTeamNum":"14"
     }
 }

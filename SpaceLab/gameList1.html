@@ -10,10 +10,10 @@
                     <i class="fa fa-times"></i>
                 </div>
             </div>
-            <div class="panel-body">
+            <div class="panel-body gameInfo" data-gameId="{{gameId}}">
                 <p>赛事名称：{{gameName}}</p>
                 <p>赛事地点：{{gamePlace}}</p>
-                <p>赛事时间：{{gameStartDate}}-{{gameEndDate}}</p>
+                <p>赛事时间：{{gameStartDate}} - {{gameEndDate}}</p>
                 <p>赛事赛制：{{gameRule}}</p>
             </div>
         </div>
@@ -27,19 +27,24 @@ $(document).ready(function() {
         url: 'assets/json/gameList.json',
         async: false,
         success: function(result) {
-        	var num = 0;
+            var num = 0;
             $.each(result.data, function(idx, obj) {
-            	console.log(idx);
-            	console.log(obj);
-            	if(idx % 3 == 0 && idx != 0) {
-            		num ++ ;
-            		var div = $("<div class='row' id='row" + num + "'></div>");
-            		$("#row" + Number(num-1)).after(div);
-            	}
+                if (idx % 3 == 0 && idx != 0) {
+                    num++;
+                    var div = $("<div class='row' id='row" + num + "'></div>");
+                    $("#row" + Number(num - 1)).after(div);
+                }
                 var html = template('match-info-template', obj);
                 $("#row" + num).append(html);
             });
         }
     });
+
+    $(".gameInfo").on("click", function() {
+        var gameId = $(this).attr("data-gameId");
+        indexModule.loadGameDetailsPage1("gameDetails1");
+    });
+
+    
 });
 </script>

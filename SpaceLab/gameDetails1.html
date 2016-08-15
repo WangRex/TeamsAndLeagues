@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">赛事信息</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body" id="gameDetails">
+            </div>
+        </div>
+    </div>
+</div>
+<script id="gameDetails-template" type="text/html">
+    <div class="col-md-6 col-md-offset-3">
+        <label class="col-sm-3 control-label">赛事名称</label>
+        <div class="col-sm-3">
+            <span>{{gameName}}</span>
+        </div>
+        <label class="col-sm-3 control-label">参赛球队</label>
+        <div class="col-sm-3">
+            <span>{{gameTeamNum}}支</span>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <label class="col-sm-3 control-label">比赛规则</label>
+        <div class="col-sm-3">
+            <span>{{gameRule}}</span>
+        </div>
+        <label class="col-sm-3 control-label">赛事奖项</label>
+        <div class="col-sm-3">
+            <span>{{gamePrize}}</span>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <label class="col-sm-3 control-label">举办地点</label>
+        <div class="col-sm-9">
+            <span>{{gamePlace}}</span>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <label class="col-sm-3 control-label">比赛通告</label>
+        <div class="col-sm-9">
+            <span>{{gameInform}}</span>
+        </div>
+    </div>
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">参赛球队</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="fa-hover col-md-3 col-sm-4"><i class="fa fa-rub"></i> 赛程表</div>
+                <div class="fa-hover col-md-3 col-sm-4"><i class="fa fa-ruble"></i> 积分榜</div>
+                <div class="fa-hover col-md-3 col-sm-4"><i class="fa fa-rouble"></i> 射手榜</div>
+                <div class="fa-hover col-md-3 col-sm-4"><i class="fa fa-pagelines"></i> 停赛榜</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -131,6 +131,22 @@ var indexModule = (function(im) {
         im.initDataTable("gameDetails-table", settings);
     }
 
+    im.loadGameDetailsPage1 = function(gameId) {
+        im.loadPage("gameDetails1", im.loadGameDetails1);
+    }
+    im.loadGameDetails1 = function() {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'assets/json/gameInfo.json',
+            async: false,
+            success: function(result) {
+                var html = template('gameDetails-template', result.gameInfo);
+                $("#gameDetails").html(html);
+            }
+        });
+    }
+
     im.loadEditGamePage = function(gameId) {
         var params = { "gameId": gameId };
         im.loadPage("editGame", im.loadEditGame, params);
