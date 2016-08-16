@@ -21,7 +21,7 @@
 }
 
 .complete-sign {
-	display: none;
+    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,4 +29,34 @@
     margin-top: -50px;
     width: 300px;
     height: 300px
+}
+
+.hr {
+    width: 100%;
+    float: left;
+}
+
+.hr hr {
+    border: 0;
+    border-top: 1px solid red;
+}
+
+.ddd {
+    margin-top: 54px;
+}
+
+.dd-handle {
+    cursor: pointer;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+.tac {
+    text-align: center;
 }
