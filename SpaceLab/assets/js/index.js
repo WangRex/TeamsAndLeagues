@@ -154,6 +154,9 @@ var indexModule = (function(im) {
         $("#scoreList").on("click", function() {
             im.loadPage("match-content", "scoreList");
         });
+        $("#shooterList").on("click", function() {
+            im.loadPage("match-content", "shooterList");
+        });
     }
 
     im.loadEditGamePage = function(gameId) {
