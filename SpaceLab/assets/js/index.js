@@ -1,6 +1,6 @@
 var indexModule = (function(im) {
-    im.loadPage = function(pageName, callback, params) {
-        $("#main-content").load(pageName + ".html", function(response, status, xhr) {
+    im.loadPage = function(parentId, pageName, callback, params) {
+        $("#" + parentId || "main-content").load(pageName + ".html", function(response, status, xhr) {
             app.bread();
             if (callback) {
                 callback(params);
@@ -53,7 +53,7 @@ var indexModule = (function(im) {
         $("#" + modalId).modal('show');
     }
     im.loadGameDetailsPage = function(gameId) {
-        im.loadPage("gameDetails", im.loadGameDetails);
+        im.loadPage("main-content", "gameDetails", im.loadGameDetails);
     }
     im.loadGameDetails = function() {
         $.ajax({
@@ -132,7 +132,7 @@ var indexModule = (function(im) {
     }
 
     im.loadGameDetailsPage1 = function(gameId) {
-        im.loadPage("gameDetails1", im.loadGameDetails1);
+        im.loadPage("main-content", "gameDetails1", im.loadGameDetails1);
     }
     im.loadGameDetails1 = function() {
         $.ajax({
@@ -147,9 +147,15 @@ var indexModule = (function(im) {
         });
     }
 
+    im.bindGameDetails = function() {
+        $("#matchList").on("click", function() {
+            im.loadPage("match-content", "matchList");
+        });
+    }
+
     im.loadEditGamePage = function(gameId) {
         var params = { "gameId": gameId };
-        im.loadPage("editGame", im.loadEditGame, params);
+        im.loadPage("main-content", "editGame", im.loadEditGame, params);
     }
     im.loadEditGame = function(params) {
         $.ajax({
@@ -284,7 +290,7 @@ var indexModule = (function(im) {
 
     im.loadStaffPage = function(staffId) {
         var params = { "staffId": staffId };
-        im.loadPage("editStaff", im.loadStaff, params);
+        im.loadPage("main-content", "editStaff", im.loadStaff, params);
     }
     im.loadStaff = function(params) {
         $.ajax({

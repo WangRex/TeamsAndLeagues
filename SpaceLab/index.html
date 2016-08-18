@@ -240,10 +240,10 @@
     $(document).ready(function() {
         app.timer();
         $("#newGame").on("click", function() {
-            indexModule.loadPage("addGame");
+            indexModule.loadPage("main-content", "addGame");
         });
         $("#gameList").on("click", function() {
-            indexModule.loadPage("gameList1");
+            indexModule.loadPage("main-content", "gameList1");
         });
     });
     </script>
