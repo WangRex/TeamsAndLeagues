@@ -92,3 +92,7 @@
 .roundNumber {
     text-align: center;
 }
+.scoreData {
+    margin-top: 10px;
+    border-bottom: 1px solid gold;
+}

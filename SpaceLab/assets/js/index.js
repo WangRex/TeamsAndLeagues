@@ -151,6 +151,9 @@ var indexModule = (function(im) {
         $("#matchList").on("click", function() {
             im.loadPage("match-content", "matchList");
         });
+        $("#scoreList").on("click", function() {
+            im.loadPage("match-content", "scoreList");
+        });
     }
 
     im.loadEditGamePage = function(gameId) {
