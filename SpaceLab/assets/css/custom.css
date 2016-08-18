@@ -47,16 +47,48 @@
 
 .dd-handle {
     cursor: pointer;
+    height: 80px;
 }
 
 .tal {
     text-align: left;
+    line-height: 80px;
+    vertical-align: middle;
 }
 
 .tar {
     text-align: right;
+    line-height: 80px;
+    vertical-align: middle;
 }
 
 .tac {
+    text-align: center;
+    line-height: 16px;
+}
+
+.fa-hover {
+    cursor: pointer;
+}
+.dashboard-tile {
+    cursor: pointer;
+}
+.gameInfo{
+    cursor: pointer;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.nextGame {
+    text-align: right;
+}
+.round {
+    height: 40px;
+    background: gainsboro;
+}
+.roundNumber {
     text-align: center;
 }
