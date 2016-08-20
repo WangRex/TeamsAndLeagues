@@ -182,10 +182,10 @@
     $(document).ready(function() {
         app.timer();
         $("#newGame").on("click", function() {
-            indexModule.loadPage("main-content", "addGame");
+            indexModule.loadPage("main-content", "addGame", app.bread);
         });
         $("#gameList").on("click", function() {
-            indexModule.loadPage("main-content", "gameList1");
+            indexModule.loadPage("main-content", "gameList1", app.bread);
         });
     });
     </script>

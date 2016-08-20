@@ -2,50 +2,98 @@
     "data": [{
         "index": 1,
         "teamName": "大连队",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 100
     }, {
         "index": 2,
         "teamName": "大连队2",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 90
     }, {
         "index": 3,
         "teamName": "大连队3",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 80
     }, {
         "index": 4,
         "teamName": "大连队4",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 70
     }, {
         "index": 5,
         "teamName": "大连队5",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 69
     }, {
         "index": 6,
         "teamName": "大连队6",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 68
     }, {
         "index": 7,
         "teamName": "大连队7",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 67
     }, {
         "index": 8,
         "teamName": "大连队8",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 66
     }, {
         "index": 9,
         "teamName": "大连队9",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 65
     }, {
         "index": 10,
         "teamName": "大连队10",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 64
     }, {
         "index": 11,
         "teamName": "大连队11",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 63
     }, {
         "index": 12,
         "teamName": "大连队12",
+        "matchNums": 100,
+        "winNums": 100,
+        "drawNums": 100,
+        "loseNums": 100,
         "teamScore": 62
     }]
 }

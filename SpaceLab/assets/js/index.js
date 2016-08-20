@@ -1,7 +1,6 @@
 var indexModule = (function(im) {
     im.loadPage = function(parentId, pageName, callback, params) {
         $("#" + parentId || "main-content").load(pageName + ".html", function(response, status, xhr) {
-            app.bread();
             if (callback) {
                 callback(params);
             }
@@ -131,18 +130,20 @@ var indexModule = (function(im) {
         im.initDataTable("gameDetails-table", settings);
     }
 
-    im.loadGameDetailsPage1 = function(gameId) {
-        im.loadPage("main-content", "gameDetails1", im.loadGameDetails1);
+    im.loadGameDetailsPage1 = function(htmlName, gameId) {
+        im.loadPage("main-content", htmlName, im.loadGameDetails1, { gameId: gameId });
     }
-    im.loadGameDetails1 = function() {
+    im.loadGameDetails1 = function(params) {
         $.ajax({
             type: 'get',
             dataType: "json",
+            data: params,
             url: 'assets/json/gameInfo.json',
             async: false,
             success: function(result) {
                 var html = template('gameDetails-template', result.gameInfo);
                 $("#gameDetails").html(html);
+                app.bread();
             }
         });
     }
@@ -152,13 +153,31 @@ var indexModule = (function(im) {
             im.loadPage("match-content", "matchList");
         });
         $("#scoreList").on("click", function() {
-            im.loadPage("match-content", "scoreList");
+            var gameId = $("#gameInfo").attr("data-gameid");
+            var params = { gameId: gameId };
+            im.loadPage("match-content", "scoreList", im.loadScoreList, params);
         });
         $("#shooterList").on("click", function() {
             im.loadPage("match-content", "shooterList");
         });
         $("#stopList").on("click", function() {
             im.loadPage("match-content", "stopList");
+        });
+    }
+
+    im.loadScoreList = function(params) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            data: params,
+            url: 'assets/json/scoreBoard.json',
+            async: false,
+            success: function(result) {
+                console.log(result);
+                var html = template('scoreDetails-template', result);
+                console.log(html);
+                $("#boradData").after(html);
+            }
         });
     }
 

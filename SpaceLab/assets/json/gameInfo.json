@@ -1,5 +1,6 @@
 {
     "gameInfo": {
+        "gameId": "1",
     	"gameStartTime":"2016/07/26",
     	"gameEndTime":"2016/07/26",
         "gameName": "世纪大战",
