@@ -1,0 +1,31 @@
+{
+    "data": [{
+        "index": 1,
+        "stopNum": 10,
+        "teamName": "水浒",
+        "name": "佛爷",
+        "redNum": 10,
+        "yellowNum": 20
+    }, {
+        "index": 2,
+        "stopNum": 9,
+        "teamName": "三国",
+        "name": "张飞",
+        "redNum": 9,
+        "yellowNum": 15
+    }, {
+        "index": 3,
+        "stopNum": 8,
+        "teamName": "红楼梦",
+        "name": "贾宝玉",
+        "redNum": 9,
+        "yellowNum": 10
+    }, {
+        "index": 4,
+        "stopNum": 7,
+        "teamName": "西游记",
+        "name": "唐僧",
+        "redNum": 7,
+        "yellowNum": 5
+    }]
+}

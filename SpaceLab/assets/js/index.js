@@ -51,84 +51,6 @@ var indexModule = (function(im) {
         $(window).on('resize', im.fixModal);
         $("#" + modalId).modal('show');
     }
-    im.loadGameDetailsPage = function(gameId) {
-        im.loadPage("main-content", "gameDetails", im.loadGameDetails);
-    }
-    im.loadGameDetails = function() {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: 'assets/json/gameInfo.json',
-            async: false,
-            success: function(result) {
-                var html = template('gameDetails-template', result.gameInfo);
-                $("#gameDetails").html(html);
-            }
-        });
-
-        var settings = {
-            "ajax": "assets/json/gameDetails.json",
-            "columns": [{
-                "data": "teamA"
-            }, {
-                "data": "teamB"
-            }, {
-                "data": "status"
-            }, {
-                "data": "result"
-            }, {
-                "data": "matchId"
-            }],
-            "columnDefs": [{
-                "targets": [0],
-                "render": function(data, type, full) {
-                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," + '"A"' + ");'>" + data + "</a>";
-                    return str;
-                }
-            }, {
-                "targets": [1],
-                "render": function(data, type, full) {
-                    var str = "<a href='javascript:void(0);' onclick='indexModule.getTeamBrief(" + '"teamBriefModal"' + "," + full.matchId + "," + '"B"' + ");'>" + data + "</a>";
-                    return str;
-                }
-            }, {
-                "targets": [2],
-                "render": function(data, type, full) {
-                    var str = "未进行";
-                    if (data == "1") {
-                        str = "进行中";
-                    } else if (data == "2") {
-                        str = "已结束";
-                    } else if (data == "3") {
-                        str = "已完结";
-                    }
-                    return str;
-                }
-            }, {
-                "targets": [3],
-                "render": function(data, type, full) {
-                    var str = "无比分";
-                    if (data) {
-                        str = full.result;
-                    }
-                    return str;
-                }
-            }, {
-                "targets": [4],
-                "render": function(data, type, full) {
-                    var str = "<a href='javascript:void(0);' onclick='indexModule.getMatchDetails(" + '"matchDetailsModal"' + "," + full.matchId + ");'><i class='fa fa-eye' aria-hidden='true' title='查看'></i></a>";
-                    if (full.status == "0") {
-                        str = "<a href='javascript:void(0);' onclick='indexModule.allocateStaffInit(" + '"allocateStaffInitModal"' + "," + data + ");'><i class='fa fa-user' aria-hidden='true' title='人员分配'></i></a>";
-                    } else if (full.status == "2") {
-                        str = "<a href='javascript:void(0);' onclick='indexModule.addMatchDetailsInit(" + '"addMatchDetailsInitModal"' + "," + data + ");'><i class='fa fa-file-text-o' aria-hidden='true' title='比赛录入'></i></a>";
-                    }
-                    return str;
-                }
-            }]
-        };
-
-        im.initDataTable("gameDetails-table", settings);
-    }
 
     im.loadGameDetailsPage1 = function(htmlName, gameId) {
         im.loadPage("main-content", htmlName, im.loadGameDetails1, { gameId: gameId });
@@ -158,10 +80,14 @@ var indexModule = (function(im) {
             im.loadPage("match-content", "scoreList", im.loadScoreList, params);
         });
         $("#shooterList").on("click", function() {
-            im.loadPage("match-content", "shooterList");
+            var gameId = $("#gameInfo").attr("data-gameid");
+            var params = { gameId: gameId };
+            im.loadPage("match-content", "shooterList", im.loadShooterList, params);
         });
         $("#stopList").on("click", function() {
-            im.loadPage("match-content", "stopList");
+            var gameId = $("#gameInfo").attr("data-gameid");
+            var params = { gameId: gameId };
+            im.loadPage("match-content", "stopList", im.loadStopList, params);
         });
     }
 
@@ -173,9 +99,35 @@ var indexModule = (function(im) {
             url: 'assets/json/scoreBoard.json',
             async: false,
             success: function(result) {
-                console.log(result);
                 var html = template('scoreDetails-template', result);
-                console.log(html);
+                $("#boradData").after(html);
+            }
+        });
+    }
+
+    im.loadShooterList = function(params) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            data: params,
+            url: 'assets/json/shooterBoard.json',
+            async: false,
+            success: function(result) {
+                var html = template('shooterDetails-template', result);
+                $("#boradData").after(html);
+            }
+        });
+    }
+
+    im.loadStopList = function(params) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            data: params,
+            url: 'assets/json/stopBoard.json',
+            async: false,
+            success: function(result) {
+                var html = template('stopDetails-template', result);
                 $("#boradData").after(html);
             }
         });
