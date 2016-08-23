@@ -15,6 +15,7 @@
                 <p>赛事地点：{{gamePlace}}</p>
                 <p>赛事时间：{{gameStartDate}} - {{gameEndDate}}</p>
                 <p>赛事赛制：{{gameRule}}</p>
+                <p>报&nbsp;&nbsp;名：{{gameEnroll}}</p>
             </div>
         </div>
     </div>
@@ -44,6 +45,16 @@ $(document).ready(function() {
         var gameId = $(this).attr("data-gameId");
         indexModule.loadGameDetailsPage1("gameDetails1", gameId);
     });
+
+    $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: 'http://210.83.195.229:8095/api/GameList/getGameList',
+            async: false,
+            success: function(result) {
+                console.log(result);
+            }
+        });
 
     
 });

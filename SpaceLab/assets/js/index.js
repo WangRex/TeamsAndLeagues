@@ -19,7 +19,6 @@ var indexModule = (function(im) {
                 $("#addGameContent").html(result.message);
                 $(".complete-sign").show(1000);
                 $(".complete-sign").hide(1000);
-                // im.popupModal("basicModal");
             }
         });
     }

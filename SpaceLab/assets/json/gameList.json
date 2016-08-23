@@ -7,7 +7,8 @@
         "gameName": "世纪大战",
         "gameRule": "淘汰赛",
         "gamePrize": "$320,800",
-        "gameStatus": "1"
+        "gameStatus": "0",
+        "gameEnroll": "可报名"
     }, {
         "gameStartDate": "2016/07/16",
         "gameEndDate": "2016/07/16",
@@ -16,7 +17,8 @@
         "gameName": "世纪大战",
         "gameRule": "淘汰赛",
         "gamePrize": "$320,800",
-        "gameStatus": "1"
+        "gameStatus": "0",
+        "gameEnroll": "可报名"
     }, {
         "gameStartDate": "2016/07/16",
         "gameEndDate": "2016/07/16",
@@ -25,7 +27,8 @@
         "gameName": "世纪大战",
         "gameRule": "淘汰赛",
         "gamePrize": "$320,800",
-        "gameStatus": "1"
+        "gameStatus": "1",
+        "gameEnroll": "不可报名"
     }, {
         "gameStartDate": "2016/07/16",
         "gameEndDate": "2016/07/16",
@@ -34,7 +37,8 @@
         "gameName": "世纪大战",
         "gameRule": "淘汰赛",
         "gamePrize": "$320,800",
-        "gameStatus": "1"
+        "gameStatus": "1",
+        "gameEnroll": "不可报名"
     }, {
         "gameStartDate": "2016/07/23",
         "gameEndDate": "2016/07/24",
@@ -43,7 +47,8 @@
         "gameName": "世纪大战",
         "gameRule": "淘汰赛",
         "gamePrize": "$320,800",
-        "gameStatus": "0"
+        "gameStatus": "0",
+        "gameEnroll": "不可报名"
     }, {
         "gameStartDate": "2016/07/23",
         "gameEndDate": "2016/07/24",
@@ -52,7 +57,8 @@
         "gameName": "世纪大战",
         "gameRule": "规则1",
         "gamePrize": "$320,800",
-        "gameStatus": "0"
+        "gameStatus": "0",
+        "gameEnroll": "不可报名"
     }, {
         "gameStartDate": "2016/07/24",
         "gameEndDate": "2016/07/25",
@@ -61,7 +67,8 @@
         "gameName": "世纪大战",
         "gameRule": "规则1",
         "gamePrize": "$320,800",
-        "gameStatus": "0"
+        "gameStatus": "0",
+        "gameEnroll": "不可报名"
     }, {
         "gameStartDate": "2016/07/24",
         "gameEndDate": "2016/07/25",
@@ -70,6 +77,7 @@
         "gameName": "世纪大战",
         "gameRule": "规则1",
         "gamePrize": "$320,800",
-        "gameStatus": "0"
+        "gameStatus": "0",
+        "gameEnroll": "不可报名"
     }]
 }
