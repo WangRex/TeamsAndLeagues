@@ -25,11 +25,11 @@ $(document).ready(function() {
     $.ajax({
         type: 'get',
         dataType: "json",
-        url: 'assets/json/gameList.json',
+        url: 'http://210.83.195.229:8095/api/GameList/getGameList',
         async: false,
         success: function(result) {
             var num = 0;
-            $.each(result.data, function(idx, obj) {
+            $.each(result, function(idx, obj) {
                 if (idx % 3 == 0 && idx != 0) {
                     num++;
                     var div = $("<div class='row' id='row" + num + "'></div>");
@@ -46,16 +46,5 @@ $(document).ready(function() {
         indexModule.loadGameDetailsPage1("gameDetails1", gameId);
     });
 
-    $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: 'http://210.83.195.229:8095/api/GameList/getGameList',
-            async: false,
-            success: function(result) {
-                console.log(result);
-            }
-        });
-
-    
 });
 </script>

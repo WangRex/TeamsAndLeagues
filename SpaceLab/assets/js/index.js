@@ -12,7 +12,8 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/addGame.json',
+            data: data,
+            url: 'http://210.83.195.229:8095/api/GameList/addGame',
             data: data,
             async: false,
             success: function(result) {
@@ -59,10 +60,10 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             data: params,
-            url: 'assets/json/gameInfo.json',
+            url: 'http://210.83.195.229:8095/api/GameList/getGameInfoByGameId',
             async: false,
             success: function(result) {
-                var html = template('gameDetails-template', result.gameInfo);
+                var html = template('gameDetails-template', result);
                 $("#gameDetails").html(html);
                 app.bread();
             }
