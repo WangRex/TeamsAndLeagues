@@ -10,10 +10,10 @@ var indexModule = (function(im) {
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
         $.ajax({
-            type: 'get',
+            type: 'post',
             dataType: "json",
-            data: data,
             url: 'http://210.83.195.229:8095/api/GameList/addGame',
+            //url: 'http://localhost:4349/api/GameList/addGame',
             data: data,
             async: false,
             success: function(result) {
