@@ -28,7 +28,8 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/editGame.json',
+            // url: 'assets/json/editGame.json',
+            url: 'http://210.83.195.229:8095/api/GameList/editGame',
             data: data,
             async: false,
             success: function(result) {
