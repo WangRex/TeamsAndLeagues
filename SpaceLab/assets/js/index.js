@@ -97,9 +97,11 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             data: params,
-            url: 'assets/json/scoreBoard.json',
+            //url: 'assets/json/scoreBoard.json',
+            url: 'http://210.83.195.229:8095/api/MatchScore/getAllMatchScore',
             async: false,
             success: function(result) {
+                console.log(result);
                 var html = template('scoreDetails-template', result);
                 $("#boradData").after(html);
             }
