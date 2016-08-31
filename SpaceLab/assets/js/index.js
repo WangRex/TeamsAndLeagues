@@ -113,7 +113,8 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             data: params,
-            url: 'assets/json/shooterBoard.json',
+            //url: 'assets/json/shooterBoard.json',
+            url: 'http://210.83.195.229:8095/api/MatchShooter/getAllMatchShooter',
             async: false,
             success: function(result) {
                 var html = template('shooterDetails-template', result);
