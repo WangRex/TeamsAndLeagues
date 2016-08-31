@@ -128,7 +128,8 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             data: params,
-            url: 'assets/json/stopBoard.json',
+            //url: 'assets/json/stopBoard.json',
+            url: 'http://210.83.195.229:8095/api/MatchStop/getAllMatchStop',
             async: false,
             success: function(result) {
                 var html = template('stopDetails-template', result);
