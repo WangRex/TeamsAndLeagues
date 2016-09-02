@@ -74,10 +74,10 @@
                 <!--tiles start-->
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
-                        <div class="dashboard-tile detail tile-red">
+                        <div class="dashboard-tile detail tile-red" id="newUser">
                             <div class="content">
                                 <h1 class="text-left timer" data-from="0" data-to="100" data-speed="2500"></h1>
-                                <p>新用户</p>
+                                <p>新球员</p>
                             </div>
                             <div class="icon"><i class="fa fa-users"></i>
                             </div>
@@ -181,6 +181,9 @@
     <script>
     $(document).ready(function() {
         app.timer();
+        $("#newUser").on("click", function() {
+            indexModule.loadPage("main-content", "addMember", app.bread);
+        });
         $("#newGame").on("click", function() {
             indexModule.loadPage("main-content", "addGame", app.bread);
         });

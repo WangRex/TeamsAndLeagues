@@ -9,7 +9,7 @@ var indexModule = (function(im) {
     }
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
-        $.ajax({
+        /*$.ajax({
             type: 'post',
             dataType: "json",
             url: 'http://210.83.195.229:8095/api/GameList/addGame',
@@ -18,10 +18,11 @@ var indexModule = (function(im) {
             async: false,
             success: function(result) {
                 $("#addGameContent").html(result.message);
-                $(".complete-sign").show(1000);
-                $(".complete-sign").hide(1000);
+                //$(".complete-sign").show(1000);
+                //$(".complete-sign").hide(1000);
             }
-        });
+        });*/
+                im.disableInput("addGameForm", "disable");
     }
     im.editGame = function() {
         var data = $("#editGameForm").serializeJson();
@@ -37,6 +38,13 @@ var indexModule = (function(im) {
                 im.popupModal("basicModal");
             }
         });
+    }
+    im.disableInput = function(formId, isDisabled) {
+        $("form[id='"+formId+"'] :text").attr("disabled",isDisabled);  
+        $("form[id='"+formId+"'] textarea").attr("disabled",isDisabled);  
+        $("form[id='"+formId+"'] select").attr("disabled",isDisabled);  
+        $("form[id='"+formId+"'] :radio").attr("disabled",isDisabled);  
+        $("form[id='"+formId+"'] :checkbox").attr("disabled",isDisabled); 
     }
     im.fixModal = function() {
         $('.modal').each(function(i) {
