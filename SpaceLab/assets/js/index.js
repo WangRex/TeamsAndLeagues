@@ -9,20 +9,33 @@ var indexModule = (function(im) {
     }
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
+        if (data.gamePlace.length > 1) {
+            var gamePlaces = "";
+            for (var i = 0; i < data.gamePlace.length; i++) {
+                gamePlaces += "," + data.gamePlace[i];
+            }
+            gamePlaces = gamePlaces.substring(1);
+            data.gamePlace = gamePlaces;
+        }
         $.ajax({
             type: 'post',
             dataType: "json",
             url: 'http://210.83.195.229:8095/api/GameList/addGame',
-            //url: 'http://localhost:4349/api/GameList/addGame',
+            // url: 'http://localhost:4349/api/GameList/addGame',
             data: data,
             async: false,
             success: function(result) {
                 $("#addGameContent").html(result.message);
                 //$(".complete-sign").show(1000);
                 //$(".complete-sign").hide(1000);
+                im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
             }
         });
-                //im.disableInput("addGameForm", "disable");
+    }
+    im.addGameSuccess = function(params) {
+        var html = template('addGameSuccess-template', params.data);
+        $("#addGameSuccessDiv").html(html);
+        app.bread();
     }
     im.addGamePlace = function() {
         var gamePlaceDivClone = $("#gamePlaceDivClone").clone();
@@ -48,13 +61,6 @@ var indexModule = (function(im) {
                 im.popupModal("basicModal");
             }
         });
-    }
-    im.disableInput = function(formId, isDisabled) {
-        $("form[id='"+formId+"'] :text").attr("disabled",isDisabled);  
-        $("form[id='"+formId+"'] textarea").attr("disabled",isDisabled);  
-        $("form[id='"+formId+"'] select").attr("disabled",isDisabled);  
-        $("form[id='"+formId+"'] :radio").attr("disabled",isDisabled);  
-        $("form[id='"+formId+"'] :checkbox").attr("disabled",isDisabled); 
     }
     im.fixModal = function() {
         $('.modal').each(function(i) {
