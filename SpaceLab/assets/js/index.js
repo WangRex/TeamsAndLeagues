@@ -9,7 +9,7 @@ var indexModule = (function(im) {
     }
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
-        /*$.ajax({
+        $.ajax({
             type: 'post',
             dataType: "json",
             url: 'http://210.83.195.229:8095/api/GameList/addGame',
@@ -21,8 +21,18 @@ var indexModule = (function(im) {
                 //$(".complete-sign").show(1000);
                 //$(".complete-sign").hide(1000);
             }
-        });*/
-                im.disableInput("addGameForm", "disable");
+        });
+                //im.disableInput("addGameForm", "disable");
+    }
+    im.addGamePlace = function() {
+        var gamePlaceDivClone = $("#gamePlaceDivClone").clone();
+        gamePlaceDivClone.attr("id", "");
+        gamePlaceDivClone.removeClass("hide");
+        gamePlaceDivClone.find("input[type='text']").attr("name", "gamePlace");
+        $("#gamePlaceDiv").after(gamePlaceDivClone);
+    }
+    im.deleteGamePlace = function(obj) {
+        $(obj).closest("div[class='form-group']").remove();
     }
     im.editGame = function() {
         var data = $("#editGameForm").serializeJson();
