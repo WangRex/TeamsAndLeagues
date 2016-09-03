@@ -1,0 +1,78 @@
+<!-- Date Time Picker CSS-->
+<link href="assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<!-- Bootstrap Selector -->
+<link rel="stylesheet" href="assets/plugins/bootstrap-select/css/bootstrap-select.css">
+<link href="assets/css/custom.css" rel="stylesheet" media="screen">
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">赛事报名</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" id="addGameForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">队名</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="队名" name="teamName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队人数</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队人数" name="teamNumber">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人" name="contactName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人联系电话</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人联系电话" name="contactPhone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人E-Mail</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人E-Mail" name="contactEMail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球衣颜色</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球衣颜色" name="poloShirtColor">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameRule" class="col-sm-3 control-label">参赛场地</label>
+                        <div class="col-sm-6">
+                            <select id="gamePlace" class="show-tick form-control" multiple name="gamePlace">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.enrollGameInfo();" value="报名">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="gamePlace-template" type="text/html">
+    {{each DataTable as value i}}
+        <option value="{{value}}">{{value}}</option>
+    {{/each}}
+</script>
+<!-- Bootstrap Selector -->
+<script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>

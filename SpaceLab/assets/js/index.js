@@ -31,6 +31,7 @@ var indexModule = (function(im) {
                 im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
             }
         });
+        // im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: data });
     }
     im.addGameSuccess = function(params) {
         var html = template('addGameSuccess-template', params.data);
@@ -59,6 +60,28 @@ var indexModule = (function(im) {
             success: function(result) {
                 $("#editGameContent").html(result.message);
                 im.popupModal("basicModal");
+            }
+        });
+    }
+    im.enrollGame = function(gameId) {
+        im.loadPage("main-content", "enrollGame", im.enrollGameInit, { gameId: gameId });
+    }
+    im.enrollGameInit = function(params) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            // url: 'assets/json/editGame.json',
+            url: 'http://210.83.195.229:8095/api/GameList/getGamePlaceByGameId',
+            data: params,
+            async: false,
+            success: function(result) {
+                var html = template('gamePlace-template', result);
+                $("#gamePlace").html(html);
+                app.bread();
+                $('#gamePlace').selectpicker({
+                    liveSearch: true
+                });
+
             }
         });
     }
