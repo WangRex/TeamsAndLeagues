@@ -81,7 +81,30 @@ var indexModule = (function(im) {
                 $('#gamePlace').selectpicker({
                     liveSearch: true
                 });
-
+                $("#enrollGameBtn").attr("data-value", params.gameId);
+            }
+        });
+    }
+    im.enrollGameInfo = function() {
+        var data = $("#enrollGameInfoForm").serializeJson();
+        data.gameId = $("#enrollGameBtn").attr("data-value");
+        if (data.gamePlace.length > 1) {
+            var gamePlaces = "";
+            for (var i = 0; i < data.gamePlace.length; i++) {
+                gamePlaces += "," + data.gamePlace[i];
+            }
+            gamePlaces = gamePlaces.substring(1);
+            data.gamePlace = gamePlaces;
+        }
+        $.ajax({
+            type: 'post',
+            dataType: "json",
+            // url: 'assets/json/editGame.json',
+            url: 'http://210.83.195.229:8095/api/EnrollGame/addEnrollGameInfo',
+            data: data,
+            async: false,
+            success: function(result) {
+                $("#enrollGameResult").html(result.Message);
             }
         });
     }
@@ -113,6 +136,14 @@ var indexModule = (function(im) {
             success: function(result) {
                 var html = template('gameDetails-template', result);
                 $("#gameDetails").html(html);
+                var gameStatus = $("#gameInfo").attr("data-gameStatus");
+                if (gameStatus == '0') {
+                    $("#enrollBtn").removeClass("hide");
+                } else {
+                    $("#gameBoards").removeClass("hide");
+                }
+                indexModule.bindGameDetails();
+                $("#matchList").click();
                 app.bread();
             }
         });
@@ -148,7 +179,6 @@ var indexModule = (function(im) {
             url: 'http://210.83.195.229:8095/api/MatchScore/getAllMatchScore',
             async: false,
             success: function(result) {
-                console.log(result);
                 var html = template('scoreDetails-template', result);
                 $("#boradData").after(html);
             }
