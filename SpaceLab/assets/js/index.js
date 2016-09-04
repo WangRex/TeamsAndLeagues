@@ -138,13 +138,28 @@ var indexModule = (function(im) {
                 $("#gameDetails").html(html);
                 var gameStatus = $("#gameInfo").attr("data-gameStatus");
                 if (gameStatus == '0') {
-                    $("#enrollBtn").removeClass("hide");
+                    $("#enrollBtnDiv").html($("#enrollBtns").removeClass("hide"));
+                    $("#enrollBtnDiv").removeClass("hide");
                 } else {
                     $("#gameBoards").removeClass("hide");
                 }
                 indexModule.bindGameDetails();
                 $("#matchList").click();
                 app.bread();
+            }
+        });
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            data: params,
+            url: 'http://210.83.195.229:8095/api/EnrollGame/getEnrollGameList',
+            async: false,
+            success: function(result) {
+                if (result.length > 0) {
+                    var html = template('enrollTeamList-template', { list: result });
+                    $("#enrollTeamsHead").after(html);
+                    $("#enrollTeams").removeClass("hide");
+                }
             }
         });
     }
