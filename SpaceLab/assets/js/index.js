@@ -108,6 +108,14 @@ var indexModule = (function(im) {
             }
         });
     }
+    im.agreeEnroll = function() {
+        $("#agreeEnrollBtn").attr("disabled", "disabled");
+        $("#disAgreeEnrollBtn").removeAttr("disabled");
+    }
+    im.disAgreeEnroll = function() {
+        $("#disAgreeEnrollBtn").attr("disabled", "disabled");
+        $("#agreeEnrollBtn").removeAttr("disabled");
+    }
     im.fixModal = function() {
         $('.modal').each(function(i) {
             var $clone = $(this).clone().css('display', 'block').appendTo('body');
@@ -159,6 +167,22 @@ var indexModule = (function(im) {
                     var html = template('enrollTeamList-template', { list: result });
                     $("#enrollTeamsHead").after(html);
                     $("#enrollTeams").removeClass("hide");
+                    $(".agreeBtn").bootstrapSwitch('toggleState');
+                    $('.switch').on('switchChange.bootstrapSwitch', function(event, state) {
+                        var enrollId = $(this).attr("data-enrollId");
+                        // true | false
+                        console.log(state);
+                        $.ajax({
+                            type: 'post',
+                            dataType: "json",
+                            data: {ID: enrollId, enrollStatus: state},
+                            url: 'http://210.83.195.229:8095/api/EnrollGame/updateEnrollStatus',
+                            async: false,
+                            success: function(result) {
+                                console.log(result);
+                            }
+                        });
+                    });
                 }
             }
         });

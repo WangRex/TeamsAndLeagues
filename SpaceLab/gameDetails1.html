@@ -37,9 +37,10 @@
             <div class="panel-body" id="enrollTeamsBody">
                 <div class="row boardData" id="enrollTeamsHead">
                     <div class="col-xs-3">球队</div>
-                    <div class="col-xs-3">队长</div>
-                    <div class="col-xs-3">人数</div>
+                    <div class="col-xs-2">队长</div>
+                    <div class="col-xs-2">人数</div>
                     <div class="col-xs-3">时间</div>
+                    <div class="col-xs-2">操作</div>
                 </div>
             </div>
         </div>
@@ -102,9 +103,14 @@
     {{each list as value i}}
     <div class="row boardData">
         <div class="col-xs-3">{{value.teamName}}</div>
-        <div class="col-xs-3">{{value.contactName}}</div>
-        <div class="col-xs-3">{{value.teamNumber}}</div>
-        <div class="col-xs-3">{{value.teamNumber}}</div>
+        <div class="col-xs-2">{{value.contactName}}</div>
+        <div class="col-xs-2">{{value.teamNumber}}</div>
+        <div class="col-xs-3">{{value.attendDate}}</div>
+        <div class="col-xs-2">
+            <div class="switch switch-small has-switch" data-enrollId="{{value.enrollId}}">
+                <input class="agreeBtn" type="checkbox" value="同意" checked data-on-text="同意" data-off-text="拒绝" name="enrollStatus" />
+            </div>
+        </div>
     </div>
     {{/each}}
 </script>
