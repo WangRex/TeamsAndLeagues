@@ -12,8 +12,8 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            // url: 'http://210.83.195.229:8095/api/GameList/addGame',
-            url: 'http://localhost:4349/api/User/login',
+            url: 'http://210.83.195.229:8095/api/User/login',
+            // url: 'http://localhost:4349/api/User/login',
             data: data,
             async: false,
             success: function(result) {
