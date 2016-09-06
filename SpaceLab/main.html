@@ -1,0 +1,112 @@
+<header id="header">
+    <div class="user-nav">
+        <ul>
+            <li class="profile-photo">
+                <img src="assets/img/avatar.png" alt="" class="img-circle">
+            </li>
+            <li class="dropdown settings">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      小囍囍 <i class="fa fa-angle-down"></i>
+                    </a>
+                <ul class="dropdown-menu animated fadeInDown">
+                    <li>
+                        <a href="#"><i class="fa fa-user"></i> 个人信息</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-calendar"></i> 日历</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-envelope"></i> 收件箱 <span class="badge badge-danager" id="user-inbox">5</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-power-off"></i> 注销</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<!--main content start-->
+<section class="main-content-wrapper">
+    <section>
+        <!--tiles start-->
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="dashboard-tile detail tile-red" id="newUser">
+                    <div class="content">
+                        <h1 class="text-left timer" data-from="0" data-to="100" data-speed="2500"></h1>
+                        <p>新球员</p>
+                    </div>
+                    <div class="icon"><i class="fa fa-bar-chart-o"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="dashboard-tile detail tile-turquoise" id="gameList">
+                    <div class="content">
+                        <h1 class="text-left timer" data-from="0" data-to="56" data-speed="2500"></h1>
+                        <p>赛事列表</p>
+                    </div>
+                    <div class="icon"><i class="fa fa-comments"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="dashboard-tile detail tile-blue" id="newGame">
+                    <div class="content">
+                        <h1 class="text-left timer" data-from="0" data-to="32" data-speed="2500"></h1>
+                        <p>新比赛</p>
+                    </div>
+                    <div class="icon"><i class="fa fa fa-envelope"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="dashboard-tile detail tile-purple">
+                    <div class="content">
+                        <h1 class="text-left timer" data-to="105" data-speed="2500"></h1>
+                        <p>球队管理</p>
+                    </div>
+                    <div class="icon"><i class="fa fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--tiles end-->
+        <!--charts start-->
+        <div class="row" id="main-content">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">球队统计</h3>
+                        <div class="actions pull-right">
+                            <i class="fa fa-chevron-down"></i>
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="sales-chart" style="height: 250px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--charts end-->
+    </section>
+</section>
+<!--main content end-->
+<!--Load these page level functions-->
+<script>
+$(document).ready(function() {
+    app.timer();
+    $("#newUser").on("click", function() {
+        indexModule.loadPage("main-content", "addMember", app.bread);
+    });
+    $("#newGame").on("click", function() {
+        indexModule.loadPage("main-content", "addGame", app.bread);
+    });
+    $("#gameList").on("click", function() {
+        indexModule.loadPage("main-content", "gameList1", app.bread);
+    });
+    $("#gameList").click();
+});
+</script>

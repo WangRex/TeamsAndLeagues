@@ -7,6 +7,22 @@ var indexModule = (function(im) {
 
         });
     }
+    im.login = function() {
+        var data = $("#loginForm").serializeJson();
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            // url: 'http://210.83.195.229:8095/api/GameList/addGame',
+            url: 'http://localhost:4349/api/User/login',
+            data: data,
+            async: false,
+            success: function(result) {
+                if(result == 1) {
+                    im.loadPage("container", "main");
+                }
+            }
+        });
+    }
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
         if (data.gamePlace.length > 1) {
@@ -160,7 +176,8 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             data: params,
-            url: 'http://210.83.195.229:8095/api/EnrollGame/getEnrollGameList',
+            url: 'http://localhost:4349/api/EnrollGame/getEnrollGameList',
+            // url: 'http://210.83.195.229:8095/api/EnrollGame/getEnrollGameList',
             async: false,
             success: function(result) {
                 if (result.length > 0) {
