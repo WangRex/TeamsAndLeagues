@@ -164,10 +164,22 @@ var indexModule = (function(im) {
             async: false,
             success: function(result) {
                 if (result.length > 0) {
-                    var html = template('enrollTeamList-template', { list: result });
+                    var html = "";
+                    for (var i = 0; i < result.length; i++) {
+                        var enrollTeam = result[i];
+                        html += template('enrollTeam-template', enrollTeam);
+                    }
                     $("#enrollTeamsHead").after(html);
                     $("#enrollTeams").removeClass("hide");
-                    $(".agreeBtn").bootstrapSwitch('toggleState');
+
+                    $(".agreeBtn").each(function() {
+                        var enrollStatus = $(this).attr("data-value");
+                        if (enrollStatus == "同意") {
+                            $(this).bootstrapSwitch({'state': true});
+                        } else {
+                            $(this).bootstrapSwitch({'state': false});
+                        }
+                    });
                     $('.switch').on('switchChange.bootstrapSwitch', function(event, state) {
                         var enrollId = $(this).attr("data-enrollId");
                         // true | false
@@ -175,7 +187,7 @@ var indexModule = (function(im) {
                         $.ajax({
                             type: 'post',
                             dataType: "json",
-                            data: {ID: enrollId, enrollStatus: state},
+                            data: { ID: enrollId, enrollStatus: state },
                             url: 'http://210.83.195.229:8095/api/EnrollGame/updateEnrollStatus',
                             async: false,
                             success: function(result) {

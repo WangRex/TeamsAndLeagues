@@ -99,18 +99,16 @@
         <input type="button" class="btn btn-success btn-3d" onclick="indexModule.shareGame('{{gameId}}');" value="分享">
     </div>
 </script>
-<script id="enrollTeamList-template" type="text/html">
-    {{each list as value i}}
+<script id="enrollTeam-template" type="text/html">
     <div class="row boardData">
-        <div class="col-xs-3">{{value.teamName}}</div>
-        <div class="col-xs-2">{{value.contactName}}</div>
-        <div class="col-xs-2">{{value.teamNumber}}</div>
-        <div class="col-xs-3">{{value.attendDate}}</div>
+        <div class="col-xs-3">{{teamName}}</div>
+        <div class="col-xs-2">{{contactName}}</div>
+        <div class="col-xs-2">{{teamNumber}}</div>
+        <div class="col-xs-3">{{attendDate}}</div>
         <div class="col-xs-2">
-            <div class="switch switch-small has-switch" data-enrollId="{{value.enrollId}}">
-                <input class="agreeBtn" type="checkbox" value="同意" checked data-on-text="同意" data-off-text="拒绝" name="enrollStatus" />
+            <div class="switch switch-small has-switch" data-enrollId="{{enrollId}}">
+                <input class="agreeBtn" type="checkbox" checked data-on-text="同意" data-off-text="拒绝" name="enrollStatus" data-value="{{enrollStatus}}"/>
             </div>
         </div>
     </div>
-    {{/each}}
 </script>
