@@ -143,8 +143,6 @@ var indexModule = (function(im) {
             async: false,
             success: function(result) {
                 $("#addGameContent").html(result.message);
-                //$(".complete-sign").show(1000);
-                //$(".complete-sign").hide(1000);
                 im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
             }
         });
