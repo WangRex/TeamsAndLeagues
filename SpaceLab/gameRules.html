@@ -1,0 +1,32 @@
+<div class="row boardData" id="boradData">
+    <div class="col-xs-4">序号</div>
+    <div class="col-xs-4">赛制名</div>
+    <div class="col-xs-4">操作 <a id="addGameRule" href="javascript:void(0);">创建赛制</a></div>
+</div>
+<div class="row boardData">
+    <div class="col-xs-4">1</div>
+    <div class="col-xs-4">直接淘汰赛</div>
+    <div class="col-xs-4"><a href="javascript:void(0);">查看</a></div>
+</div>
+<div class="row boardData">
+    <div class="col-xs-4">2</div>
+    <div class="col-xs-4">小组淘汰赛</div>
+    <div class="col-xs-4"><a href="javascript:void(0);">查看</a></div>
+</div>
+<div class="row boardData">
+    <div class="col-xs-4">3</div>
+    <div class="col-xs-4">联赛</div>
+    <div class="col-xs-4"><a href="javascript:void(0);">查看</a></div>
+</div>
+<script id="shooterDetails-template" type="text/html">
+    {{each aaData as value i}}
+    <div class="row boardData">
+        <div class="col-xs-2">{{value.teamName}}</div>
+        <div class="col-xs-2">{{value.memberNumber}}</div>
+        <div class="col-xs-2">{{value.name}}</div>
+        <div class="col-xs-2">{{value.winNum}}</div>
+        <div class="col-xs-2">{{value.badRecord}}</div>
+        <div class="col-xs-2">查看 添加球员</div>
+    </div>
+    {{/each}}
+</script>

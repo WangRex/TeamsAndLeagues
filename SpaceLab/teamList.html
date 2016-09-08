@@ -1,0 +1,35 @@
+<div class="row boardData" id="boradData">
+    <div class="col-xs-2">球队</div>
+    <div class="col-xs-2">人数</div>
+    <div class="col-xs-2">队长</div>
+    <div class="col-xs-2">胜</div>
+    <div class="col-xs-2">负约</div>
+    <div class="col-xs-2">操作</div>
+</div>
+<div class="row boardData">
+    <div class="col-xs-2">牛逼队</div>
+    <div class="col-xs-2">100人</div>
+    <div class="col-xs-2">唐僧</div>
+    <div class="col-xs-2">100</div>
+    <div class="col-xs-2">10次</div>
+    <div class="col-xs-2"><a href="javascript:void(0);">查看</a> <a id="addMember" href="javascript:void(0);">添加球员</a></div>
+</div>
+<script id="shooterDetails-template" type="text/html">
+    {{each aaData as value i}}
+    <div class="row boardData">
+        <div class="col-xs-2">{{value.teamName}}</div>
+        <div class="col-xs-2">{{value.memberNumber}}</div>
+        <div class="col-xs-2">{{value.name}}</div>
+        <div class="col-xs-2">{{value.winNum}}</div>
+        <div class="col-xs-2">{{value.badRecord}}</div>
+        <div class="col-xs-2">查看 添加球员</div>
+    </div>
+    {{/each}}
+</script>
+<script>
+$(document).ready(function() {
+    $("#addMember").on("click", function() {
+        indexModule.loadPage("main-content", "addMember", app.bread);
+    });
+});
+</script>

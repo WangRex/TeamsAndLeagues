@@ -12,14 +12,17 @@
                     <li>
                         <a href="#"><i class="fa fa-user"></i> 个人信息</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-calendar"></i> 日历</a>
+                    <li id="gameRules">
+                        <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 比赛规则</a>
+                    </li>
+                    <li id="addGameRule">
+                        <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 添加比赛规则</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-envelope"></i> 收件箱 <span class="badge badge-danager" id="user-inbox">5</span></a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-power-off"></i> 注销</a>
+                    <li id="logout">
+                        <a href="javascript:void(0);"><i class="fa fa-power-off"></i> 注销</a>
                     </li>
                 </ul>
             </li>
@@ -62,7 +65,7 @@
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
-                <div class="dashboard-tile detail tile-purple">
+                <div class="dashboard-tile detail tile-purple" id="teamList">
                     <div class="content">
                         <h1 class="text-left timer" data-to="105" data-speed="2500"></h1>
                         <p>球队管理</p>
@@ -98,14 +101,23 @@
 <script>
 $(document).ready(function() {
     app.timer();
-    $("#newUser").on("click", function() {
-        indexModule.loadPage("main-content", "addMember", app.bread);
-    });
     $("#newGame").on("click", function() {
         indexModule.loadPage("main-content", "addGame", app.bread);
     });
     $("#gameList").on("click", function() {
         indexModule.loadPage("main-content", "gameList1", app.bread);
+    });
+    $("#teamList").on("click", function() {
+        indexModule.loadPage("main-content", "teamList", app.bread);
+    });
+    $("#gameRules").on("click", function() {
+        indexModule.loadPage("main-content", "gameRules", app.bread);
+    });
+    $("#addGameRule").on("click", function() {
+        indexModule.loadPage("main-content", "addGameRule", app.bread);
+    });
+    $("#logout").on("click", function() {
+        window.location.href = window.location.href;
     });
     $("#gameList").click();
 });

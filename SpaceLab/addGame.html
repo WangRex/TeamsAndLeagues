@@ -33,9 +33,9 @@
                         <label for="gameRule" class="col-sm-3 control-label">比赛规则</label>
                         <div class="col-sm-6">
                             <select id="gameRule" class="show-tick form-control" multiple name="gameRule">
-                                <option value="1">常规赛</option>
-                                <option value="2">淘汰赛</option>
-                                <option class="get-class" disabled>ox</option>
+                                <option value="1">直接淘汰赛</option>
+                                <option value="2">小组淘汰赛</option>
+                                <option value="3">联赛</option>
                             </select>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             <input type="text" class="form-control" placeholder="举办地点" name="gamePlace">
                         </div>
                         <div class="col-sm-3">
-                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addGamePlace();" value="添加">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addGamePlace();" value="添加地点">
                         </div>
                     </div>
                     <div class="form-group hide" id="gamePlaceDivClone">

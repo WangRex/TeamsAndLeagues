@@ -132,6 +132,23 @@ var indexModule = (function(im) {
         $("#disAgreeEnrollBtn").attr("disabled", "disabled");
         $("#agreeEnrollBtn").removeAttr("disabled");
     }
+    im.addMember = function() {
+        var data = $("#addMemberForm").serializeJson();
+        $.ajax({
+            type: 'post',
+            dataType: "json",
+            url: 'http://210.83.195.229:8095/api/Member/addMember',
+            // url: 'http://localhost:4349/api/GameList/addGame',
+            data: data,
+            async: false,
+            success: function(result) {
+                $("#addGameContent").html(result.message);
+                //$(".complete-sign").show(1000);
+                //$(".complete-sign").hide(1000);
+                im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
+            }
+        });
+    }
     im.fixModal = function() {
         $('.modal').each(function(i) {
             var $clone = $(this).clone().css('display', 'block').appendTo('body');
@@ -176,8 +193,8 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             data: params,
-            url: 'http://localhost:4349/api/EnrollGame/getEnrollGameList',
-            // url: 'http://210.83.195.229:8095/api/EnrollGame/getEnrollGameList',
+            // url: 'http://localhost:4349/api/EnrollGame/getEnrollGameList',
+            url: 'http://210.83.195.229:8095/api/EnrollGame/getEnrollGameList',
             async: false,
             success: function(result) {
                 if (result.length > 0) {
