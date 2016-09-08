@@ -2,32 +2,37 @@
     <div class="col-xs-2">球队</div>
     <div class="col-xs-2">人数</div>
     <div class="col-xs-2">队长</div>
-    <div class="col-xs-2">胜</div>
-    <div class="col-xs-2">负约</div>
-    <div class="col-xs-2">操作</div>
+    <div class="col-xs-2">球衣颜色</div>
+    <div class="col-xs-4">操作</div>
 </div>
-<div class="row boardData">
-    <div class="col-xs-2">牛逼队</div>
-    <div class="col-xs-2">100人</div>
-    <div class="col-xs-2">唐僧</div>
-    <div class="col-xs-2">100</div>
-    <div class="col-xs-2">10次</div>
-    <div class="col-xs-2"><a href="javascript:void(0);">查看</a> <a id="addMember" href="javascript:void(0);">添加球员</a></div>
-</div>
-<script id="shooterDetails-template" type="text/html">
-    {{each aaData as value i}}
+<script id="teamList-template" type="text/html">
+    {{each DataTable as value i}}
     <div class="row boardData">
         <div class="col-xs-2">{{value.teamName}}</div>
-        <div class="col-xs-2">{{value.memberNumber}}</div>
-        <div class="col-xs-2">{{value.name}}</div>
-        <div class="col-xs-2">{{value.winNum}}</div>
-        <div class="col-xs-2">{{value.badRecord}}</div>
-        <div class="col-xs-2">查看 添加球员</div>
+        <div class="col-xs-2">{{value.teamNumber}}人</div>
+        <div class="col-xs-2">{{value.contactName}}</div>
+        <div class="col-xs-2">{{value.poloShirtColor}}</div>
+        <div class="col-xs-2"><a href="javascript:void(0);">查看</a> <a id="addMember" href="javascript:void(0);">添加球员</a></div>
     </div>
     {{/each}}
 </script>
 <script>
 $(document).ready(function() {
+
+    $.ajax({
+        type: 'get',
+        dataType: "json",
+        // url: 'http://localhost:4349/api/Team/getTeamList',
+        url: 'http://210.83.195.229:8095/api/Team/getTeamList',
+        async: false,
+        success: function(result) {
+            if (result.Code == 1) {
+                var html = template('teamList-template', result);
+                $("#boradData").after(html);
+            }
+        }
+    });
+
     $("#addMember").on("click", function() {
         indexModule.loadPage("main-content", "addMember", app.bread);
     });
