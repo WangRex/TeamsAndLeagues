@@ -176,7 +176,6 @@ var indexModule = (function(im) {
     }
     im.viewTeam = function(teamId) {
         globalModule.globalAjax("http://210.83.195.229:8095/api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
-        globalModule.globalAjax("http://210.83.195.229:8095/api/Member/getMembers", { teamId: teamId }, im.showTeamDetailsPage);
     }
     im.showTeamDetailsPage = function(result) {
         im.loadPage("main-content", "teamDetails", im.showTeamDetails, result);
@@ -184,6 +183,8 @@ var indexModule = (function(im) {
     im.showTeamDetails = function(result) {
         var html = template('teamDetails-template', result.DataTable);
         $("#teamDetails").html(html);
+        var gameId = $("#teamInfo").attr("data-teamid");
+        globalModule.globalAjax("http://210.83.195.229:8095/api/Member/getMembers", { teamId: teamId }, im.showTeamMembersDetails);
     }
     im.showTeamMembersDetails = function(result) {
         var html = template('teamMembers-template', result);
