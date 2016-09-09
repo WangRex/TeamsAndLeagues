@@ -28,12 +28,9 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">所属球队</label>
                         <div class="col-sm-6">
-                            <select id="addTeamName" class="show-tick form-control" multiple name="teamName">
-                                <option value="牛逼队" selected="selected">牛逼队</option>
-                                <option value="菜鸟队">菜鸟队</option>
-                                <option value="装逼队">装逼队</option>
-                                <option value="傻逼队">傻逼队</option>
-                            </select>
+                            <span id="addTeamNameSpan"></span>
+                            <input id="addTeamId" type="hidden" name="teamId" value="">
+                            <input id="addTeamName" type="hidden" name="teamName" value="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -75,10 +72,6 @@
 <script>
 $(document).ready(function() {
     $('#addMemberPosition').selectpicker({
-        liveSearch: true,
-        maxOptions: 4
-    });
-    $('#addTeamName').selectpicker({
         liveSearch: true,
         maxOptions: 4
     });

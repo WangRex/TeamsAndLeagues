@@ -12,29 +12,23 @@
         <div class="col-xs-2">{{value.teamNumber}}人</div>
         <div class="col-xs-2">{{value.contactName}}</div>
         <div class="col-xs-2">{{value.poloShirtColor}}</div>
-        <div class="col-xs-2"><a href="javascript:void(0);">查看</a> <a id="addMember" href="javascript:void(0);">添加球员</a></div>
+        <div class="col-xs-2" data-teamId="{{value.ID}}">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.viewTeam('{{value.ID}}');" value="查看">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addTeamMemberInit('{{value.ID}}', '{{value.teamName}}');" value="添加队员">
+        </div>
     </div>
     {{/each}}
 </script>
 <script>
 $(document).ready(function() {
 
-    $.ajax({
-        type: 'get',
-        dataType: "json",
-        // url: 'http://localhost:4349/api/Team/getTeamList',
-        url: 'http://210.83.195.229:8095/api/Team/getTeamList',
-        async: false,
-        success: function(result) {
-            if (result.Code == 1) {
-                var html = template('teamList-template', result);
-                $("#boradData").after(html);
-            }
-        }
-    });
+    indexModule.getTeamList(fillinTeamList);
 
-    $("#addMember").on("click", function() {
-        indexModule.loadPage("main-content", "addMember", app.bread);
-    });
+    function fillinTeamList(result) {
+        if (result.Code == 1) {
+            var html = template('teamList-template', result);
+            $("#boradData").after(html);
+        }
+    }
 });
 </script>

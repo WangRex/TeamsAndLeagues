@@ -1,0 +1,97 @@
+<div class="row" id="teamDetails">
+</div>
+<div class="row" id="teamMembers">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">队员列表</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body" id="teamMembersBody">
+                <div class="row boardData" id="teamMembersHead">
+                    <div class="col-xs-3">球员名称</div>
+                    <div class="col-xs-2">球员球号</div>
+                    <div class="col-xs-3">擅长位置</div>
+                    <div class="col-xs-2">联系电话</div>
+                    <div class="col-xs-2">操作</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="teamDetails-template" type="text/html">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">球队信息</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body" id="teamInfo" data-teamid="{{teamId}}">
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">赛事名称</label>
+                    <div class="col-sm-3">
+                        <span>{{teamName}}</span>
+                    </div>
+                    <label class="col-sm-3 control-label">球队人数</label>
+                    <div class="col-sm-3">
+                        <span>{{teamNumber}}人</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">比赛规则</label>
+                    <div class="col-sm-3">
+                        <span>{{teamRule}}</span>
+                    </div>
+                    <label class="col-sm-3 control-label">球队负责人姓名</label>
+                    <div class="col-sm-3">
+                        <span>{{contactName}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">球队联系人联系电话</label>
+                    <div class="col-sm-3">
+                        <span>{{contactPhone}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">球队联系人email</label>
+                    <div class="col-sm-3">
+                        <span>{{contactEMail}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">球队创建时间</label>
+                    <div class="col-sm-3">
+                        <span>{{teamCreateDate}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">球衣颜色</label>
+                    <div class="col-sm-3">
+                        <span>{{poloShirtColor}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="teamMembers-template" type="text/html">
+    {{each DataTable as value i}}
+    <div class="row boardData">
+        <div class="col-xs-3">{{value.memberName}}</div>
+        <div class="col-xs-2">{{value.memberNumber}}</div>
+        <div class="col-xs-3">{{value.memberPosition}}</div>
+        <div class="col-xs-2">{{value.memberPhone}}</div>
+        <div class="col-xs-2">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.viewTeam('{{value.ID}}');" value="查看">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addTeamMemberInit('{{value.ID}}', '{{value.teamName}}');" value="添加队员">
+        </div>
+    </div>
+    {{/each}}
+</script>

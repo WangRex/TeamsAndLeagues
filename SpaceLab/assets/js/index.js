@@ -17,7 +17,7 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                if(result == 1) {
+                if (result == 1) {
                     im.loadPage("container", "main");
                 }
             }
@@ -103,7 +103,8 @@ var indexModule = (function(im) {
     }
     im.enrollGameInfo = function() {
         var data = $("#enrollGameInfoForm").serializeJson();
-        data.gameId = $("#enrollGameBtn").attr("data-value");
+        var gameId = $("#enrollGameBtn").attr("data-value");
+        data.gameId = gameId;
         if (data.gamePlace.length > 1) {
             var gamePlaces = "";
             for (var i = 0; i < data.gamePlace.length; i++) {
@@ -120,7 +121,11 @@ var indexModule = (function(im) {
             data: data,
             async: false,
             success: function(result) {
-                $("#enrollGameResult").html(result.Message);
+                if (result.Code == 1) {
+                    indexModule.loadGameDetailsPage1("gameDetails1", gameId);
+                } else {
+                    $("#enrollGameResult").html("报名信息添加失败！");
+                }
             }
         });
     }
@@ -131,6 +136,28 @@ var indexModule = (function(im) {
     im.disAgreeEnroll = function() {
         $("#disAgreeEnrollBtn").attr("disabled", "disabled");
         $("#agreeEnrollBtn").removeAttr("disabled");
+    }
+    im.getTeamList = function(callback) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            // url: 'http://localhost:4349/api/Team/getTeamList',
+            url: 'http://210.83.195.229:8095/api/Team/getTeamList',
+            async: false,
+            success: function(result) {
+                if (callback) {
+                    callback(result);
+                }
+            }
+        });
+    }
+    im.addTeamMemberInit = function(teamId, teamName) {
+        im.loadPage("main-content", "addMember", im.addTeamMember, { teamId: teamId, teamName: teamName });
+    }
+    im.addTeamMember = function(params) {
+        $("#addTeamName").attr("value", params.teamName);
+        $("#addTeamId").attr("value", params.teamId);
+        $("#addTeamNameSpan").html(params.teamName);
     }
     im.addMember = function() {
         var data = $("#addMemberForm").serializeJson();
@@ -146,6 +173,21 @@ var indexModule = (function(im) {
                 im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
             }
         });
+    }
+    im.viewTeam = function(teamId) {
+        globalModule.globalAjax("http://210.83.195.229:8095/api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
+        globalModule.globalAjax("http://210.83.195.229:8095/api/Member/getMembers", { teamId: teamId }, im.showTeamDetailsPage);
+    }
+    im.showTeamDetailsPage = function(result) {
+        im.loadPage("main-content", "teamDetails", im.showTeamDetails, result);
+    }
+    im.showTeamDetails = function(result) {
+        var html = template('teamDetails-template', result.DataTable);
+        $("#teamDetails").html(html);
+    }
+    im.showTeamMembersDetails = function(result) {
+        var html = template('teamMembers-template', result);
+        $("#teamMembersHead").after(html);
     }
     im.fixModal = function() {
         $('.modal').each(function(i) {
@@ -207,9 +249,9 @@ var indexModule = (function(im) {
                     $(".agreeBtn").each(function() {
                         var enrollStatus = $(this).attr("data-value");
                         if (enrollStatus == "同意") {
-                            $(this).bootstrapSwitch({'state': true});
+                            $(this).bootstrapSwitch({ 'state': true });
                         } else {
-                            $(this).bootstrapSwitch({'state': false});
+                            $(this).bootstrapSwitch({ 'state': false });
                         }
                     });
                     $('.switch').on('switchChange.bootstrapSwitch', function(event, state) {
