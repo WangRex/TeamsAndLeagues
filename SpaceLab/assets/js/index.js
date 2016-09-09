@@ -105,7 +105,7 @@ var indexModule = (function(im) {
         var data = $("#enrollGameInfoForm").serializeJson();
         var gameId = $("#enrollGameBtn").attr("data-value");
         data.gameId = gameId;
-        if (data.gamePlace.length > 1) {
+        if (globalModule.isArray(data.gamePlace)) {
             var gamePlaces = "";
             for (var i = 0; i < data.gamePlace.length; i++) {
                 gamePlaces += "," + data.gamePlace[i];
@@ -151,6 +151,12 @@ var indexModule = (function(im) {
             }
         });
     }
+    im.fillinTeamList = function(result) {
+        if (result.Code == 1) {
+            var html = template('teamList-template', result);
+            $("#boradData").after(html);
+        }
+    }
     im.addTeamMemberInit = function(teamId, teamName) {
         im.loadPage("main-content", "addMember", im.addTeamMember, { teamId: teamId, teamName: teamName });
     }
@@ -161,6 +167,14 @@ var indexModule = (function(im) {
     }
     im.addMember = function() {
         var data = $("#addMemberForm").serializeJson();
+        if (globalModule.isArray(data.memberPosition)) {
+            var memberPositions = "";
+            for (var i = 0; i < data.memberPosition.length; i++) {
+                memberPositions += "," + data.memberPosition[i];
+            }
+            memberPositions = memberPositions.substring(1);
+            data.memberPosition = memberPositions;
+        }
         $.ajax({
             type: 'post',
             dataType: "json",
@@ -170,9 +184,19 @@ var indexModule = (function(im) {
             async: false,
             success: function(result) {
                 $("#addGameContent").html(result.message);
-                im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
+                im.viewTeam(data.teamId);
             }
         });
+    }
+    im.viewMemberPage = function(memberId) {
+        im.loadPage("main-content", "viewMember", im.viewMember, {memberId: memberId});
+    }
+    im.viewMember = function(params) {
+        globalModule.globalAjax("http://210.83.195.229:8095/api/Member/getMember", params, im.fillViewMember);
+    }
+    im.fillViewMember = function(result) {
+        var html = template('viewMember-template', result.DataTable);
+        $("#viewMember").html(html);
     }
     im.viewTeam = function(teamId) {
         globalModule.globalAjax("http://210.83.195.229:8095/api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
@@ -183,7 +207,7 @@ var indexModule = (function(im) {
     im.showTeamDetails = function(result) {
         var html = template('teamDetails-template', result.DataTable);
         $("#teamDetails").html(html);
-        var gameId = $("#teamInfo").attr("data-teamid");
+        var teamId = $("#teamInfo").attr("data-teamid");
         globalModule.globalAjax("http://210.83.195.229:8095/api/Member/getMembers", { teamId: teamId }, im.showTeamMembersDetails);
     }
     im.showTeamMembersDetails = function(result) {
