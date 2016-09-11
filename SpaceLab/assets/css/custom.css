@@ -5,6 +5,13 @@
     margin-bottom: 0px;
 }
 
+.input-group[class*=form_time] {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0px;
+}
+
 .progress {
     margin-bottom: 0px;
 }

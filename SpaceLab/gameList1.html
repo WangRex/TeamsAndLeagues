@@ -26,7 +26,7 @@ $(document).ready(function() {
         type: 'get',
         dataType: "json",
         //url: 'http://localhost:4349/api/GameList/getGameList',
-        url: 'http://210.83.195.229:8095/api/GameList/getGameList',
+        url: globalModule.globalHomeUrl + 'api/GameList/getGameList',
         async: false,
         success: function(result) {
             var num = 0;

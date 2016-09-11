@@ -1,8 +1,5 @@
 <!-- Date Time Picker CSS-->
 <link href="assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-<!-- Bootstrap Selector -->
-<link rel="stylesheet" href="assets/plugins/bootstrap-select/css/bootstrap-select.css">
-<link href="assets/css/custom.css" rel="stylesheet" media="screen">
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
@@ -33,9 +30,6 @@
                         <label for="gameRule" class="col-sm-3 control-label">比赛规则</label>
                         <div class="col-sm-6">
                             <select id="gameRule" class="show-tick form-control" multiple name="gameRule">
-                                <option value="1">直接淘汰赛</option>
-                                <option value="2">小组淘汰赛</option>
-                                <option value="3">联赛</option>
                             </select>
                         </div>
                     </div>
@@ -99,24 +93,6 @@
         </div>
     </div>
 </div>
-<!-- Basic Modal -->
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">提示信息</h4>
-            </div>
-            <div class="modal-body">
-                <p id="addGameContent"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-3d" data-dismiss="modal">知道了</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Basic Modal -->
 <!-- Date Time Picker JS -->
 <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
@@ -132,14 +108,24 @@ $('.form_date').datetimepicker({
     forceParse: 0
 });
 </script>
-<!-- Bootstrap Selector -->
-<script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
-<script src="assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>
+<script id="gameRules-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value.ID}}">{{value.gameRuleName}}</option>
+    {{/each}}
+</script>
 <script>
 $(document).ready(function() {
-    $('#gameRule').selectpicker({
-        liveSearch: true,
-        maxOptions: 1
-    });
+
+    globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/getGameRuleList", {}, initGameRuleSelect);
+
+    function initGameRuleSelect(result) {
+        if (globalModule.isArray(result.DataTable)) {
+            $("#gameRule").html(template('gameRules-template', result));
+            $('#gameRule').selectpicker({
+                liveSearch: true,
+                maxOptions: 1
+            });
+        }
+    }
 });
 </script>

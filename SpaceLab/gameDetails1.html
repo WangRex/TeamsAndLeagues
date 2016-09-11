@@ -36,11 +36,11 @@
             </div>
             <div class="panel-body" id="enrollTeamsBody">
                 <div class="row boardData" id="enrollTeamsHead">
-                    <div class="col-xs-3">球队</div>
+                    <div class="col-xs-2">球队</div>
                     <div class="col-xs-2">队长</div>
                     <div class="col-xs-2">人数</div>
-                    <div class="col-xs-3">时间</div>
-                    <div class="col-xs-2">操作</div>
+                    <div class="col-xs-2">时间</div>
+                    <div class="col-xs-4">操作</div>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
                     <i class="fa fa-times"></i>
                 </div>
             </div>
-            <div class="panel-body" id="gameInfo" data-gameid="{{gameId}}" data-gameStatus="{{gameStatus}}">
+            <div class="panel-body" id="gameInfo" data-gameid="{{gameId}}" data-gameStatus="{{gameStatus}}" data-gameruleid="{{gameRuleId}}">
                 <div class="col-md-6 col-md-offset-3">
                     <label class="col-sm-3 control-label">赛事名称</label>
                     <div class="col-sm-3">
@@ -97,18 +97,27 @@
     <div class="col-sm-offset-6 hide" id="enrollBtns">
         <input type="button" class="btn btn-success btn-3d" onclick="indexModule.enrollGame('{{gameId}}');" value="报名">
         <input type="button" class="btn btn-success btn-3d" onclick="indexModule.shareGame('{{gameId}}');" value="分享">
+        <input type="button" class="btn btn-success btn-3d" onclick="indexModule.enrollGameEnd('{{gameId}}');" value="分配">
+        <input type="button" class="btn btn-success btn-3d" onclick="indexModule.updateGameStatus('{{gameId}}');" value="分配完成">
     </div>
 </script>
 <script id="enrollTeam-template" type="text/html">
     <div class="row boardData">
-        <div class="col-xs-3">{{teamName}}</div>
+        <div class="col-xs-2">{{teamName}}</div>
         <div class="col-xs-2">{{contactName}}</div>
         <div class="col-xs-2">{{teamNumber}}</div>
-        <div class="col-xs-3">{{attendDate}}</div>
-        <div class="col-xs-2">
-            <div class="switch switch-small has-switch" data-enrollId="{{enrollId}}">
-                <input class="agreeBtn" type="checkbox" checked data-on-text="同意" data-off-text="拒绝" name="enrollStatus" data-value="{{enrollStatus}}"/>
+        <div class="col-xs-2">{{attendDate}}</div>
+        <div class="col-xs-4 operation">
+            <div class="switch switch-small has-switch enrollStatusSwitch" data-enrollId="{{enrollId}}" data-enrollGroupName="{{enrollGroupName}}">
+                <input class="agreeBtn" type="checkbox" checked data-on-text="同意" data-off-text="拒绝" name="enrollStatus" data-value="{{enrollStatus}}" />
+                <select class="show-tick form-control hide" multiple name="gameGroupDetail">
+                </select>
             </div>
         </div>
     </div>
+</script>
+<script id="gameGroupDetail-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value}}">{{value}}</option>
+    {{/each}}
 </script>

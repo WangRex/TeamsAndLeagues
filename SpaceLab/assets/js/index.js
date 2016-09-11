@@ -12,7 +12,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'http://210.83.195.229:8095/api/User/login',
+            url: globalModule.globalHomeUrl + 'api/User/login',
             // url: 'http://localhost:4349/api/User/login',
             data: data,
             async: false,
@@ -36,7 +36,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'post',
             dataType: "json",
-            url: 'http://210.83.195.229:8095/api/GameList/addGame',
+            url: globalModule.globalHomeUrl + 'api/GameList/addGame',
             // url: 'http://localhost:4349/api/GameList/addGame',
             data: data,
             async: false,
@@ -70,7 +70,7 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             // url: 'assets/json/editGame.json',
-            url: 'http://210.83.195.229:8095/api/GameList/editGame',
+            url: globalModule.globalHomeUrl + 'api/GameList/editGame',
             data: data,
             async: false,
             success: function(result) {
@@ -87,7 +87,7 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             // url: 'assets/json/editGame.json',
-            url: 'http://210.83.195.229:8095/api/GameList/getGamePlaceByGameId',
+            url: globalModule.globalHomeUrl + 'api/GameList/getGamePlaceByGameId',
             data: params,
             async: false,
             success: function(result) {
@@ -117,7 +117,7 @@ var indexModule = (function(im) {
             type: 'post',
             dataType: "json",
             // url: 'assets/json/editGame.json',
-            url: 'http://210.83.195.229:8095/api/EnrollGame/addEnrollGameInfo',
+            url: globalModule.globalHomeUrl + 'api/EnrollGame/addEnrollGameInfo',
             data: data,
             async: false,
             success: function(result) {
@@ -127,6 +127,35 @@ var indexModule = (function(im) {
                     $("#enrollGameResult").html("报名信息添加失败！");
                 }
             }
+        });
+    }
+    im.enrollGameEnd = function(gameId) {
+        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId });
+    }
+    im.enrollGameEndInit = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, im.fillinEnrollGamePlace);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getAgreedEnrollGameList", params, im.fillinEnrollGameTeamList);
+    }
+    im.fillinEnrollGamePlace = function(result) {
+        var gamePlace = result.gamePlace.split(",");
+        var html = template('ttGamePlace-template', { DataTable: gamePlace });
+        $("#ttGamePlace").html(html);
+        $("#ttGamePlace").selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+    }
+    im.fillinEnrollGameTeamList = function(result) {
+        var html = template('teamList-template', { DataTable: result });
+        $("#ttMainTeam").html(html);
+        $("#ttMainTeam").selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+        $("#ttSubTeam").html(html);
+        $("#ttSubTeam").selectpicker({
+            liveSearch: true,
+            maxOptions: 1
         });
     }
     im.agreeEnroll = function() {
@@ -142,7 +171,7 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             // url: 'http://localhost:4349/api/Team/getTeamList',
-            url: 'http://210.83.195.229:8095/api/Team/getTeamList',
+            url: globalModule.globalHomeUrl + 'api/Team/getTeamList',
             async: false,
             success: function(result) {
                 if (callback) {
@@ -178,7 +207,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'post',
             dataType: "json",
-            url: 'http://210.83.195.229:8095/api/Member/addMember',
+            url: globalModule.globalHomeUrl + 'api/Member/addMember',
             // url: 'http://localhost:4349/api/GameList/addGame',
             data: data,
             async: false,
@@ -189,17 +218,17 @@ var indexModule = (function(im) {
         });
     }
     im.viewMemberPage = function(memberId) {
-        im.loadPage("main-content", "viewMember", im.viewMember, {memberId: memberId});
+        im.loadPage("main-content", "viewMember", im.viewMember, { memberId: memberId });
     }
     im.viewMember = function(params) {
-        globalModule.globalAjax("http://210.83.195.229:8095/api/Member/getMember", params, im.fillViewMember);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMember", params, im.fillViewMember);
     }
     im.fillViewMember = function(result) {
         var html = template('viewMember-template', result.DataTable);
         $("#viewMember").html(html);
     }
     im.viewTeam = function(teamId) {
-        globalModule.globalAjax("http://210.83.195.229:8095/api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
     }
     im.showTeamDetailsPage = function(result) {
         im.loadPage("main-content", "teamDetails", im.showTeamDetails, result);
@@ -208,11 +237,55 @@ var indexModule = (function(im) {
         var html = template('teamDetails-template', result.DataTable);
         $("#teamDetails").html(html);
         var teamId = $("#teamInfo").attr("data-teamid");
-        globalModule.globalAjax("http://210.83.195.229:8095/api/Member/getMembers", { teamId: teamId }, im.showTeamMembersDetails);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: teamId }, im.showTeamMembersDetails);
     }
     im.showTeamMembersDetails = function(result) {
         var html = template('teamMembers-template', result);
         $("#teamMembersHead").after(html);
+    }
+    im.addGameRule = function() {
+        var data = $("#addGameRuleForm").serializeJson();
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/addGameRule", data, null, "post");
+    }
+    im.getGameRules = function() {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/getGameRuleList", null, im.fillinGameRules);
+    }
+    im.fillinGameRules = function(result) {
+        var html = template('gameRules-template', result);
+        $("#boradData").after(html);
+    }
+    im.viewGameRule = function(ID) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/viewGameRule", { ID: ID }, im.viewGameRulePage);
+    }
+    im.viewGameRulePage = function(result) {
+        im.loadPage("main-content", "viewGameRule", im.fillinGameRule, result);
+    }
+    im.fillinGameRule = function(result) {
+        var html = template('viewGameRule-template', result.DataTable);
+        $("#viewGameRule").html(html);
+    }
+    im.addTimeTable = function() {
+        var data = $("#addTimeTableForm").serializeJson();
+        var ttMainTeam = data.ttMainTeam;
+        data.ttMainTeamID = ttMainTeam.split(",")[0];
+        data.ttMainTeam = ttMainTeam.split(",")[1];
+        var ttSubTeam = data.ttSubTeam;
+        data.ttSubTeamID = ttSubTeam.split(",")[0];
+        data.ttSubTeam = ttSubTeam.split(",")[1];
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, im.addTimeTableDone, "post");
+    }
+    im.addTimeTableDone = function(result) {
+        if (result.Code == 1) {
+            $("#addTimeTableResult").html("添加赛程成功，可以继续添加！");
+        }
+    }
+    im.updateGameStatus = function(gameId) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/updateGameStatus", { gameId: gameId }, im.updateGameStatusPage, null, null, null, { gameId: gameId });
+    }
+    im.updateGameStatusPage = function(result, params) {
+        if (result.Code == 1) {
+            im.loadPage("main-content", "gameDetails1", im.loadGameDetails1, params);
+        }
     }
     im.fixModal = function() {
         $('.modal').each(function(i) {
@@ -237,7 +310,7 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             data: params,
-            url: 'http://210.83.195.229:8095/api/GameList/getGameInfoByGameId',
+            url: globalModule.globalHomeUrl + 'api/GameList/getGameInfoByGameId',
             async: false,
             success: function(result) {
                 var html = template('gameDetails-template', result);
@@ -246,7 +319,10 @@ var indexModule = (function(im) {
                 if (gameStatus == '0') {
                     $("#enrollBtnDiv").html($("#enrollBtns").removeClass("hide"));
                     $("#enrollBtnDiv").removeClass("hide");
+                    globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/getEnrollGameList', params, im.fillinEnrollGameList);
                 } else {
+                    $("#enrollTeams").addClass("hide");
+                    $("#enrollBtnDiv").addClass("hide");
                     $("#gameBoards").removeClass("hide");
                 }
                 indexModule.bindGameDetails();
@@ -254,51 +330,75 @@ var indexModule = (function(im) {
                 app.bread();
             }
         });
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            data: params,
-            // url: 'http://localhost:4349/api/EnrollGame/getEnrollGameList',
-            url: 'http://210.83.195.229:8095/api/EnrollGame/getEnrollGameList',
-            async: false,
-            success: function(result) {
-                if (result.length > 0) {
-                    var html = "";
-                    for (var i = 0; i < result.length; i++) {
-                        var enrollTeam = result[i];
-                        html += template('enrollTeam-template', enrollTeam);
-                    }
-                    $("#enrollTeamsHead").after(html);
-                    $("#enrollTeams").removeClass("hide");
-
-                    $(".agreeBtn").each(function() {
-                        var enrollStatus = $(this).attr("data-value");
-                        if (enrollStatus == "同意") {
-                            $(this).bootstrapSwitch({ 'state': true });
-                        } else {
-                            $(this).bootstrapSwitch({ 'state': false });
-                        }
-                    });
-                    $('.switch').on('switchChange.bootstrapSwitch', function(event, state) {
-                        var enrollId = $(this).attr("data-enrollId");
-                        // true | false
-                        console.log(state);
-                        $.ajax({
-                            type: 'post',
-                            dataType: "json",
-                            data: { ID: enrollId, enrollStatus: state },
-                            url: 'http://210.83.195.229:8095/api/EnrollGame/updateEnrollStatus',
-                            async: false,
-                            success: function(result) {
-                                console.log(result);
-                            }
-                        });
-                    });
-                }
+    }
+    im.fillinEnrollGameList = function(result) {
+        if (result.length > 0) {
+            var html = "";
+            for (var i = 0; i < result.length; i++) {
+                var enrollTeam = result[i];
+                html += template('enrollTeam-template', enrollTeam);
             }
+            $("#enrollTeamsHead").after(html);
+            $("#enrollTeams").removeClass("hide");
+
+            $(".agreeBtn").each(function() {
+                var enrollStatus = $(this).attr("data-value");
+                if (enrollStatus == "同意") {
+                    $(this).bootstrapSwitch({ 'state': true });
+                    var gameruleid = $("#gameInfo").attr("data-gameruleid");
+                    var switchDiv = $(this).closest("div[class*='enrollStatusSwitch']");
+                    var gameGroupDetailSelect = switchDiv.closest("div[class*='operation']").find("select");
+                    var enrollId = switchDiv.attr("data-enrollId");
+                    var enrollGroupName = switchDiv.attr("data-enrollGroupName");
+                    gameGroupDetailSelect.removeClass("hide");
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/viewGameRule", { ID: gameruleid }, im.fillinGameGroupDetail, null, null, null, { switchDiv: switchDiv, gameGroupDetailSelect: gameGroupDetailSelect, enrollGroupName: enrollGroupName, enrollId: enrollId });
+                } else {
+                    $(this).bootstrapSwitch({ 'state': false });
+                }
+            });
+            $('.switch').on('switchChange.bootstrapSwitch', function(event, state) {
+                var enrollId = $(this).attr("data-enrollId");
+                var gameGroupDetailSelect = $(this).closest("div").find("select");
+                var switchDiv = $(this);
+                // true | false
+                if (state) {
+                    gameGroupDetailSelect.removeClass("hide");
+                    var gameruleid = $("#gameInfo").attr("data-gameruleid");
+                    var enrollGroupName = switchDiv.attr("data-enrollGroupName");
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/viewGameRule", { ID: gameruleid }, im.fillinGameGroupDetail, null, null, null, { switchDiv: switchDiv, gameGroupDetailSelect: gameGroupDetailSelect, enrollGroupName: enrollGroupName, enrollId: enrollId });
+                } else {
+                    gameGroupDetailSelect.addClass("hide");
+                    gameGroupDetailSelect.selectpicker('destroy');
+                    var select = "<select class='show-tick form-control hide' multiple name='gameGroupDetail'></select>";
+                    switchDiv.append(select);
+                }
+                $.ajax({
+                    type: 'post',
+                    dataType: "json",
+                    data: { ID: enrollId, enrollStatus: state },
+                    url: globalModule.globalHomeUrl + 'api/EnrollGame/updateEnrollStatus',
+                    async: false,
+                    success: function(result) {
+                        console.log(result);
+                    }
+                });
+            });
+        }
+    }
+    im.fillinGameGroupDetail = function(result, params) {
+        var gameGroupDetails = result.DataTable.gameGroupDetail.split(",");
+        var html = template('gameGroupDetail-template', { DataTable: gameGroupDetails });
+        var gameGroupDetailSelect = params.gameGroupDetailSelect;
+        gameGroupDetailSelect.html(html);
+        gameGroupDetailSelect.selectpicker({
+            liveSearch: true,
+            maxOptions: 1,
+            noneSelectedText: params.enrollGroupName,
+            width: "150px"
+        }).on('changed.bs.select', function(e, clickedIndex, oldValue, newValue) {
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollGroupName", { ID: params.enrollId, enrollGroupName: $(e.currentTarget).val()[0] }, null, "post");
         });
     }
-
     im.bindGameDetails = function() {
         $("#matchList").on("click", function() {
             im.loadPage("match-content", "matchList");
@@ -326,7 +426,7 @@ var indexModule = (function(im) {
             dataType: "json",
             data: params,
             //url: 'assets/json/scoreBoard.json',
-            url: 'http://210.83.195.229:8095/api/MatchScore/getAllMatchScore',
+            url: globalModule.globalHomeUrl + 'api/MatchScore/getAllMatchScore',
             async: false,
             success: function(result) {
                 var html = template('scoreDetails-template', result);
@@ -341,7 +441,7 @@ var indexModule = (function(im) {
             dataType: "json",
             data: params,
             //url: 'assets/json/shooterBoard.json',
-            url: 'http://210.83.195.229:8095/api/MatchShooter/getAllMatchShooter',
+            url: globalModule.globalHomeUrl + 'api/MatchShooter/getAllMatchShooter',
             async: false,
             success: function(result) {
                 var html = template('shooterDetails-template', result);
@@ -356,7 +456,7 @@ var indexModule = (function(im) {
             dataType: "json",
             data: params,
             //url: 'assets/json/stopBoard.json',
-            url: 'http://210.83.195.229:8095/api/MatchStop/getAllMatchStop',
+            url: globalModule.globalHomeUrl + 'api/MatchStop/getAllMatchStop',
             async: false,
             success: function(result) {
                 var html = template('stopDetails-template', result);
