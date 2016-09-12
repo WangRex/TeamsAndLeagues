@@ -130,9 +130,10 @@ var indexModule = (function(im) {
         });
     }
     im.enrollGameEnd = function(gameId) {
-        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round : 1 });
+        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: 1 });
     }
     im.enrollGameEndInit = function(params) {
+        $("#ttGameId").attr("value", params.gameId);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, im.fillinEnrollGamePlace);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getAgreedEnrollGameList", params, im.fillinEnrollGameTeamList);
     }
@@ -167,18 +168,7 @@ var indexModule = (function(im) {
         $("#agreeEnrollBtn").removeAttr("disabled");
     }
     im.getTeamList = function(callback) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            // url: 'http://localhost:4349/api/Team/getTeamList',
-            url: globalModule.globalHomeUrl + 'api/Team/getTeamList',
-            async: false,
-            success: function(result) {
-                if (callback) {
-                    callback(result);
-                }
-            }
-        });
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamList", null, callback);
     }
     im.fillinTeamList = function(result) {
         if (result.Code == 1) {
@@ -400,43 +390,35 @@ var indexModule = (function(im) {
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollGroupName", { ID: params.enrollId, enrollGroupName: $(e.currentTarget).val()[0] }, null, "post");
         });
     }
-    im.fillinTimeTable = function() {
-        //globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollGroupName", { ID: params.enrollId, enrollGroupName: $(e.currentTarget).val()[0] }, null, "post");
+    im.fillinTimeTablePage = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/findAllTimeTables", params, im.fillinTimeTable);
+    }
+    im.fillinTimeTable = function(result) {
+        $("#round1").find("ol").html(template("enrollGameList-template", result));
     }
     im.bindGameDetails = function() {
+        var gameId = $("#gameInfo").attr("data-gameid");
+        var params = { gameId: gameId };
+        var empty = {}
+        var object = $.extend(empty, params, { round: 1 });
+        var 
         $("#matchList").on("click", function() {
-            im.loadPage("match-content", "matchList", im.fillinTimeTable);
+            im.loadPage("match-content", "matchList", im.fillinTimeTablePage, object);
         });
         $("#scoreList").on("click", function() {
-            var gameId = $("#gameInfo").attr("data-gameid");
-            var params = { gameId: gameId };
             im.loadPage("match-content", "scoreList", im.loadScoreList, params);
         });
         $("#shooterList").on("click", function() {
-            var gameId = $("#gameInfo").attr("data-gameid");
-            var params = { gameId: gameId };
             im.loadPage("match-content", "shooterList", im.loadShooterList, params);
         });
         $("#stopList").on("click", function() {
-            var gameId = $("#gameInfo").attr("data-gameid");
-            var params = { gameId: gameId };
             im.loadPage("match-content", "stopList", im.loadStopList, params);
         });
     }
 
     im.loadScoreList = function(params) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            data: params,
-            //url: 'assets/json/scoreBoard.json',
-            url: globalModule.globalHomeUrl + 'api/MatchScore/getAllMatchScore',
-            async: false,
-            success: function(result) {
-                var html = template('scoreDetails-template', result);
-                $("#boradData").after(html);
-            }
-        });
+        var fillinParams = {tmplId : 'scoreDetails-template', target: $("#boradData"), way: "after"}
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getGameMatchScoreList", params, globalModule.fillinInfo, null, null, null, fillinParams);
     }
 
     im.loadShooterList = function(params) {

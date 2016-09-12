@@ -9,20 +9,56 @@ var globalModule = (function(gm) {
             data: data || {},
             async: async || "false",
             success: function(result) {
-            	if (result.Code == 3) {
-            		window.location.href = gm.globalHomeUrl;
-            	}
-            	if(successCallback) {
-            		successCallback(result, params || {});
-            	}
+                if (result.Code == 2) {
+                    window.location.href = window.location.href;
+                }
+                if (successCallback) {
+                    successCallback(result, params || {});
+                }
             }
         });
     }
-    gm.getSessionUser =  function(userName) {
-    	gm.globalAjax(gm.globalHomeUrl + "api/User/getSessionUser", {userName: userName});
+    gm.getSessionUser = function(userName) {
+        gm.globalAjax(gm.globalHomeUrl + "api/User/getSessionUser", { userName: userName });
     }
     gm.isArray = function(obj) {
         return Object.prototype.toString.call(obj) === '[object Array]';
+    }
+    gm.getNowFormatDate = function() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate + " " + date.getHours() + seperator2 + date.getMinutes() + seperator2 + date.getSeconds();
+        return currentdate;
+    }
+    gm.fillinInfo = function(result, params) {
+        if (result.DataTable) {
+            var html = template(params.tmplId, result);
+            switch (params.way) {
+                case "after":
+                    params.target.after(html);
+                    break;
+                case "append":
+                    params.target.append(html);
+                    break;
+                case "appendTo":
+                    params.target.appendTo(html);
+                    break;
+                case "html":
+                    params.target.html(html);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     return gm;
 }(globalModule || {}));

@@ -22,32 +22,28 @@
 </script>
 <script>
 $(document).ready(function() {
-    $.ajax({
-        type: 'get',
-        dataType: "json",
-        //url: 'http://localhost:4349/api/GameList/getGameList',
-        url: globalModule.globalHomeUrl + 'api/GameList/getGameList',
-        async: false,
-        success: function(result) {
-            var num = 0;
-            if (result.Code == 1) {
-                $.each(result.DataTable, function(idx, obj) {
-                    if (idx % 3 == 0 && idx != 0) {
-                        num++;
-                        var div = $("<div class='row' id='row" + num + "'></div>");
-                        $("#row" + Number(num - 1)).after(div);
-                    }
-                    var html = template('match-info-template', obj);
-                    $("#row" + num).append(html);
-                });
-            }
-        }
-    });
 
-    $(".gameInfo").on("click", function() {
-        var gameId = $(this).attr("data-gameId");
-        indexModule.loadGameDetailsPage1("gameDetails1", gameId);
-    });
+    globalModule.globalAjax(globalModule.globalHomeUrl + 'api/GameList/getGameList', null, fillinGameList);
+
+    function fillinGameList(result) {
+        var num = 0;
+        if (result.Code == 1) {
+            $.each(result.DataTable, function(idx, obj) {
+                if (idx % 3 == 0 && idx != 0) {
+                    num++;
+                    var div = $("<div class='row' id='row" + num + "'></div>");
+                    $("#row" + Number(num - 1)).after(div);
+                }
+                var html = template('match-info-template', obj);
+                $("#row" + num).append(html);
+            });
+
+            $(".gameInfo").on("click", function() {
+                var gameId = $(this).attr("data-gameId");
+                indexModule.loadGameDetailsPage1("gameDetails1", gameId);
+            });
+        }
+    }
 
 });
 </script>
