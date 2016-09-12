@@ -401,7 +401,6 @@ var indexModule = (function(im) {
         var params = { gameId: gameId };
         var empty = {}
         var object = $.extend(empty, params, { round: 1 });
-        var 
         $("#matchList").on("click", function() {
             im.loadPage("match-content", "matchList", im.fillinTimeTablePage, object);
         });
