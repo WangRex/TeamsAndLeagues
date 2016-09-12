@@ -9,6 +9,9 @@ var globalModule = (function(gm) {
             data: data || {},
             async: async || "false",
             success: function(result) {
+            	if (result.Code == 3) {
+            		window.location.href = gm.globalHomeUrl;
+            	}
             	if(successCallback) {
             		successCallback(result, params || {});
             	}

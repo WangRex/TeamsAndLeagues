@@ -130,7 +130,7 @@ var indexModule = (function(im) {
         });
     }
     im.enrollGameEnd = function(gameId) {
-        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId });
+        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round : 1 });
     }
     im.enrollGameEndInit = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, im.fillinEnrollGamePlace);
@@ -264,7 +264,7 @@ var indexModule = (function(im) {
         var html = template('viewGameRule-template', result.DataTable);
         $("#viewGameRule").html(html);
     }
-    im.addTimeTable = function() {
+    im.addTimeTable = function(round) {
         var data = $("#addTimeTableForm").serializeJson();
         var ttMainTeam = data.ttMainTeam;
         data.ttMainTeamID = ttMainTeam.split(",")[0];
@@ -272,6 +272,7 @@ var indexModule = (function(im) {
         var ttSubTeam = data.ttSubTeam;
         data.ttSubTeamID = ttSubTeam.split(",")[0];
         data.ttSubTeam = ttSubTeam.split(",")[1];
+        data.ttRound = round;
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, im.addTimeTableDone, "post");
     }
     im.addTimeTableDone = function(result) {
@@ -399,9 +400,12 @@ var indexModule = (function(im) {
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollGroupName", { ID: params.enrollId, enrollGroupName: $(e.currentTarget).val()[0] }, null, "post");
         });
     }
+    im.fillinTimeTable = function() {
+        //globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollGroupName", { ID: params.enrollId, enrollGroupName: $(e.currentTarget).val()[0] }, null, "post");
+    }
     im.bindGameDetails = function() {
         $("#matchList").on("click", function() {
-            im.loadPage("match-content", "matchList");
+            im.loadPage("match-content", "matchList", im.fillinTimeTable);
         });
         $("#scoreList").on("click", function() {
             var gameId = $("#gameInfo").attr("data-gameid");
