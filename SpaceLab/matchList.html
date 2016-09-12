@@ -3,9 +3,9 @@
 </div>
 <div class="tab-wrapper tab-primary">
     <ul class="nav nav-tabs" data-li="1" id="roundUl">
-        <li class="active"><a href="#round1" data-toggle="tab">第一轮</a>
+        <li class="active"><a href="#round1" data-toggle="tab">第1轮</a>
         </li>
-        <li><a href="javascript:void(0);" id="addTab" data-toggle="tab"><i class="fa fa-plus-square"></i></a>
+        <li><i id="addTab" class="fa fa-plus-square"></i>
         </li>
     </ul>
     <div class="tab-content">
@@ -43,8 +43,10 @@ $("#addTab").on("click", function() {
     var index = Number($("#roundUl").attr("data-li"));
     var currRoundDiv = $("#round" + index);
     index++;
-    var li = "<li><a href='#round'" + index + " data-toggle='tab'>第" + index + "轮</a></li>";
-    var roundDiv = "<div class='tab-pane active' id='round'"+index+"><p><ol class='dd-list'></ol></p></div>";
-    currRoundDiv.appendTo(roundDiv);
+    var li = "<li><a href='#round" + index + "' data-toggle='tab'>第" + index + "轮</a></li>";
+    var roundDiv = "<div class='tab-pane active' id='round" + index + "'><p><ol class='dd-list'></ol></p></div>";
+    currRoundDiv.after(roundDiv);
+    $(this).closest("li").before(li);
+    $("#roundUl").attr("data-li", index);
 });
 </script>
