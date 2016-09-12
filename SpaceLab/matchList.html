@@ -2,14 +2,10 @@
     <div class="tac"></div>
 </div>
 <div class="tab-wrapper tab-primary">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" data-li="1" id="roundUl">
         <li class="active"><a href="#round1" data-toggle="tab">第一轮</a>
         </li>
-        <li><a href="#round2" data-toggle="tab">第二轮</a>
-        </li>
-        <li><a href="#profile3" data-toggle="tab">第三轮</a>
-        </li>
-        <li><a href="#profile4" data-toggle="tab">第四轮</a>
+        <li><a href="javascript:void(0);" id="addTab" data-toggle="tab"><i class="fa fa-plus-square"></i></a>
         </li>
     </ul>
     <div class="tab-content">
@@ -19,163 +15,36 @@
                 </ol>
             </p>
         </div>
-        <div class="tab-pane" id="profile2">
-            <p>
-                <ol class="dd-list">
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">
-                            <div class="row">
-                                <div class="col-xs-4 tal">
-                                    大连队
-                                </div>
-                                <div class="col-xs-4 tac">
-                                    <p><span>8:00</span><span>常规赛</span></p>
-                                    <p><span>0:0</span></p>
-                                    <p><span>查看详情</span></p>
-                                </div>
-                                <div class="col-xs-4 tar">
-                                    皇马队
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">
-                            <div class="row">
-                                <div class="col-xs-4 tal">
-                                    大连队
-                                </div>
-                                <div class="col-xs-4 tac">
-                                    <p><span>8:00</span><span>常规赛</span></p>
-                                    <p><span>0:0</span></p>
-                                    <p><span>查看详情</span></p>
-                                </div>
-                                <div class="col-xs-4 tar">
-                                    皇马队
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">
-                            <div class="row">
-                                <div class="col-xs-4 tal">
-                                    大连队
-                                </div>
-                                <div class="col-xs-4 tac">
-                                    <p><span>8:00</span><span>常规赛</span></p>
-                                    <p><span>0:0</span></p>
-                                    <p><span>查看详情</span></p>
-                                </div>
-                                <div class="col-xs-4 tar">
-                                    皇马队
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">
-                            <div class="row">
-                                <div class="col-xs-4 tal">
-                                    大连队
-                                </div>
-                                <div class="col-xs-4 tac">
-                                    <p><span>8:00</span><span>常规赛</span></p>
-                                    <p><span>0:0</span></p>
-                                    <p><span>查看详情</span></p>
-                                </div>
-                                <div class="col-xs-4 tar">
-                                    皇马队
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ol>
-            </p>
-        </div>
-        <div class="tab-pane" id="profile3">
-            <p>
-                <ol class="dd-list">
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">
-                            <div class="row">
-                                <div class="col-xs-4 tal">
-                                    大连队
-                                </div>
-                                <div class="col-xs-4 tac">
-                                    <p><span>8:00</span><span>常规赛</span></p>
-                                    <p><span>0:0</span></p>
-                                    <p><span>查看详情</span></p>
-                                </div>
-                                <div class="col-xs-4 tar">
-                                    皇马队
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">
-                            <div class="row">
-                                <div class="col-xs-4 tal">
-                                    大连队
-                                </div>
-                                <div class="col-xs-4 tac">
-                                    <p><span>8:00</span><span>常规赛</span></p>
-                                    <p><span>0:0</span></p>
-                                    <p><span>查看详情</span></p>
-                                </div>
-                                <div class="col-xs-4 tar">
-                                    皇马队
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ol>
-            </p>
-        </div>
-        <div class="tab-pane" id="profile4">
-            <p>
-                <ol class="dd-list">
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">
-                            <div class="row">
-                                <div class="col-xs-4 tal">
-                                    大连队
-                                </div>
-                                <div class="col-xs-4 tac">
-                                    <p><span>8:00</span><span>常规赛</span></p>
-                                    <p><span>0:0</span></p>
-                                    <p><span>查看详情</span></p>
-                                </div>
-                                <div class="col-xs-4 tar">
-                                    皇马队
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ol>
-            </p>
-        </div>
     </div>
 </div>
 <script id="enrollGameList-template" type="text/html">
     {{each DataTable as value i}}
-    <li class="dd-item" data-mainteamid="{{ttMainTeamID}}" data-subteamid="{{ttSubTeamID}}">
+    <li class="dd-item" data-mainteamid="{{value.ttMainTeamID}}" data-subteamid="{{value.ttSubTeamID}}">
         <div class="dd-handle">
             <div class="row">
                 <div class="col-xs-4 tal">
-                    {{value.ttMainTeam}}
+                    <a href="javascript:void(0);" onclick="indexModule.viewTeam('{{value.ttMainTeamID}}')">{{value.ttMainTeam}}</a>
                 </div>
                 <div class="col-xs-4 tac">
                     <p><span>{{value.ttTime}}</span><span>常规赛</span></p>
                     <p><span>{{value.ttMainWinNum}}:{{value.ttSubWinNum}}</span></p>
-                    <p><span>查看详情</span></p>
+                    <p><span>比赛录入</span></p>
                 </div>
                 <div class="col-xs-4 tar">
-                    {{value.ttSubTeam}}
+                    <a href="javascript:void(0);" onclick="indexModule.viewTeam('{{value.ttSubTeamID}}')">{{value.ttSubTeam}}</a>
                 </div>
             </div>
         </div>
     </li>
     {{/each}}
+</script>
+<script type="text/javascript">
+$("#addTab").on("click", function() {
+    var index = Number($("#roundUl").attr("data-li"));
+    var currRoundDiv = $("#round" + index);
+    index++;
+    var li = "<li><a href='#round'" + index + " data-toggle='tab'>第" + index + "轮</a></li>";
+    var roundDiv = "<div class='tab-pane active' id='round'"+index+"><p><ol class='dd-list'></ol></p></div>";
+    currRoundDiv.appendTo(roundDiv);
+});
 </script>
