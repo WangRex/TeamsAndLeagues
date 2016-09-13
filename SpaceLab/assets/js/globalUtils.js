@@ -39,7 +39,7 @@ var globalModule = (function(gm) {
         var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate + " " + date.getHours() + seperator2 + date.getMinutes() + seperator2 + date.getSeconds();
         return currentdate;
     }
-    gm.fillinInfo = function(result, params) {
+    gm.fillinInfoFromTmpl = function(result, params) {
         if (result.DataTable) {
             var html = template(params.tmplId, result);
             switch (params.way) {
@@ -59,6 +59,23 @@ var globalModule = (function(gm) {
                     break;
             }
         }
+        if (params.callback) {
+            if (params.callbackParams) {
+                params.callback(params.callbackParams);
+            } else {
+                params.callback();
+            }
+        }
+    }
+    gm.arrayToString = function(array) {
+        var result = "";
+        if (array.length > 1) {
+            for (var i = 0; i < array.length; i++) {
+                result += "," + array[i];
+            }
+            result = result.substring(1);
+        }
+        return result;
     }
     return gm;
 }(globalModule || {}));

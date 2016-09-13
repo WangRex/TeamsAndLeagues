@@ -1,0 +1,167 @@
+<div class="row" id="addGameResult">
+</div>
+<script id="addGameResult-template" type="text/html">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">比赛结果录入</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" id="addGameResultForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">比赛时间</label>
+                        <div class="col-sm-6">
+                            {{DataTable.ttDate}} - {{DataTable.ttTime}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">赛区</label>
+                        <div class="col-sm-6">
+                            {{DataTable.ttGamePlace}} - {{DataTable.ttGameSite}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">轮次</label>
+                        <div class="col-sm-6">
+                            {{DataTable.ttRound}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">比赛类型</label>
+                        <div class="col-sm-6">
+                            {{DataTable.gameRule}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队首发</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainStarting">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队替补</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainSubstitutes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队首发</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subStarting">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队替补</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subSubstitutes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队进球数</label>
+                        <div class="col-sm-6">
+                            <input id="mainTeamGoal" type="text" class="form-control" placeholder="主队进球数" name="mainTeamGoal">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队进球数</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="客队进球数" name="subTeamGoal">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队进球队员</label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainGoalMembers">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input1" value="" name="memberScoreDateTime" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addGoalMember(this);" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队进球队员</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subGoalMembers">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group hide" id="goalMemberDivClone">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control subTeamMembers" multiple>
+                            </select>
+                        </div>
+                        <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input1" value="" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-danger btn-3d" onclick="indexModule.deleteGoalMember(this);" value="删除">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队红牌队员</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainRedMembers">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队红牌队员</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subRedMembers">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队黄牌队员</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainYellowMembers">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队黄牌队员</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subYellowMembers">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备注</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" name="remark"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addGameResult();" value="添加">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="teamMembers-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value.ID}}">{{value.memberName}}</option>
+    {{/each}}
+</script>
+<script type="text/javascript">
+    indexModule.initDateTimePicker();
+</script>

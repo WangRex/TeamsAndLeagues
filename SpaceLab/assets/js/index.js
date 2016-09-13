@@ -13,41 +13,29 @@ var indexModule = (function(im) {
             type: 'get',
             dataType: "json",
             url: globalModule.globalHomeUrl + 'api/User/login',
-            // url: 'http://localhost:4349/api/User/login',
             data: data,
             async: false,
             success: function(result) {
                 if (result == 1) {
-                    im.loadPage("container", "main");
+                    im.loadPage("container", "main", function() { $("#userName").html(data.name); });
                 }
             }
         });
     }
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
-        if (data.gamePlace.length > 1) {
-            var gamePlaces = "";
-            for (var i = 0; i < data.gamePlace.length; i++) {
-                gamePlaces += "," + data.gamePlace[i];
-            }
-            gamePlaces = gamePlaces.substring(1);
-            data.gamePlace = gamePlaces;
-        }
+        data.gamePlace = globalModule.arrayToString(data.gamePlace);
         $.ajax({
             type: 'post',
             dataType: "json",
             url: globalModule.globalHomeUrl + 'api/GameList/addGame',
-            // url: 'http://localhost:4349/api/GameList/addGame',
             data: data,
             async: false,
             success: function(result) {
                 $("#addGameContent").html(result.message);
-                //$(".complete-sign").show(1000);
-                //$(".complete-sign").hide(1000);
                 im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
             }
         });
-        // im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: data });
     }
     im.addGameSuccess = function(params) {
         var html = template('addGameSuccess-template', params.data);
@@ -278,6 +266,65 @@ var indexModule = (function(im) {
             im.loadPage("main-content", "gameDetails1", im.loadGameDetails1, params);
         }
     }
+    im.addGameResultPage = function(ttId, mainTeamId, subTeamId) {
+        var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
+        im.loadPage("main-content", "addGameResult", im.addGameResultInit, params);
+    }
+    im.addGameResultInit = function(params) {
+        im.initDateTimePicker("form_datetime");
+        var fillinParams = { tmplId: 'addGameResult-template', target: $("#addGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/findTimeTable", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+    }
+    im.fillinMembers = function(params) {
+        var fillinParamsMain = { tmplId: 'teamMembers-template', target: $(".mainTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'mainTeamMembers' };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsMain);
+        var fillinParamsSub = { tmplId: 'teamMembers-template', target: $(".subTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'subTeamMembers' };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsSub);
+    }
+    im.addGameResult = function() {
+        var data = $("#addGameResultForm").serializeJson();
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, im.addTimeTableDone, "post");
+    }
+    im.initTeamMembersSelector = function(className) {
+        $("." + className).each(function() {
+            if ($(this).attr("data-width") != "") {
+                var width = $(this).attr("data-width");
+                $(this).selectpicker({
+                    liveSearch: true,
+                    width: $(this).attr("data-width")
+                });
+            } else {
+                $(this).selectpicker({
+                    liveSearch: true
+                });
+            }
+        });
+        im.initDateTimePicker();
+    }
+    im.initDateTimePicker = function() {
+        $('.form_datetime').datetimepicker({
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            language: 'zh-CN',
+            showMeridian: 1
+        });
+    }
+    im.addGoalMember = function(obj) {
+        var div = $(obj).closest("div[class='form-group']");
+        var goalMemberDivClone = $("#goalMemberDivClone").clone();
+        goalMemberDivClone.attr("id", "");
+        goalMemberDivClone.removeClass("hide");
+        goalMemberDivClone.find("input[type='hidden']").attr("name", "memberScoreDateTime");
+        goalMemberDivClone.find(".subTeamMembers").attr("name", "mainGoalMembers");
+        div.after(goalMemberDivClone);
+    }
+    im.deleteGamePlace = function(obj) {
+        $(obj).closest("div[class='form-group']").remove();
+    }
     im.fixModal = function() {
         $('.modal').each(function(i) {
             var $clone = $(this).clone().css('display', 'block').appendTo('body');
@@ -416,8 +463,8 @@ var indexModule = (function(im) {
     }
 
     im.loadScoreList = function(params) {
-        var fillinParams = {tmplId : 'scoreDetails-template', target: $("#boradData"), way: "after"}
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getGameMatchScoreList", params, globalModule.fillinInfo, null, null, null, fillinParams);
+        var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getGameMatchScoreList", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
 
     im.loadShooterList = function(params) {
