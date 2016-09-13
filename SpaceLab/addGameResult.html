@@ -82,35 +82,58 @@
                             <select class="show-tick form-control mainTeamMembers" multiple name="mainGoalMembers">
                             </select>
                         </div>
-                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
                             <input class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         </div>
                         <input type="hidden" id="dtp_input1" value="" name="memberScoreDateTime" />
                         <div class="col-sm-3">
-                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addGoalMember(this);" value="添加">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addMainGoalMember(this);" value="添加">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">客队进球队员</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <select class="show-tick form-control subTeamMembers" multiple name="subGoalMembers">
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group hide" id="goalMemberDivClone">
-                        <label class="col-sm-3 control-label"></label>
-                        <div class="col-sm-3">
-                            <select class="show-tick form-control subTeamMembers" multiple>
-                            </select>
-                        </div>
-                        <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input_sub1">
                             <input class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         </div>
-                        <input type="hidden" id="dtp_input1" value="" />
+                        <input type="hidden" id="dtp_input_sub1" value="" name="memberScoreDateTime" />
                         <div class="col-sm-3">
-                            <input type="button" class="btn btn-danger btn-3d" onclick="indexModule.deleteGoalMember(this);" value="删除">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addSubGoalMember(this);" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group hide" id="goalMainMemberDivClone" data-index="1">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control mainTeamMembers" multiple data-initial="false">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-initial="false" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="" value="" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-danger btn-3d btn-sm" onclick="indexModule.deleteMainGoalMember(this);" value="删除">
+                        </div>
+                    </div>
+                    <div class="form-group hide" id="goalSubMemberDivClone" data-index="1">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control subTeamMembers" multiple data-initial="false">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-initial="false" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="" value="" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-danger btn-3d btn-sm" onclick="indexModule.deleteSubGoalMember(this);" value="删除">
                         </div>
                     </div>
                     <div class="form-group">
@@ -163,5 +186,5 @@
     {{/each}}
 </script>
 <script type="text/javascript">
-    indexModule.initDateTimePicker();
+indexModule.initDateTimePicker();
 </script>

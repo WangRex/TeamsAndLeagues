@@ -287,42 +287,78 @@ var indexModule = (function(im) {
     }
     im.initTeamMembersSelector = function(className) {
         $("." + className).each(function() {
-            if ($(this).attr("data-width") != "") {
-                var width = $(this).attr("data-width");
-                $(this).selectpicker({
-                    liveSearch: true,
-                    width: $(this).attr("data-width")
-                });
-            } else {
-                $(this).selectpicker({
-                    liveSearch: true
-                });
+            if ($(this).attr("data-initial") != "false") {
+                if ($(this).attr("data-width") != "") {
+                    var width = $(this).attr("data-width");
+                    $(this).selectpicker({
+                        liveSearch: true,
+                        width: $(this).attr("data-width")
+                    });
+                } else {
+                    $(this).selectpicker({
+                        liveSearch: true
+                    });
+                }
             }
         });
         im.initDateTimePicker();
     }
-    im.initDateTimePicker = function() {
-        $('.form_datetime').datetimepicker({
-            weekStart: 1,
-            todayBtn: 1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            forceParse: 0,
-            language: 'zh-CN',
-            showMeridian: 1
+    im.initSelector = function(obj) {
+        obj.selectpicker({
+            liveSearch: true
         });
     }
-    im.addGoalMember = function(obj) {
-        var div = $(obj).closest("div[class='form-group']");
-        var goalMemberDivClone = $("#goalMemberDivClone").clone();
-        goalMemberDivClone.attr("id", "");
-        goalMemberDivClone.removeClass("hide");
-        goalMemberDivClone.find("input[type='hidden']").attr("name", "memberScoreDateTime");
-        goalMemberDivClone.find(".subTeamMembers").attr("name", "mainGoalMembers");
-        div.after(goalMemberDivClone);
+    im.initDateTimePicker = function() {
+        if ($(this).attr("data-initial") != "false") {
+            $('.form_datetime').datetimepicker({
+                format: "dd MM yyyy - hh:ii",
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                language: 'zh-CN'
+            });
+        }
+
     }
-    im.deleteGamePlace = function(obj) {
+    im.addMainGoalMember = function(obj) {
+        var div = $(obj).closest("div[class='form-group']");
+        var goalMainMemberDivClone = $("#goalMainMemberDivClone").clone();
+        var index = goalMainMemberDivClone.attr("data-index");
+        index++;
+        goalMainMemberDivClone.attr("id", "");
+        goalMainMemberDivClone.removeClass("hide");
+        goalMainMemberDivClone.find("input[type='hidden']").attr("name", "memberScoreDateTime").attr("id", "dtp_input_main" + index);
+        goalMainMemberDivClone.find("select").attr("name", "mainGoalMembers");
+        goalMainMemberDivClone.find("select").addClass("mainGoalMembers");
+        div.after(goalMainMemberDivClone);
+        im.initSelector(goalMainMemberDivClone.find("select"));
+        goalMainMemberDivClone.find("div[class*='form_date']").attr("data-initial", "true").attr("data-link-field", "dtp_input_main" + index);
+        im.initDateTimePicker();
+        $("#goalMainMemberDivClone").attr("data-index", index);
+    }
+    im.deleteMainGoalMember = function(obj) {
+        $(obj).closest("div[class='form-group']").remove();
+    }
+    im.addSubGoalMember = function(obj) {
+        var div = $(obj).closest("div[class='form-group']");
+        var goalSubMemberDivClone = $("#goalSubMemberDivClone").clone();
+        var index = goalSubMemberDivClone.attr("data-index");
+        index++;
+        goalSubMemberDivClone.attr("id", "");
+        goalSubMemberDivClone.removeClass("hide");
+        goalSubMemberDivClone.find("input[type='hidden']").attr("name", "memberScoreDateTime").attr("id", "dtp_input_sub" + index);
+        goalSubMemberDivClone.find("select").attr("name", "subGoalMembers");
+        goalSubMemberDivClone.find("select").addClass("subGoalMembers");
+        div.after(goalSubMemberDivClone);
+        im.initSelector(goalSubMemberDivClone.find("select"));
+        goalSubMemberDivClone.find("div[class*='form_date']").attr("data-initial", "true").attr("data-link-field", "dtp_input_sub" + index);
+        im.initDateTimePicker();
+        $("#goalSubMemberDivClone").attr("data-index", index);
+    }
+    im.deleteSubGoalMember = function(obj) {
         $(obj).closest("div[class='form-group']").remove();
     }
     im.fixModal = function() {
