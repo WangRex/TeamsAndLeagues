@@ -627,7 +627,7 @@ var indexModule = (function(im) {
 
     im.loadScoreList = function(params) {
         var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getGameMatchScoreList", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
 
     im.loadShooterList = function(params) {
