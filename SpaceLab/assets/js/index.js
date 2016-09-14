@@ -283,7 +283,152 @@ var indexModule = (function(im) {
     }
     im.addGameResult = function() {
         var data = $("#addGameResultForm").serializeJson();
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, im.addTimeTableDone, "post");
+        console.log(data);
+
+        var gameResultData = {};
+        gameResultData.timeTableId = data.timeTableId;
+        gameResultData.gameId = data.gameId;
+        gameResultData.round = data.round;
+        gameResultData.mainStarting = globalModule.arrayToString(data.mainStarting);
+        gameResultData.mainSubstitutes = globalModule.arrayToString(data.mainSubstitutes);
+        gameResultData.subStarting = globalModule.arrayToString(data.subStarting);
+        gameResultData.subSubstitutes = globalModule.arrayToString(data.subSubstitutes);
+        gameResultData.mainTeamGoal = data.mainTeamGoal;
+        gameResultData.subTeamGoal = data.subTeamGoal;
+        gameResultData.remark = data.remark;
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
+
+        if (data.mainGoalMembers) {
+            if (globalModule.isArray(data.mainGoalMembers)) {
+                for (var i = 0; i < data.mainGoalMembers.length; i++) {
+                    var memberScoreDetailsData = {};
+                    memberScoreDetailsData.timeTableId = data.timeTableId;
+                    memberScoreDetailsData.gameId = data.gameId;
+                    memberScoreDetailsData.round = data.round;
+                    memberScoreDetailsData.memberId = data.mainGoalMembers[i];
+                    memberScoreDetailsData.memberScoreDateTime = data.mainMemberScoreDateTime[i] || "";
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
+                }
+            } else {
+                var memberScoreDetailsData = {};
+                memberScoreDetailsData.timeTableId = data.timeTableId;
+                memberScoreDetailsData.gameId = data.gameId;
+                memberScoreDetailsData.round = data.round;
+                memberScoreDetailsData.memberId = data.mainGoalMembers;
+                memberScoreDetailsData.memberScoreDateTime = data.mainMemberScoreDateTime || "";
+                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
+            }
+
+        }
+        if (data.subGoalMembers) {
+            if (globalModule.isArray(data.subGoalMembers)) {
+                for (var i = 0; i < data.subGoalMembers.length; i++) {
+                    var memberScoreDetailsData = {};
+                    memberScoreDetailsData.timeTableId = data.timeTableId;
+                    memberScoreDetailsData.gameId = data.gameId;
+                    memberScoreDetailsData.round = data.round;
+                    memberScoreDetailsData.memberId = data.subGoalMembers[i];
+                    memberScoreDetailsData.memberScoreDateTime = data.subMemberScoreDateTime[i] || "";
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
+                }
+            } else {
+                var memberScoreDetailsData = {};
+                memberScoreDetailsData.timeTableId = data.timeTableId;
+                memberScoreDetailsData.gameId = data.gameId;
+                memberScoreDetailsData.round = data.round;
+                memberScoreDetailsData.memberId = data.subGoalMembers;
+                memberScoreDetailsData.memberScoreDateTime = data.subMemberScoreDateTime || "";
+                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
+            }
+        }
+
+        if (data.mainRedMembers) {
+            if (globalModule.isArray(data.mainRedMembers)) {
+                for (var i = 0; i < data.mainRedMembers.length; i++) {
+                    var memberRedDetailsData = {};
+                    memberRedDetailsData.timeTableId = data.timeTableId;
+                    memberRedDetailsData.gameId = data.gameId;
+                    memberRedDetailsData.round = data.round;
+                    memberRedDetailsData.memberId = data.mainRedMembers[i];
+                    memberRedDetailsData.memberRedDateTime = data.mainMemberRedDateTime[i] || "";
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
+                }
+            } else {
+                var memberRedDetailsData = {};
+                memberRedDetailsData.timeTableId = data.timeTableId;
+                memberRedDetailsData.gameId = data.gameId;
+                memberRedDetailsData.round = data.round;
+                memberRedDetailsData.memberId = data.mainRedMembers;
+                memberRedDetailsData.memberRedDateTime = data.mainMemberRedDateTime || "";
+                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
+            }
+
+        }
+        if (data.subRedMembers) {
+            if (globalModule.isArray(data.subRedMembers)) {
+                for (var i = 0; i < data.subRedMembers.length; i++) {
+                    var memberRedDetailsData = {};
+                    memberRedDetailsData.timeTableId = data.timeTableId;
+                    memberRedDetailsData.gameId = data.gameId;
+                    memberRedDetailsData.round = data.round;
+                    memberRedDetailsData.memberId = data.subRedMembers[i];
+                    memberRedDetailsData.memberRedDateTime = data.subMemberRedDateTime[i] || "";
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
+                }
+            } else {
+                var memberRedDetailsData = {};
+                memberRedDetailsData.timeTableId = data.timeTableId;
+                memberRedDetailsData.gameId = data.gameId;
+                memberRedDetailsData.round = data.round;
+                memberRedDetailsData.memberId = data.subRedMembers;
+                memberRedDetailsData.memberRedDateTime = data.subMemberRedDateTime || "";
+                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
+            }
+        }
+        if (data.mainYellowMembers) {
+            if (globalModule.isArray(data.mainYellowMembers)) {
+                for (var i = 0; i < data.mainYellowMembers.length; i++) {
+                    var memberYellowDetailsData = {};
+                    memberYellowDetailsData.timeTableId = data.timeTableId;
+                    memberYellowDetailsData.gameId = data.gameId;
+                    memberYellowDetailsData.round = data.round;
+                    memberYellowDetailsData.memberId = data.mainYellowMembers[i];
+                    memberYellowDetailsData.memberYellowDateTime = data.mainMemberYellowDateTime[i] || "";
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
+                }
+            } else {
+                var memberYellowDetailsData = {};
+                memberYellowDetailsData.timeTableId = data.timeTableId;
+                memberYellowDetailsData.gameId = data.gameId;
+                memberYellowDetailsData.round = data.round;
+                memberYellowDetailsData.memberId = data.mainYellowMembers;
+                memberYellowDetailsData.memberYellowDateTime = data.mainMemberYellowDateTime || "";
+                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
+            }
+
+        }
+        if (data.subYellowMembers) {
+            if (globalModule.isArray(data.subYellowMembers)) {
+                for (var i = 0; i < data.subYellowMembers.length; i++) {
+                    var memberYellowDetailsData = {};
+                    memberYellowDetailsData.timeTableId = data.timeTableId;
+                    memberYellowDetailsData.gameId = data.gameId;
+                    memberYellowDetailsData.round = data.round;
+                    memberYellowDetailsData.memberId = data.subYellowMembers[i];
+                    memberYellowDetailsData.memberYellowDateTime = data.subMemberYellowDateTime[i] || "";
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
+                }
+            } else {
+                var memberYellowDetailsData = {};
+                memberYellowDetailsData.timeTableId = data.timeTableId;
+                memberYellowDetailsData.gameId = data.gameId;
+                memberYellowDetailsData.round = data.round;
+                memberYellowDetailsData.memberId = data.subYellowMembers;
+                memberYellowDetailsData.memberYellowDateTime = data.subMemberYellowDateTime || "";
+                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
+            }
+        }
+
     }
     im.initTeamMembersSelector = function(className) {
         $("." + className).each(function() {
@@ -305,7 +450,8 @@ var indexModule = (function(im) {
     }
     im.initSelector = function(obj) {
         obj.selectpicker({
-            liveSearch: true
+            liveSearch: true,
+            multipleSeparator: '~~~'
         });
     }
     im.initDateTimePicker = function() {
@@ -323,42 +469,23 @@ var indexModule = (function(im) {
         }
 
     }
-    im.addMainGoalMember = function(obj) {
+    im.cloneDiv = function(obj, cloneDivTmpl, initialDiv, datetimepickerId) {
         var div = $(obj).closest("div[class='form-group']");
-        var goalMainMemberDivClone = $("#goalMainMemberDivClone").clone();
-        var index = goalMainMemberDivClone.attr("data-index");
+        var cloneDiv = cloneDivTmpl.clone();
+        var index = initialDiv.attr("data-index");
         index++;
-        goalMainMemberDivClone.attr("id", "");
-        goalMainMemberDivClone.removeClass("hide");
-        goalMainMemberDivClone.find("input[type='hidden']").attr("name", "memberScoreDateTime").attr("id", "dtp_input_main" + index);
-        goalMainMemberDivClone.find("select").attr("name", "mainGoalMembers");
-        goalMainMemberDivClone.find("select").addClass("mainGoalMembers");
-        div.after(goalMainMemberDivClone);
-        im.initSelector(goalMainMemberDivClone.find("select"));
-        goalMainMemberDivClone.find("div[class*='form_date']").attr("data-initial", "true").attr("data-link-field", "dtp_input_main" + index);
+        cloneDiv.attr("id", "");
+        cloneDiv.removeClass("hide");
+        cloneDiv.find("input[type='hidden']").attr("name", initialDiv.find("input[type='hidden']").attr("name")).attr("id", datetimepickerId + index);
+        cloneDiv.find("select").attr("name", initialDiv.find("select").attr("name"));
+        cloneDiv.find("select").attr("class", initialDiv.find("select").attr("class"));
+        div.after(cloneDiv);
+        im.initSelector(cloneDiv.find("select"));
+        cloneDiv.find("div[class*='form_date']").attr("data-initial", "true").attr("data-link-field", datetimepickerId + index);
         im.initDateTimePicker();
-        $("#goalMainMemberDivClone").attr("data-index", index);
+        initialDiv.attr("data-index", index);
     }
-    im.deleteMainGoalMember = function(obj) {
-        $(obj).closest("div[class='form-group']").remove();
-    }
-    im.addSubGoalMember = function(obj) {
-        var div = $(obj).closest("div[class='form-group']");
-        var goalSubMemberDivClone = $("#goalSubMemberDivClone").clone();
-        var index = goalSubMemberDivClone.attr("data-index");
-        index++;
-        goalSubMemberDivClone.attr("id", "");
-        goalSubMemberDivClone.removeClass("hide");
-        goalSubMemberDivClone.find("input[type='hidden']").attr("name", "memberScoreDateTime").attr("id", "dtp_input_sub" + index);
-        goalSubMemberDivClone.find("select").attr("name", "subGoalMembers");
-        goalSubMemberDivClone.find("select").addClass("subGoalMembers");
-        div.after(goalSubMemberDivClone);
-        im.initSelector(goalSubMemberDivClone.find("select"));
-        goalSubMemberDivClone.find("div[class*='form_date']").attr("data-initial", "true").attr("data-link-field", "dtp_input_sub" + index);
-        im.initDateTimePicker();
-        $("#goalSubMemberDivClone").attr("data-index", index);
-    }
-    im.deleteSubGoalMember = function(obj) {
+    im.deleteCloneDiv = function(obj) {
         $(obj).closest("div[class='form-group']").remove();
     }
     im.fixModal = function() {
