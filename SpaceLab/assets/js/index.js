@@ -117,11 +117,13 @@ var indexModule = (function(im) {
             }
         });
     }
-    im.enrollGameEnd = function(gameId) {
-        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: 1 });
+    im.enrollGameEnd = function(gameId, round) {
+        round = round || 1;
+        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: round});
     }
     im.enrollGameEndInit = function(params) {
         $("#ttGameId").attr("value", params.gameId);
+        $("#ttRound").attr("value", params.round);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, im.fillinEnrollGamePlace);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getAgreedEnrollGameList", params, im.fillinEnrollGameTeamList);
     }
@@ -242,7 +244,7 @@ var indexModule = (function(im) {
         var html = template('viewGameRule-template', result.DataTable);
         $("#viewGameRule").html(html);
     }
-    im.addTimeTable = function(round) {
+    im.addTimeTable = function() {
         var data = $("#addTimeTableForm").serializeJson();
         var ttMainTeam = data.ttMainTeam;
         data.ttMainTeamID = ttMainTeam.split(",")[0];
@@ -250,7 +252,6 @@ var indexModule = (function(im) {
         var ttSubTeam = data.ttSubTeam;
         data.ttSubTeamID = ttSubTeam.split(",")[0];
         data.ttSubTeam = ttSubTeam.split(",")[1];
-        data.ttRound = round;
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, im.addTimeTableDone, "post");
     }
     im.addTimeTableDone = function(result) {
@@ -612,10 +613,34 @@ var indexModule = (function(im) {
         });
     }
     im.fillinTimeTablePage = function(params) {
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/findAllTimeTables", params, im.fillinTimeTable);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/findAllTimeTables", params, im.fillinTimeTable, null, null, null, params);
     }
-    im.fillinTimeTable = function(result) {
-        $("#round1").find("ol").html(template("enrollGameList-template", result));
+    im.fillinTimeTable = function(result, params) {
+        $("#roundsDiv").attr("data-gameid", params.gameId);
+        $("#round" + params.round).find("ol").html(template("enrollGameList-template", result));
+        if (params.round == 1) {
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/getGameRounds", params, im.addLi, null, null, null, params);
+        }
+    }
+    im.addLi = function(result, params) {
+        var round = result.DataTable;
+        if (round > 1) {
+            $("#roundUl").attr("data-li", round);
+            for (var i = 2; i <= round; i++) {
+                var li = "<li><a href='#round" + i + "' data-toggle='tab' data-index='" + i + "' onclick='indexModule.dynamicLoadLiContent(" + params.gameId + ", " + i + ")'>第" + i + "轮</a></li>";
+                $("#addTab").closest("li").before(li);
+                var roundDiv = "<div class='tab-pane active' id='round" + i + "'><p><ol class='dd-list'></ol></p></div>";
+                var lastOne = i-1;
+                $("#round"+ lastOne).after(roundDiv);
+            }
+        }
+    }
+    im.dynamicLoadLiContent = function(gameId, round) {
+        var params = {
+            gameId: gameId,
+            round: round
+        };
+        im.fillinTimeTablePage(params);
     }
     im.bindGameDetails = function() {
         var gameId = $("#gameInfo").attr("data-gameid");

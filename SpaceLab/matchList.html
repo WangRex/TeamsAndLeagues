@@ -1,7 +1,7 @@
 <div>
     <div class="tac"></div>
 </div>
-<div class="tab-wrapper tab-primary">
+<div class="tab-wrapper tab-primary" id="roundsDiv">
     <ul class="nav nav-tabs" data-li="1" id="roundUl">
         <li class="active"><a href="#round1" data-toggle="tab">第1轮</a>
         </li>
@@ -39,14 +39,14 @@
     {{/each}}
 </script>
 <script type="text/javascript">
-$("#addTab").on("click", function() {
-    var index = Number($("#roundUl").attr("data-li"));
-    var currRoundDiv = $("#round" + index);
-    index++;
-    var li = "<li><a href='#round" + index + "' data-toggle='tab'>第" + index + "轮</a></li>";
-    var roundDiv = "<div class='tab-pane active' id='round" + index + "'><p><ol class='dd-list'></ol></p></div>";
-    currRoundDiv.after(roundDiv);
-    $(this).closest("li").before(li);
-    $("#roundUl").attr("data-li", index);
+$(document).ready(function() {
+
+    $("#addTab").on("click", function() {
+        var index = Number($("#roundUl").attr("data-li"));
+        index++;
+        $("#roundUl").attr("data-li", index);
+        var gameId = $("#roundsDiv").attr("data-gameid");
+        indexModule.enrollGameEnd(gameId, index);
+    });
 });
 </script>

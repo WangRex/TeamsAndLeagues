@@ -1,5 +1,4 @@
-<!-- Date Time Picker CSS-->
-<link href="assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
@@ -61,7 +60,8 @@
                         <div class="col-sm-offset-8">
                         	<span id="addTimeTableResult"></span>
                             <input id="ttGameId" type="hidden" name="ttGameId">
-                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addTimeTable('1');" value="添加">
+                            <input id="ttRound" type="hidden" name="ttRound">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addTimeTable();" value="添加">
                         </div>
                     </div>
                 </form>
@@ -69,9 +69,6 @@
         </div>
     </div>
 </div>
-<!-- Date Time Picker JS -->
-<script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
 $('.form_date').datetimepicker({
     weekStart: 1,
