@@ -266,9 +266,18 @@ var indexModule = (function(im) {
             im.loadPage("main-content", "gameDetails1", im.loadGameDetails1, params);
         }
     }
-    im.addGameResultPage = function(ttId, mainTeamId, subTeamId) {
-        var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
-        im.loadPage("main-content", "addGameResult", im.addGameResultInit, params);
+    im.addGameResultPage = function(ttId, mainTeamId, subTeamId, flag) {
+        if (flag == "结果查看") {
+            var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
+            im.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
+        } else if (flag == "结果录入") {
+            var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
+            im.loadPage("main-content", "addGameResult", im.addGameResultInit, params);
+        }
+    }
+    im.viewGameResultInit = function(params) {
+        var fillinParams = { tmplId: 'viewGameResult-template', target: $("#viewGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
     im.addGameResultInit = function(params) {
         im.initDateTimePicker("form_datetime");
@@ -283,7 +292,6 @@ var indexModule = (function(im) {
     }
     im.addGameResult = function() {
         var data = $("#addGameResultForm").serializeJson();
-        console.log(data);
 
         var gameResultData = {};
         gameResultData.timeTableId = data.timeTableId;
@@ -428,6 +436,9 @@ var indexModule = (function(im) {
                 globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
             }
         }
+
+        var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
+        im.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
 
     }
     im.initTeamMembersSelector = function(className) {
