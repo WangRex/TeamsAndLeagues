@@ -226,6 +226,7 @@ var indexModule = (function(im) {
     im.addGameRule = function() {
         var data = $("#addGameRuleForm").serializeJson();
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/addGameRule", data, null, "post");
+        indexModule.loadPage("main-content", "gameRules", app.bread);
     }
     im.getGameRules = function() {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/getGameRuleList", null, im.fillinGameRules);
