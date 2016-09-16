@@ -610,7 +610,7 @@ var indexModule = (function(im) {
             noneSelectedText: params.enrollGroupName,
             width: "150px"
         }).on('changed.bs.select', function(e, clickedIndex, oldValue, newValue) {
-            globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollGroupName", { ID: params.enrollId, enrollGroupName: $(e.currentTarget).val()[0] }, null, "post");
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollGroupName", { ID: params.enrollId, enrollGroupName: $(e.currentTarget).val() }, null, "post");
         });
     }
     im.fillinTimeTablePage = function(params) {
