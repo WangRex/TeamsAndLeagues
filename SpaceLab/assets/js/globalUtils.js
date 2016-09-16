@@ -7,6 +7,7 @@ var globalModule = (function(gm) {
             dataType: dataType || "json",
             url: url,
             data: data || {},
+            cache:false,
             async: async || "false",
             success: function(result) {
                 if (result.Code == 2) {

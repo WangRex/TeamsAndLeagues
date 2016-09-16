@@ -9,33 +9,19 @@ var indexModule = (function(im) {
     }
     im.login = function() {
         var data = $("#loginForm").serializeJson();
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: globalModule.globalHomeUrl + 'api/User/login',
-            data: data,
-            async: false,
-            success: function(result) {
-                if (result == 1) {
-                    im.loadPage("container", "main", function() { $("#userName").html(data.name); });
-                }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/User/login", data, function(result) {
+            if (result == 1) {
+                im.loadPage("container", "main", function() { $("#userName").html(data.name); });
             }
         });
     }
     im.addGame = function() {
         var data = $("#addGameForm").serializeJson();
         data.gamePlace = globalModule.arrayToString(data.gamePlace);
-        $.ajax({
-            type: 'post',
-            dataType: "json",
-            url: globalModule.globalHomeUrl + 'api/GameList/addGame',
-            data: data,
-            async: false,
-            success: function(result) {
-                $("#addGameContent").html(result.message);
-                im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
-            }
-        });
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/addGame", data, function(result) {
+            $("#addGameContent").html(result.message);
+            im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
+        }, "post");
     }
     im.addGameSuccess = function(params) {
         var html = template('addGameSuccess-template', params.data);
@@ -54,39 +40,23 @@ var indexModule = (function(im) {
     }
     im.editGame = function() {
         var data = $("#editGameForm").serializeJson();
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            // url: 'assets/json/editGame.json',
-            url: globalModule.globalHomeUrl + 'api/GameList/editGame',
-            data: data,
-            async: false,
-            success: function(result) {
-                $("#editGameContent").html(result.message);
-                im.popupModal("basicModal");
-            }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/editGame", data, function(result) {
+            $("#editGameContent").html(result.message);
+            im.popupModal("basicModal");
         });
     }
     im.enrollGame = function(gameId) {
         im.loadPage("main-content", "enrollGame", im.enrollGameInit, { gameId: gameId });
     }
     im.enrollGameInit = function(params) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            // url: 'assets/json/editGame.json',
-            url: globalModule.globalHomeUrl + 'api/GameList/getGamePlaceByGameId',
-            data: params,
-            async: false,
-            success: function(result) {
-                var html = template('gamePlace-template', result);
-                $("#gamePlace").html(html);
-                app.bread();
-                $('#gamePlace').selectpicker({
-                    liveSearch: true
-                });
-                $("#enrollGameBtn").attr("data-value", params.gameId);
-            }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGamePlaceByGameId", params, function(result) {
+            var html = template('gamePlace-template', result);
+            $("#gamePlace").html(html);
+            app.bread();
+            $('#gamePlace').selectpicker({
+                liveSearch: true
+            });
+            $("#enrollGameBtn").attr("data-value", params.gameId);
         });
     }
     im.enrollGameInfo = function() {
@@ -101,25 +71,17 @@ var indexModule = (function(im) {
             gamePlaces = gamePlaces.substring(1);
             data.gamePlace = gamePlaces;
         }
-        $.ajax({
-            type: 'post',
-            dataType: "json",
-            // url: 'assets/json/editGame.json',
-            url: globalModule.globalHomeUrl + 'api/EnrollGame/addEnrollGameInfo',
-            data: data,
-            async: false,
-            success: function(result) {
-                if (result.Code == 1) {
-                    indexModule.loadGameDetailsPage1("gameDetails1", gameId);
-                } else {
-                    $("#enrollGameResult").html("报名信息添加失败！");
-                }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/addEnrollGameInfo", data, function(result) {
+            if (result.Code == 1) {
+                indexModule.loadGameDetailsPage1("gameDetails1", gameId);
+            } else {
+                $("#enrollGameResult").html("报名信息添加失败！");
             }
-        });
+        }, 'post');
     }
     im.enrollGameEnd = function(gameId, round) {
         round = round || 1;
-        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: round});
+        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: round });
     }
     im.enrollGameEndInit = function(params) {
         $("#ttGameId").attr("value", params.gameId);
@@ -184,18 +146,10 @@ var indexModule = (function(im) {
             memberPositions = memberPositions.substring(1);
             data.memberPosition = memberPositions;
         }
-        $.ajax({
-            type: 'post',
-            dataType: "json",
-            url: globalModule.globalHomeUrl + 'api/Member/addMember',
-            // url: 'http://localhost:4349/api/GameList/addGame',
-            data: data,
-            async: false,
-            success: function(result) {
-                $("#addGameContent").html(result.message);
-                im.viewTeam(data.teamId);
-            }
-        });
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/addMember", data, function(result) {
+            $("#addGameContent").html(result.message);
+            im.viewTeam(data.teamId);
+        }, 'post');
     }
     im.viewMemberPage = function(memberId) {
         im.loadPage("main-content", "viewMember", im.viewMember, { memberId: memberId });
@@ -462,7 +416,7 @@ var indexModule = (function(im) {
         im.initDateTimePicker();
     }
     im.initSelector = function(obj, options) {
-        var option = {liveSearch: true};
+        var option = { liveSearch: true };
         $.extend(option, options || {});
         obj.selectpicker(option);
         return obj;
@@ -477,6 +431,7 @@ var indexModule = (function(im) {
                 todayHighlight: 1,
                 startView: 2,
                 forceParse: 0,
+                minuteStep: 1,
                 language: 'zh-CN'
             });
         }
@@ -520,29 +475,22 @@ var indexModule = (function(im) {
         im.loadPage("main-content", htmlName, im.loadGameDetails1, { gameId: gameId });
     }
     im.loadGameDetails1 = function(params) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            data: params,
-            url: globalModule.globalHomeUrl + 'api/GameList/getGameInfoByGameId',
-            async: false,
-            success: function(result) {
-                var html = template('gameDetails-template', result);
-                $("#gameDetails").html(html);
-                var gameStatus = $("#gameInfo").attr("data-gameStatus");
-                if (gameStatus == '0') {
-                    $("#enrollBtnDiv").html($("#enrollBtns").removeClass("hide"));
-                    $("#enrollBtnDiv").removeClass("hide");
-                    globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/getEnrollGameList', params, im.fillinEnrollGameList);
-                } else {
-                    $("#enrollTeams").addClass("hide");
-                    $("#enrollBtnDiv").addClass("hide");
-                    $("#gameBoards").removeClass("hide");
-                }
-                indexModule.bindGameDetails();
-                $("#matchList").click();
-                app.bread();
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, function(result) {
+            var html = template('gameDetails-template', result);
+            $("#gameDetails").html(html);
+            var gameStatus = $("#gameInfo").attr("data-gameStatus");
+            if (gameStatus == '0') {
+                $("#enrollBtnDiv").html($("#enrollBtns").removeClass("hide"));
+                $("#enrollBtnDiv").removeClass("hide");
+                globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/getEnrollGameList', params, im.fillinEnrollGameList);
+            } else {
+                $("#enrollTeams").addClass("hide");
+                $("#enrollBtnDiv").addClass("hide");
+                $("#gameBoards").removeClass("hide");
             }
+            indexModule.bindGameDetails();
+            $("#matchList").click();
+            app.bread();
         });
     }
     im.fillinEnrollGameList = function(result) {
@@ -586,16 +534,7 @@ var indexModule = (function(im) {
                     var select = "<select class='show-tick form-control hide' multiple name='gameGroupDetail'></select>";
                     switchDiv.append(select);
                 }
-                $.ajax({
-                    type: 'post',
-                    dataType: "json",
-                    data: { ID: enrollId, enrollStatus: state },
-                    url: globalModule.globalHomeUrl + 'api/EnrollGame/updateEnrollStatus',
-                    async: false,
-                    success: function(result) {
-                        console.log(result);
-                    }
-                });
+                globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/updateEnrollStatus", { ID: enrollId, enrollStatus: state }, null, 'post');
             });
         }
     }
@@ -631,8 +570,8 @@ var indexModule = (function(im) {
                 var li = "<li><a href='#round" + i + "' data-toggle='tab' data-index='" + i + "' onclick='indexModule.dynamicLoadLiContent(" + params.gameId + ", " + i + ")'>第" + i + "轮</a></li>";
                 $("#addTab").closest("li").before(li);
                 var roundDiv = "<div class='tab-pane active' id='round" + i + "'><p><ol class='dd-list'></ol></p></div>";
-                var lastOne = i-1;
-                $("#round"+ lastOne).after(roundDiv);
+                var lastOne = i - 1;
+                $("#round" + lastOne).after(roundDiv);
             }
         }
     }
@@ -668,32 +607,16 @@ var indexModule = (function(im) {
     }
 
     im.loadShooterList = function(params) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            data: params,
-            //url: 'assets/json/shooterBoard.json',
-            url: globalModule.globalHomeUrl + 'api/MatchShooter/getAllMatchShooter',
-            async: false,
-            success: function(result) {
-                var html = template('shooterDetails-template', result);
-                $("#boradData").after(html);
-            }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchShooter/getAllMatchShooter", params, function(result) {
+            var html = template('shooterDetails-template', result);
+            $("#boradData").after(html);
         });
     }
 
     im.loadStopList = function(params) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            data: params,
-            //url: 'assets/json/stopBoard.json',
-            url: globalModule.globalHomeUrl + 'api/MatchStop/getAllMatchStop',
-            async: false,
-            success: function(result) {
-                var html = template('stopDetails-template', result);
-                $("#boradData").after(html);
-            }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchStop/getAllMatchStop", params, function(result) {
+            var html = template('stopDetails-template', result);
+            $("#boradData").after(html);
         });
     }
 
@@ -721,98 +644,6 @@ var indexModule = (function(im) {
                     language: 'zh-CN', //汉化 
                     forceParse: 0
                 });
-            }
-        });
-    }
-
-    im.getMatchDetails = function(modalId, matchId) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: 'assets/json/matchDetails.json',
-            data: { matchId: matchId },
-            async: false,
-            success: function(result) {
-                var html = template('matchDetails-div-template', result);
-                $("#matchDetails-div").html(html);
-                im.popupModal(modalId);
-            }
-        });
-    }
-
-    im.addMatchDetailsInit = function(modalId, matchId) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: 'assets/json/addMatchDetailsInit.json',
-            data: { matchId: matchId },
-            async: false,
-            success: function(result) {
-                var html = template('add-matchDetails-init-template', result);
-                $("#addMatchDetailsTeamName").html(html);
-            }
-        });
-        im.popupModal(modalId);
-    }
-
-    im.addMatchDetails = function(modalId, matchId) {
-        var data = $("#addMatchDetailsForm").serializeJson();
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: 'assets/json/addMatchDetails.json',
-            data: data,
-            async: false,
-            success: function(result) {
-                $('.modal').on('show.bs.modal', im.fixModal);
-                $(window).on('resize', im.fixModal);
-                $("#addMatchDetailsContent").html(result.message);
-                $("#addMatchDetailsModal").modal('show');
-            }
-        });
-    }
-
-    im.initDataTable = function(id, settings) {
-        var defaultOptions = {
-            language: {
-                "sProcessing": "处理中...",
-                "sLengthMenu": "显示 _MENU_ 项结果",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
-                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-                "sInfoPostFix": "",
-                "sSearch": "搜索:",
-                "sUrl": "",
-                "sEmptyTable": "表中数据为空",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands": ",",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "上页",
-                    "sNext": "下页",
-                    "sLast": "末页"
-                },
-                "oAria": {
-                    "sSortAscending": ": 以升序排列此列",
-                    "sSortDescending": ": 以降序排列此列"
-                }
-            }
-        };
-        var options = $.extend({}, defaultOptions, settings);
-        $("#" + id).dataTable(options);
-    }
-
-    im.getTeamBrief = function(modalId, matchId, teamFlag) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: 'assets/json/teamBrief.json',
-            data: { matchId: matchId, teamFlag: teamFlag },
-            async: false,
-            success: function(result) {
-                $("#teamBriefContent").html(result.teamBrief);
-                im.popupModal(modalId);
             }
         });
     }

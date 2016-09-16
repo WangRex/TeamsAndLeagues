@@ -103,7 +103,7 @@ $('.form_date').datetimepicker({
     forceParse: 0
 });
 </script>
-<script id="gameRules-template" type="text/html">
+<script id="gameRulesSelect-template" type="text/html">
     {{each DataTable as value i}}
     <option value="{{value.ID}}">{{value.gameRuleName}}</option>
     {{/each}}
@@ -114,8 +114,9 @@ $(document).ready(function() {
     globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/getGameRuleList", {}, initGameRuleSelect);
 
     function initGameRuleSelect(result) {
+
         if (globalModule.isArray(result.DataTable)) {
-            $("#gameRule").html(template('gameRules-template', result));
+            $("#gameRule").html(template('gameRulesSelect-template', result));
             $('#gameRule').selectpicker({
                 liveSearch: true,
                 maxOptions: 1
