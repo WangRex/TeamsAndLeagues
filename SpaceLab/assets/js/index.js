@@ -460,11 +460,11 @@ var indexModule = (function(im) {
         });
         im.initDateTimePicker();
     }
-    im.initSelector = function(obj) {
-        obj.selectpicker({
-            liveSearch: true,
-            multipleSeparator: '~~~'
-        });
+    im.initSelector = function(obj, options) {
+        var option = {liveSearch: true};
+        $.extend(option, options || {});
+        obj.selectpicker(option);
+        return obj;
     }
     im.initDateTimePicker = function() {
         if ($(this).attr("data-initial") != "false") {
