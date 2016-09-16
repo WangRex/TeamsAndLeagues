@@ -99,7 +99,7 @@ var indexModule = (function(im) {
         });
     }
     im.fillinEnrollGameTeamList = function(result) {
-        var html = template('teamList-template', { DataTable: result });
+        var html = template('timeTableTeamList-template', { DataTable: result });
         $("#ttMainTeam").html(html);
         $("#ttMainTeam").selectpicker({
             liveSearch: true,

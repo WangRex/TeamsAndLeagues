@@ -74,7 +74,7 @@
     <option value="{{value}}">{{value}}</option>
     {{/each}}
 </script>
-<script id="teamList-template" type="text/html">
+<script id="enrollGameTeamList-template" type="text/html">
     {{each DataTable as value i}}
     <option value="{{value.ID}}">{{value.teamName}}</option>
     {{/each}}
@@ -86,7 +86,7 @@ $(document).ready(function() {
 
     function fillinTeamList(result) {
         if (result.Code == 1) {
-            var html = template('teamList-template', result);
+            var html = template('enrollGameTeamList-template', result);
             $("#teamNameSelect").find("option").after(html);
             indexModule.initSelector($("#teamNameSelect")).on('changed.bs.select', function(e, clickedIndex, oldValue, newValue) {
                 var teamId = $(e.currentTarget).val();
