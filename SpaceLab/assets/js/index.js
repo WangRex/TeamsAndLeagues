@@ -119,6 +119,20 @@ var indexModule = (function(im) {
         $("#disAgreeEnrollBtn").attr("disabled", "disabled");
         $("#agreeEnrollBtn").removeAttr("disabled");
     }
+    im.addTeam = function() {
+
+        globalModule.CKupdate();
+
+        var data = $("#addTeamForm").serializeJson();
+
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/addTeam", data, function(result) {
+            if (result.Code == 1) {
+                indexModule.loadPage("main-content", "teamList", app.bread);
+            } else {
+                $("#addTeamResult").html("球队信息添加失败！");
+            }
+        }, 'post');
+    }
     im.getTeamList = function(callback) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamList", null, callback);
     }

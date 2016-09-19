@@ -18,6 +18,9 @@
                     <li id="addGameRule">
                         <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 添加比赛规则</a>
                     </li>
+                    <li id="addTeam">
+                        <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 添加球队</a>
+                    </li>
                     <li>
                         <a href="#"><i class="fa fa-envelope"></i> 收件箱 <span class="badge badge-danager" id="user-inbox">5</span></a>
                     </li>
@@ -115,6 +118,9 @@ $(document).ready(function() {
     });
     $("#addGameRule").on("click", function() {
         indexModule.loadPage("main-content", "addGameRule", app.bread);
+    });
+    $("#addTeam").on("click", function() {
+        indexModule.loadPage("main-content", "addTeam", app.bread);
     });
     $("#logout").on("click", function() {
         window.location.href = window.location.href;

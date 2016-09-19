@@ -7,7 +7,7 @@ var globalModule = (function(gm) {
             dataType: dataType || "json",
             url: url,
             data: data || {},
-            cache:false,
+            cache: false,
             async: async || "false",
             success: function(result) {
                 if (result.Code == 2) {
@@ -77,6 +77,10 @@ var globalModule = (function(gm) {
             result = result.substring(1);
         }
         return result;
+    }
+    gm.CKupdate = function() {
+        for (instance in CKEDITOR.instances)
+            CKEDITOR.instances[instance].updateElement();
     }
     return gm;
 }(globalModule || {}));
