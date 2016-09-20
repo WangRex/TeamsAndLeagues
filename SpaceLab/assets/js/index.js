@@ -151,6 +151,7 @@ var indexModule = (function(im) {
         $("#addTeamNameSpan").html(params.teamName);
     }
     im.addMember = function() {
+        globalModule.CKupdate();
         var data = $("#addMemberForm").serializeJson();
         if (globalModule.isArray(data.memberPosition)) {
             var memberPositions = "";
