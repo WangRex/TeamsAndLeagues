@@ -91,30 +91,26 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-$('.form_date').datetimepicker({
-    weekStart: 1,
-    todayBtn: 1,
-    autoclose: 1,
-    todayHighlight: 1,
-    startView: 2,
-    minView: 2,
-    language: 'zh-CN', //汉化 
-    forceParse: 0
-});
-</script>
 <script id="gameRulesSelect-template" type="text/html">
     {{each DataTable as value i}}
     <option value="{{value.ID}}">{{value.gameRuleName}}</option>
     {{/each}}
 </script>
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
-
+    $('.form_date').datetimepicker({
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        language: 'zh-CN', //汉化 
+        forceParse: 0
+    });
     globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/getGameRuleList", {}, initGameRuleSelect);
 
     function initGameRuleSelect(result) {
-
         if (globalModule.isArray(result.DataTable)) {
             $("#gameRule").html(template('gameRulesSelect-template', result));
             $('#gameRule').selectpicker({
