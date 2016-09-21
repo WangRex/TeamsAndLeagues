@@ -280,8 +280,6 @@ div#tab4 {
 }
 .plater-names {
     float: left;
-    width: 30%;
-    padding-left: 6%;
 }
 .gradings {
     float: right;
@@ -371,7 +369,7 @@ ul.sport-scor li a {
 ul.ronaldo {
     float: right;
     width: 50%;
-    text-align: left;
+    text-align: right;
 }
 ul.ronaldo li a {
     font-size: 1.2em;
