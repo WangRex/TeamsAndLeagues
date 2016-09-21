@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div id="gameResultPage" ></div>
+    <div id="gameResultPage"></div>
     <script id="gameResultPage-template" type="text/html">
         <h1 style="font-family: '微软雅黑';">{{DataTable.ttGameName}}</h1>
         <div class="soccer">
@@ -72,53 +72,26 @@
                                         <div class="clear"> </div>
                                     </div>
                                     <div class="game-scores">
-                                        <ul class="sport-scor" id="socreMembers">
+                                        <ul class="sport-scor" id="mainData">
+                                            <hr>
                                         </ul>
-                                        <ul class="ronaldo" id="redMembers">
+                                        <ul class="ronaldo" id="subData">
                                         </ul>
                                         <div class="clear"> </div>
                                         <div class="plater-names">
                                             <h3 style="color: #f6f6f6;" id="mainStarting">球员姓名</h3>
-                                            <h5>Tom Brady </h5>
-                                            <h5>Colt Mc Coy </h5>
-                                            <h5>Chad Johnson </h5>
-                                            <h5>O.J.Simpson </h5>
-                                            <h5>Joe Namath </h5>
-                                            <h5>Tim Tebow </h5>
-                                            <h5>Andrew Luck </h5>
                                             <hr>
                                         </div>
                                         <div class="plater-names" style="padding-left: 30%;">
                                             <h3 style="color: #f6f6f6;" id="subStarting">球员姓名</h3>
-                                            <h5>Tom Brady </h5>
-                                            <h5>Colt Mc Coy </h5>
-                                            <h5>Chad Johnson </h5>
-                                            <h5>O.J.Simpson </h5>
-                                            <h5>Joe Namath </h5>
-                                            <h5>Tim Tebow </h5>
-                                            <h5>Andrew Luck </h5>
                                             <hr>
                                         </div>
                                         <div class="clear"> </div>
                                         <div class="plater-names">
                                             <h3 style="color: #f6f6f6;" id="mainSubstitutes">替补</h3>
-                                            <h5>Tom Brady </h5>
-                                            <h5>Colt Mc Coy </h5>
-                                            <h5>Chad Johnson </h5>
-                                            <h5>O.J.Simpson </h5>
-                                            <h5>Joe Namath </h5>
-                                            <h5>Tim Tebow </h5>
-                                            <h5>Andrew Luck </h5>
                                         </div>
                                         <div class="plater-names" style="padding-left: 30%;">
                                             <h3 style="color: #f6f6f6;" id="subSubstitutes">替补</h3>
-                                            <h5>Tom Brady </h5>
-                                            <h5>Colt Mc Coy </h5>
-                                            <h5>Chad Johnson </h5>
-                                            <h5>O.J.Simpson </h5>
-                                            <h5>Joe Namath </h5>
-                                            <h5>Tim Tebow </h5>
-                                            <h5>Andrew Luck </h5>
                                         </div>
                                         <div class="clear"> </div>
                                     </div>
@@ -133,26 +106,32 @@
         </div>
     </script>
     <script id="grpScoreMembers-template" type="text/html">
+        {{each DataTable as value i}}
         <li><img src="assets/plugins/gameResult/images/ball.png">
-            <a href="javascript:void(0);" style="color: #f6f6f6;">{{memberNameMinute}}'</a>
+            <a href="javascript:void(0);" style="color: #f6f6f6;">{{value}}</a>
         </li>
-        <hr>
+        {{/each}}
     </script>
     <script id="grpRedMembers-template" type="text/html">
+        {{each DataTable as value i}}
         <li><img src="assets/plugins/gameResult/images/dot.png">
-            <a href="javascript:void(0);" style="color: #f6f6f6;">{{memberNameMinute}}'</a>
+            <a href="javascript:void(0);" style="color: #f6f6f6;">{{value}}</a>
         </li>
+        {{/each}}
     </script>
     <script id="grpYellowMembers-template" type="text/html">
+        {{each DataTable as value i}}
         <li><img src="assets/plugins/gameResult/images/yellow.png">
-            <a href="javascript:void(0);" style="color: #f6f6f6;">{{memberNameMinute}}'</a>
+            <a href="javascript:void(0);" style="color: #f6f6f6;">{{value}}</a>
         </li>
+        {{/each}}
     </script>
     <script id="grpMembers-template" type="text/html">
-        <h5>{{memberName}}</h5>
+        {{each DataTable as value i}}
+        <h5>{{value}}</h5> {{/each}}
     </script>
     <div class="clear"> </div>
-    <div class="copy-right">
+    <div class="copy-right" id="gameResultPage-copy-right">
         <p>© 2016 All rights reserved, powered by JR Wong
         </p>
     </div>

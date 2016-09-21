@@ -56,6 +56,8 @@ var globalModule = (function(gm) {
                 case "html":
                     params.target.html(html);
                     break;
+                case "prepend":
+                    params.target.prepend(html);
                 default:
                     break;
             }
