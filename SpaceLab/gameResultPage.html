@@ -16,7 +16,7 @@
 <body>
 <div id="gameResultPage" ></div>
     <script id="gameResultPage-template" type="text/html">
-        <h1 style="font-family: '微软雅黑';">{{DataTable.gameName}}</h1>
+        <h1 style="font-family: '微软雅黑';">{{DataTable.ttGameName}}</h1>
         <div class="soccer">
             <div class="header-top" style="background-color: #262626;">
                 <div class="logo">
@@ -24,12 +24,12 @@
                 </div>
                 <div class="livers">
                     <div class="liver-pool-buttons">
-                        <h4 style="text-align:;color: white; font-size: 21px;font-family: '微软雅黑';line-height: 1.5;">{{DataTable.gameName}}</h4>
+                        <h4 style="text-align:;color: white; font-size: 21px;font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
                     </div>
                     <div class="search">
                         <div style="font-family: '微软雅黑'; margin-top: 7px;float: left;list-style: none;color: white;">
                             <ul>
-                                <li>{{round}}</li>
+                                <li>第 {{DataTable.ttRound}} 轮</li>
                             </ul>
                         </div>
                         <br>
