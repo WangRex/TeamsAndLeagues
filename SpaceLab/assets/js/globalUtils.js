@@ -69,7 +69,7 @@ var globalModule = (function(gm) {
         }
     }
     gm.arrayToString = function(array) {
-        var result = "";
+        var result = array;
         if (gm.isArray(array) && array.length > 1) {
             for (var i = 0; i < array.length; i++) {
                 result += "," + array[i];

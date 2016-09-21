@@ -27,17 +27,6 @@
     margin-left: 0px;
 }
 
-.complete-sign {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
-    width: 300px;
-    height: 300px
-}
-
 .hr {
     width: 100%;
     float: left;
@@ -77,33 +66,68 @@
 .fa-hover {
     cursor: pointer;
 }
+
 .dashboard-tile {
     cursor: pointer;
 }
-.gameInfo{
+
+.gameInfo {
     cursor: pointer;
 }
+
 .fl {
     float: left;
 }
+
 .fr {
     float: right;
 }
+
 .nextGame {
     text-align: right;
 }
+
 .round {
     height: 40px;
     background: gainsboro;
 }
+
 .roundNumber {
     text-align: center;
 }
+
 .boardData {
     margin-top: 10px;
     border-bottom: 1px solid gold;
 }
+
 #addTab {
     padding-left: 10px;
     padding-top: 10px;
+}
+
+
+/*---copyrights--*/
+
+.copy-right {
+    margin: 4em 0em 2em 0em;
+}
+
+.copy-right p {
+    text-align: center;
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.copy-right p a {
+    color: #000;
+}
+
+.copy-right p a:hover {
+    color: #68ba8a;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
 }

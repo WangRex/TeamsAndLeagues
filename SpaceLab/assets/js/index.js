@@ -175,6 +175,7 @@ var indexModule = (function(im) {
     im.fillViewMember = function(result) {
         var html = template('viewMember-template', result.DataTable);
         $("#viewMember").html(html);
+        $("#memberBrief").html(result.DataTable.memberBrief);
     }
     im.viewTeam = function(teamId) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
@@ -189,7 +190,7 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: teamId }, im.showTeamMembersDetails);
     }
     im.showTeamMembersDetails = function(result) {
-        var html = template('teamMembers-template', result);
+        var html = template('teamMemberList-template', result);
         $("#teamMembersHead").after(html);
     }
     im.addGameRule = function() {
@@ -240,11 +241,16 @@ var indexModule = (function(im) {
     im.addGameResultPage = function(ttId, mainTeamId, subTeamId, flag) {
         if (flag == "结果查看") {
             var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
-            im.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
+            // im.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
+            im.loadPage("main-content", "gameResultPage", im.viewGameResultPage, params);
         } else if (flag == "结果录入") {
             var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
             im.loadPage("main-content", "addGameResult", im.addGameResultInit, params);
         }
+    }
+    im.viewGameResultPage = function(params) {
+        var fillinParams = { tmplId: 'gameResultPage-template', target: $("#gameResultPage"), way: "html"};
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
     im.viewGameResultInit = function(params) {
         var fillinParams = { tmplId: 'viewGameResult-template', target: $("#viewGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
@@ -263,7 +269,6 @@ var indexModule = (function(im) {
     }
     im.addGameResult = function() {
         var data = $("#addGameResultForm").serializeJson();
-
         var gameResultData = {};
         gameResultData.timeTableId = data.timeTableId;
         gameResultData.gameId = data.gameId;

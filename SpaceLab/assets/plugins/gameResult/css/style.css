@@ -1,0 +1,786 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+/*--login start here--*/
+ body{
+   font-size: 100%;
+   background:url(/assets/plugins/gameResult/images/fre.png)repeat; 
+}
+.soccer {
+    width: 40%;
+    box-shadow: 2px 4px 6px 3px rgba(0,0,0,0.15);
+}
+h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #68ba8a;
+    margin: 1em 0em 0em 0em;
+    font-family: 'Droid Sans', sans-serif;
+}
+.logo {
+    float: left;
+    width: 15%;
+    padding:2.2% 2.5%;
+    background: #262626;
+    text-align:center;
+}
+.livers {
+    float: right;
+    width: 80%;
+    background: #3b3e45;
+    padding:4.25% 0;
+}
+.liver-pool-buttons ul li {
+    display: inline-block;
+    margin: 0em 1em 0em 0em;
+}
+.liver-pool-buttons ul li a {
+    font-size: 1.1em;
+    color: #6c7177;
+    background: #2f3237;
+    padding: 0.5em 1em 0.5em 1em;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: 'Droid Sans', sans-serif;
+}
+.liver-pool-buttons ul li a:hover{
+	 background: #68ba8a;
+	 color: #fff;
+}
+.soccer {
+    width: 40%;
+    margin: 4em auto 1em;
+}
+.soccer-sidebar {
+    background: #68ba8a;
+    min-height: 400px;
+    float: left;
+    width: 20%;
+}
+.soccer-items {
+    background: #fff;
+    min-height:392px;
+    float: right;
+    width: 100%;
+}
+.soccer-sidebar ul {
+    text-align: center;
+    padding: 2.5em 0em;
+}
+.soccer-sidebar ul li{
+	padding: 0em 0em 2em 0em;
+}
+.soccer-sidebar ul li.setting {
+    margin: 3em 0em 0em 0em;
+    padding: 0em;
+}
+.liver-pool-buttons {
+    float: left;
+    width: 60%;
+    text-align: center;
+}
+/*--tabs --*/
+ul.tabs-menu{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left:0px;
+	top: 0;
+	width:20%;
+	text-align: center;
+}
+ul.tabs-menu li{
+	display: block;
+	float:none;
+}
+ul.tabs-menu li a{
+	font-size: 0.875em;
+	text-transform: uppercase;
+	padding: 2em 0em;
+	width:100%;
+	text-decoration: none;
+	background:#68ba8a;
+	color: #FFF;
+	display:inline-block;
+}
+.tab-grid{
+	padding-left:0em;		
+}
+.tab-grid p{
+	color:#777;
+	line-height:1.7em;
+	font-size:0.875em;
+} 
+.active{
+	background:#FF0000;
+}
+.tabs-box{
+	margin: 0em auto;
+	padding: 0 0 0em;
+	position:relative;
+}
+.tab-grids {
+    padding: 0 0em;
+    min-height: 108px;
+    margin-left: 8.4em;
+}
+/*---tabs-left---*/
+.search {
+    float: right;
+    width: 30%;
+    position:relative
+    padding: 0.5em 1.5em 0em 0em;
+}
+/*----*/
+.search-box{
+	
+}
+/*----*/
+.sb-search {
+  position: absolute;
+  right: 31%;
+  width: 0%;
+  min-width: 58px;
+  height:35px;
+  float: right;
+  overflow: hidden;
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  transition: width 0.3s;
+  -webkit-backface-visibility: hidden;
+  z-index: 999;
+}
+.sb-search-input {
+  position: absolute;
+  top: 0;
+  right: 3px;
+  border: none;
+  outline: none;
+  background:none;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  z-index: 10;
+  padding: 0em 3em 0em 1em;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+.sb-search-input::-webkit-input-placeholder {
+	color: #fff;
+}
+.sb-search-input:-moz-placeholder {
+	color: #fff;
+}
+.sb-search-input::-moz-placeholder {
+	color: #efb480;
+}
+.sb-search-input:-ms-input-placeholder {
+	color:#fff;
+}
+.sb-icon-search,.sb-search-submit  {
+	width:30px;
+	height:40px;
+	display: block;
+	position: absolute;
+	right: 4%;
+	top: 0%;
+	padding: 0;
+	margin: 0;
+	line-height:71px;
+	text-align: center;
+	cursor: pointer;
+}
+.sb-search-submit {
+   background: url('assets/plugins/gameResult/images/search.png') no-repeat -24px 14px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+    filter: alpha(opacity=0); /* IE 5-7 */
+    color: transparent;
+	border: none;
+	outline: none;
+	z-index: -1;
+	-webkit-appearance: none;
+}
+.sb-icon-search {
+  background: url('assets/plugins/gameResult/images/search.png') no-repeat 15px 10px;
+  z-index: 90;
+  width: 55px;
+  height: 45px;
+}
+/* Open state */
+.sb-search.sb-search-open,.no-js .sb-search {
+	width:14%;
+}
+.sb-search.sb-search-open .sb-icon-search,.no-js .sb-search .sb-icon-search {
+	background: url('assets/plugins/gameResult/images/search.png') no-repeat 15px 10px;
+	color: #fff;
+	z-index: 11;
+}
+.sb-search.sb-search-open .sb-search-submit,.no-js .sb-search .sb-search-submit {
+	z-index: 90;
+}
+/*--search end here--*/
+/*--gallery start here---*/
+.gallery {
+    padding:2.6em 1em;
+    background: #fff;
+}
+.portfolio-1 {
+    float: left;
+    width: 31%;
+    padding: 0em 0.5em 1.3em 0em;
+}
+.portfolio-1 h4 {
+    font-size: 1.05em;
+    color:#68BA8A;
+    font-family: 'Droid Sans', sans-serif;
+}
+ /*--gallery-start here---*/
+/*--calender--*/
+.calend {
+    background: #fff;
+    padding: 3.4em 2em;
+}
+/*--calender--*/
+/*--scores--*/
+div#tab4 {
+    background: #fff;
+    padding:0.7em;
+}
+.plater-names h3 {
+    font-size: 1.5em;
+    color: #000;
+    font-family: 'Droid Sans', sans-serif;
+}
+.plater-names h5 {
+    font-size: 1.15em;
+    color: #f1f1f1;
+    margin:1.17em 0em;
+    font-family: 'Droid Sans', sans-serif;
+}
+.plater-names {
+    float: left;
+    width: 30%;
+    padding-left: 6%;
+}
+.gradings {
+    float: right;
+    width: 50%;
+    text-align: center;
+}
+.gradings h3 {
+    font-size: 1.5em;
+    color: #000;
+    font-family: 'Droid Sans', sans-serif;
+}
+.gradings h5 {
+    font-size: 1.2em;
+    color: #f1f1f1;
+    margin: 1.17em 0em;
+    font-family: 'Droid Sans', sans-serif;
+}
+/*--scores--*/
+.main-box {
+    padding: 1.5em 2em;
+}
+.logo-name-1 {
+    float: left;
+    width: 30%;
+    padding-left: 5%;
+}
+.logo-name-2 {
+    float: right;
+    width: 30%;
+    text-align: center;
+}
+.logo-name-1 h2 {
+    font-size: 1.8em;
+    color: rgba(255, 254, 0, 0.93);
+    word-spacing: 5px;
+    font-family: 'Droid Sans', sans-serif;
+}
+.logo-name-2 h3 {
+	font-size: 1.8em;
+    color: rgba(255, 254, 0, 0.93);
+    word-spacing: 3px;
+    font-family: 'Droid Sans', sans-serif;
+}
+.awards {
+    margin:2em 0em;
+}
+.ablam {
+    float: left;
+    width: 24%;
+    padding-left: 3%;
+}
+.time {
+    float: left;
+    width: 45%;
+    text-align: center;
+}
+.time h3 {
+    font-size: 5em;
+    color: #f1f1f1;
+     font-family: 'Droid Sans', sans-serif;
+}
+.time p {
+    font-size: 1.2em;
+    color: #f1f1f1;
+    line-height: 1.5em;
+     font-family: 'Droid Sans', sans-serif;
+}
+.troffy {
+    float: right;
+    width: 27%;
+}
+ul.sport-scor {
+    float: left;
+    width: 50%;
+}
+ul.sport-scor li {
+	margin:0em 0em 0.5em 0em;
+}
+ul.sport-scor li a {
+    font-size: 1.2em;
+    color: #000;
+    display: inline-block;
+    margin: 0em 0em 0em 0.5em;
+    vertical-align: top;
+     font-family: 'Droid Sans', sans-serif;
+}
+ul.ronaldo {
+    float: right;
+    width: 50%;
+    text-align: center;
+}
+ul.ronaldo li a {
+    font-size: 1.2em;
+    color: #000;
+    display: inline-block;
+    margin: 0em 0em 0em 0.5em;
+    vertical-align: top;
+    font-family: 'Droid Sans', sans-serif;
+}
+.clear{
+	clear:both;
+}
+/*---copyrights--*/
+.copy-right {
+    margin:4em 0em 2em 0em;
+}
+.copy-right p {
+    text-align: center;
+    font-size:1em;
+    color: #000;
+    font-family: 'Droid Sans', sans-serif;
+}
+.copy-right p a{
+  color:#000;
+}
+.copy-right p a:hover{
+	 color:#68ba8a;
+	 transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+}
+/*--media quries start here--*/
+@media(max-width:1600px){
+.livers {
+    padding:4.5% 0;
+}
+.tab-grids {
+    margin-left:7.4em;
+}
+.soccer {
+    width: 37%;
+    margin: 4em auto 1em;
+}
+.main-box td {
+    padding: 11px 29px;
+}
+.gallery {
+    padding: 3.6em 1em;
+}
+.sb-search {
+    right: 33%;
+}
+}
+@media(max-width:1440px){
+.tab-grids {
+    margin-left: 7.2em;
+}
+.livers {
+    padding: 4.55% 0;
+}
+.soccer {
+    width: 40%;
+}
+.portfolio-1 {
+    padding: 0em 0.5em 1.5em 0em;
+}
+.main-box td {
+    padding: 11px 27px;
+}
+.sb-search {
+    right: 31%;
+}
+}
+@media(max-width:1366px){
+.tab-grids {
+    margin-left: 6.8em;
+}
+.livers {
+    padding: 4.7% 0;
+}	
+.main-box td {
+    padding: 14px 21px;
+}
+.gallery {
+    padding: 4em 1em;
+}
+.plater-names h3 {
+    font-size: 1.3em;
+}
+.plater-names h5 {
+    font-size: 1.1em;
+}
+}
+@media(max-width:1280px){
+.soccer {
+    width: 46%;
+}
+.livers {
+    padding: 4.5% 0;
+}
+.tab-grids {
+    margin-left: 7.3em;
+}
+.gallery {
+    padding: 3.4em 1em;
+}
+.main-box td {
+    padding: 14px 28px;
+}
+.calend {
+    padding: 3.5em 2em;
+}
+}
+@media(max-width:1024px){
+.tab-grids {
+    margin-left: 5.9em;
+}
+.soccer {
+    width: 56%;
+}
+.tab-grids {
+    margin-left: 7.2em;
+}
+.sb-search {
+    right: 25%;
+}
+.main-box td {
+    font-size: 0.9em;
+    padding: 16px 28.8px;
+}
+.portfolio-1 {
+    padding: 0em 0.5em 1.7em 0em;
+}
+.calend {
+    padding: 4.55em 2em;
+}
+}
+@media(max-width:768px){
+.soccer {
+    width: 75%;
+}	
+.calend {
+    padding:3.6em 1em;
+}
+.sb-search {
+    right: 15%;
+}
+.sb-search.sb-search-open, .no-js .sb-search {
+    width: 25%;
+}
+}
+@media(max-width:640px){
+.tab-grids {
+    margin-left:6.9em;
+}
+.soccer {
+    width: 86%;
+}
+.livers {
+    padding: 4.6% 0;
+}
+.sb-search {
+    right: 10%;
+}
+.sb-search.sb-search-open, .no-js .sb-search {
+    width: 30%;
+}
+.calend {
+    padding: 3.63em 1em;
+}
+.gallery {
+    padding: 3.65em 1em;
+}
+}
+@media(max-width:600px){
+.soccer {
+    width: 81%;
+}
+.tab-grids {
+    margin-left: 6.1em;
+}
+.livers {
+    padding: 4.9% 0;
+}
+.plater-names h3 {
+    font-size: 1.2em;
+}
+.gradings h3 {
+    font-size: 1.2em;
+}
+.plater-names h5 {
+    font-size: 0.9em;
+    margin: 2.01em 0em;
+}
+.main-box td {
+    font-size: 0.8em;
+    padding: 16px 10px;
+}
+.gallery {
+    padding: 4.5em 1em;
+}
+}
+@media(max-width:480px){
+h1 {
+    text-align: center;
+    font-size: 2em;
+}
+.soccer {
+    margin: 2em auto 1em;
+    width: 90%;
+}
+.liver-pool-buttons ul li a {
+    font-size: 0.8em;
+    list-style-type: none;
+}
+.sb-search {
+    right: 10%;
+      height: 27px;
+}
+.sb-search.sb-search-open, .no-js .sb-search {
+    width: 33%;
+}
+.sb-search-input {
+    font-size: 12px;
+}
+.sb-icon-search, .sb-search-submit {
+    top: -30%;
+}
+.logo img {
+    width: 53%;
+}
+ul.tabs-menu li a {
+    padding: 1em 0em;
+}
+.tab-grids {
+    margin-left: 4.85em;
+}
+.livers {
+    padding: 5.2% 0;
+}
+.main-box th {
+    font-size: 1em;
+    padding: 7px;
+}
+.tab-grids {
+    margin-left: 5.4em;
+}
+.main-box td {
+    font-size: 0.8em;
+    padding: 8px 10px;
+}
+.soccer-items {
+    min-height: 280px;
+}
+.copy-right p {
+    font-size: 0.9em;
+}
+.gallery {
+    padding: 0.5em 1em;
+}
+.portfolio-1 {
+    float: left;
+    width: 30%;
+}
+.gallery {
+    padding: 1.9em 1em;
+}
+.plater-names h3 {
+    font-size: 1em;
+}
+.gradings h3 {
+    font-size: 1em;
+}
+.plater-names h5 {
+    font-size: 0.8em;
+    margin: 1.01em 0em;
+}
+.gradings h5 {
+    font-size: 0.8em;
+}
+div#tab4 {
+    padding: 1.1em;
+}
+.calend {
+    padding: 0.63em 1em;
+}
+.logo-name-1 h2 {
+    font-size: 1.4em;
+}
+.logo-name-2 h3 {
+    font-size: 1.4em;
+}
+.time h3 {
+    font-size: 3.5em;
+}
+.time p {
+    font-size: 0.9em;
+}
+ul.sport-scor li a {
+    font-size: 0.8em;
+}
+ul.ronaldo li a {
+    font-size: 0.82em;
+}
+.awards {
+    margin: 1em 0em;
+}
+}
+@media(max-width:320px){
+h1 {
+    text-align: center;
+    font-size: 1.5em;
+}
+.liver-pool-buttons ul li {
+    margin: 0em 0.5em 0em 0em;
+}
+.liver-pool-buttons ul li a {
+    font-size: 0.7em;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.logo img {
+    width: 62%;
+}
+.sb-search {
+    right: 4%;
+}
+.sb-search-input {
+    font-size: 12px;
+}
+.tab-grids {
+    margin-left: 3.4em;
+}
+.soccer {
+    margin: 1em auto 1em;
+    width: 96%;
+}
+.main-box th {
+    font-size: 0.7em;
+    padding: 5px;
+}
+.main-box {
+    padding:1.35em 0.5em;
+}
+ul.tabs-menu img {
+    width: 55%;
+}
+.main-box td {
+    font-size: 0.7em;
+    padding: 8px 2px;
+}
+.tab-grids {
+    margin-left:3.65em;
+}
+.soccer-items {
+    min-height: 252px;
+}
+.portfolio-1 img {
+    width: 85%;
+}
+.portfolio-1 {
+    width: 46.5%;
+    padding: 0em 0em 0.2em 0em;
+}
+.gallery {
+    padding:0.5em 0.5em;
+}
+.copy-right {
+    margin: 4em 0em 1em 0em;
+}
+.livers {
+    padding: 5.5% 0;
+}
+div#tab4 {
+    padding:0.35em;
+}
+.copy-right p {
+    font-size: 0.8em;
+    line-height: 1.6em;
+}
+.plater-names {
+    width: 60%;
+}
+.gradings {
+    width: 40%;
+}
+.plater-names h3 {
+    font-size: 0.9em;
+}
+.gradings h3 {
+    font-size:0.9em;
+}
+.plater-names h5 {
+    margin: 1em 0em;
+}
+.logo-name-1 h2 {
+    font-size: 1em;
+}
+.logo-name-2 h3 {
+    font-size: 1em;
+}
+.time p {
+    font-size: 0.75em;
+}
+ul.sport-scor li a {
+    margin: 0em 0em 0em 0.3em;
+        font-size: 0.7em;
+}
+ul.sport-scor li img {
+    width: 11%;
+}
+}
