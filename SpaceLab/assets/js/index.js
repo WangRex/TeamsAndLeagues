@@ -378,7 +378,11 @@ var indexModule = (function(im) {
         }
 
         $("#shareBtn").on("click", function() {
-
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                width: 96, //设置宽高
+                height: 96
+            });
+            qrcode.makeCode("http://localhost:9090/gameresultpageShare.html?ttId=24");
         });
 
     }

@@ -17,6 +17,9 @@
     <div id="gameResultPage"></div>
     <script id="gameResultPage-template" type="text/html">
         <div class="soccer">
+                <span id="shareBtn">分享</span>
+                <div id="qrcode">
+                </div>
             <div class="header-top" style="background-color: #262626;">
                 <div class="logo">
                     <a href="#"><img src="assets/img/gameLogo/{{DataTable.ttGameId}}.png" style="width:56px;height:64px;"></a>
@@ -24,11 +27,12 @@
                 <div class="livers">
                     <div class="liver-pool-buttons">
                         <h4 style="text-align:;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
+                        <h4 style="text-align:;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameNameEN}}</h4>
                     </div>
                     <div class="search">
                         <div style="font-family: '微软雅黑'; margin-top: 7px;float: left;list-style: none;color: white;">
                             <ul>
-                                <li>第 {{DataTable.ttRound}} 轮  {{DataTable.ttDate}}  {{DataTable.ttTime}}</li>
+                                <li>第 {{DataTable.ttRound}} 轮 {{DataTable.ttDate}} {{DataTable.ttTime}}</li>
                             </ul>
                         </div>
                         <br>
@@ -90,10 +94,10 @@
                                         <div class="clear"> </div>
                                     </div>
                                     <div class="game-scores">
-                                    <span style="color: yellow;">MVP:{{DataTable.mvp}}</span>
+                                        <span style="color: yellow;">MVP:{{DataTable.mvp}}</span>
                                     </div>
                                     <div class="game-scores">
-                                    {{DataTable.ttGameBrief}}
+                                        {{DataTable.ttGameBrief}}
                                     </div>
                                 </div>
                             </div>
