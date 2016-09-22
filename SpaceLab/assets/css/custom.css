@@ -131,3 +131,7 @@
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
 }
+#attendGameList {
+    list-style:none;
+    float: left;
+}

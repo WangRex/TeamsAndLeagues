@@ -186,6 +186,9 @@ var indexModule = (function(im) {
     im.showTeamDetails = function(result) {
         var html = template('teamDetails-template', result.DataTable);
         $("#teamDetails").html(html);
+        $("#teamBrief").html(result.DataTable.teamBrief);
+        var fillinParams = { tmplId: 'attendGameList-template', target: $("#attendGameList"), way: "html" };
+        globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/FindAllEnrollTeams', { teamId: result.DataTable.ID }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         var teamId = $("#teamInfo").attr("data-teamid");
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: teamId }, im.showTeamMembersDetails);
     }
@@ -393,7 +396,7 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsMain);
         var fillinParamsSub = { tmplId: 'teamMembers-template', target: $(".subTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'subTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsSub);
-        
+
     }
     im.addGameResult = function() {
         var data = $("#addGameResultForm").serializeJson();
