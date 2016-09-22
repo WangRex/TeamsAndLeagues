@@ -16,24 +16,23 @@
 <body>
     <div id="gameResultPage"></div>
     <script id="gameResultPage-template" type="text/html">
-        <h1 style="font-family: '微软雅黑';">{{DataTable.ttGameName}}</h1>
         <div class="soccer">
             <div class="header-top" style="background-color: #262626;">
                 <div class="logo">
-                    <a href="#"><img src="assets/plugins/gameResult/images/lfp.png"></a>
+                    <a href="#"><img src="assets/plugins/gameResult/images/lfp.png" style="width:56px;height:64px;"></a>
                 </div>
                 <div class="livers">
                     <div class="liver-pool-buttons">
-                        <h4 style="text-align:;color: white; font-size: 21px;font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
+                        <h4 style="text-align:;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
                     </div>
                     <div class="search">
                         <div style="font-family: '微软雅黑'; margin-top: 7px;float: left;list-style: none;color: white;">
                             <ul>
-                                <li>第 {{DataTable.ttRound}} 轮</li>
+                                <li>第 {{DataTable.ttRound}} 轮  {{DataTable.ttDate}}  {{DataTable.ttTime}}</li>
                             </ul>
                         </div>
                         <br>
-                        <div style="font-family: '微软雅黑';margin-top: 5px;line-height: 1.5; float: left;list-style: none;color: white;font-size: 12px;">{{DataTable.gamePlace}}</div>
+                        <div style="font-family: '微软雅黑';margin-top: 5px;line-height: 1.5; float: left;list-style: none;color: white;font-size: 12px;">{{DataTable.ttGamePlace}}</div>
                     </div>
                     <div class="clear"> </div>
                 </div>
@@ -50,50 +49,51 @@
                                 <div class="main-box" style="background-image: url(assets/plugins/gameResult/images/s2.png);">
                                     <div class="logo-names">
                                         <div class="logo-name-1">
-                                            <h2>{{DataTable.ttMainTeamName}}</h2>
+                                            <h2></h2>
                                         </div>
                                         <div class="logo-name-2">
-                                            <h3>{{DataTable.ttSubTeamName}}</h3>
+                                            <h3></h3>
                                         </div>
                                         <div class="clear"> </div>
                                     </div>
                                     <div class="awards">
                                         <div class="ablam">
-                                            <img src="assets/plugins/gameResult/images/liver.png">
+                                            <img src="assets/plugins/gameResult/images/liver.png" style="width:200px;height:150px;">
                                         </div>
                                         <div class="time">
                                             <h3>{{DataTable.mainTeamGoal}}:{{DataTable.subTeamGoal}}</h3>
-                                            <p>{{DataTable.ttDate}}</p>
-                                            <p>{{DataTable.ttTime}}</p>
                                         </div>
                                         <div class="troffy">
-                                            <img src="assets/plugins/gameResult/images/trofy.png">
+                                            <img src="assets/plugins/gameResult/images/trofy.png" style="width:200px;height:150px;">
                                         </div>
                                         <div class="clear"> </div>
                                     </div>
                                     <div class="game-scores">
                                         <ul class="sport-scor" id="mainData">
-                                            <hr>
                                         </ul>
                                         <ul class="ronaldo" id="subData">
                                         </ul>
                                         <div class="clear"> </div>
                                         <div class="plater-names">
-                                            <h3 style="color: #f6f6f6;" id="mainStarting">球员姓名</h3>
-                                            <hr>
+                                            <h3 style="color: #f6f6f6;" id="mainStarting">{{DataTable.ttMainTeamName}}</h3>
                                         </div>
-                                        <div class="plater-names" style="padding-left: 30%;">
-                                            <h3 style="color: #f6f6f6;" id="subStarting">球员姓名</h3>
-                                            <hr>
+                                        <div class="plater-names" style="float: right;padding-right: 10px;width: 32%;">
+                                            <h3 style="color: #f6f6f6;" id="subStarting">{{DataTable.ttSubTeamName}}</h3>
                                         </div>
                                         <div class="clear"> </div>
                                         <div class="plater-names">
                                             <h3 style="color: #f6f6f6;" id="mainSubstitutes">替补</h3>
                                         </div>
-                                        <div class="plater-names" style="padding-left: 30%;">
+                                        <div class="plater-names" style="float: right;padding-right: 10px;width: 32%;">
                                             <h3 style="color: #f6f6f6;" id="subSubstitutes">替补</h3>
                                         </div>
                                         <div class="clear"> </div>
+                                    </div>
+                                    <div class="game-scores">
+                                    <span style="color: yellow;">MVP:</span>
+                                    </div>
+                                    <div class="game-scores">
+                                    {{DataTable.ttGameBrief}}
                                     </div>
                                 </div>
                             </div>

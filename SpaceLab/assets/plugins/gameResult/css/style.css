@@ -96,7 +96,7 @@ h1 {
 }
 .liver-pool-buttons {
     float: left;
-    width: 60%;
+    width: 35%;
     text-align: center;
 }
 /*--tabs --*/
@@ -147,7 +147,7 @@ ul.tabs-menu li a{
 /*---tabs-left---*/
 .search {
     float: right;
-    width: 30%;
+    width: 50%;
     position:relative
     padding: 0.5em 1.5em 0em 0em;
 }
@@ -280,6 +280,7 @@ div#tab4 {
 }
 .plater-names {
     float: left;
+    margin-top: 20px;
 }
 .gradings {
     float: right;
@@ -368,8 +369,8 @@ ul.sport-scor li a {
 }
 ul.ronaldo {
     float: right;
-    width: 50%;
-    text-align: right;
+    width: 32%;
+    text-align: left;
 }
 ul.ronaldo li a {
     font-size: 1.2em;

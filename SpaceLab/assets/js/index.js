@@ -374,6 +374,10 @@ var indexModule = (function(im) {
             globalModule.fillinInfoFromTmpl({ DataTable: subMemberNameMinuteArray }, fillinParams);
         }
 
+        $("#shareBtn").on("click", function() {
+
+        });
+
     }
     im.viewGameResultInit = function(params) {
         var fillinParams = { tmplId: 'viewGameResult-template', target: $("#viewGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
@@ -389,6 +393,7 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsMain);
         var fillinParamsSub = { tmplId: 'teamMembers-template', target: $(".subTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'subTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsSub);
+        
     }
     im.addGameResult = function() {
         var data = $("#addGameResultForm").serializeJson();
