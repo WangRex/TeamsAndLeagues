@@ -28,7 +28,7 @@
                 <div class="col-xs-4 tac">
                     <p>{{value.ttTime}} {{value.ttGameRule}}</p>
                     <p><span>{{value.ttMainWinNum}}:{{value.ttSubWinNum}}</span></p>
-                    <p><span><a href="javascript:void(0);" onclick="indexModule.addGameResultPage('{{value.ttId}}','{{value.ttMainTeamID}}','{{value.ttSubTeamID}}', '{{value.ttStatus}}')">{{value.ttStatus}}</a></span></p>
+                    <p><span><a href="javascript:void(0);" onclick="indexModule.addGameResultPage('{{value.ttId}}','{{value.ttMainTeamID}}','{{value.ttSubTeamID}}', '{{value.ttStatus}}')">{{value.ttStatus}}</a></span><span><a href="javascript:void(0);" onclick="indexModule.viewGameComment('{{value.ttId}}')">查看评论</a></span></p>
                 </div>
                 <div class="col-xs-4 tar">
                     <a href="javascript:void(0);" onclick="indexModule.viewTeam('{{value.ttSubTeamID}}')">{{value.ttSubTeam}}</a>

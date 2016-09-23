@@ -135,3 +135,6 @@
     list-style:none;
     float: left;
 }
+.col-xs-4 p span {
+    margin-left: 10px;
+}

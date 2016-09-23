@@ -226,12 +226,11 @@ var indexModule = (function(im) {
         var ttSubTeam = data.ttSubTeam;
         data.ttSubTeamID = ttSubTeam.split(",")[0];
         data.ttSubTeam = ttSubTeam.split(",")[1];
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, im.addTimeTableDone, "post");
-    }
-    im.addTimeTableDone = function(result) {
-        if (result.Code == 1) {
-            $("#addTimeTableResult").html("添加赛程成功，可以继续添加！");
-        }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, function(result) {
+            if (result.Code == 1) {
+                $("#addTimeTableResult").html("添加赛程成功，可以继续添加！");
+            }
+        }, "post");
     }
     im.updateGameStatus = function(gameId) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/updateGameStatus", { gameId: gameId }, im.updateGameStatusPage, null, null, null, { gameId: gameId });
@@ -378,17 +377,25 @@ var indexModule = (function(im) {
         }
 
         $("#shareBtn").on("click", function() {
+            $("#qrcode").html("");
             var qrcode = new QRCode(document.getElementById("qrcode"), {
                 width: 96, //设置宽高
                 height: 96
             });
-            qrcode.makeCode("http://localhost:9090/gameresultpageShare.html?ttId=24");
+            qrcode.makeCode("http://www.baidu.com");
         });
 
     }
     im.viewGameResultInit = function(params) {
         var fillinParams = { tmplId: 'viewGameResult-template', target: $("#viewGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+    }
+    im.viewGameComment = function(ttId) {
+        im.loadPage("main-content", "gameComment", function(params) {
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, function(result) {
+                $("#gameCommentContent").html(result.DataTable.remark || "暂无评论");
+            });
+        }, { ttId: ttId });
     }
     im.addGameResultInit = function(params) {
         im.initDateTimePicker("form_datetime");
@@ -400,9 +407,14 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsMain);
         var fillinParamsSub = { tmplId: 'teamMembers-template', target: $(".subTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'subTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsSub);
-
+        $("textarea[name='remark']").attr("id", "gameRemark");
+        CKEDITOR.replace('gameRemark');
+        var fillinParams = { tmplId: 'teamMembers-template', target: $(".allTeamMembers"), way: "appendTo", callback: im.initTeamMembersSelector, callbackParams: 'allTeamMembers' };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
     im.addGameResult = function() {
+        globalModule.CKupdate();
         var data = $("#addGameResultForm").serializeJson();
         var gameResultData = {};
         gameResultData.timeTableId = data.timeTableId;
