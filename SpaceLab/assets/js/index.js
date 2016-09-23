@@ -251,11 +251,11 @@ var indexModule = (function(im) {
         }
     }
     im.addGameResultPage = function(ttId, mainTeamId, subTeamId, flag) {
-        if (flag == "结果查看") {
+        if (flag == "比赛战况") {
             var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
             // im.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
             im.loadPage("main-content", "gameResultPage", im.viewGameResultPage, params);
-        } else if (flag == "结果录入") {
+        } else if (flag == "战况录入") {
             var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
             im.loadPage("main-content", "addGameResult", im.addGameResultInit, params);
         }
