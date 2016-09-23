@@ -9,9 +9,19 @@ var indexModule = (function(im) {
     }
     im.login = function() {
         var data = $("#loginForm").serializeJson();
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/User/login", data, function(result) {
-            if (result == 1) {
-                im.loadPage("container", "main", function() { $("#userName").html(data.name); });
+
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: globalModule.globalHomeUrl + "api/User/login",
+            data: data,
+            cache: false,
+            async: "false",
+            success: function(result) {
+                if (result.Code == 1) {
+                    $.cookie("GUID", result.GUID);
+                    im.loadPage("container", "main", function() { $("#userName").html(result.DataTable.name); });
+                }
             }
         });
     }

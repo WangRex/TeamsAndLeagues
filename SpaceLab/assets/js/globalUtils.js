@@ -2,11 +2,15 @@ var globalModule = (function(gm) {
     gm.globalHomeUrl = "http://210.83.195.229:8095/";
     // gm.globalHomeUrl = "http://localhost:4349/";
     gm.globalAjax = function(url, data, successCallback, type, dataType, async, params) {
+        var guid = { GUID: $.cookie("GUID") };
+        if (data) {
+            $.extend(data, guid);
+        }
         $.ajax({
             type: type || "get",
             dataType: dataType || "json",
             url: url,
-            data: data || {},
+            data: data || guid,
             cache: false,
             async: async || "false",
             success: function(result) {
@@ -73,7 +77,7 @@ var globalModule = (function(gm) {
     gm.arrayToString = function(array) {
         var result = array;
         if (gm.isArray(array) && array.length > 1) {
-        	result = "";
+            result = "";
             for (var i = 0; i < array.length; i++) {
                 result += "," + array[i];
             }
