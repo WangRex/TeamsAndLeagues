@@ -191,7 +191,29 @@ var indexModule = (function(im) {
         im.loadPage("main-content", "editMember", im.editMemberInit, { memberId: memberId });
     }
     im.editMemberInit = function(params) {
-        
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMember", params, im.editMemberFillin);
+    }
+    im.editMemberFillin = function(result) {
+        var html = template('editMember-template', result.DataTable);
+        $("#editMember").html(html);
+        $("#memberBrief").html(result.DataTable.memberBrief);
+        im.initSelector($("#editMemberPosition"), {title: result.DataTable.memberPosition});
+        CKEDITOR.replace('memberBrief');
+    }
+    im.editMember = function() {
+        globalModule.CKupdate();
+        var data = $("#editMemberForm").serializeJson();
+        if (globalModule.isArray(data.memberPosition)) {
+            var memberPositions = "";
+            for (var i = 0; i < data.memberPosition.length; i++) {
+                memberPositions += "," + data.memberPosition[i];
+            }
+            memberPositions = memberPositions.substring(1);
+            data.memberPosition = memberPositions;
+        }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/editMember", data, function(result) {
+            im.viewTeam(data.teamId);
+        }, 'post');
     }
     im.viewTeam = function(teamId) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);

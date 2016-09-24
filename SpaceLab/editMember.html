@@ -1,7 +1,6 @@
-<!-- Bootstrap Selector -->
-<link rel="stylesheet" href="assets/plugins/bootstrap-select/css/bootstrap-select.css">
-<link href="assets/css/custom.css" rel="stylesheet" media="screen">
-<div class="row">
+<div class="row" id="editMember">
+</div>
+<script id="editMember-template" type="text/html">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -12,31 +11,29 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal form-border" id="addMemberForm">
+                <form class="form-horizontal form-border" id="editMemberForm">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">姓名</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="姓名" name="memberName">
+                            <input type="text" class="form-control" placeholder="姓名" name="memberName" value="{{memberName}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">号码</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="号码" name="memberNumber">
+                            <input type="text" class="form-control" placeholder="号码" name="memberNumber" value="{{memberNumber}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">所属球队</label>
                         <div class="col-sm-6">
-                            <span id="addTeamNameSpan"></span>
-                            <input id="addTeamId" type="hidden" name="teamId" value="">
-                            <input id="addTeamName" type="hidden" name="teamName" value="">
+                            <span id="addTeamNameSpan">{{teamName}}</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">擅长位置</label>
                         <div class="col-sm-6">
-                            <select id="addMemberPosition" class="show-tick form-control" multiple name="memberPosition">
+                            <select id="editMemberPosition" class="show-tick form-control" multiple name="memberPosition">
                                 <option value="守门">守门</option>
                                 <option value="后卫">后卫</option>
                                 <option value="中场">中场</option>
@@ -47,19 +44,19 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">身高</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="身高" name="memberHeight">
+                            <input type="text" class="form-control" placeholder="身高" name="memberHeight" value="{{memberHeight}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">年龄</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="年龄" name="memberAge">
+                            <input type="text" class="form-control" placeholder="年龄" name="memberAge" value="{{memberAge}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">联系电话</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="联系电话" name="memberPhone">
+                            <input type="text" class="form-control" placeholder="联系电话" name="memberPhone" value="{{memberPhone}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -70,23 +67,20 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-8">
-                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addMember();" value="添加">
+                            <input type="hidden" name="ID" value="{{ID}}">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.editMember();" value="修改">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-<!-- Bootstrap Selector -->
-<script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
-<script src="assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>
+</script>
 <script>
 $(document).ready(function() {
-    $('#addMemberPosition').selectpicker({
+    $('#editMemberPosition').selectpicker({
         liveSearch: true,
         maxOptions: 4
     });
-    CKEDITOR.replace('memberBrief');
 });
 </script>
