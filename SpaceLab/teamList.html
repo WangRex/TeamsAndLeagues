@@ -14,6 +14,9 @@
         <div class="col-xs-2">{{value.poloShirtColor}}</div>
         <div class="col-xs-2" data-teamId="{{value.ID}}">
             <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.viewTeam('{{value.ID}}');" value="查看">
+            {{if role == "1"}}
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.editTeam('{{value.ID}}');" value="编辑">
+            {{/if}}
             <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addTeamMemberInit('{{value.ID}}', '{{value.teamName}}');" value="添加队员">
         </div>
     </div>

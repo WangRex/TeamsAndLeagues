@@ -212,7 +212,7 @@ var indexModule = (function(im) {
             data.memberPosition = memberPositions;
         }
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/editMember", data, function(result) {
-            im.viewTeam(data.teamId);
+            im.viewTeam(result.DataTable.teamId);
         }, 'post');
     }
     im.viewTeam = function(teamId) {

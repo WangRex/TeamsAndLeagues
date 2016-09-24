@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">创建球队</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" id="addTeamForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">队名</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="队名" name="teamName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teamCreateDate" class="col-sm-3 control-label">创建时间</label>
+                        <div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy MM dd" data-link-field="teamCreateDate" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="teamCreateDate" value="" name="teamCreateDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队人数</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队人数" name="teamNumber">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人" name="contactName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人联系电话</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人联系电话" name="contactPhone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人E-Mail</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人E-Mail" name="contactEMail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球衣颜色</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球衣颜色" name="poloShirtColor">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队介绍</label>
+                        <div class="col-sm-6">
+                            <textarea name="teamBrief" id="teamBrief" rows="10" cols="80">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <span id="addTeamResult"></span>
+                            <input id="addTeamBtn" type="button" class="btn btn-success btn-3d" onclick="indexModule.addTeam();" value="添加">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function() {
+    CKEDITOR.replace('teamBrief');
+    $('.form_date').datetimepicker({
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        language: 'zh-CN', //汉化 
+        forceParse: 0
+    });
+});
+</script>
