@@ -1,6 +1,6 @@
 var globalModule = (function(gm) {
     gm.globalHomeUrl = "http://210.83.195.229:8095/";
-    gm.globalHomeUrl = "http://localhost:4349/";
+    // gm.globalHomeUrl = "http://localhost:4349/";
     gm.globalAjax = function(url, data, successCallback, type, dataType, async, params) {
         var guid = { GUID: $.cookie("GUID") };
         if (data) {
