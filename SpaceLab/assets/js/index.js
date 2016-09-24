@@ -187,6 +187,12 @@ var indexModule = (function(im) {
         $("#viewMember").html(html);
         $("#memberBrief").html(result.DataTable.memberBrief);
     }
+    im.updateMember = function(memberId) {
+        im.loadPage("main-content", "editMember", im.editMemberInit, { memberId: memberId });
+    }
+    im.editMemberInit = function(params) {
+        
+    }
     im.viewTeam = function(teamId) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
     }
@@ -388,11 +394,12 @@ var indexModule = (function(im) {
 
         $("#shareBtn").on("click", function() {
             $("#qrcode").html("");
+            var ttId = $(this).attr("data-ttid");
             var qrcode = new QRCode(document.getElementById("qrcode"), {
                 width: 96, //设置宽高
                 height: 96
             });
-            qrcode.makeCode("http://www.baidu.com");
+            qrcode.makeCode("http://www.leyisports.com/gameResultPageShare.html?ttId=" + ttId);
         });
 
     }
