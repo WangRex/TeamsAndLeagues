@@ -197,7 +197,7 @@ var indexModule = (function(im) {
         var html = template('editMember-template', result.DataTable);
         $("#editMember").html(html);
         $("#memberBrief").html(result.DataTable.memberBrief);
-        im.initSelector($("#editMemberPosition"), {title: result.DataTable.memberPosition});
+        im.initSelector($("#editMemberPosition"), { title: result.DataTable.memberPosition });
         CKEDITOR.replace('memberBrief');
     }
     im.editMember = function() {
@@ -448,9 +448,8 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsSub);
         $("textarea[name='remark']").attr("id", "gameRemark");
         CKEDITOR.replace('gameRemark');
-        var fillinParams = { tmplId: 'teamMembers-template', target: $(".allTeamMembers"), way: "appendTo", callback: im.initTeamMembersSelector, callbackParams: 'allTeamMembers' };
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+        var fillinParams = { tmplId: 'teamMembers-template', target: $(".allTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'allTeamMembers' };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersForMVP", { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
     im.addGameResult = function() {
         globalModule.CKupdate();
@@ -623,7 +622,9 @@ var indexModule = (function(im) {
     }
     im.initSelector = function(obj, options) {
         var option = { liveSearch: true };
-        $.extend(option, options || {});
+        if (options) {
+            $.extend(option, options || {});
+        }
         obj.selectpicker(option);
         return obj;
     }
