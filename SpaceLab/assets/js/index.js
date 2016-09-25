@@ -143,6 +143,41 @@ var indexModule = (function(im) {
             }
         }, 'post');
     }
+    im.editTeamPage = function(teamId) {
+        im.loadPage("main-content", "editTeam", im.editTeamInit, { teamId: teamId });
+    }
+    im.editTeamInit = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", params, function(result) {
+            if (result.Code == 1) {
+                var html = template('editTeam-template', result.DataTable);
+                $("#editTeam").html(html);
+                var teamCreateDate = result.DataTable.teamCreateDate;
+                $("#teamBrief").html(result.DataTable.teamBrief);
+                CKEDITOR.replace('teamBrief');
+                $('.form_date').datetimepicker({
+                    weekStart: 1,
+                    todayBtn: 1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    startView: 2,
+                    minView: 2,
+                    language: 'zh-CN', //汉化 
+                    forceParse: 0
+                });
+            }
+        });
+    }
+    im.editTeam = function() {
+        globalModule.CKupdate();
+        var data = $("#editTeamForm").serializeJson();
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/editTeam", data, function(result) {
+            if (result.Code == 1) {
+                indexModule.loadPage("main-content", "teamList", app.bread);
+            } else {
+                $("#editTeamResult").html("球队信息修改失败！");
+            }
+        }, 'post');
+    }
     im.getTeamList = function(callback) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamList", null, callback);
     }
@@ -232,7 +267,17 @@ var indexModule = (function(im) {
     }
     im.showTeamMembersDetails = function(result) {
         var html = template('teamMemberList-template', result);
-        $("#teamMembersHead").after(html);
+        $("#teamMembersBodyUl").html(html);
+        $('#tj_container').gridnav({
+            rows: 3,
+            type: {
+                mode: 'disperse',
+                speed: 700,
+                easing: '',
+                factor: '',
+                reverse: ''
+            }
+        });
     }
     im.addGameRule = function() {
         var data = $("#addGameRuleForm").serializeJson();
