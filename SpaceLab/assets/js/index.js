@@ -880,7 +880,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/gameInfo.json',
+            url: '/assets/json/gameInfo.json',
             data: { gameId: params.gameId },
             async: false,
             success: function(result) {
@@ -905,7 +905,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/addStaff.json',
+            url: '/assets/json/addStaff.json',
             data: data,
             async: false,
             success: function(result) {
@@ -923,7 +923,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/staff.json',
+            url: '/assets/json/staff.json',
             data: params,
             async: false,
             success: function(result) {
@@ -942,7 +942,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/staff.json',
+            url: '/assets/json/staff.json',
             data: { staffId: staffId },
             async: false,
             success: function(result) {
@@ -959,7 +959,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/editStaff.json',
+            url: '/assets/json/editStaff.json',
             data: data,
             async: false,
             success: function(result) {
@@ -973,7 +973,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/matchInfo.json',
+            url: '/assets/json/matchInfo.json',
             data: { matchId: matchId, teamFlag: teamFlag },
             async: false,
             success: function(result) {
@@ -994,7 +994,7 @@ var indexModule = (function(im) {
         $.ajax({
             type: 'get',
             dataType: "json",
-            url: 'assets/json/allocateStaff.json',
+            url: '/assets/json/allocateStaff.json',
             data: data,
             async: false,
             success: function(result) {

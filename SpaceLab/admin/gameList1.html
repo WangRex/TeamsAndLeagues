@@ -1,0 +1,49 @@
+<div class="row" id="row0">
+</div>
+<script id="match-info-template" type="text/html">
+    <div class="col-md-4">
+        <div class="panel panel-solid-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">赛事信息</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body gameInfo" data-gameId="{{gameId}}">
+                <p>赛事名称：{{gameName}}</p>
+                <p>赛事地点：{{gamePlace}}</p>
+                <p>赛事时间：{{gameStartDate}} - {{gameEndDate}}</p>
+                <p>赛事赛制：{{gameRule}}</p>
+                <p>报&nbsp;&nbsp;名：{{gameEnroll}}</p>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+$(document).ready(function() {
+
+    globalModule.globalAjax(globalModule.globalHomeUrl + 'api/GameList/getGameList', null, fillinGameList);
+
+    function fillinGameList(result) {
+        var num = 0;
+        if (result.Code == 1) {
+            $.each(result.DataTable, function(idx, obj) {
+                if (idx % 3 == 0 && idx != 0) {
+                    num++;
+                    var div = $("<div class='row' id='row" + num + "'></div>");
+                    $("#row" + Number(num - 1)).after(div);
+                }
+                var html = template('match-info-template', obj);
+                $("#row" + num).append(html);
+            });
+
+            $(".gameInfo").on("click", function() {
+                var gameId = $(this).attr("data-gameId");
+                indexModule.loadGameDetailsPage1("gameDetails1", gameId);
+            });
+        }
+    }
+
+});
+</script>

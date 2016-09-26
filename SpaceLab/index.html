@@ -13,126 +13,210 @@
     <meta memberName="description" content="">
     <meta memberName="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Bootstrap Switch -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap-switch/css/highlight.css">
-    <link rel="stylesheet" href="assets/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.css">
-    <link rel="stylesheet" href="assets/plugins/bootstrap-switch/css/main.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-switch/css/highlight.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-switch/css/main.css">
     <!-- Fonts from Font Awsome -->
-    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
     <!-- CSS Animate -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
     <!-- Custom styles for this theme -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
     <!-- ToDos  -->
-    <link rel="stylesheet" href="assets/plugins/todo/css/todos.css">
+    <link rel="stylesheet" href="/assets/plugins/todo/css/todos.css">
     <!-- Bootstrap Selector -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap-select/css/bootstrap-select.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-select/css/bootstrap-select.css">
     <!-- Date Time Picker CSS-->
-    <link href="assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <!-- Custom  -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
     <!-- Fonts -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
     <!-- Feature detection -->
-    <script src="assets/js/modernizr-2.6.2.min.js"></script>
+    <script src="/assets/js/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
-    <section id="container">
-        <div class="row">
-            <div class="col-md-3" id="login-wrapper">
-                <div class="panel panel-primary animated flipInY">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            登录
-                        </h3>
+    <header id="header">
+        <div class="user-nav">
+            <ul>
+                <li class="profile-photo">
+                    <img src="/assets/img/avatar.png" alt="" class="img-circle">
+                </li>
+                <li class="dropdown settings">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
+                        <span id="userName"></span><i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInDown">
+                        <li>
+                            <a href="#"><i class="fa fa-user"></i> 个人信息</a>
+                        </li>
+                        <li id="gameRules">
+                            <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 比赛规则</a>
+                        </li>
+                        <li id="addGameRule">
+                            <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 添加比赛规则</a>
+                        </li>
+                        <li id="addTeam">
+                            <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 添加球队</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-envelope"></i> 收件箱 <span class="badge badge-danager" id="user-inbox">5</span></a>
+                        </li>
+                        <li id="logout">
+                            <a href="javascript:void(0);"><i class="fa fa-power-off"></i> 注销</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!--main content start-->
+    <section class="main-content-wrapper">
+        <section>
+            <!--tiles start-->
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-tile detail tile-red" id="newUser">
+                        <div class="content">
+                            <h1 class="text-left timer" data-from="0" data-to="100" data-speed="2500"></h1>
+                            <p>我的信息</p>
+                        </div>
+                        <div class="icon"><i class="fa fa-bar-chart-o"></i>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <p>登录系统</p>
-                        <form class="form-horizontal" role="form" id="loginForm">
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <input type="email" class="form-control" id="email" placeholder="用户名" name="name">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <input type="password" class="form-control" id="password" placeholder="密码" name="password">
-                                    <i class="fa fa-lock"></i>
-                                    <a href="javascript:void(0)" class="help-block">忘记密码?</a>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <a href="javascript:void(0);" id="login" class="btn btn-primary btn-block">登录</a>
-                                    <hr />
-                                    <a href="javascript:void(0);" class="btn btn-default btn-block">还没有账号? 注册</a>
-                                </div>
-                            </div>
-                        </form>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-tile detail tile-turquoise" id="gameList">
+                        <div class="content">
+                            <h1 class="text-left timer" data-from="0" data-to="56" data-speed="2500"></h1>
+                            <p>赛事列表</p>
+                        </div>
+                        <div class="icon"><i class="fa fa-comments"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-tile detail tile-blue" id="newGame">
+                        <div class="content">
+                            <h1 class="text-left timer" data-from="0" data-to="32" data-speed="2500"></h1>
+                            <p>新比赛</p>
+                        </div>
+                        <div class="icon"><i class="fa fa fa-envelope"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-tile detail tile-purple" id="teamList">
+                        <div class="content">
+                            <h1 class="text-left timer" data-to="105" data-speed="2500"></h1>
+                            <p>我的球队</p>
+                        </div>
+                        <div class="icon"><i class="fa fa-users"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!--tiles end-->
+            <!--charts start-->
+            <div class="row" id="main-content">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">球队统计</h3>
+                            <div class="actions pull-right">
+                                <i class="fa fa-chevron-down"></i>
+                                <i class="fa fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div id="sales-chart" style="height: 250px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--charts end-->
+        </section>
     </section>
+    <!--main content end-->
     <div class="copy-right" id="index-copy-right">
         <p>© 2016 All rights reserved, powered by DongXin Technology.
         </p>
     </div>
     <!--Global JS-->
-    <script src="assets/js/jquery-1.10.2.min.js"></script>
-    <script src="assets/plugins/fullcalendar/js/jquery-ui-1.10.2.custom.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/waypoints/waypoints.min.js"></script>
-    <script src="assets/js/application.js"></script>
-    <script src="assets/plugins/artTemplate/template.js"></script>
-    <script src="assets/plugins/jQuery.widgets.serializeJson/jquery.widgets.serializeJson.js"></script>
+    <script src="/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="/assets/plugins/fullcalendar/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/plugins/waypoints/waypoints.min.js"></script>
+    <script src="/assets/js/application.js"></script>
+    <script src="/assets/plugins/artTemplate/template.js"></script>
+    <script src="/assets/plugins/jQuery.widgets.serializeJson/jquery.widgets.serializeJson.js"></script>
     <!--Page Level JS-->
-    <script src="assets/plugins/countTo/jquery.countTo.js"></script>
-    <script src="assets/plugins/weather/js/skycons.js"></script>
+    <script src="/assets/plugins/countTo/jquery.countTo.js"></script>
+    <script src="/assets/plugins/weather/js/skycons.js"></script>
     <!-- Morris  -->
-    <script src="assets/plugins/morris/js/morris.min.js"></script>
-    <script src="assets/plugins/morris/js/raphael.2.1.0.min.js"></script>
+    <script src="/assets/plugins/morris/js/morris.min.js"></script>
+    <script src="/assets/plugins/morris/js/raphael.2.1.0.min.js"></script>
     <!-- Vector Map  -->
-    <script src="assets/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="assets/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/assets/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="/assets/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
     <!-- ToDo List  -->
-    <script src="assets/plugins/todo/js/todos.js"></script>
+    <script src="/assets/plugins/todo/js/todos.js"></script>
     <!-- Bootstrap Selector -->
-    <script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
-    <script src="assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>
+    <script src="/assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="/assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>
     <!-- Bootstrap Switch -->
-    <script src="assets/plugins/bootstrap-switch/js/highlight.js"></script>
-    <script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-    <script src="assets/plugins/bootstrap-switch/js/main.js"></script>
+    <script src="/assets/plugins/bootstrap-switch/js/highlight.js"></script>
+    <script src="/assets/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script src="/assets/plugins/bootstrap-switch/js/main.js"></script>
     <!-- Date Time Picker JS -->
-    <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <!-- QCODE -->
-    <script src="assets/js/qcode.js"></script>
+    <script src="/assets/js/qcode.js"></script>
     <!-- JQUERY COOKIE -->
-    <script src="assets/js/jquery.cookie.js"></script>
+    <script src="/assets/js/jquery.cookie.js"></script>
     <!-- CKEDITOR -->
-    <script src="assets/plugins/ckeditor/ckeditor.js"></script>
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
     <!-- index  -->
-    <script src="assets/js/globalUtils.js"></script>
-    <script src="assets/js/index.js"></script>
+    <script src="/assets/js/globalUtils.js"></script>
+    <script src="/assets/js/index.js"></script>
     <!--Load these page level functions-->
     <script>
     $(document).ready(function() {
-        $("#login").on("click", function() {
-            indexModule.login();
+        app.timer();
+        $("#newGame").on("click", function() {
+            indexModule.loadPage("main-content", "addGame", app.bread);
         });
+        $("#gameList").on("click", function() {
+            indexModule.loadPage("main-content", "gameList1", app.bread);
+        });
+        $("#teamList").on("click", function() {
+            indexModule.loadPage("main-content", "teamList", app.bread);
+        });
+        $("#gameRules").on("click", function() {
+            indexModule.loadPage("main-content", "gameRules", app.bread);
+        });
+        $("#addGameRule").on("click", function() {
+            indexModule.loadPage("main-content", "addGameRule", app.bread);
+        });
+        $("#addTeam").on("click", function() {
+            indexModule.loadPage("main-content", "addTeam", app.bread);
+        });
+        $("#logout").on("click", function() {
+            window.location.href = window.location.href;
+        });
+        $("#gameList").click();
     });
     </script>
 </body>
