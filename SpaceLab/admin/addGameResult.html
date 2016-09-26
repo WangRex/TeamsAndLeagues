@@ -1,0 +1,233 @@
+<div class="row" id="addGameResult">
+</div>
+<script id="addGameResult-template" type="text/html">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">比赛结果录入</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" id="addGameResultForm">
+                    <input type="hidden" name="timeTableId" value="{{DataTable.ttID}}">
+                    <input type="hidden" name="gameId" value="{{DataTable.ttGameId}}">
+                    <input type="hidden" name="round" value="{{DataTable.ttRound}}">
+                    <input type="hidden" name="mainTeamID" value="{{DataTable.ttMainTeamID}}">
+                    <input type="hidden" name="subTeamID" value="{{DataTable.ttSubTeamID}}">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">比赛时间</label>
+                        <div class="col-sm-6">
+                            {{DataTable.ttDate}} - {{DataTable.ttTime}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">赛区</label>
+                        <div class="col-sm-6">
+                            {{DataTable.ttGamePlace}} - {{DataTable.ttGameSite}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">轮次</label>
+                        <div class="col-sm-6">
+                            {{DataTable.ttRound}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">比赛类型</label>
+                        <div class="col-sm-6">
+                            {{DataTable.gameRule}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队首发</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainStarting">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队替补</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainSubstitutes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队首发</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subStarting">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队替补</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subSubstitutes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">主队进球数</label>
+                        <div class="col-sm-6">
+                            <input id="mainTeamGoal" type="text" class="form-control" placeholder="主队进球数" name="mainTeamGoal">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">客队进球数</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="客队进球数" name="subTeamGoal">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">MVP</label>
+                        <div class="col-sm-6">
+                            <select class="show-tick form-control allTeamMembers" multiple name="mvp">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="mainTeamScoreMemberDiv" data-index="1">
+                        <label class="col-sm-3 control-label">主队进球队员</label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainGoalMembers">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input_main1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input_main1" value="" name="mainMemberScoreDateTime" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.cloneDiv(this, $('#mainMemberDivClone'), $('#mainTeamScoreMemberDiv'), 'dtp_input_main');" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group" id="subTeamScoreMemberDiv" data-index="1">
+                        <label class="col-sm-3 control-label">客队进球队员</label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subGoalMembers">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input_sub1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input_sub1" value="" name="subMemberScoreDateTime" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.cloneDiv(this, $('#subMemberDivClone'), $('#subTeamScoreMemberDiv'), 'dtp_input_sub');" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group" id="mainTeamRedMemberDiv" data-index="1">
+                        <label class="col-sm-3 control-label">主队红牌队员</label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainRedMembers">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input_main_red1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input_main_red1" value="" name="mainMemberRedDateTime" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.cloneDiv(this, $('#mainMemberDivClone'), $('#mainTeamRedMemberDiv'), 'dtp_input_main_red');" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group" id="subTeamRedMemberDiv" data-index="1">
+                        <label class="col-sm-3 control-label">客队红牌队员</label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subRedMembers">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input_sub_red1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input_sub_red1" value="" name="subMemberRedDateTime" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.cloneDiv(this, $('#subMemberDivClone'), $('#subTeamRedMemberDiv'), 'dtp_input_sub_red');" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group" id="mainTeamYellowMemberDiv" data-index="1">
+                        <label class="col-sm-3 control-label">主队黄牌队员</label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control mainTeamMembers" multiple name="mainYellowMembers">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input_main_yellow1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input_main_yellow1" value="" name="mainMemberYellowDateTime" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.cloneDiv(this, $('#mainMemberDivClone'), $('#mainTeamYellowMemberDiv'), 'dtp_input_main_yellow');" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group" id="subTeamYellowMemberDiv" data-index="1">
+                        <label class="col-sm-3 control-label">客队黄牌队员</label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control subTeamMembers" multiple name="subYellowMembers">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input_sub_yellow1">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input_sub_yellow1" value="" name="subMemberYellowDateTime" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.cloneDiv(this, $('#subMemberDivClone'), $('#subTeamYellowMemberDiv'), 'dtp_input_sub_yellow');" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备注</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" name="remark" rows="10" cols="80"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addGameResult();" value="添加">
+                        </div>
+                    </div>
+                    <div class="form-group hide" id="mainMemberDivClone">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control mainTeamMembers" multiple data-initial="false">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-initial="false" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="" value="" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-danger btn-3d btn-sm" onclick="indexModule.deleteCloneDiv(this);" value="删除">
+                        </div>
+                    </div>
+                    <div class="form-group hide" id="subMemberDivClone">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-3">
+                            <select class="show-tick form-control subTeamMembers" multiple data-initial="false">
+                            </select>
+                        </div>
+                        <div class="input-group date form_datetime col-sm-3" data-initial="false" data-date="" data-date-format="dd MM yyyy - hh:ii" data-link-field="">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="" value="" />
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-danger btn-3d btn-sm" onclick="indexModule.deleteCloneDiv(this);" value="删除">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="teamMembers-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value.ID}}">{{value.memberName}}-{{value.memberNumber}}</option>
+    {{/each}}
+</script>
+<script type="text/javascript">
+</script>

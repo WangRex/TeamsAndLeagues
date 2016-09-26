@@ -1,6 +1,6 @@
 <!--CSS style-->
 <!-- <link rel="stylesheet" type="text/css" href="assets/plugins/members/css/style.css" /> -->
-<link rel="stylesheet" type="text/css" href="assets/plugins/members/css/gridNavigation.css" />
+<link rel="stylesheet" type="text/css" href="/assets/plugins/members/css/gridNavigation.css" />
 <div class="row" id="teamDetails">
 </div>
 <div class="row" id="teamMembers">
@@ -40,10 +40,10 @@
             </div>
             <div class="panel-body" id="teamInfo" data-teamid="{{ID}}">
                 <div class="col-md-6 col-md-offset-3">
-                    <img src="assets/img/teamFamily/{{teamName}}.jpg" style="width:800px;" />
+                    <img src="/assets/img/teamFamily/{{teamName}}.jpg" style="width:800px;" />
                 </div>
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="col-md-3"><img src="assets/img/teamLogo/{{teamName}}.png" style="width:100px;" /></div>
+                    <div class="col-md-3"><img src="/assets/img/teamLogo/{{teamName}}.png" style="width:100px;" /></div>
                     <div class="col-md-9">
                         <div class="col-md-12">
                             <label class="col-sm-5 control-label">球队创建时间</label>
@@ -89,7 +89,7 @@
 <script id="teamMemberList-template" type="text/html">
     {{each DataTable as value i}}
     <li>
-        <a href="javascript:void(0);"><img src="images/{{value.memberName}}.jpg" alt="{{value.memberName}}" /></a>
+        <a href="javascript:void(0);"><img src="/assets/img/memberPic/{{value.memberName}}.jpg" alt="{{value.memberName}}" /></a>
         <div>{{value.memberNumber}}</div>
     </li>
     {{/each}}
@@ -100,7 +100,9 @@
     {{/each}}
 </script>
 <!--JS files-->
-<!-- <script type="text/javascript" src="assets/plugins/members/js/jquery-1.6.1.min.js"></script> -->
-<script type="text/javascript" src="assets/plugins/members/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="assets/plugins/members/js/jquery.mousewheel.js"></script>
-<script type="text/javascript" src="assets/plugins/members/js/jquery.gridnav.js"></script>
+<!-- <script type="text/javascript" src="/assets/plugins/members/js/jquery-1.7.2.min.js"></script> -->
+<!-- <script type="text/javascript" src="/assets/js/jquery-migrate-1.4.1.js"></script> -->
+<script src="https://code.jquery.com/jquery-migrate-1.10.2.js"></script>
+<script type="text/javascript" src="/assets/plugins/members/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/assets/plugins/members/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/assets/plugins/members/js/jquery.gridnav.js"></script>

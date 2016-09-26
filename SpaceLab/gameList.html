@@ -40,7 +40,7 @@ $(document).ready(function() {
 
             $(".gameInfo").on("click", function() {
                 var gameId = $(this).attr("data-gameId");
-                indexModule.loadGameDetailsPage1("gameDetails1", gameId);
+                commonIndexModule.loadGameDetailsPage("gameDetails", gameId);
             });
         }
     }

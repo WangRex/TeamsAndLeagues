@@ -1,0 +1,20 @@
+<div class="row boardData" id="boradData">
+    <div class="col-xs-2">排名</div>
+    <div class="col-xs-2">场次</div>
+    <div class="col-xs-2">球队</div>
+    <div class="col-xs-2">球员</div>
+    <div class="col-xs-2">红</div>
+    <div class="col-xs-2">黄</div>
+</div>
+<script id="stopDetails-template" type="text/html">
+    {{each aaData as value i}}
+    <div class="row boardData">
+        <div class="col-xs-2">{{i + 1}}</div>
+        <div class="col-xs-2">{{value.matchNum}}</div>
+        <div class="col-xs-2">{{value.teamName}}</div>
+        <div class="col-xs-2">{{value.name}}</div>
+        <div class="col-xs-2">{{value.redNum}}</div>
+        <div class="col-xs-2">{{value.yellowNum}}</div>
+    </div>
+    {{/each}}
+</script>

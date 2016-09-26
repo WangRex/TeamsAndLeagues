@@ -105,22 +105,22 @@
 $(document).ready(function() {
     app.timer();
     $("#newGame").on("click", function() {
-        indexModule.loadPage("main-content", "addGame", app.bread);
+        globalModule.loadPage("main-content", "addGame", app.bread);
     });
     $("#gameList").on("click", function() {
-        indexModule.loadPage("main-content", "gameList1", app.bread);
+        globalModule.loadPage("main-content", "gameList1", app.bread);
     });
     $("#teamList").on("click", function() {
-        indexModule.loadPage("main-content", "teamList", app.bread);
+        globalModule.loadPage("main-content", "teamList", app.bread);
     });
     $("#gameRules").on("click", function() {
-        indexModule.loadPage("main-content", "gameRules", app.bread);
+        globalModule.loadPage("main-content", "gameRules", app.bread);
     });
     $("#addGameRule").on("click", function() {
-        indexModule.loadPage("main-content", "addGameRule", app.bread);
+        globalModule.loadPage("main-content", "addGameRule", app.bread);
     });
     $("#addTeam").on("click", function() {
-        indexModule.loadPage("main-content", "addTeam", app.bread);
+        globalModule.loadPage("main-content", "addTeam", app.bread);
     });
     $("#logout").on("click", function() {
         window.location.href = window.location.href;

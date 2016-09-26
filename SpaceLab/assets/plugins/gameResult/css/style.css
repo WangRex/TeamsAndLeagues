@@ -212,7 +212,7 @@ ul.tabs-menu li a{
 	cursor: pointer;
 }
 .sb-search-submit {
-   background: url('assets/plugins/gameResult/images/search.png') no-repeat -24px 14px;
+   background: url('/assets/plugins/gameResult/images/search.png') no-repeat -24px 14px;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
     filter: alpha(opacity=0); /* IE 5-7 */
     color: transparent;
@@ -222,7 +222,7 @@ ul.tabs-menu li a{
 	-webkit-appearance: none;
 }
 .sb-icon-search {
-  background: url('assets/plugins/gameResult/images/search.png') no-repeat 15px 10px;
+  background: url('/assets/plugins/gameResult/images/search.png') no-repeat 15px 10px;
   z-index: 90;
   width: 55px;
   height: 45px;
@@ -232,7 +232,7 @@ ul.tabs-menu li a{
 	width:14%;
 }
 .sb-search.sb-search-open .sb-icon-search,.no-js .sb-search .sb-icon-search {
-	background: url('assets/plugins/gameResult/images/search.png') no-repeat 15px 10px;
+	background: url('/assets/plugins/gameResult/images/search.png') no-repeat 15px 10px;
 	color: #fff;
 	z-index: 11;
 }

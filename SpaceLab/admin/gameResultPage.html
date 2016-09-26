@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>赛事结果</title>
+    <link href="/assets/plugins/gameResult/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="/assets/js/jquery-1.10.2.min.js"></script>
+    <!-- JQUERY COOKIE -->
+    <script src="/assets/js/jquery.cookie.js"></script>
+    <script src="/assets/plugins/artTemplate/template.js"></script>
+    <script src="/assets/plugins/gameResult/js/underscore-min.js"></script>
+    <script src="/assets/plugins/gameResult/js/moment-2.2.1.js"></script>
+</head>
+
+<body>
+    <div id="gameResultPage"></div>
+    <script id="gameResultPage-template" type="text/html">
+        <div class="soccer">
+                <span id="shareBtn" data-ttid="{{DataTable.ttID}}">分享</span>
+                <div id="qrcode">
+                </div>
+            <div class="header-top" style="background-color: #262626;">
+                <div class="logo">
+                    <a href="#"><img src="/assets/img/gameLogo/{{DataTable.ttGameId}}.png" style="width:56px;height:64px;"></a>
+                </div>
+                <div class="livers">
+                    <div class="liver-pool-buttons">
+                        <h4 style="text-align:;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
+                        <h4 style="text-align:;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameNameEN}}</h4>
+                    </div>
+                    <div class="search">
+                        <div style="font-family: '微软雅黑'; margin-top: 7px;float: left;list-style: none;color: white;">
+                            <ul>
+                                <li>第 {{DataTable.ttRound}} 轮 {{DataTable.ttDate}} {{DataTable.ttTime}}</li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div style="font-family: '微软雅黑';margin-top: 5px;line-height: 1.5; float: left;list-style: none;color: white;font-size: 12px;">{{DataTable.ttGamePlace}}</div>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                <div class="clear"> </div>
+            </div>
+            <!---->
+            <div class="header-bottom">
+                <!----- tabs-box ---->
+                <div class="tabs-box">
+                    <div class="clearfix"> </div>
+                    <div class="tab-grids" style="margin-left: 0px;">
+                        <div id="tab1" class="tab-grid">
+                            <div class="soccer-items">
+                                <div class="main-box" style="background-image: url(/assets/img/gameResultBackground.jpg);">
+                                    <div class="logo-names">
+                                        <div class="logo-name-1">
+                                            <h2></h2>
+                                        </div>
+                                        <div class="logo-name-2">
+                                            <h3></h3>
+                                        </div>
+                                        <div class="clear"> </div>
+                                    </div>
+                                    <div class="awards">
+                                        <div class="ablam">
+                                            <img src="/assets/img/teamLogo/{{DataTable.ttMainTeamName}}.png" style="width:200px;height:150px;">
+                                        </div>
+                                        <div class="time">
+                                            <h3>{{DataTable.mainTeamGoal}}:{{DataTable.subTeamGoal}}</h3>
+                                        </div>
+                                        <div class="troffy">
+                                            <img src="/assets/img/teamLogo/{{DataTable.ttSubTeamName}}.png" style="width:200px;height:150px;">
+                                        </div>
+                                        <div class="clear"> </div>
+                                    </div>
+                                    <div class="game-scores">
+                                        <ul class="sport-scor" id="mainData">
+                                        </ul>
+                                        <ul class="ronaldo" id="subData">
+                                        </ul>
+                                        <div class="clear"> </div>
+                                        <div class="plater-names">
+                                            <h3 style="color: #f6f6f6;" id="mainStarting">{{DataTable.ttMainTeamName}}</h3>
+                                        </div>
+                                        <div class="plater-names" style="float: right;padding-right: 10px;width: 32%;">
+                                            <h3 style="color: #f6f6f6;" id="subStarting">{{DataTable.ttSubTeamName}}</h3>
+                                        </div>
+                                        <div class="clear"> </div>
+                                        <div class="plater-names">
+                                            <h3 style="color: #f6f6f6;" id="mainSubstitutes">替补</h3>
+                                        </div>
+                                        <div class="plater-names" style="float: right;padding-right: 10px;width: 32%;">
+                                            <h3 style="color: #f6f6f6;" id="subSubstitutes">替补</h3>
+                                        </div>
+                                        <div class="clear"> </div>
+                                    </div>
+                                    <div class="game-scores">
+                                        <span style="color: yellow;">MVP:{{DataTable.mvp}}</span>
+                                    </div>
+                                    <div class="game-scores">
+                                        {{DataTable.ttGameBrief}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                    </div>
+                </div>
+                <!----- tabs-box ---->
+            </div>
+        </div>
+    </script>
+    <script id="grpScoreMembers-template" type="text/html">
+        {{each DataTable as value i}}
+        <li><img src="/assets/plugins/gameResult/images/ball.png">
+            <a href="javascript:void(0);" style="color: #f6f6f6;">{{value}}</a>
+        </li>
+        {{/each}}
+    </script>
+    <script id="grpRedMembers-template" type="text/html">
+        {{each DataTable as value i}}
+        <li><img src="/assets/plugins/gameResult/images/dot.png">
+            <a href="javascript:void(0);" style="color: #f6f6f6;">{{value}}</a>
+        </li>
+        {{/each}}
+    </script>
+    <script id="grpYellowMembers-template" type="text/html">
+        {{each DataTable as value i}}
+        <li><img src="/assets/plugins/gameResult/images/yellow.png">
+            <a href="javascript:void(0);" style="color: #f6f6f6;">{{value}}</a>
+        </li>
+        {{/each}}
+    </script>
+    <script id="grpMembers-template" type="text/html">
+        {{each DataTable as value i}}
+        <h5>{{value}}</h5> {{/each}}
+    </script>
+    <div class="clear"> </div>
+    <div class="copy-right" id="gameResultPage-copy-right">
+        <p>© 2016 All rights reserved, powered by JR Wong
+        </p>
+    </div>
+</body>
+
+</html>

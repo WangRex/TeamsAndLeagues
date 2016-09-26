@@ -1,12 +1,4 @@
 var indexModule = (function(im) {
-    im.loadPage = function(parentId, pageName, callback, params) {
-        $("#" + parentId || "main-content").load(pageName + ".html", function(response, status, xhr) {
-            if (callback) {
-                callback(params);
-            }
-
-        });
-    }
     im.login = function() {
         var data = $("#loginForm").serializeJson();
 
@@ -20,7 +12,7 @@ var indexModule = (function(im) {
             success: function(result) {
                 if (result.Code == 1) {
                     $.cookie("GUID", result.GUID);
-                    im.loadPage("container", "main", function() { $("#userName").html(result.DataTable.name); });
+                    globalModule.loadPage("container", "main", function() { $("#userName").html(result.DataTable.name); });
                 }
             }
         });
@@ -30,7 +22,7 @@ var indexModule = (function(im) {
         data.gamePlace = globalModule.arrayToString(data.gamePlace);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/addGame", data, function(result) {
             $("#addGameContent").html(result.message);
-            im.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
+            globalModule.loadPage("main-content", "addGameSuccess", im.addGameSuccess, { data: result.DataTable });
         }, "post");
     }
     im.addGameSuccess = function(params) {
@@ -48,15 +40,8 @@ var indexModule = (function(im) {
     im.deleteGamePlace = function(obj) {
         $(obj).closest("div[class='form-group']").remove();
     }
-    im.editGame = function() {
-        var data = $("#editGameForm").serializeJson();
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/editGame", data, function(result) {
-            $("#editGameContent").html(result.message);
-            im.popupModal("basicModal");
-        });
-    }
     im.enrollGame = function(gameId) {
-        im.loadPage("main-content", "enrollGame", im.enrollGameInit, { gameId: gameId });
+        globalModule.loadPage("main-content", "enrollGame", im.enrollGameInit, { gameId: gameId });
     }
     im.enrollGameInit = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGamePlaceByGameId", params, function(result) {
@@ -91,7 +76,7 @@ var indexModule = (function(im) {
     }
     im.enrollGameEnd = function(gameId, round) {
         round = round || 1;
-        im.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: round });
+        globalModule.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: round });
     }
     im.enrollGameEndInit = function(params) {
         $("#ttGameId").attr("value", params.gameId);
@@ -137,14 +122,14 @@ var indexModule = (function(im) {
 
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/addTeam", data, function(result) {
             if (result.Code == 1) {
-                indexModule.loadPage("main-content", "teamList", app.bread);
+                globalModule.loadPage("main-content", "teamList", app.bread);
             } else {
                 $("#addTeamResult").html("球队信息添加失败！");
             }
         }, 'post');
     }
     im.editTeamPage = function(teamId) {
-        im.loadPage("main-content", "editTeam", im.editTeamInit, { teamId: teamId });
+        globalModule.loadPage("main-content", "editTeam", im.editTeamInit, { teamId: teamId });
     }
     im.editTeamInit = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", params, function(result) {
@@ -172,7 +157,7 @@ var indexModule = (function(im) {
         var data = $("#editTeamForm").serializeJson();
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/editTeam", data, function(result) {
             if (result.Code == 1) {
-                indexModule.loadPage("main-content", "teamList", app.bread);
+                globalModule.loadPage("main-content", "teamList", app.bread);
             } else {
                 $("#editTeamResult").html("球队信息修改失败！");
             }
@@ -188,7 +173,7 @@ var indexModule = (function(im) {
         }
     }
     im.addTeamMemberInit = function(teamId, teamName) {
-        im.loadPage("main-content", "addMember", im.addTeamMember, { teamId: teamId, teamName: teamName });
+        globalModule.loadPage("main-content", "addMember", im.addTeamMember, { teamId: teamId, teamName: teamName });
     }
     im.addTeamMember = function(params) {
         $("#addTeamName").attr("value", params.teamName);
@@ -212,7 +197,7 @@ var indexModule = (function(im) {
         }, 'post');
     }
     im.viewMemberPage = function(memberId) {
-        im.loadPage("main-content", "viewMember", im.viewMember, { memberId: memberId });
+        globalModule.loadPage("main-content", "viewMember", im.viewMember, { memberId: memberId });
     }
     im.viewMember = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMember", params, im.fillViewMember);
@@ -223,7 +208,7 @@ var indexModule = (function(im) {
         $("#memberBrief").html(result.DataTable.memberBrief);
     }
     im.updateMember = function(memberId) {
-        im.loadPage("main-content", "editMember", im.editMemberInit, { memberId: memberId });
+        globalModule.loadPage("main-content", "editMember", im.editMemberInit, { memberId: memberId });
     }
     im.editMemberInit = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMember", params, im.editMemberFillin);
@@ -254,7 +239,7 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", { teamId: teamId }, im.showTeamDetailsPage);
     }
     im.showTeamDetailsPage = function(result) {
-        im.loadPage("main-content", "teamDetails", im.showTeamDetails, result);
+        globalModule.loadPage("main-content", "teamDetails", im.showTeamDetails, result);
     }
     im.showTeamDetails = function(result) {
         var html = template('teamDetails-template', result.DataTable);
@@ -282,7 +267,7 @@ var indexModule = (function(im) {
     im.addGameRule = function() {
         var data = $("#addGameRuleForm").serializeJson();
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/addGameRule", data, null, "post");
-        indexModule.loadPage("main-content", "gameRules", app.bread);
+        globalModule.loadPage("main-content", "gameRules", app.bread);
     }
     im.getGameRules = function() {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/getGameRuleList", null, im.fillinGameRules);
@@ -295,7 +280,7 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameRule/viewGameRule", { ID: ID }, im.viewGameRulePage);
     }
     im.viewGameRulePage = function(result) {
-        im.loadPage("main-content", "viewGameRule", im.fillinGameRule, result);
+        globalModule.loadPage("main-content", "viewGameRule", im.fillinGameRule, result);
     }
     im.fillinGameRule = function(result) {
         var html = template('viewGameRule-template', result.DataTable);
@@ -320,17 +305,16 @@ var indexModule = (function(im) {
     }
     im.updateGameStatusPage = function(result, params) {
         if (result.Code == 1) {
-            im.loadPage("main-content", "gameDetails1", im.loadGameDetails1, params);
+            globalModule.loadPage("main-content", "gameDetails1", im.loadGameDetails1, params);
         }
     }
     im.addGameResultPage = function(ttId, mainTeamId, subTeamId, flag) {
         if (flag == "比赛战况") {
             var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
-            // im.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
-            im.loadPage("main-content", "gameResultPage", im.viewGameResultPage, params);
+            globalModule.loadPage("main-content", "gameResultPage", im.viewGameResultPage, params);
         } else if (flag == "战况录入") {
             var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
-            im.loadPage("main-content", "addGameResult", im.addGameResultInit, params);
+            globalModule.loadPage("main-content", "addGameResult", im.addGameResultInit, params);
         }
     }
     im.viewGameResultPage = function(params) {
@@ -475,7 +459,7 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
     im.viewGameComment = function(ttId) {
-        im.loadPage("main-content", "gameComment", function(params) {
+        globalModule.loadPage("main-content", "gameComment", function(params) {
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, function(result) {
                 $("#gameCommentContent").html(result.DataTable.remark || "暂无评论");
             });
@@ -644,7 +628,7 @@ var indexModule = (function(im) {
         }
 
         var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
-        im.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
+        globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
 
     }
     im.initTeamMembersSelector = function(className) {
@@ -708,23 +692,9 @@ var indexModule = (function(im) {
     im.deleteCloneDiv = function(obj) {
         $(obj).closest("div[class='form-group']").remove();
     }
-    im.fixModal = function() {
-        $('.modal').each(function(i) {
-            var $clone = $(this).clone().css('display', 'block').appendTo('body');
-            var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
-            top = top > 0 ? top : 0;
-            $clone.remove();
-            $(this).find('.modal-content').css("margin-top", top);
-        });
-    }
-    im.popupModal = function(modalId) {
-        $('.modal').on('show.bs.modal', im.fixModal);
-        $(window).on('resize', im.fixModal);
-        $("#" + modalId).modal('show');
-    }
 
     im.loadGameDetailsPage1 = function(htmlName, gameId) {
-        im.loadPage("main-content", htmlName, im.loadGameDetails1, { gameId: gameId });
+        globalModule.loadPage("main-content", htmlName, im.loadGameDetails1, { gameId: gameId });
     }
     im.loadGameDetails1 = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, function(result) {
@@ -840,41 +810,22 @@ var indexModule = (function(im) {
         var empty = {}
         var object = $.extend(empty, params, { round: 1 });
         $("#matchList").on("click", function() {
-            im.loadPage("match-content", "matchList", im.fillinTimeTablePage, object);
+            globalModule.loadPage("match-content", "matchList", im.fillinTimeTablePage, object);
         });
         $("#scoreList").on("click", function() {
-            im.loadPage("match-content", "scoreList", im.loadScoreList, params);
+            globalModule.loadPage("match-content", "scoreList", im.loadScoreList, params);
         });
         $("#shooterList").on("click", function() {
-            im.loadPage("match-content", "shooterList", im.loadShooterList, params);
+            globalModule.loadPage("match-content", "shooterList", im.loadShooterList, params);
         });
         $("#stopList").on("click", function() {
-            im.loadPage("match-content", "stopList", im.loadStopList, params);
-        });
-    }
-
-    im.loadScoreList = function(params) {
-        var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
-    }
-
-    im.loadShooterList = function(params) {
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchShooter/getAllMatchShooter", params, function(result) {
-            var html = template('shooterDetails-template', result);
-            $("#boradData").after(html);
-        });
-    }
-
-    im.loadStopList = function(params) {
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchStop/getAllMatchStop", params, function(result) {
-            var html = template('stopDetails-template', result);
-            $("#boradData").after(html);
+            globalModule.loadPage("match-content", "stopList", im.loadStopList, params);
         });
     }
 
     im.loadEditGamePage = function(gameId) {
         var params = { "gameId": gameId };
-        im.loadPage("main-content", "editGame", im.loadEditGame, params);
+        globalModule.loadPage("main-content", "editGame", im.loadEditGame, params);
     }
     im.loadEditGame = function(params) {
         $.ajax({
@@ -896,110 +847,6 @@ var indexModule = (function(im) {
                     language: 'zh-CN', //汉化 
                     forceParse: 0
                 });
-            }
-        });
-    }
-
-    im.addStaff = function() {
-        var data = $("#addStaffForm").serializeJson();
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: '/assets/json/addStaff.json',
-            data: data,
-            async: false,
-            success: function(result) {
-                $("#addStaffContent").html(result.message);
-                im.popupModal("basicModal");
-            }
-        });
-    }
-
-    im.loadStaffPage = function(staffId) {
-        var params = { "staffId": staffId };
-        im.loadPage("main-content", "editStaff", im.loadStaff, params);
-    }
-    im.loadStaff = function(params) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: '/assets/json/staff.json',
-            data: params,
-            async: false,
-            success: function(result) {
-                var html = template('staffInfo-template', result);
-                $("#staffInfo").html(html);
-                $('#editStaffRole').selectpicker({
-                    liveSearch: true,
-                    noneSelectedText: result.staffRole,
-                    maxOptions: 1
-                });
-            }
-        });
-    }
-
-    im.getStaff = function(staffId) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: '/assets/json/staff.json',
-            data: { staffId: staffId },
-            async: false,
-            success: function(result) {
-                var html = template('staff-template', result);
-                $("#staffContent").html(html);
-                im.popupModal("showStaffModal");
-            }
-        });
-    }
-
-    im.editStaff = function(staffId) {
-        var data = $("#editStaffForm").serializeJson();
-        data.staffId = staffId;
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: '/assets/json/editStaff.json',
-            data: data,
-            async: false,
-            success: function(result) {
-                $("#editStaffContent").html(result.message);
-                im.popupModal("basicModal");
-            }
-        });
-    }
-
-    im.allocateStaffInit = function(modalId, matchId, teamFlag) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: '/assets/json/matchInfo.json',
-            data: { matchId: matchId, teamFlag: teamFlag },
-            async: false,
-            success: function(result) {
-                var html = template('match-info-template', result);
-                $("#matchInfo").html(html);
-                $("#allocateStaffBtn").on("click", function() {
-                    im.allocateStaff(matchId);
-                    $("#allocateStaffInitModal").modal("hide");
-                });
-                im.popupModal(modalId);
-            }
-        });
-    }
-
-    im.allocateStaff = function(matchId) {
-        var data = $("#allocateStaffForm").serializeJson();
-        data.matchId = matchId;
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: '/assets/json/allocateStaff.json',
-            data: data,
-            async: false,
-            success: function(result) {
-                $("#modal-content-div").html(result.message);
-                im.popupModal("allocateStaffModal");
             }
         });
     }

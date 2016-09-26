@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">赛事报名</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" id="enrollGameInfoForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">队名</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="队名" name="teamName">
+                        </div>
+                        <div class="col-sm-3">
+                            <select id="teamNameSelect" class="show-tick form-control">
+                                <option value="0">--请选择--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队人数</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队人数" name="teamNumber">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人" name="contactName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人联系电话</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人联系电话" name="contactPhone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球队负责人E-Mail</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球队负责人E-Mail" name="contactEMail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">球衣颜色</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="球衣颜色" name="poloShirtColor">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameRule" class="col-sm-3 control-label">参赛场地</label>
+                        <div class="col-sm-6">
+                            <select id="gamePlace" class="show-tick form-control" multiple name="gamePlace">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input id="enrollGameBtn" type="button" class="btn btn-success btn-3d" onclick="indexModule.enrollGameInfo();" value="报名">
+                            <span id="enrollGameResult"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="gamePlace-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value}}">{{value}}</option>
+    {{/each}}
+</script>
+<script id="enrollGameTeamList-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value.ID}}">{{value.teamName}}</option>
+    {{/each}}
+</script>
+<script>
+$(document).ready(function() {
+
+    indexModule.getTeamList(fillinTeamList);
+
+    function fillinTeamList(result) {
+        if (result.Code == 1) {
+            var html = template('enrollGameTeamList-template', result);
+            $("#teamNameSelect").find("option").after(html);
+            indexModule.initSelector($("#teamNameSelect")).on('changed.bs.select', function(e, clickedIndex, oldValue, newValue) {
+                var teamId = $(e.currentTarget).val();
+                if (teamId != 0) {
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", {
+                        teamId: teamId
+                    }, fillinTeamInfo);
+                } else {
+                    $("input[name='teamName']").attr("value", "");
+                    $("input[name='teamNumber']").attr("value", "");
+                    $("input[name='contactName']").attr("value", "");
+                    $("input[name='contactPhone']").attr("value", "");
+                    $("input[name='contactEMail']").attr("value", "");
+                    $("input[name='poloShirtColor']").attr("value", "");
+                }
+            });;
+        }
+    }
+
+    function fillinTeamInfo(result) {
+        var team = result.DataTable;
+        if (team) {
+            $("input[name='teamName']").attr("value", team.teamName);
+            $("input[name='teamNumber']").attr("value", team.teamNumber);
+            $("input[name='contactName']").attr("value", team.contactName);
+            $("input[name='contactPhone']").attr("value", team.contactPhone);
+            $("input[name='contactEMail']").attr("value", team.contactEMail);
+            $("input[name='poloShirtColor']").attr("value", team.poloShirtColor);
+        }
+    }
+});
+</script>

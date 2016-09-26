@@ -1,0 +1,37 @@
+<div class="row boardData" id="boradData">
+    <div class="col-xs-2">球队</div>
+    <div class="col-xs-2">人数</div>
+    <div class="col-xs-2">队长</div>
+    <div class="col-xs-2">球衣颜色</div>
+    <div class="col-xs-4">操作</div>
+</div>
+<script id="teamList-template" type="text/html">
+    {{each DataTable as value i}}
+    <div class="row boardData">
+        <div class="col-xs-2">{{value.teamName}}</div>
+        <div class="col-xs-2">{{value.teamNumber}}人</div>
+        <div class="col-xs-2">{{value.contactName}}</div>
+        <div class="col-xs-2">{{value.poloShirtColor}}</div>
+        <div class="col-xs-2" data-teamId="{{value.ID}}">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.viewTeam('{{value.ID}}');" value="查看">
+            {{if role == "1"}}
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.editTeamPage('{{value.ID}}');" value="编辑">
+            {{/if}}
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addTeamMemberInit('{{value.ID}}', '{{value.teamName}}');" value="添加队员">
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script>
+$(document).ready(function() {
+
+    indexModule.getTeamList(fillinTeamList);
+
+    function fillinTeamList(result) {
+        if (result.Code == 1) {
+            var html = template('teamList-template', result);
+            $("#boradData").after(html);
+        }
+    }
+});
+</script>

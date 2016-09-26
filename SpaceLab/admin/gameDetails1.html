@@ -1,0 +1,127 @@
+<div class="row" id="gameDetails">
+</div>
+<div class="row hide" id="gameBoards">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">参赛球队</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body title">
+                <div class="fa-hover col-xs-3" id="matchList"><i class="fa fa-rub"></i> 赛程表</div>
+                <div class="fa-hover col-xs-3" id="scoreList"><i class="fa fa-ruble"></i> 积分榜</div>
+                <div class="fa-hover col-xs-3" id="shooterList"><i class="fa fa-rouble"></i> 射手榜</div>
+                <div class="fa-hover col-xs-3" id="stopList"><i class="fa fa-pagelines"></i> 停赛榜</div>
+                <div class="hr">
+                    <hr>
+                </div>
+                <div class="ddd" id="match-content">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row hide" id="enrollTeams">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">报名球队</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body" id="enrollTeamsBody">
+                <div class="row boardData" id="enrollTeamsHead">
+                    <div class="col-xs-2">球队</div>
+                    <div class="col-xs-2">队长</div>
+                    <div class="col-xs-2">人数</div>
+                    <div class="col-xs-2">时间</div>
+                    <div class="col-xs-4">操作</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row hide" id="enrollBtnDiv">
+</div>
+<script id="gameDetails-template" type="text/html">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">赛事信息</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body" id="gameInfo" data-gameid="{{gameId}}" data-gameStatus="{{gameStatus}}" data-gameruleid="{{gameRuleId}}" data-gamerule="{{gameRule}}">
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">赛事名称</label>
+                    <div class="col-sm-9">
+                        <span>{{gameName}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">参赛球队</label>
+                    <div class="col-sm-9">
+                        <span>{{gameTeamNum}}支</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">比赛规则</label>
+                    <div class="col-sm-9">
+                        <span>{{gameRule}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">赛事奖项</label>
+                    <div class="col-sm-9">
+                        <span>{{gamePrize}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">举办地点</label>
+                    <div class="col-sm-9">
+                        <span>{{gamePlace}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <label class="col-sm-3 control-label">比赛通告</label>
+                    <div class="col-sm-9">
+                        <span>{{gameInform}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-offset-6 hide" id="enrollBtns">
+        <input type="button" class="btn btn-success btn-3d" onclick="indexModule.enrollGame('{{gameId}}');" value="报名">
+        <input type="button" class="btn btn-success btn-3d" onclick="indexModule.shareGame('{{gameId}}');" value="分享">
+        <input type="button" class="btn btn-success btn-3d" onclick="indexModule.enrollGameEnd('{{gameId}}');" value="分配">
+        <input type="button" class="btn btn-success btn-3d" onclick="indexModule.updateGameStatus('{{gameId}}');" value="分配完成">
+    </div>
+</script>
+<script id="enrollTeam-template" type="text/html">
+    <div class="row boardData">
+        <div class="col-xs-2">{{teamName}}</div>
+        <div class="col-xs-2">{{contactName}}</div>
+        <div class="col-xs-2">{{teamNumber}}</div>
+        <div class="col-xs-2">{{attendDate}}</div>
+        <div class="col-xs-4 operation">
+            <div class="switch switch-small has-switch enrollStatusSwitch" data-enrollId="{{enrollId}}" data-enrollGroupName="{{enrollGroupName}}">
+                <input class="agreeBtn" type="checkbox" checked data-on-text="同意" data-off-text="拒绝" name="enrollStatus" data-value="{{enrollStatus}}" />
+                <select class="show-tick form-control hide" multiple name="gameGroupDetail">
+                </select>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="gameGroupDetail-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value}}">{{value}}</option>
+    {{/each}}
+</script>

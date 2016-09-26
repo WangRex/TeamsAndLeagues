@@ -1,6 +1,6 @@
 var globalModule = (function(gm) {
     gm.globalHomeUrl = "http://210.83.195.229:8095/";
-    // gm.globalHomeUrl = "http://localhost:4349/";
+    gm.globalHomeUrl = "http://localhost:4349/";
     gm.globalAjax = function(url, data, successCallback, type, dataType, async, params) {
         var guid = { GUID: $.cookie("GUID") };
         if (data) {
@@ -88,6 +88,14 @@ var globalModule = (function(gm) {
     gm.CKupdate = function() {
         for (instance in CKEDITOR.instances)
             CKEDITOR.instances[instance].updateElement();
+    }
+    gm.loadPage = function(parentId, pageName, callback, params) {
+        $("#" + parentId || "main-content").load(pageName + ".html", function(response, status, xhr) {
+            if (callback) {
+                callback(params);
+            }
+
+        });
     }
     return gm;
 }(globalModule || {}));

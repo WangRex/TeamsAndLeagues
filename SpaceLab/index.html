@@ -55,24 +55,9 @@
                 </li>
                 <li class="dropdown settings">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
-                        <span id="userName"></span><i class="fa fa-angle-down"></i>
+                        <span id="userName">未登录</span><i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu animated fadeInDown">
-                        <li>
-                            <a href="#"><i class="fa fa-user"></i> 个人信息</a>
-                        </li>
-                        <li id="gameRules">
-                            <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 比赛规则</a>
-                        </li>
-                        <li id="addGameRule">
-                            <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 添加比赛规则</a>
-                        </li>
-                        <li id="addTeam">
-                            <a href="javascript:void(0);"><i class="fa fa-calendar"></i> 添加球队</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-envelope"></i> 收件箱 <span class="badge badge-danager" id="user-inbox">5</span></a>
-                        </li>
                         <li id="logout">
                             <a href="javascript:void(0);"><i class="fa fa-power-off"></i> 注销</a>
                         </li>
@@ -87,7 +72,7 @@
             <!--tiles start-->
             <div class="row">
                 <div class="col-md-3 col-sm-6">
-                    <div class="dashboard-tile detail tile-red" id="newUser">
+                    <div class="dashboard-tile detail tile-red" id="myInfo">
                         <div class="content">
                             <h1 class="text-left timer" data-from="0" data-to="100" data-speed="2500"></h1>
                             <p>我的信息</p>
@@ -190,28 +175,28 @@
     <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
     <!-- index  -->
     <script src="/assets/js/globalUtils.js"></script>
-    <script src="/assets/js/index.js"></script>
+    <script src="/assets/js/common-index.js"></script>
     <!--Load these page level functions-->
     <script>
     $(document).ready(function() {
         app.timer();
-        $("#newGame").on("click", function() {
-            indexModule.loadPage("main-content", "addGame", app.bread);
+        $("#myInfo").on("click", function() {
+            globalModule.loadPage("main-content", "myInfo", app.bread);
         });
         $("#gameList").on("click", function() {
-            indexModule.loadPage("main-content", "gameList1", app.bread);
+            globalModule.loadPage("main-content", "gameList", app.bread);
         });
         $("#teamList").on("click", function() {
-            indexModule.loadPage("main-content", "teamList", app.bread);
+            globalModule.loadPage("main-content", "teamList", app.bread);
         });
         $("#gameRules").on("click", function() {
-            indexModule.loadPage("main-content", "gameRules", app.bread);
+            globalModule.loadPage("main-content", "gameRules", app.bread);
         });
         $("#addGameRule").on("click", function() {
-            indexModule.loadPage("main-content", "addGameRule", app.bread);
+            globalModule.loadPage("main-content", "addGameRule", app.bread);
         });
         $("#addTeam").on("click", function() {
-            indexModule.loadPage("main-content", "addTeam", app.bread);
+            globalModule.loadPage("main-content", "addTeam", app.bread);
         });
         $("#logout").on("click", function() {
             window.location.href = window.location.href;

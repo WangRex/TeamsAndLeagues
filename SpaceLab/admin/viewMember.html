@@ -1,0 +1,59 @@
+<div class="row" id="viewMember">
+</div>
+<script id="viewMember-template" type="text/html">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">球员信息查看</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" id="updateMemberForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">姓名</label>
+                        <div class="col-sm-6">
+                            {{memberName}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">号码</label>
+                        <div class="col-sm-6">
+                            {{memberNumber}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所属球队</label>
+                        <div class="col-sm-6">
+                            {{teamName}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">擅长位置</label>
+                        <div class="col-sm-6">
+                            {{memberPosition}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">联系电话</label>
+                        <div class="col-sm-6">
+                            {{memberPhone}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">个人简介</label>
+                        <div class="col-sm-6" id="memberBrief">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.updateMember('{{ID}}');" value="编辑">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>

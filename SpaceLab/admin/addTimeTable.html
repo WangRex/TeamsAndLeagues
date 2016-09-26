@@ -1,0 +1,110 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">创建赛程</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" id="addTimeTableForm">
+                    <div class="form-group">
+                        <label for="ttMainTeam" class="col-sm-3 control-label">主队</label>
+                        <div class="col-sm-6">
+                            <select id="ttMainTeam" class="show-tick form-control" multiple name="ttMainTeam">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ttSubTeam" class="col-sm-3 control-label">客队</label>
+                        <div class="col-sm-6">
+                            <select id="ttSubTeam" class="show-tick form-control" multiple name="ttSubTeam">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dtp_input1" class="col-sm-3 control-label">日期</label>
+                        <div class="input-group date form_date col-sm-3" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input1" value="" name="ttDate" />
+                        <br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="dtp_input3" class="col-sm-3 control-label">时间</label>
+                        <div class="input-group date form_time col-sm-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input3" value="" name="ttTime" />
+                        <br/>
+                    </div>
+                    <div class="form-group" id="gamePlaceDiv">
+                        <label class="col-sm-3 control-label">举办地点</label>
+                        <div class="col-sm-6">
+                            <select id="ttGamePlace" class="show-tick form-control" multiple name="ttGamePlace">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">场地</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="场地" name="ttGameSite">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8">
+                        	<span id="addTimeTableResult"></span>
+                            <input id="ttGameId" type="hidden" name="ttGameId">
+                            <input id="ttRound" type="hidden" name="ttRound">
+                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addTimeTable();" value="添加">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$('.form_date').datetimepicker({
+    weekStart: 1,
+    todayBtn: 1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    language: 'zh-CN', //汉化 
+    forceParse: 0
+});
+$('.form_time').datetimepicker({
+    language: 'fr',
+    weekStart: 1,
+    todayBtn: 1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 1,
+    minView: 0,
+    maxView: 1,
+    language: 'zh-CN', //汉化 
+    forceParse: 0
+});
+</script>
+<script id="ttGamePlace-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value}}">{{value}}</option>
+    {{/each}}
+</script>
+<script id="timeTableTeamList-template" type="text/html">
+    {{each DataTable as value i}}
+    <option value="{{value.teamId}}, {{value.teamName}}">{{value.teamName}} - {{value.enrollGroupName}}</option>
+    {{/each}}
+</script>
+<script>
+$(document).ready(function() {
+
+});
+</script>
