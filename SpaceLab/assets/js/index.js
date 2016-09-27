@@ -74,13 +74,11 @@ var indexModule = (function(im) {
             }
         }, 'post');
     }
-    im.enrollGameEnd = function(gameId, round) {
-        round = round || 1;
-        globalModule.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId, round: round });
+    im.enrollGameEnd = function(gameId) {
+        globalModule.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId});
     }
     im.enrollGameEndInit = function(params) {
         $("#ttGameId").attr("value", params.gameId);
-        $("#ttRound").attr("value", params.round);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, im.fillinEnrollGamePlace);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/getAgreedEnrollGameList", params, im.fillinEnrollGameTeamList);
     }

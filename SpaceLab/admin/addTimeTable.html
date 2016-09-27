@@ -12,6 +12,12 @@
             <div class="panel-body">
                 <form class="form-horizontal form-border" id="addTimeTableForm">
                     <div class="form-group">
+                        <label for="ttMainTeam" class="col-sm-3 control-label">轮数</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="轮数" name="ttRound">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="ttMainTeam" class="col-sm-3 control-label">主队</label>
                         <div class="col-sm-6">
                             <select id="ttMainTeam" class="show-tick form-control" multiple name="ttMainTeam">
@@ -51,16 +57,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">场地</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="场地" name="ttGameSite">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-sm-offset-8">
                         	<span id="addTimeTableResult"></span>
                             <input id="ttGameId" type="hidden" name="ttGameId">
-                            <input id="ttRound" type="hidden" name="ttRound">
                             <input type="button" class="btn btn-success btn-3d" onclick="indexModule.addTimeTable();" value="添加">
                         </div>
                     </div>
