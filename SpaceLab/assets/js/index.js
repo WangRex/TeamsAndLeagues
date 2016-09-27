@@ -685,20 +685,16 @@ var indexModule = (function(im) {
         }
 
     }
-    im.cloneDiv = function(obj, cloneDivTmpl, initialDiv, datetimepickerId) {
+    im.cloneDiv = function(obj, cloneDivTmpl, initialDiv) {
         var div = $(obj).closest("div[class='form-group']");
         var cloneDiv = cloneDivTmpl.clone();
         var index = initialDiv.attr("data-index");
         index++;
-        cloneDiv.attr("id", "");
         cloneDiv.removeClass("hide");
-        cloneDiv.find("input[type='hidden']").attr("name", initialDiv.find("input[type='hidden']").attr("name")).attr("id", datetimepickerId + index);
-        cloneDiv.find("select").attr("name", initialDiv.find("select").attr("name"));
-        cloneDiv.find("select").attr("class", initialDiv.find("select").attr("class"));
+        cloneDiv.attr("id", "");
+        cloneDiv.find("input[type='text']").attr("name", initialDiv.find("input[type='text']").attr("name"));
         div.after(cloneDiv);
         im.initSelector(cloneDiv.find("select"));
-        cloneDiv.find("div[class*='form_date']").attr("data-initial", "true").attr("data-link-field", datetimepickerId + index);
-        im.initDateTimePicker();
         initialDiv.attr("data-index", index);
     }
     im.deleteCloneDiv = function(obj) {
