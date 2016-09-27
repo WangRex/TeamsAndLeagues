@@ -84,7 +84,7 @@
 <script id="teamMemberList-template" type="text/html">
     {{each DataTable as value i}}
     <div class="row boardData">
-        <div class="col-xs-2"><img src="/assets/img/memberPic/{{value.teamName}}/{{value.memberName}}.jpg"></div>
+        <div class="col-xs-2"><img src="/assets/img/memberPic/{{value.teamName}}/{{value.memberNumber}}{{value.memberName}}.jpg"></div>
         <div class="col-xs-1">{{value.memberName}}</div>
         <div class="col-xs-2">{{value.memberNumber}}</div>
         <div class="col-xs-3">{{value.memberPosition}}</div>
