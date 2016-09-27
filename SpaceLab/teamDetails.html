@@ -13,11 +13,10 @@
             <div class="panel-body" id="teamMembersBody">
                 <div class="row boardData" id="teamMembersHead">
                     <div class="col-xs-2">球员头像</div>
-                    <div class="col-xs-1">球员名称</div>
+                    <div class="col-xs-2">球员名称</div>
                     <div class="col-xs-2">球员球号</div>
                     <div class="col-xs-3">擅长位置</div>
-                    <div class="col-xs-2">联系电话</div>
-                    <div class="col-xs-2">操作</div>
+                    <div class="col-xs-3">操作</div>
                 </div>
             </div>
         </div>
@@ -85,11 +84,10 @@
     {{each DataTable as value i}}
     <div class="row boardData">
         <div class="col-xs-2"><img src="/assets/img/memberPic/{{value.teamName}}/{{value.memberNumber}}{{value.memberName}}.jpg"></div>
-        <div class="col-xs-1">{{value.memberName}}</div>
+        <div class="col-xs-2">{{value.memberName}}</div>
         <div class="col-xs-2">{{value.memberNumber}}</div>
         <div class="col-xs-3">{{value.memberPosition}}</div>
-        <div class="col-xs-2">{{value.memberPhone}}</div>
-        <div class="col-xs-2">
+        <div class="col-xs-3">
             <input type="button" class="btn btn-success btn-3d btn-sm" onclick="commonIndexModule.viewMemberPage('{{value.ID}}');" value="查看">
         </div>
     </div>
