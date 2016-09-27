@@ -823,6 +823,26 @@ var indexModule = (function(im) {
         });
     }
 
+    im.loadScoreList = function(params) {
+        var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+    }
+
+    im.loadShooterList = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchShooter/getAllMatchShooter", params, function(result) {
+            var html = template('shooterDetails-template', result);
+            $("#boradData").after(html);
+        });
+    }
+
+    im.loadStopList = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchStop/getAllMatchStop", params, function(result) {
+            var html = template('stopDetails-template', result);
+            $("#boradData").after(html);
+        });
+    }
+
+
     im.loadEditGamePage = function(gameId) {
         var params = { "gameId": gameId };
         globalModule.loadPage("main-content", "editGame", im.loadEditGame, params);

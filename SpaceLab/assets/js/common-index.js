@@ -39,6 +39,25 @@ var commonIndexModule = (function(cim) {
             globalModule.loadPage("match-content", "stopList", cim.loadStopList, params);
         });
     }
+
+    cim.loadScoreList = function(params) {
+        var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+    }
+
+    cim.loadShooterList = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchShooter/getAllMatchShooter", params, function(result) {
+            var html = template('shooterDetails-template', result);
+            $("#boradData").after(html);
+        });
+    }
+
+    cim.loadStopList = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchStop/getAllMatchStop", params, function(result) {
+            var html = template('stopDetails-template', result);
+            $("#boradData").after(html);
+        });
+    }
     cim.fillinTimeTablePage = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/findAllTimeTablesCommon", params, cim.fillinTimeTable, null, null, null, params);
     }
@@ -209,6 +228,13 @@ var commonIndexModule = (function(cim) {
             qrcode.makeCode("http://www.leyisports.com/gameResultPageShare.html?ttId=" + ttId);
         });
 
+    }
+    cim.viewGameComment = function(ttId) {
+        globalModule.loadPage("main-content", "gameComment", function(params) {
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, function(result) {
+                $("#gameCommentContent").html(result.DataTable.remark || "暂无评论");
+            });
+        }, { ttId: ttId });
     }
     return cim;
 }(commonIndexModule || {}));

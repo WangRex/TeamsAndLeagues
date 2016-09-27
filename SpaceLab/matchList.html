@@ -23,16 +23,16 @@
         <div class="dd-handle">
             <div class="row">
                 <div class="col-xs-4 tal">
-                    <a href="javascript:void(0);" onclick="indexModule.viewTeam('{{value.ttMainTeamID}}')">{{value.ttMainTeam}}</a>
+                    <a href="javascript:void(0);" onclick="commonIndexModule.viewTeam('{{value.ttMainTeamID}}')">{{value.ttMainTeam}}</a>
                 </div>
                 <div class="col-xs-4 tac">
                     <p>{{value.ttDate}} {{value.ttTime}} {{value.ttGameRule}}</p>
                     <p><span>{{value.ttMainWinNum}}:{{value.ttSubWinNum}}</span></p>
                     <p>
-                        {{if value.ttStatus == "比赛战况"}}<span><a href="javascript:void(0);" onclick="commonIndexModule.viewGameResultPage('{{value.ttId}}','{{value.ttMainTeamID}}','{{value.ttSubTeamID}}')">比赛战况</a></span><span><a href="javascript:void(0);" onclick="indexModule.viewGameComment('{{value.ttId}}')">赛事简报</a></span>{{/if}} {{if value.ttStatus == "战况录入"}}未完成{{/if}}</p>
+                        {{if value.ttStatus == "比赛战况"}}<span><a href="javascript:void(0);" onclick="commonIndexModule.viewGameResultPage('{{value.ttId}}','{{value.ttMainTeamID}}','{{value.ttSubTeamID}}')">比赛战况</a></span><span><a href="javascript:void(0);" onclick="commonIndexModule.viewGameComment('{{value.ttId}}')">赛事简报</a></span>{{/if}} {{if value.ttStatus == "战况录入"}}未完成{{/if}}</p>
                 </div>
                 <div class="col-xs-4 tar">
-                    <a href="javascript:void(0);" onclick="indexModule.viewTeam('{{value.ttSubTeamID}}')">{{value.ttSubTeam}}</a>
+                    <a href="javascript:void(0);" onclick="commonIndexModule.viewTeam('{{value.ttSubTeamID}}')">{{value.ttSubTeam}}</a>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@ $(document).ready(function() {
         index++;
         $("#roundUl").attr("data-li", index);
         var gameId = $("#roundsDiv").attr("data-gameid");
-        indexModule.enrollGameEnd(gameId, index);
+        commonIndexModule.enrollGameEnd(gameId, index);
     });
 });
 </script>
