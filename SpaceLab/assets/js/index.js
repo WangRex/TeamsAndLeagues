@@ -460,7 +460,9 @@ var indexModule = (function(im) {
     im.viewGameComment = function(ttId) {
         globalModule.loadPage("main-content", "gameComment", function(params) {
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, function(result) {
-                $("#gameCommentContent").html(result.DataTable.remark || "暂无评论");
+                $("#remark").html(result.DataTable.remark || "暂无评论");
+                $("#timeTableId").attr("value", result.DataTable.ttID);
+                CKEDITOR.replace('remark');
             });
         }, { ttId: ttId });
     }
@@ -629,6 +631,17 @@ var indexModule = (function(im) {
         var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
         globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
 
+    }
+    im.editGameComment = function() {
+        globalModule.CKupdate();
+        var data = $("#editGameCommentForm").serializeJson();
+        globalModule.globalAjax(globalModule.globalHomeUrl + 'api/TimeTable/editGameComment', data, function(result) {
+            if (result.Code == 1) {
+                $("#editGameCommentResult").html("赛事简报编辑成功!");
+            } else {
+                $("#editGameCommentResult").html("赛事简报编辑出现错误!");
+            }
+        }, "post");
     }
     im.initTeamMembersSelector = function(className) {
         $("." + className).each(function() {
