@@ -13,11 +13,7 @@
         <div class="col-xs-2">{{value.contactName}}</div>
         <div class="col-xs-2">{{value.poloShirtColor}}</div>
         <div class="col-xs-2" data-teamId="{{value.ID}}">
-            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.viewTeam('{{value.ID}}');" value="查看">
-            {{if role == "1"}}
-            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.editTeamPage('{{value.ID}}');" value="编辑">
-            {{/if}}
-            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.addTeamMemberInit('{{value.ID}}', '{{value.teamName}}');" value="添加队员">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="commonIndexModule.viewTeam('{{value.ID}}');" value="查看">
         </div>
     </div>
     {{/each}}
@@ -25,7 +21,7 @@
 <script>
 $(document).ready(function() {
 
-    indexModule.getTeamList(fillinTeamList);
+    commonIndexModule.getTeamList(fillinTeamList);
 
     function fillinTeamList(result) {
         if (result.Code == 1) {

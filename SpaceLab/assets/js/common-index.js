@@ -236,5 +236,44 @@ var commonIndexModule = (function(cim) {
             });
         }, { ttId: ttId });
     }
+    cim.getTeamList = function(callback) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamListCommon", null, callback);
+    }
+    cim.fillinTeamList = function(result) {
+        if (result.Code == 1) {
+            var html = template('teamList-template', result);
+            $("#boradData").after(html);
+        }
+    }
+    cim.viewTeam = function(teamId) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfoCommon", { teamId: teamId }, cim.showTeamDetailsPage);
+    }
+    cim.showTeamDetailsPage = function(result) {
+        globalModule.loadPage("main-content", "teamDetails", cim.showTeamDetails, result);
+    }
+    cim.showTeamDetails = function(result) {
+        var html = template('teamDetails-template', result.DataTable);
+        $("#teamDetails").html(html);
+        $("#teamBrief").html(result.DataTable.teamBrief);
+        var fillinParams = { tmplId: 'attendGameList-template', target: $("#attendGameList"), way: "html" };
+        globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/FindAllEnrollTeamsCommon', { teamId: result.DataTable.ID }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+        var teamId = $("#teamInfo").attr("data-teamid");
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersCommon", { teamId: teamId }, cim.showTeamMembersDetails);
+    }
+    cim.showTeamMembersDetails = function(result) {
+        var html = template('teamMemberList-template', result);
+        $("#teamMembersHead").after(html);
+    }
+    cim.viewMemberPage = function(memberId) {
+        globalModule.loadPage("main-content", "viewMember", cim.viewMember, { memberId: memberId });
+    }
+    cim.viewMember = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMember", params, cim.fillViewMember);
+    }
+    cim.fillViewMember = function(result) {
+        var html = template('viewMember-template', result.DataTable);
+        $("#viewMember").html(html);
+        $("#memberBrief").html(result.DataTable.memberBrief);
+    }
     return cim;
 }(commonIndexModule || {}));
