@@ -75,7 +75,7 @@ var indexModule = (function(im) {
         }, 'post');
     }
     im.enrollGameEnd = function(gameId) {
-        globalModule.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId});
+        globalModule.loadPage("main-content", "addTimeTable", im.enrollGameEndInit, { gameId: gameId });
     }
     im.enrollGameEndInit = function(params) {
         $("#ttGameId").attr("value", params.gameId);
@@ -190,8 +190,11 @@ var indexModule = (function(im) {
             data.memberPosition = memberPositions;
         }
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/addMember", data, function(result) {
-            $("#addGameContent").html(result.message);
-            im.viewTeam(data.teamId);
+            if (result.DataTable.Code == 1) {
+                $("#addMemberResult").html("添加球员成功，可继续添加!");
+            } else {
+                $("#addMemberResult").html("添加球员失败，请重新添加!");
+            }
         }, 'post');
     }
     im.viewMemberPage = function(memberId) {
