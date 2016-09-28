@@ -43,10 +43,16 @@ var commonIndexModule = (function(cim) {
 
     cim.loadScoreList = function(params) {
         if (params.gameRule.indexOf("联赛") != -1) {
+            delete params.gameRule;
             params.groupName = "B";
-            var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
+            var groupA = "<div class='row boardData groupA'>A组</div>";
+            var groupB = "<div class='row boardData groupB'>B组</div>";
+            $("#boradData").after(groupB);
+            $("#boradData").after(groupA);
+            var fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupB"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
             params.groupName = "A";
+            fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupA"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         } else {
             var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
