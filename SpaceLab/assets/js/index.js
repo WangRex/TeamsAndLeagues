@@ -190,7 +190,7 @@ var indexModule = (function(im) {
             data.memberPosition = memberPositions;
         }
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/addMember", data, function(result) {
-            if (result.DataTable.Code == 1) {
+            if (result.Code == 1) {
                 $("#addMemberResult").html("添加球员成功，可继续添加!");
             } else {
                 $("#addMemberResult").html("添加球员失败，请重新添加!");
