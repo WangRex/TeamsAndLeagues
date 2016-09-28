@@ -817,7 +817,8 @@ var indexModule = (function(im) {
     }
     im.bindGameDetails = function() {
         var gameId = $("#gameInfo").attr("data-gameid");
-        var params = { gameId: gameId };
+        var gameRule = $("#gameInfo").attr("data-gamerule");
+        var params = { gameId: gameId, gameRule: gameRule };
         var empty = {}
         var object = $.extend(empty, params, { round: 1 });
         $("#matchList").on("click", function() {
@@ -835,8 +836,17 @@ var indexModule = (function(im) {
     }
 
     im.loadScoreList = function(params) {
-        var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+        if (params.gameRule.indexOf("联赛") != -1) {
+            params.groupName = "B";
+            var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+            params.groupName = "A";
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+        } else {
+            var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+
+        }
     }
 
     im.loadShooterList = function(params) {
