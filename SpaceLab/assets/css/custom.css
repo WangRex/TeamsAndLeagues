@@ -130,10 +130,23 @@
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
 }
+
 #attendGameList {
-    list-style:none;
+    list-style: none;
     float: left;
 }
+
 .col-xs-4 p span {
     margin-left: 10px;
+}
+
+#gameBrief {
+    text-align: center;
+    padding: 24px;
+    margin: 0;
+    font-family: helvetica, arial, sans-serif;
+    color: #1F0CB1;
+    font-size: 35px;
+    font-weight: bold;
+    text-shadow: 0 0 0.2em #D7EAC2, -0 -0 0.2em #D7EAC2;
 }
