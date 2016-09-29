@@ -497,52 +497,17 @@ var indexModule = (function(im) {
         gameResultData.subSubstitutes = globalModule.arrayToString(data.subSubstitutes);
         gameResultData.mainTeamGoal = data.mainTeamGoal;
         gameResultData.subTeamGoal = data.subTeamGoal;
+        gameResultData.mvp = data.mvp;
         gameResultData.remark = data.remark;
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
 
-        if (data.mainGoalMembers) {
-            if (globalModule.isArray(data.mainGoalMembers)) {
-                for (var i = 0; i < data.mainGoalMembers.length; i++) {
-                    var memberScoreDetailsData = {};
-                    memberScoreDetailsData.timeTableId = data.timeTableId;
-                    memberScoreDetailsData.gameId = data.gameId;
-                    memberScoreDetailsData.round = data.round;
-                    memberScoreDetailsData.memberId = data.mainGoalMembers[i];
-                    memberScoreDetailsData.memberScoreDateTime = data.mainMemberScoreDateTime[i] || "";
-                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
-                }
-            } else {
-                var memberScoreDetailsData = {};
-                memberScoreDetailsData.timeTableId = data.timeTableId;
-                memberScoreDetailsData.gameId = data.gameId;
-                memberScoreDetailsData.round = data.round;
-                memberScoreDetailsData.memberId = data.mainGoalMembers;
-                memberScoreDetailsData.memberScoreDateTime = data.mainMemberScoreDateTime || "";
-                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
-            }
-
-        }
-        if (data.subGoalMembers) {
-            if (globalModule.isArray(data.subGoalMembers)) {
-                for (var i = 0; i < data.subGoalMembers.length; i++) {
-                    var memberScoreDetailsData = {};
-                    memberScoreDetailsData.timeTableId = data.timeTableId;
-                    memberScoreDetailsData.gameId = data.gameId;
-                    memberScoreDetailsData.round = data.round;
-                    memberScoreDetailsData.memberId = data.subGoalMembers[i];
-                    memberScoreDetailsData.memberScoreDateTime = data.subMemberScoreDateTime[i] || "";
-                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
-                }
-            } else {
-                var memberScoreDetailsData = {};
-                memberScoreDetailsData.timeTableId = data.timeTableId;
-                memberScoreDetailsData.gameId = data.gameId;
-                memberScoreDetailsData.round = data.round;
-                memberScoreDetailsData.memberId = data.subGoalMembers;
-                memberScoreDetailsData.memberScoreDateTime = data.subMemberScoreDateTime || "";
-                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetails", memberScoreDetailsData, null, "post");
-            }
-        }
+        var memberScoreData = {};
+        memberScoreData.timeTableId = data.timeTableId;
+        memberScoreData.gameId = data.gameId;
+        memberScoreData.round = data.round;
+        memberScoreData.memberIds = globalModule.arrayToString(data.mainGoalMembers) + ',' + globalModule.arrayToString(data.subGoalMembers);
+        memberScoreData.goalMinute = globalModule.arrayToString(data.mainMemberScoreDateTime) + ',' + globalModule.arrayToString(data.subMemberScoreDateTime);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
 
         if (data.mainRedMembers) {
             if (globalModule.isArray(data.mainRedMembers)) {
@@ -695,7 +660,8 @@ var indexModule = (function(im) {
         index++;
         cloneDiv.removeClass("hide");
         cloneDiv.attr("id", "");
-        cloneDiv.find("input[type='text']").attr("name", initialDiv.find("input[type='text']").attr("name"));
+        cloneDiv.find("input[type='text']").attr("name", initialDiv.find("input[class*='minuteInput']").attr("name"));
+        cloneDiv.find("select").attr("name", initialDiv.find("select").attr("name"));
         div.after(cloneDiv);
         im.initSelector(cloneDiv.find("select"));
         initialDiv.attr("data-index", index);
@@ -843,9 +809,10 @@ var indexModule = (function(im) {
             var groupB = "<div class='row boardData groupB'>B组</div>";
             $("#boradData").after(groupB);
             $("#boradData").after(groupA);
-            var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
+            var fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupB"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
             params.groupName = "A";
+            fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupA"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         } else {
             var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
