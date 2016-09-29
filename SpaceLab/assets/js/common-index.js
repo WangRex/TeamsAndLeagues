@@ -24,7 +24,7 @@ var commonIndexModule = (function(cim) {
     cim.bindGameDetails = function() {
         var gameId = $("#gameInfo").attr("data-gameid");
         var gameRule = $("#gameInfo").attr("data-gamerule");
-        var params = { gameId: gameId};
+        var params = { gameId: gameId };
         var empty = {}
         var object = $.extend(empty, params, { round: 1 });
         $("#matchList").on("click", function() {
@@ -106,7 +106,8 @@ var commonIndexModule = (function(cim) {
     }
     cim.viewGameResultPage = function(ttId, mainTeamId, subTeamId) {
         var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
-        globalModule.loadPage("main-content", "gameResultPage", cim.viewGameResultPageInit, params);
+        // globalModule.loadPage("main-content", "gameResultPage", cim.viewGameResultPageInit, params);
+        window.open("http://www.leyisports.com/gameResultPageShare.html?ttId=" + ttId);
     }
     cim.viewGameResultPageInit = function(params) {
         $("#gameResultPage-copy-right").hide();
