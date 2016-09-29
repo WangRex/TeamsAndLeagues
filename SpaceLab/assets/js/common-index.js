@@ -24,7 +24,7 @@ var commonIndexModule = (function(cim) {
     cim.bindGameDetails = function() {
         var gameId = $("#gameInfo").attr("data-gameid");
         var gameRule = $("#gameInfo").attr("data-gamerule");
-        var params = { gameId: gameId, gameRule: gameRule };
+        var params = { gameId: gameId};
         var empty = {}
         var object = $.extend(empty, params, { round: 1 });
         $("#matchList").on("click", function() {
@@ -42,8 +42,8 @@ var commonIndexModule = (function(cim) {
     }
 
     cim.loadScoreList = function(params) {
-        if (params.gameRule.indexOf("联赛") != -1) {
-            delete params.gameRule;
+        var gameRule = $("#gameInfo").attr("data-gamerule");
+        if (gameRule.indexOf("联赛") != -1) {
             params.groupName = "B";
             var groupA = "<div class='row boardData groupA'>A组</div>";
             var groupB = "<div class='row boardData groupB'>B组</div>";
