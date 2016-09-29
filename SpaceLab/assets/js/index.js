@@ -509,49 +509,22 @@ var indexModule = (function(im) {
         memberScoreData.goalMinute = globalModule.arrayToString(data.mainMemberScoreDateTime) + ',' + globalModule.arrayToString(data.subMemberScoreDateTime);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
 
-        if (data.mainRedMembers) {
-            if (globalModule.isArray(data.mainRedMembers)) {
-                for (var i = 0; i < data.mainRedMembers.length; i++) {
-                    var memberRedDetailsData = {};
-                    memberRedDetailsData.timeTableId = data.timeTableId;
-                    memberRedDetailsData.gameId = data.gameId;
-                    memberRedDetailsData.round = data.round;
-                    memberRedDetailsData.memberId = data.mainRedMembers[i];
-                    memberRedDetailsData.memberRedDateTime = data.mainMemberRedDateTime[i] || "";
-                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
-                }
-            } else {
-                var memberRedDetailsData = {};
-                memberRedDetailsData.timeTableId = data.timeTableId;
-                memberRedDetailsData.gameId = data.gameId;
-                memberRedDetailsData.round = data.round;
-                memberRedDetailsData.memberId = data.mainRedMembers;
-                memberRedDetailsData.memberRedDateTime = data.mainMemberRedDateTime || "";
-                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
-            }
+        var memberRedData = {};
+        memberRedData.timeTableId = data.timeTableId;
+        memberRedData.gameId = data.gameId;
+        memberRedData.round = data.round;
+        memberRedData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
+        memberRedData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
 
-        }
-        if (data.subRedMembers) {
-            if (globalModule.isArray(data.subRedMembers)) {
-                for (var i = 0; i < data.subRedMembers.length; i++) {
-                    var memberRedDetailsData = {};
-                    memberRedDetailsData.timeTableId = data.timeTableId;
-                    memberRedDetailsData.gameId = data.gameId;
-                    memberRedDetailsData.round = data.round;
-                    memberRedDetailsData.memberId = data.subRedMembers[i];
-                    memberRedDetailsData.memberRedDateTime = data.subMemberRedDateTime[i] || "";
-                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
-                }
-            } else {
-                var memberRedDetailsData = {};
-                memberRedDetailsData.timeTableId = data.timeTableId;
-                memberRedDetailsData.gameId = data.gameId;
-                memberRedDetailsData.round = data.round;
-                memberRedDetailsData.memberId = data.subRedMembers;
-                memberRedDetailsData.memberRedDateTime = data.subMemberRedDateTime || "";
-                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetails", memberRedDetailsData, null, "post");
-            }
-        }
+        var memberYellowData = {};
+        memberYellowData.timeTableId = data.timeTableId;
+        memberYellowData.gameId = data.gameId;
+        memberYellowData.round = data.round;
+        memberYellowData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
+        memberYellowData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberYellowData);
+
         if (data.mainYellowMembers) {
             if (globalModule.isArray(data.mainYellowMembers)) {
                 for (var i = 0; i < data.mainYellowMembers.length; i++) {
