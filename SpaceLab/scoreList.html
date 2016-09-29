@@ -1,23 +1,27 @@
 <div class="row boardData boardTitle" id="boradData">
     <div class="col-xs-1">排名</div>
-    <div class="col-xs-5">球队</div>
-    <div class="col-xs-1">赛</div>
+    <div class="col-xs-3">球队</div>
+    <div class="col-xs-1">比赛</div>
     <div class="col-xs-1">胜</div>
     <div class="col-xs-1">平</div>
     <div class="col-xs-1">负</div>
-    <div class="col-xs-1">得/失</div>
+    <div class="col-xs-1">进球数</div>
+    <div class="col-xs-1">失球数</div>
+    <div class="col-xs-1">净胜球</div>
     <div class="col-xs-1">积分</div>
 </div>
 <script id="scoreDetails-template" type="text/html">
     {{each DataTable as value i}}
     <div class="row boardData">
         <div class="col-xs-1">{{i + 1}}</div>
-        <div class="col-xs-5">{{value.teamName}}</div>
+        <div class="col-xs-3">{{value.teamName}}</div>
         <div class="col-xs-1">{{value.matchNums}}</div>
         <div class="col-xs-1">{{value.winNums}}</div>
         <div class="col-xs-1">{{value.drawNums}}</div>
         <div class="col-xs-1">{{value.loseNums}}</div>
-        <div class="col-xs-1">{{value.winscore}}/{{value.loseScore}}</div>
+        <div class="col-xs-1">{{value.winscore}}</div>
+        <div class="col-xs-1">{{value.loseScore}}</div>
+        <div class="col-xs-1">{{value.netScore}}</div>
         <div class="col-xs-1">{{value.score}}</div>
     </div>
     {{/each}}
