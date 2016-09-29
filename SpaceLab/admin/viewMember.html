@@ -11,71 +11,74 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal form-border" id="updateMemberForm">
-                    <div class="form-group">
-                        <div class="col-sm-9">
-                            <img src="/assets/img/memberPic/{{teamName}}/{{memberNumber}}{{memberName}}.jpg">
+                <div class="col-sm-3"><img src="/assets/img/memberPic/{{teamName}}/{{memberNumber}}{{memberName}}.jpg"></div>
+                <div class="col-sm-9">
+                    <form class="form-horizontal form-border" id="updateMemberForm">
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <img src="/assets/img/memberPic/{{teamName}}/{{memberNumber}}{{memberName}}.jpg">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">姓名</label>
-                        <div class="col-sm-6">
-                            {{memberName}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">姓名</label>
+                            <div class="col-sm-6">
+                                {{memberName}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">号码</label>
-                        <div class="col-sm-6">
-                            {{memberNumber}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">号码</label>
+                            <div class="col-sm-6">
+                                {{memberNumber}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">所属球队</label>
-                        <div class="col-sm-6">
-                            {{teamName}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">所属球队</label>
+                            <div class="col-sm-6">
+                                {{teamName}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">位置</label>
-                        <div class="col-sm-6">
-                            {{memberPosition}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">位置</label>
+                            <div class="col-sm-6">
+                                {{memberPosition}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">身高</label>
-                        <div class="col-sm-6">
-                            {{memberHeight}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身高</label>
+                            <div class="col-sm-6">
+                                {{memberHeight}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">年龄</label>
-                        <div class="col-sm-6">
-                            {{memberAge}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">年龄</label>
+                            <div class="col-sm-6">
+                                {{memberAge}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">体重</label>
-                        <div class="col-sm-6">
-                            {{memberWeight}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">体重</label>
+                            <div class="col-sm-6">
+                                {{memberWeight}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">联系电话</label>
-                        <div class="col-sm-6">
-                            {{memberPhone}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">联系电话</label>
+                            <div class="col-sm-6">
+                                {{memberPhone}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">个人简介</label>
-                        <div class="col-sm-6" id="memberBrief">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">个人简介</label>
+                            <div class="col-sm-6" id="memberBrief">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-8">
-                            <input type="button" class="btn btn-success btn-3d" onclick="indexModule.updateMember('{{ID}}');" value="编辑">
+                        <div class="form-group">
+                            <div class="col-sm-offset-8">
+                                <input type="button" class="btn btn-success btn-3d" onclick="indexModule.updateMember('{{ID}}');" value="编辑">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
