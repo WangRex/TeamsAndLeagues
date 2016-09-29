@@ -326,7 +326,7 @@ var indexModule = (function(im) {
     }
     im.fillinGameResultPage = function(result, params) {
         globalModule.fillinInfoFromTmpl(result, params);
-        document.title = result.DataTable.ttMainteam + " VS " + result.DataTable.ttSubTeam;
+        document.title = result.DataTable.ttMainteamName + " VS " + result.DataTable.ttSubTeamName;
         var mainStarting = result.DataTable.mainStarting;
         if (mainStarting) {
             var mainStartingArray = new Array();
