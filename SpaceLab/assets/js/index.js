@@ -736,8 +736,8 @@ var indexModule = (function(im) {
         var gameRule = $("#gameInfo").attr("data-gamerule");
         if (gameRule.indexOf("联赛") != -1) {
             params.groupName = "B";
-            var groupA = "<div class='row boardData groupA'>A组</div>";
-            var groupB = "<div class='row boardData groupB'>B组</div>";
+            var groupA = '<div class="row boardData boardTitle" id="boradData"><div class="col-xs-1">A组</div><div class="col-xs-3">球队</div><div class="col-xs-1">比赛</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-1">积分</div></div>';
+            var groupB = '<div class="row boardData boardTitle" id="boradData"><div class="col-xs-1">B组</div><div class="col-xs-3">球队</div><div class="col-xs-1">比赛</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-1">积分</div></div>';
             $("#boradData").after(groupB);
             $("#boradData").after(groupA);
             var fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupB"), way: "after" };
@@ -746,6 +746,8 @@ var indexModule = (function(im) {
             fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupA"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         } else {
+            var group = '<div class="row boardData boardTitle" id="boradData"><div class="col-xs-1">排名</div><div class="col-xs-3">球队</div><div class="col-xs-1">比赛</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-1">积分</div></div>';
+            $("#boradData").after(group);
             var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradData"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
 
