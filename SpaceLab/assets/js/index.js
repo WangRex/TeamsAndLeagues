@@ -479,8 +479,10 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsMain);
         var fillinParamsSub = { tmplId: 'teamMembers-template', target: $(".subTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'subTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsSub);
-        $("textarea[name='remark']").attr("id", "gameRemark");
-        CKEDITOR.replace('gameRemark');
+        if ($("textarea[name='remark']")) {
+            $("textarea[name='remark']").attr("id", "gameRemark");
+            CKEDITOR.replace('gameRemark');
+        }
         var fillinParams = { tmplId: 'teamMembers-template', target: $(".allTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'allTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersForMVP", { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
@@ -523,51 +525,7 @@ var indexModule = (function(im) {
         memberYellowData.round = data.round;
         memberYellowData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
         memberYellowData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberYellowData);
-
-        if (data.mainYellowMembers) {
-            if (globalModule.isArray(data.mainYellowMembers)) {
-                for (var i = 0; i < data.mainYellowMembers.length; i++) {
-                    var memberYellowDetailsData = {};
-                    memberYellowDetailsData.timeTableId = data.timeTableId;
-                    memberYellowDetailsData.gameId = data.gameId;
-                    memberYellowDetailsData.round = data.round;
-                    memberYellowDetailsData.memberId = data.mainYellowMembers[i];
-                    memberYellowDetailsData.memberYellowDateTime = data.mainMemberYellowDateTime[i] || "";
-                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
-                }
-            } else {
-                var memberYellowDetailsData = {};
-                memberYellowDetailsData.timeTableId = data.timeTableId;
-                memberYellowDetailsData.gameId = data.gameId;
-                memberYellowDetailsData.round = data.round;
-                memberYellowDetailsData.memberId = data.mainYellowMembers;
-                memberYellowDetailsData.memberYellowDateTime = data.mainMemberYellowDateTime || "";
-                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
-            }
-
-        }
-        if (data.subYellowMembers) {
-            if (globalModule.isArray(data.subYellowMembers)) {
-                for (var i = 0; i < data.subYellowMembers.length; i++) {
-                    var memberYellowDetailsData = {};
-                    memberYellowDetailsData.timeTableId = data.timeTableId;
-                    memberYellowDetailsData.gameId = data.gameId;
-                    memberYellowDetailsData.round = data.round;
-                    memberYellowDetailsData.memberId = data.subYellowMembers[i];
-                    memberYellowDetailsData.memberYellowDateTime = data.subMemberYellowDateTime[i] || "";
-                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
-                }
-            } else {
-                var memberYellowDetailsData = {};
-                memberYellowDetailsData.timeTableId = data.timeTableId;
-                memberYellowDetailsData.gameId = data.gameId;
-                memberYellowDetailsData.round = data.round;
-                memberYellowDetailsData.memberId = data.subYellowMembers;
-                memberYellowDetailsData.memberYellowDateTime = data.subMemberYellowDateTime || "";
-                globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetails", memberYellowDetailsData, null, "post");
-            }
-        }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
 
         var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
         globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
