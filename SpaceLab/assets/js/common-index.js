@@ -109,7 +109,7 @@ var commonIndexModule = (function(cim) {
     cim.viewGameResultPage = function(ttId, mainTeamId, subTeamId) {
         var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
         // globalModule.loadPage("main-content", "gameResultPage", cim.viewGameResultPageInit, params);
-        window.open("http://www.leyisports.com/gameResultPageShare.html?ttId=" + ttId);
+        window.open(window.location.href + "gameResultPageShare.html?ttId=" + ttId);
     }
     cim.viewGameResultPageInit = function(params) {
         $("#gameResultPage-copy-right").hide();
