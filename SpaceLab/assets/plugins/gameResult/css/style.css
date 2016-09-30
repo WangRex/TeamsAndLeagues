@@ -349,8 +349,8 @@ div#tab4 {
      font-family: 'Droid Sans', sans-serif;
 }
 .troffy {
-    float: right;
-    width: 27%;
+    float: left;
+    width: 21%;
 }
 ul.sport-scor {
     float: left;
@@ -369,7 +369,7 @@ ul.sport-scor li a {
 }
 ul.ronaldo {
     float: right;
-    width: 32%;
+    width: 40%;
     text-align: left;
 }
 ul.ronaldo li a {
