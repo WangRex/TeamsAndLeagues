@@ -150,3 +150,7 @@
     font-weight: bold;
     text-shadow: 0 0 0.2em #D7EAC2, -0 -0 0.2em #D7EAC2;
 }
+#subData {
+    float: right;
+    width: auto;
+}
