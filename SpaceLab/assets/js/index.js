@@ -470,7 +470,6 @@ var indexModule = (function(im) {
         }, { ttId: ttId });
     }
     im.addGameResultInit = function(params) {
-        im.initDateTimePicker("form_datetime");
         var fillinParams = { tmplId: 'addGameResult-template', target: $("#addGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/findTimeTable", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
