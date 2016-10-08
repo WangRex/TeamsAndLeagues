@@ -557,7 +557,6 @@ var indexModule = (function(im) {
                 }
             }
         });
-        im.initDateTimePicker();
     }
     im.initSelector = function(obj, options) {
         var option = { liveSearch: true };
