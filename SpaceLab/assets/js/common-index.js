@@ -108,7 +108,6 @@ var commonIndexModule = (function(cim) {
     }
     cim.viewGameResultPage = function(ttId, mainTeamId, subTeamId) {
         var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
-        // globalModule.loadPage("main-content", "gameResultPage", cim.viewGameResultPageInit, params);
         window.open("http://www.leyisports.com/gameResultPageShare.html?ttId=" + ttId);
     }
     cim.viewGameResultPageInit = function(params) {
@@ -118,7 +117,7 @@ var commonIndexModule = (function(cim) {
     }
     cim.fillinGameResultPage = function(result, params) {
         globalModule.fillinInfoFromTmpl(result, params);
-
+        document.title = result.DataTable.ttMainTeamName + " VS " + result.DataTable.ttSubTeamName;
         var mainStarting = result.DataTable.mainStarting;
         if (mainStarting) {
             var mainStartingArray = new Array();
