@@ -1,17 +1,17 @@
-<div class="row" id="addGameResult">
+<div class="row" id="editGameResult">
 </div>
-<script id="addGameResult-template" type="text/html">
+<script id="editGameResult-template" type="text/html">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">比赛结果录入</h3>
+                <h3 class="panel-title">比赛结果编辑</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
                     <i class="fa fa-times"></i>
                 </div>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal form-border" id="addGameResultForm">
+                <form class="form-horizontal form-border" id="editGameResultForm">
                     <input type="hidden" name="timeTableId" value="{{DataTable.ttID}}">
                     <input type="hidden" name="gameId" value="{{DataTable.ttGameId}}">
                     <input type="hidden" name="round" value="{{DataTable.ttRound}}">
@@ -44,47 +44,47 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">主队首发</label>
                         <div class="col-sm-6">
-                            <select class="show-tick form-control mainTeamMembers" multiple name="mainStarting">
+                            <select class="show-tick form-control mainTeamMembers" data-initial="{{DataTable.mainStartingIds}}" multiple name="mainStarting">
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">主队替补</label>
                         <div class="col-sm-6">
-                            <select class="show-tick form-control mainTeamMembers" multiple name="mainSubstitutes">
+                            <select class="show-tick form-control mainTeamMembers" data-initial="{{DataTable.mainSubstitutesIds}}" multiple name="mainSubstitutes">
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">客队首发</label>
                         <div class="col-sm-6">
-                            <select class="show-tick form-control subTeamMembers" multiple name="subStarting">
+                            <select class="show-tick form-control subTeamMembers" data-initial="{{DataTable.subStartingIds}}" multiple name="subStarting">
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">客队替补</label>
                         <div class="col-sm-6">
-                            <select class="show-tick form-control subTeamMembers" multiple name="subSubstitutes">
+                            <select class="show-tick form-control subTeamMembers" data-initial="{{DataTable.subSubstitutesIds}}" multiple name="subSubstitutes">
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">主队进球数</label>
                         <div class="col-sm-6">
-                            <input id="mainTeamGoal" type="text" class="form-control" placeholder="主队进球数" name="mainTeamGoal">
+                            <input id="mainTeamGoal" type="text" class="form-control" placeholder="主队进球数" name="mainTeamGoal" value="{{DataTable.mainTeamGoal}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">客队进球数</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="客队进球数" name="subTeamGoal">
+                            <input type="text" class="form-control" placeholder="客队进球数" name="subTeamGoal" value="{{DataTable.subTeamGoal}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">MVP</label>
                         <div class="col-sm-6">
-                            <select class="show-tick form-control allTeamMembers" multiple name="mvp">
+                            <select class="show-tick form-control allTeamMembers" data-initial="{{DataTable.mvpId}}" multiple name="mvp">
                             </select>
                         </div>
                     </div>

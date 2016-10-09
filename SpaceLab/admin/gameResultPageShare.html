@@ -27,17 +27,17 @@
 <body>
     <div id="gameResultPage"></div>
     <script id="gameResultPage-template" type="text/html">
-        <div class="soccer">
-            <div class="header-top" style="background-color: #262626;">
-                <div class="logo">
-                    <a href="#"><img src="/assets/img/gameLogo/{{DataTable.ttGameId}}.png" style="width:56px;height:64px;"></a>
+        <div class="soccer" style="background-repeat: round;background-image: url(/assets/img/gameResultBackground.jpg);">
+            <div class="header-top">
+                <div class="logo" style="width: 20%;">
+                    <a href="#"><img src="/assets/img/gameLogo/{{DataTable.ttGameId}}.png" style="width:100%;"></a>
                 </div>
                 <div class="livers">
                     <div class="liver-pool-buttons">
-                        <h4 style="text-align:;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
+                        <h4 style="font-size: 9px;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
                     </div>
                     <div class="search">
-                        <div style="font-family: '微软雅黑'; margin-top: 7px;float: left;list-style: none;color: white;">
+                        <div style="font-size: 9px;font-family: '微软雅黑'; margin-top: 1px;float: left;list-style: none;color: white;">
                             <ul>
                                 <li>第 {{DataTable.ttRound}} 轮 {{DataTable.ttDate}}</li>
                             </ul>
@@ -56,7 +56,7 @@
                     <div class="tab-grids" style="margin-left: 0px;">
                         <div id="tab1" class="tab-grid">
                             <div class="soccer-items">
-                                <div class="main-box" style="background-repeat: round;background-image: url(/assets/img/gameResultBackground.jpg);">
+                                <div class="main-box">
                                     <div class="logo-names">
                                         <div class="logo-name-1">
                                             <h2></h2>
@@ -70,8 +70,16 @@
                                         <div class="ablam">
                                             <img src="/assets/img/teamLogo/{{DataTable.ttMainTeamName}}.png" style="width:200px;">
                                         </div>
+                                        <div style="float: left; margin-left: 20px;font-size: 9px;">
+                                            <ul class="sport-scor" id="mainData">
+                                            </ul>
+                                        </div>
                                         <div class="time">
                                             <h3>{{DataTable.mainTeamGoal}}:{{DataTable.subTeamGoal}}</h3>
+                                        </div>
+                                        <div style="float: left;font-size: 9px;">
+                                            <ul class="sport-scor" id="subData">
+                                            </ul>
                                         </div>
                                         <div class="troffy">
                                             <img src="/assets/img/teamLogo/{{DataTable.ttSubTeamName}}.png" style="width:200px;">
@@ -79,22 +87,18 @@
                                         <div class="clear"> </div>
                                     </div>
                                     <div class="game-scores">
-                                        <ul class="sport-scor" id="mainData">
-                                        </ul>
-                                        <ul class="ronaldo" id="subData">
-                                        </ul>
                                         <div class="clear"> </div>
                                         <div class="plater-names">
                                             <h3 style="color: yellow;" id="mainStarting">{{DataTable.ttMainTeamName}}</h3>
                                         </div>
-                                        <div class="plater-names" style="float: right;padding-right: 10px;width: 32%;">
+                                        <div class="plater-names" style="float: right;padding-right: 10px;">
                                             <h3 style="color: yellow;" id="subStarting">{{DataTable.ttSubTeamName}}</h3>
                                         </div>
                                         <div class="clear"> </div>
                                         <div class="plater-names">
                                             <h3 style="color: yellow;" id="mainSubstitutes">替补</h3>
                                         </div>
-                                        <div class="plater-names" style="float: right;padding-right: 10px;width: 32%;">
+                                        <div class="plater-names" style="float: right;width: 20%;">
                                             <h3 style="color: yellow;" id="subSubstitutes">替补</h3>
                                         </div>
                                         <div class="clear"> </div>
@@ -104,6 +108,10 @@
                                     </div>
                                     <div class="game-scores" id="gameBrief">
                                         {{DataTable.ttGameBrief}}
+                                    </div>
+                                    <div class="game-scores" style="color: #fff; font-size: 12px;">
+                                        <div style="float: left;"><span>主办方：小刘体育</span></div>
+                                        <div style="float: right;"><span>赞助商：大连动心科技</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +125,7 @@
     </script>
     <script id="grpScoreMembers-template" type="text/html">
         {{each DataTable as value i}}
-        <li><img src="assets/plugins/gameResult/images/ball.png">
+        <li>
             <a href="javascript:void(0);" style="color: #f6f6f6;">{{value}}</a>
         </li>
         {{/each}}

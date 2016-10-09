@@ -324,6 +324,10 @@ var indexModule = (function(im) {
         var fillinParams = { tmplId: 'gameResultPage-template', target: $("#gameResultPage"), way: "html" };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, im.fillinGameResultPage, null, null, null, fillinParams);
     }
+    im.editGameResultPage = function(ttId, mainTeamId, subTeamId) {
+        var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
+        globalModule.loadPage("main-content", "editGameResult", im.editGameResultInit, params);
+    }
     im.fillinGameResultPage = function(result, params) {
         globalModule.fillinInfoFromTmpl(result, params);
         document.title = result.DataTable.ttMainTeamName + " VS " + result.DataTable.ttSubTeamName;
@@ -473,17 +477,35 @@ var indexModule = (function(im) {
         var fillinParams = { tmplId: 'addGameResult-template', target: $("#addGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/findTimeTable", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
     }
+    im.editGameResultInit = function(params) {
+        var fillinParams = { tmplId: 'editGameResult-template', target: $("#editGameResult"), way: "html", callback: im.fillinMembersEditGameResult, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+    }
     im.fillinMembers = function(params) {
-        var fillinParamsMain = { tmplId: 'teamMembers-template', target: $(".mainTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'mainTeamMembers' };
+        var fillinParamsMain = { tmplId: 'gameResultTeamMembers-template', target: $(".mainTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'mainTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsMain);
-        var fillinParamsSub = { tmplId: 'teamMembers-template', target: $(".subTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'subTeamMembers' };
+        var fillinParamsSub = { tmplId: 'gameResultTeamMembers-template', target: $(".subTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'subTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParamsSub);
         if ($("textarea[name='remark']")) {
             $("textarea[name='remark']").attr("id", "gameRemark");
             CKEDITOR.replace('gameRemark');
         }
-        var fillinParams = { tmplId: 'teamMembers-template', target: $(".allTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'allTeamMembers' };
+        var fillinParams = { tmplId: 'gameResultTeamMembers-template', target: $(".allTeamMembers"), way: "html", callback: im.initTeamMembersSelector, callbackParams: 'allTeamMembers' };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersForMVP", { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+    }
+    im.fillinMembersEditGameResult = function(params) {
+
+        var fillinParamsMain = { tmplId: 'gameResultTeamMembers-template', target: $(".mainTeamMembers"), className: 'mainTeamMembers' };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.mainTeamId }, im.fillinTeamMembersSelectorViewGameResult, null, null, null, fillinParamsMain);
+        var fillinParamsSub = { tmplId: 'gameResultTeamMembers-template', target: $(".subTeamMembers"), className: 'subTeamMembers' };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembers", { teamId: params.subTeamId }, im.fillinTeamMembersSelectorViewGameResult, null, null, null, fillinParamsSub);
+        if ($("textarea[name='remark']")) {
+            $("textarea[name='remark']").attr("id", "gameRemark");
+            CKEDITOR.replace('gameRemark');
+        }
+        var fillinParams = { tmplId: 'gameResultTeamMembers-template', target: $(".allTeamMembers"), className: 'allTeamMembers' };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersForMVP", { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId }, im.fillinTeamMembersSelectorViewGameResult, null, null, null, fillinParams);
+
     }
     im.addGameResult = function() {
         globalModule.CKupdate();
@@ -557,6 +579,18 @@ var indexModule = (function(im) {
                 }
             }
         });
+    }
+    im.fillinTeamMembersSelectorViewGameResult = function(result, params) {
+        params.target.html(template(params.tmplId, result));
+        $("." + params.className).selectpicker({
+            liveSearch: true,
+            width: $(this).attr("data-width")
+        });
+        $("select[name='mainStarting']").selectpicker('val', globalModule.stringToArray($("select[name='mainStarting']").attr('data-initial')));
+        // $("select[name='mainSubstitutes']").selectpicker('val', globalModule.stringToArray(result.DataTable.mainSubstitutesIds));
+        // $("select[name='subStarting']").selectpicker('val', globalModule.stringToArray(result.DataTable.subStartingIds));
+        // $("select[name='subSubstitutes']").selectpicker('val', globalModule.stringToArray(result.DataTable.subSubstitutesIds));
+        // $("select[name='mvp']").selectpicker('val', globalModule.stringToArray(result.DataTable.mvpId));
     }
     im.initSelector = function(obj, options) {
         var option = { liveSearch: true };
@@ -734,8 +768,8 @@ var indexModule = (function(im) {
         var gameRule = $("#gameInfo").attr("data-gamerule");
         if (gameRule.indexOf("联赛") != -1) {
             params.groupName = "B";
-            var groupA = '<div class="row boardData boardTitle groupA" id="boradDataA"><div class="col-xs-1">A组</div><div class="col-xs-3">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-1">积分</div></div>';
-            var groupB = '<div class="row boardData boardTitle groupB" id="boradDataB"><div class="col-xs-1">B组</div><div class="col-xs-3">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-1">积分</div></div>';
+            var groupA = '<div class="row boardData boardTitle groupA" id="boradDataA"><div class="col-xs-1">A组</div><div class="col-xs-2">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-2">积分</div></div>';
+            var groupB = '<div class="row boardData boardTitle groupB" id="boradDataB"><div class="col-xs-1">B组</div><div class="col-xs-2">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-2">积分</div></div>';
             $("#boradData").after(groupB);
             $("#boradData").after(groupA);
             var fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupB"), way: "after" };
@@ -744,7 +778,7 @@ var indexModule = (function(im) {
             fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupA"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         } else {
-            var group = '<div class="row boardData boardTitle" id="boradDataGroup"><div class="col-xs-1">排名</div><div class="col-xs-3">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-1">积分</div></div>';
+            var group = '<div class="row boardData boardTitle" id="boradDataGroup"><div class="col-xs-1">排名</div><div class="col-xs-2">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-2">积分</div></div>';
             $("#boradData").after(group);
             var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradDataGroup"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);

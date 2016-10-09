@@ -1,6 +1,6 @@
 var globalModule = (function(gm) {
     gm.globalHomeUrl = "http://210.83.195.229:8095/";
-    // gm.globalHomeUrl = "http://localhost:4349/";
+    gm.globalHomeUrl = "http://localhost:4349/";
     gm.globalAjax = function(url, data, successCallback, type, dataType, async, params) {
         var guid = { GUID: $.cookie("GUID") };
         if (data) {
@@ -82,6 +82,17 @@ var globalModule = (function(gm) {
                 result += "," + array[i];
             }
             result = result.substring(1);
+        }
+        return result;
+    }
+    gm.stringToArray = function(string) {
+        var result = new Array();
+        if (string) {
+            if (string.indexOf(',') != -1) {
+                result = string.split(',');
+            } else {
+                result = result.push(string);
+            }
         }
         return result;
     }
