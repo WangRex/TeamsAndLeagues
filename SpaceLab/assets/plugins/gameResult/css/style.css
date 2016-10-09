@@ -274,7 +274,7 @@ div#tab4 {
 }
 .plater-names {
     float: left;
-    width: 21%;
+    width: 30%;
 }
 .gradings {
     float: right;
@@ -328,9 +328,10 @@ div#tab4 {
 .time {
     float: left;
     text-align: center;
+    width: 58%;
 }
 .time h3 {
-    font-size: 2em;
+    font-size: 3em;
     color: #f1f1f1;
      font-family: 'Droid Sans', sans-serif;
 }
@@ -346,7 +347,7 @@ div#tab4 {
 }
 ul.sport-scor {
     float: left;
-    margin-top: 47px;
+    margin-top: 10px;
 }
 ul.sport-scor li {
 	margin:0em 0em 0em 0em;
@@ -355,7 +356,7 @@ ul.sport-scor li a {
     font-size: 1.2em;
     color: #000;
     display: inline-block;
-    margin: 0em 0em 0em 0.5em;
+    margin: 0em 0em 0em 0em;
     vertical-align: top;
      font-family: 'Droid Sans', sans-serif;
 }
@@ -657,7 +658,7 @@ div#tab4 {
     font-size: 1.4em;
 }
 .time h3 {
-    font-size: 26px;
+    font-size: 3em;
 }
 .time p {
     font-size: 0.9em;
@@ -669,7 +670,7 @@ ul.ronaldo li a {
     font-size: 0.82em;
 }
 .awards {
-    margin: 1em 0em;
+    margin: 0em 0em;
 }
 }
 @media(max-width:320px){
