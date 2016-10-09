@@ -274,6 +274,7 @@ div#tab4 {
 }
 .plater-names {
     float: left;
+    width: 21%;
 }
 .gradings {
     float: right;
