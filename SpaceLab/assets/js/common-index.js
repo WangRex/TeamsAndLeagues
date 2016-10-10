@@ -109,10 +109,12 @@ var commonIndexModule = (function(cim) {
     cim.viewGameResultPage = function(ttId, mainTeamId, subTeamId) {
         var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
         globalModule.loadPage("main-content", "gameResultPage", cim.viewGameResultPageInit, params);
-        //window.open(window.location.href + "gameResultPageShare.html?ttId=" + ttId);
+        // window.location.href = globalModule.devUrl + "gameResultPageShare.html?ttId=" + ttId;
     }
     cim.viewGameResultPageInit = function(params) {
         $("#gameResultPage-copy-right").hide();
+        $("#dashboard-title").hide();
+        $("#header").hide();
         var fillinParams = { tmplId: 'gameResultPage-template', target: $("#gameResultPage"), way: "html" };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResultCommon", { ttId: params.ttId }, cim.fillinGameResultPage, null, null, null, fillinParams);
     }
@@ -238,6 +240,8 @@ var commonIndexModule = (function(cim) {
         }
 
         $("#matchList").on("click", function() {
+            $("#dashboard-title").show();
+            $("#header").show();
             cim.loadGameDetailsPage("gameDetails", $(this).attr("data-gameid"));
         });
     }

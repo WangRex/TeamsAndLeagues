@@ -321,6 +321,8 @@ var indexModule = (function(im) {
     }
     im.viewGameResultPage = function(params) {
         $("#gameResultPage-copy-right").hide();
+        $("#dashboard-title").hide();
+        $("#header").hide();
         var fillinParams = { tmplId: 'gameResultPage-template', target: $("#gameResultPage"), way: "html" };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, im.fillinGameResultPage, null, null, null, fillinParams);
     }
@@ -460,6 +462,8 @@ var indexModule = (function(im) {
         });
 
         $("#matchList").on("click", function() {
+            $("#dashboard-title").show();
+            $("#header").show();
             im.loadGameDetailsPage1("gameDetails1", $(this).attr("data-gameid"));
         });
 
