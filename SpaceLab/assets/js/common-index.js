@@ -108,7 +108,8 @@ var commonIndexModule = (function(cim) {
     }
     cim.viewGameResultPage = function(ttId, mainTeamId, subTeamId) {
         var params = { ttId: ttId, mainTeamId: mainTeamId, subTeamId: subTeamId };
-        window.open(window.location.href + "gameResultPageShare.html?ttId=" + ttId);
+        globalModule.loadPage("main-content", "gameResultPage", cim.viewGameResultPageInit, params);
+        //window.open(window.location.href + "gameResultPageShare.html?ttId=" + ttId);
     }
     cim.viewGameResultPageInit = function(params) {
         $("#gameResultPage-copy-right").hide();
@@ -236,6 +237,9 @@ var commonIndexModule = (function(cim) {
             globalModule.fillinInfoFromTmpl({ DataTable: subMemberNameMinuteArray }, fillinParams);
         }
 
+        $("#matchList").on("click", function() {
+            cim.loadGameDetailsPage("gameDetails", $(this).attr("data-gameid"));
+        });
     }
     cim.viewGameComment = function(ttId) {
         globalModule.loadPage("main-content", "gameComment", function(params) {

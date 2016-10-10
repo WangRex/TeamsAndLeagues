@@ -459,6 +459,10 @@ var indexModule = (function(im) {
             qrcode.makeCode("http://www.leyisports.com/gameResultPageShare.html?ttId=" + ttId);
         });
 
+        $("#matchList").on("click", function() {
+            im.loadGameDetailsPage1("gameDetails1", $(this).attr("data-gameid"));
+        });
+
     }
     im.viewGameResultInit = function(params) {
         var fillinParams = { tmplId: 'viewGameResult-template', target: $("#viewGameResult"), way: "html", callback: im.fillinMembers, callbackParams: { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId } };
