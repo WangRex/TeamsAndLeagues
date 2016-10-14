@@ -793,7 +793,7 @@ var indexModule = (function(im) {
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         }
         $("#shareScore").on("click", function() {
-            window.open("http://localhost:8081/admin/scoreListSharePage.html?gameId=" + params.gameId);
+            window.open("http://www.leyisports.com/admin/scoreListSharePage.html?gameId=" + params.gameId);
         });
     }
 
