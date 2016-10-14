@@ -762,6 +762,7 @@ var indexModule = (function(im) {
             globalModule.loadPage("match-content", "matchList", im.fillinTimeTablePage, object);
         });
         $("#scoreList").on("click", function() {
+            params.gameRule = gameRule;
             globalModule.loadPage("match-content", "scoreList", im.loadScoreList, params);
         });
         $("#shooterList").on("click", function() {
@@ -773,7 +774,7 @@ var indexModule = (function(im) {
     }
 
     im.loadScoreList = function(params) {
-        var gameRule = $("#gameInfo").attr("data-gamerule");
+        var gameRule = params.gameRule;
         if (gameRule.indexOf("联赛") != -1) {
             params.groupName = "B";
             var groupA = '<div class="row boardData boardTitle groupA" id="boradDataA"><div class="col-xs-1">A组</div><div class="col-xs-2">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-2">积分</div></div>';
@@ -790,8 +791,10 @@ var indexModule = (function(im) {
             $("#boradData").after(group);
             var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradDataGroup"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
-
         }
+        $("#shareScore").on("click", function() {
+            window.open("http://localhost:8081/admin/scoreListSharePage.html?gameId=" + params.gameId);
+        });
     }
 
     im.loadShooterList = function(params) {

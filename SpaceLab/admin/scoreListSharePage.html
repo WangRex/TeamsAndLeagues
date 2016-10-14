@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta memberName="description" content="">
+    <meta memberName="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Bootstrap Switch -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-switch/css/highlight.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-switch/css/main.css">
+    <!-- Fonts from Font Awsome -->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <!-- CSS Animate -->
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <!-- Custom styles for this theme -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- ToDos  -->
+    <link rel="stylesheet" href="/assets/plugins/todo/css/todos.css">
+    <!-- Bootstrap Selector -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-select/css/bootstrap-select.css">
+    <!-- Date Time Picker CSS-->
+    <link href="/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!-- Custom  -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <!-- Fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
+    <!-- Feature detection -->
+    <script src="/assets/js/modernizr-2.6.2.min.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <section id="container">
+        <div class="row" id="gameBoards">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">比赛结果</h3>
+                        <div class="actions pull-right">
+                            <i class="fa fa-chevron-down"></i>
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="panel-body title">
+                        <div id="scoreTitle" style="text-align: center;font-weight: bolder;"></div>
+                        <div class="hr">
+                            <hr>
+                        </div>
+                        <div class="ddd" id="match-content" style="background-repeat: round;background-image: url(/assets/img/listBackground.png);margin-top:10px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="boradData">
+        </div>
+    </section>
+    <div class="copy-right" id="index-copy-right">
+        <p>© 2016 All rights reserved, powered by DongXin Technology.
+        </p>
+    </div>
+    <!--Global JS-->
+    <script src="/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="/assets/plugins/fullcalendar/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/plugins/waypoints/waypoints.min.js"></script>
+    <script src="/assets/js/application.js"></script>
+    <script src="/assets/plugins/artTemplate/template.js"></script>
+    <script src="/assets/plugins/jQuery.widgets.serializeJson/jquery.widgets.serializeJson.js"></script>
+    <!--Page Level JS-->
+    <script src="/assets/plugins/countTo/jquery.countTo.js"></script>
+    <script src="/assets/plugins/weather/js/skycons.js"></script>
+    <!-- Morris  -->
+    <script src="/assets/plugins/morris/js/morris.min.js"></script>
+    <script src="/assets/plugins/morris/js/raphael.2.1.0.min.js"></script>
+    <!-- Vector Map  -->
+    <script src="/assets/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="/assets/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- ToDo List  -->
+    <script src="/assets/plugins/todo/js/todos.js"></script>
+    <!-- Bootstrap Selector -->
+    <script src="/assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="/assets/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="/assets/plugins/bootstrap-switch/js/highlight.js"></script>
+    <script src="/assets/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script src="/assets/plugins/bootstrap-switch/js/main.js"></script>
+    <!-- Date Time Picker JS -->
+    <script type="text/javascript" src="/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <!-- QCODE -->
+    <script src="/assets/js/qcode.js"></script>
+    <!-- JQUERY COOKIE -->
+    <script src="/assets/js/jquery.cookie.js"></script>
+    <!-- CKEDITOR -->
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
+    <!-- index  -->
+    <script src="/assets/js/globalUtils.js"></script>
+    <script src="/assets/js/index.js"></script>
+    <!--Load these page level functions-->
+    <script>
+    $(document).ready(function() {
+        function getParameter(param) {
+            var query = window.location.search; //获取URL地址中？后的所有字符  
+            var iLen = param.length; //获取你的参数名称长度  
+            var iStart = query.indexOf(param); //获取你该参数名称的其实索引  
+            if (iStart == -1) //-1为没有该参数  
+                return "";
+            iStart += iLen + 1;
+            var iEnd = query.indexOf("&", iStart); //获取第二个参数的其实索引  
+            if (iEnd == -1) //只有一个参数  
+                return query.substring(iStart); //获取单个参数的参数值  
+            return query.substring(iStart, iEnd); //获取第二个参数的值  
+        }
+        var gameId = getParameter("gameId");
+        var params = {
+            gameId: gameId
+        };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, function(result) {
+            params.gameRule = result.gameRule;
+            $("#scoreTitle").html(result.gameName + "   积分榜");
+            globalModule.loadPage("match-content", "scoreListShare", indexModule.loadScoreList, params);
+        });
+    });
+    </script>
+</body>
+
+</html>
