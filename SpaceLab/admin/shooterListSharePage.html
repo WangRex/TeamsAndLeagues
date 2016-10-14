@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>球队联盟</title>
+    <title></title>
     <meta memberName="description" content="">
     <meta memberName="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Favicon -->
@@ -47,73 +47,31 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="user-nav">
-            <ul>
-                <li class="profile-photo">
-                    <img src="/assets/img/avatar.png" alt="" class="img-circle">
-                </li>
-                <li class="dropdown settings">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
-                        <span id="userName">未登录</span><i class="fa fa-angle-down"></i>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInDown">
-                        <li id="logout">
-                            <a href="javascript:void(0);"><i class="fa fa-power-off"></i> 注销</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+    <section id="container">
+        <div class="row" id="gameBoards">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">比赛结果</h3>
+                        <div class="actions pull-right">
+                            <i class="fa fa-chevron-down"></i>
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="panel-body title">
+                        <div id="scoreTitle" style="text-align: center;font-weight: bolder;"></div>
+                        <div class="hr">
+                            <hr>
+                        </div>
+                        <div class="ddd" id="match-content" style="background-repeat: round;background-image: url(/assets/img/listBackground.png);margin-top:10px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
-    <!--main content start-->
-    <section class="main-content-wrapper">
-        <section>
-            <!--tiles start-->
-            <div class="row" id="dashboard-title">
-                <div class="col-md-6 col-sm-6">
-                    <div class="dashboard-tile detail tile-turquoise" id="gameList">
-                        <div class="content">
-                            <h1 class="text-left timer" data-from="0" data-to="" data-speed="2500"></h1>
-                            <p>赛事列表</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-comments"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="dashboard-tile detail tile-purple" id="teamList">
-                        <div class="content">
-                            <h1 class="text-left timer" data-to="" data-speed="2500"></h1>
-                            <p>球队列表</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-users"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--tiles end-->
-            <!--charts start-->
-            <div class="row" id="main-content">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">球队统计</h3>
-                            <div class="actions pull-right">
-                                <i class="fa fa-chevron-down"></i>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div id="sales-chart" style="height: 250px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--charts end-->
-        </section>
+        <div class="row" id="boradData">
+        </div>
     </section>
-    <!--main content end-->
     <div class="copy-right" id="index-copy-right">
         <p>© 2016 All rights reserved, powered by DongXin Technology.
         </p>
@@ -155,33 +113,33 @@
     <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
     <!-- index  -->
     <script src="/assets/js/globalUtils.js"></script>
-    <script src="/assets/js/common-index.js"></script>
+    <script src="/assets/js/index.js"></script>
     <!--Load these page level functions-->
     <script>
     $(document).ready(function() {
-        // app.timer();
-        $("#myInfo").on("click", function() {
-            globalModule.loadPage("main-content", "myInfo", app.bread);
+        function getParameter(param) {
+            var query = window.location.search; //获取URL地址中？后的所有字符  
+            var iLen = param.length; //获取你的参数名称长度  
+            var iStart = query.indexOf(param); //获取你该参数名称的其实索引  
+            if (iStart == -1) //-1为没有该参数  
+                return "";
+            iStart += iLen + 1;
+            var iEnd = query.indexOf("&", iStart); //获取第二个参数的其实索引  
+            if (iEnd == -1) //只有一个参数  
+                return query.substring(iStart); //获取单个参数的参数值  
+            return query.substring(iStart, iEnd); //获取第二个参数的值  
+        }
+        var gameId = getParameter("gameId");
+        var params = {
+            gameId: gameId
+        };
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, function(result) {
+            params.gameRule = result.gameRule;
+            var title = result.gameName + "   射手榜";
+            $("#scoreTitle").html(title);
+            document.title = title;
+            globalModule.loadPage("match-content", "shooterListShare", indexModule.loadShooterList, params);
         });
-        $("#gameList").on("click", function() {
-            globalModule.loadPage("main-content", "gameList", app.bread);
-        });
-        $("#teamList").on("click", function() {
-            globalModule.loadPage("main-content", "teamList", app.bread);
-        });
-        $("#gameRules").on("click", function() {
-            globalModule.loadPage("main-content", "gameRules", app.bread);
-        });
-        $("#addGameRule").on("click", function() {
-            globalModule.loadPage("main-content", "addGameRule", app.bread);
-        });
-        $("#addTeam").on("click", function() {
-            globalModule.loadPage("main-content", "addTeam", app.bread);
-        });
-        $("#logout").on("click", function() {
-            window.location.href = window.location.href;
-        });
-        $("#gameList").click();
     });
     </script>
 </body>

@@ -321,6 +321,8 @@ var indexModule = (function(im) {
     }
     im.viewGameResultPage = function(params) {
         $("#gameResultPage-copy-right").hide();
+        $("#dashboard-title").hide();
+        $("#header").hide();
         var fillinParams = { tmplId: 'gameResultPage-template', target: $("#gameResultPage"), way: "html" };
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, im.fillinGameResultPage, null, null, null, fillinParams);
     }
@@ -457,6 +459,12 @@ var indexModule = (function(im) {
                 height: 96
             });
             qrcode.makeCode("http://www.leyisports.com/gameResultPageShare.html?ttId=" + ttId);
+        });
+
+        $("#matchList").on("click", function() {
+            $("#dashboard-title").show();
+            $("#header").show();
+            im.loadGameDetailsPage1("gameDetails1", $(this).attr("data-gameid"));
         });
 
     }
@@ -754,6 +762,7 @@ var indexModule = (function(im) {
             globalModule.loadPage("match-content", "matchList", im.fillinTimeTablePage, object);
         });
         $("#scoreList").on("click", function() {
+            params.gameRule = gameRule;
             globalModule.loadPage("match-content", "scoreList", im.loadScoreList, params);
         });
         $("#shooterList").on("click", function() {
@@ -765,7 +774,7 @@ var indexModule = (function(im) {
     }
 
     im.loadScoreList = function(params) {
-        var gameRule = $("#gameInfo").attr("data-gamerule");
+        var gameRule = params.gameRule;
         if (gameRule.indexOf("联赛") != -1) {
             params.groupName = "B";
             var groupA = '<div class="row boardData boardTitle groupA" id="boradDataA"><div class="col-xs-1">A组</div><div class="col-xs-2">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-2">积分</div></div>';
@@ -782,14 +791,19 @@ var indexModule = (function(im) {
             $("#boradData").after(group);
             var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradDataGroup"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
-
         }
+        $("#shareScore").on("click", function() {
+            window.open("http://www.leyisports.com/admin/scoreListSharePage.html?gameId=" + params.gameId);
+        });
     }
 
     im.loadShooterList = function(params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchShooter/getAllMatchShooter", params, function(result) {
             var html = template('shooterDetails-template', result);
             $("#boradData").after(html);
+            $("#shareScore").on("click", function() {
+                window.open("http://www.leyisports.com/admin/shooterListSharePage.html?gameId=" + params.gameId);
+            });
         });
     }
 
