@@ -801,6 +801,9 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchShooter/getAllMatchShooter", params, function(result) {
             var html = template('shooterDetails-template', result);
             $("#boradData").after(html);
+            $("#shareScore").on("click", function() {
+                window.open("http://www.leyisports.com/admin/shooterListSharePage.html?gameId=" + params.gameId);
+            });
         });
     }
 
