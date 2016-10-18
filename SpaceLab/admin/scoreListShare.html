@@ -4,8 +4,7 @@
     {{each DataTable as value i}}
     <div class="row boardData">
         <div class="col-xs-1">{{i + 1}}</div>
-        <div class="col-xs-2">{{value.teamName}}</div>
-        <div class="col-xs-1"><img src="/assets/img/teamLogo/{{value.teamName}}.png" style="width:20px;" /></div>
+        <div class="col-xs-2"><img src="/assets/img/teamLogo/{{value.teamName}}.png" style="width:20px;" />{{value.teamName}}</div>
         <div class="col-xs-1">{{value.matchNums}}</div>
         <div class="col-xs-1">{{value.winNums}}</div>
         <div class="col-xs-1">{{value.drawNums}}</div>
@@ -13,7 +12,7 @@
         <div class="col-xs-1">{{value.winscore}}</div>
         <div class="col-xs-1">{{value.loseScore}}</div>
         <div class="col-xs-1">{{value.netScore}}</div>
-        <div class="col-xs-1">{{value.score}}</div>
+        <div class="col-xs-2">{{value.score}}</div>
     </div>
     {{/each}}
 </script>
