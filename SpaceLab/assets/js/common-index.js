@@ -249,6 +249,10 @@ var commonIndexModule = (function(cim) {
         globalModule.loadPage("main-content", "gameComment", function(params) {
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResult", { ttId: params.ttId }, function(result) {
                 $("#gameCommentContent").html(result.DataTable.remark || "暂无评论");
+                var gameId = result.DataTable.ttGameId;
+                $("#backToTTList").on("click", function() {
+                    commonIndexModule.loadGameDetailsPage("gameDetails", gameId);
+                });
             });
         }, { ttId: ttId });
     }
