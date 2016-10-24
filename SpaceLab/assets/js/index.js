@@ -299,6 +299,7 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addTimeTable", data, function(result) {
             if (result.Code == 1) {
                 $("#addTimeTableResult").html("添加赛程成功，可以继续添加！");
+                setTimeout(function() {$("#addTimeTableResult").html("");},1000);
             }
         }, "post");
     }
