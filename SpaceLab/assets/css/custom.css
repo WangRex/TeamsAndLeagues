@@ -163,3 +163,15 @@
     width: auto;
     min-width: 33%;
 }
+
+.scoreListShareSection {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.width40 {
+    width: 50px;
+}
+.width73 {
+    width: 73px;
+}
