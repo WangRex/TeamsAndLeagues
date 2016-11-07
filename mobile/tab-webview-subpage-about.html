@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="css/apply.css">
+		<link rel="stylesheet" type="text/css" href="css/share.css">
+		<link rel="stylesheet" type="text/css" href="css/public.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/swiper-2.1.min.js"></script>
+		<script type="text/javascript" src="js/lazyload.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css">
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css">
+
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="nav-tab clearfix area">
+			<div class="nav-tab-inner clearfix overflow">
+				<a href="tab-webview-subpage-about.html" class="nav-hover">赛事列表</a>
+				<a href="tab-webview-subpage-chat.html">球队列表</a>
+			</div>
+		</div>
+		<div class="mui-content" style="background: rgba(30, 30, 30, 0.9)">
+			<div class="mui-slider" style="height: 10em;">
+				<div class="mui-slider-group mui-slider-loop">
+					<!--支持循环，需要重复图片节点-->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#"><img src="img/1.jpeg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="img/2.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="img/3.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="img/4.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="img/5.jpg" /></a>
+					</div>
+					<!--支持循环，需要重复图片节点-->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#"><img src="img/1.jpeg" /></a>
+					</div>
+				</div>
+				<script>
+					//获得slider插件对象
+					var gallery = mui('.mui-slider');
+					gallery.slider({
+						interval: 2000 //自动轮播周期，若为0则不自动播放，默认为0；
+					});
+				</script>
+			</div>
+			<div class="i-tab-title" style="height: 3em;">
+				<h2 style="font-size: 16px; font-family: '微软雅黑';color: whitesmoke;">赛事信息</h2>
+			</div>
+			<div class="clearfix sou-con mg-auto overflow" style="background: #4C4C4C;">
+				<ul class="clearfix">
+					<li>
+						<a href=".html" class="sou-con-href clearfix">
+							<div class="sou-img"><img src="img/11.jpg" alt="格瓦拉手机购票 " title="格瓦拉手机购票 "></div>
+							<h4>赛事名称</h4>
+							<p><span>地点</span><span>时间</span><span>可报名</span></p>
+						</a>
+						<a href="gameDetail.html" class="sou-con-download">查看</a>
+					</li>
+					<li>
+						<a href=".html" class="sou-con-href clearfix">
+							<div class="sou-img"><img src="img/12.jpg" alt="手机QQ " title="手机QQ "></div>
+							<h4>赛事名称</h4>
+							<p><span>地点</span><span>时间</span><span>可报名</span></p>
+						</a>
+						<a href="gameDetail.html" class="sou-con-download">查看</a>
+					</li>
+					<li>
+						<a href=".html" class="sou-con-href clearfix">
+							<div class="sou-img"><img src="img/13.jpg" alt="优听Radio " title="优听Radio "></div>
+							<h4>赛事名称</h4>
+							<p><span>地点</span><span>时间</span><span></span><span>满员</span></p>
+						</a>
+						<a href="gameDetail.html" class="sou-con-download">查看</a>
+					</li>
+					<li>
+						<a href=".html" class="sou-con-href clearfix">
+							<div class="sou-img"><img src="img/14.jpg" alt="同步推正版 " title="同步推正版 "></div>
+							<h4>赛事名称</h4>
+							<p><span>地点</span><span>时间</span><span>可报名</span></p>
+						</a>
+						<a href="gameDetail.html" class="sou-con-download">查看</a>
+					</li>
+					<li>
+						<a href=".html" class="sou-con-href clearfix">
+							<div class="sou-img"><img src="img/15.jpg" alt="猎豹浏览器 " title="猎豹浏览器 "></div>
+							<h4>赛事名称</h4>
+							<p><span>地点</span><span>时间</span><span></span><span>满员</span></p>
+						</a>
+						<a href="gameDetail.html" class="sou-con-download">查看</a>
+					</li>
+					<li>
+						<a href=".html" class="sou-con-href clearfix">
+							<div class="sou-img"><img src="img/13.jpg" alt="优听Radio " title="优听Radio "></div>
+							<h4>赛事名称</h4>
+							<p><span>地点</span><span>时间</span><span></span><span>满员</span></p>
+						</a>
+						<a href="gameDetail.html" class="sou-con-download">查看</a>
+					</li>
+					<li>
+						<a href=".html" class="sou-con-href clearfix">
+							<div class="sou-img"><img src="img/14.jpg" alt="同步推正版 " title="同步推正版 "></div>
+							<h4>赛事名称</h4>
+							<p><span>地点</span><span>时间</span><span>可报名</span></p>
+						</a>
+						<a href="gameDetail.html" class="sou-con-download">查看</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+	</script>
+
+</html>

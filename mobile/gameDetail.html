@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="css/apply.css">
+		<link rel="stylesheet" type="text/css" href="css/share.css">
+		<link rel="stylesheet" type="text/css" href="css/public.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/swiper-2.1.min.js"></script>
+		<script type="text/javascript" src="js/lazyload.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css">
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css">
+
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="mui-content" style="background: whitesmoke">
+
+			<div class="i-tab-title" style="height: 3em;">
+				<span><a style="float: left;margin: 0.5em;position: relative;top: 5px;" class="mui-icon mui-icon-back" href="tab-webview-subpage-about.html"></a></span>
+				<span><h2 style="font-size: 18px; font-family: '微软雅黑';color: gray;margin-left:25%;">赛事信息</h2></span>
+			</div>
+
+			<div class="mui-card">
+				<!--页眉，放置标题-->
+				<div class="mui-card-header">赛事名称</div>
+				<!--内容区-->
+				<div class="mui-card-content">
+					<a href="../detail_193984.html" class="sou-con-href clearfix">
+						<div class="sou-img"><img src="img/111.jpg" alt="同步推正版 " title="同步推正版 "></div>
+						<h4>足球联赛</h4>
+						<p><span>地点</span><span>时间</span><span>参赛球队</span></p>
+					</a>
+				</div>
+				<!--页脚，放置补充信息或支持的操作-->
+				<div class="mui-card-footer">
+					<button type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-success">报名</button>
+					<button type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-yellow">分配</button>
+					<button type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-success mui-btn-outlined">分配完成</button>
+					<button type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-primary mui-btn-outlined">分享</button>
+
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+	</script>
+
+</html>
