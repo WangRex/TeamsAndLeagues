@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>赛事报名</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/mui/css/apply.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/mui/css/share.css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/mui/css/public.css">
+    <script type="text/javascript" src="/assets/plugins/mui/js/jquery.js"></script>
+    <script type="text/javascript" src="/assets/plugins/mui/js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/mui/js/swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/mui/js/lazyload.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/mui/css/mui.min.css">
+    <script type="text/javascript" src="/assets/plugins/mui/js/mui.min.js"></script>
+    <style>
+    html,
+    body {
+        background-color: #efeff4;
+    }
+    
+    .title {
+        margin: 20px 15px 10px;
+        color: #6d6d72;
+        font-size: 15px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="mui-content" style="background-image: url(/assets/plugins/mui/img/bg5.jpg);height: 100%;">
+        <div class="i-tab-title" style="height: 4em;">
+            <style>
+            .mui-icon-back:before,
+            .mui-icon-left-nav:before {
+                content: '\e471';
+                color: whitesmoke;
+            }
+            </style>
+            <span><h2 style="font-size: 22px; font-family: '微软雅黑';color: whitesmoke;margin-left:23%;">赛事报名</h2></span>
+        </div>
+        <style>
+        .mui-input-group .mui-input-row {
+            height: 50px;
+            margin-top: 12px;
+        }
+        
+        .mui-input-row label~input,
+        .mui-input-row label~select,
+        .mui-input-row label~textarea {
+            float: right;
+            width: 60%;
+            margin-bottom: 0;
+            padding-left: 0;
+            border: 0;
+            font-size: 15px;
+        }
+        
+        .mui-input-row label {
+            font-family: 'Helvetica Neue', Helvetica, sans-serif;
+            line-height: 1.1;
+            font-family: "微软雅黑";
+            font-weight: bold;
+            float: left;
+            color: #3C3C3C;
+            font-size: 16px;
+            width: 40%;
+            text-align: right;
+            padding: 11px 10px;
+        }
+        </style>
+        <div class="mui-card" style="padding-top:13px;background: whitesmoke;height:100%;margin-left: 33px;margin-top:2em;margin-right: 33px;margin-bottom: 10em;border-radius: 15px;">
+            <!--内容区-->
+            <div class="mui-card-content" style="background: darkgray;">
+                <div class="mui-input-group" id="input_example">
+                    <div class="mui-input-row" style="margin-bottom: 5px;padding-top: 5px;">
+                        <label>队名：</label>
+                        <input type="text" id="teamName" class="mui-input-clear" placeholder="请输入队名">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>球队人数：</label>
+                        <input type="number" id="teamNumber" class="mui-input-clear" placeholder="请输入人数">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>球队负责人：</label>
+                        <input type="number" id="contactName" class="mui-input-clear" placeholder="请输入负责人">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>负责人电话：</label>
+                        <input type="number" id="contactPhone" class="mui-input-clear" placeholder="请输入电话">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>负责人邮箱：</label>
+                        <input type="text" id="contactEMail" class="mui-input-clear" placeholder="请输入用户名">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>队服颜色：</label>
+                        <input type="text" id="poloShirtColor" class="mui-input-clear" placeholder="请输入颜色">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>参赛场地：</label>
+                        <span>南关岭致纯基地室内五人制蓝色人造草场</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mui-button-row" style="margin-bottom: 20px;margin-top: 10px;">
+                <button id="enrollGameBtn" data-value="48" type="button" class="mui-btn mui-btn-success" style="border-radius: 10px;margin-right: 1em;width: 5em;">报名</button>
+                <button type="button" class="mui-btn mui-btn-blue" style="border-radius: 10px;width: 5em;">取消</button>
+            </div>
+            <!--页脚，放置补充信息或支持的操作-->
+            <script>
+            $("#enrollGameBtn").on("click", function() {
+                var check = true;
+                mui("#input_example input").each(function() {
+                    //若当前input为空，则alert提醒 
+                    if (!this.value || this.value.trim() == "") {
+                        var label = this.previousElementSibling;
+                        mui.alert(label.innerText + "不允许为空");
+                        check = false;
+                        return false;
+                    }
+                });
+                if (check) {
+                    mui.alert('报名成功!');
+                    var data = {};
+                    var gameId = $("#enrollGameBtn").attr("data-value");
+                    data.gameId = gameId;
+                    data.teamName = $("#teamName").val();
+                    data.teamNumber = $("#teamNumber").val();
+                    data.contactName = $("#contactName").val();
+                    data.contactPhone = $("#contactPhone").val();
+                    data.contactEMail = $("#contactEMail").val();
+                    data.poloShirtColor = $("#poloShirtColor").val();
+                    data.gamePlace = "南关岭致纯基地室内五人制蓝色人造草场";
+
+                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/addEnrollGameInfoCommon", data, function(result) {
+                        console.log(result);
+                    }, 'post');
+
+                    $("#teamName").val("");
+                    $("#teamNumber").val("");
+                    $("#contactName").val("");
+                    $("#contactPhone").val("");
+                    $("#contactEMail").val("");
+                    $("#poloShirtColor").val("");
+                }
+            });
+            </script>
+        </div>
+    </div>
+</body>
+<script src="/assets/plugins/mui/js/mui.min.js"></script>
+<!-- JQUERY COOKIE -->
+<script src="/assets/js/jquery.cookie.js"></script>
+<!-- index  -->
+<script src="/assets/js/globalUtils.js"></script>
+<script>
+mui.init({
+    swipeBack: true //启用右滑关闭功能
+});
+</script>
+
+</html>

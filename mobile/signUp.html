@@ -83,31 +83,31 @@
 					<div class="mui-input-group">
 						<div class="mui-input-row" style="margin-bottom: 5px;padding-top: 5px;">
 							<label>队名：</label>
-							<input type="text" class="mui-input-clear" placeholder="请输入队名">
+							<input type="text" id="teamName" class="mui-input-clear" placeholder="请输入队名">
 						</div>
 						<div class="mui-input-row">
 							<label>球队人数：</label>
-							<input type="text" class="mui-input-clear" placeholder="请输入人数">
+							<input type="text" id="teamNumber" class="mui-input-clear" placeholder="请输入人数">
 						</div>
 						<div class="mui-input-row">
 							<label>球队负责人：</label>
-							<input type="text" class="mui-input-clear" placeholder="请输入负责人">
+							<input type="text" id="contactName" class="mui-input-clear" placeholder="请输入负责人">
 						</div>
 						<div class="mui-input-row">
 							<label>负责人电话：</label>
-							<input type="text" class="mui-input-clear" placeholder="请输入电话">
+							<input type="text" id="contactName" class="mui-input-clear" placeholder="请输入电话">
 						</div>
 						<div class="mui-input-row">
 							<label>负责人邮箱：</label>
-							<input type="text" class="mui-input-clear" placeholder="请输入用户名">
+							<input type="text" id="contactName" class="mui-input-clear" placeholder="请输入用户名">
 						</div>
 						<div class="mui-input-row">
 							<label>队服颜色：</label>
-							<input type="text" class="mui-input-clear" placeholder="请输入颜色">
+							<input type="text" id="contactName" class="mui-input-clear" placeholder="请输入颜色">
 						</div>
 						<div class="mui-input-row">
 							<label>参赛场地：</label>
-							<input type="text" class="mui-input-clear" placeholder="请输入场地">
+							<span>南关岭致纯基地室内五人制蓝色人造草场</span>
 						</div>
 					</div>
 				</div>
@@ -117,6 +117,7 @@
 				</div>
 				<!--页脚，放置补充信息或支持的操作-->
 				<script>
+					var check = true;
 					mui("#input_example input").each(function() {
 						//若当前input为空，则alert提醒 
 						if(!this.value || this.value.trim() == "") {
