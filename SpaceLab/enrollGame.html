@@ -12,13 +12,8 @@
                 <form class="form-horizontal form-border" id="enrollGameInfoForm">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">队名</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <input type="text" class="form-control" placeholder="队名" name="teamName">
-                        </div>
-                        <div class="col-sm-3">
-                            <select id="teamNameSelect" class="show-tick form-control">
-                                <option value="0">--请选择--</option>
-                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -60,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-8">
-                            <input id="enrollGameBtn" type="button" class="btn btn-success btn-3d" onclick="indexModule.enrollGameInfo();" value="报名">
+                            <input id="enrollGameBtn" type="button" class="btn btn-success btn-3d" onclick="commonIndexModule.enrollGameInfo();" value="报名">
                             <span id="enrollGameResult"></span>
                         </div>
                     </div>
@@ -78,44 +73,4 @@
     {{each DataTable as value i}}
     <option value="{{value.ID}}">{{value.teamName}}</option>
     {{/each}}
-</script>
-<script>
-$(document).ready(function() {
-
-    indexModule.getTeamList(fillinTeamList);
-
-    function fillinTeamList(result) {
-        if (result.Code == 1) {
-            var html = template('enrollGameTeamList-template', result);
-            $("#teamNameSelect").find("option").after(html);
-            indexModule.initSelector($("#teamNameSelect")).on('changed.bs.select', function(e, clickedIndex, oldValue, newValue) {
-                var teamId = $(e.currentTarget).val();
-                if (teamId != 0) {
-                    globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamInfo", {
-                        teamId: teamId
-                    }, fillinTeamInfo);
-                } else {
-                    $("input[name='teamName']").attr("value", "");
-                    $("input[name='teamNumber']").attr("value", "");
-                    $("input[name='contactName']").attr("value", "");
-                    $("input[name='contactPhone']").attr("value", "");
-                    $("input[name='contactEMail']").attr("value", "");
-                    $("input[name='poloShirtColor']").attr("value", "");
-                }
-            });;
-        }
-    }
-
-    function fillinTeamInfo(result) {
-        var team = result.DataTable;
-        if (team) {
-            $("input[name='teamName']").attr("value", team.teamName);
-            $("input[name='teamNumber']").attr("value", team.teamNumber);
-            $("input[name='contactName']").attr("value", team.contactName);
-            $("input[name='contactPhone']").attr("value", team.contactPhone);
-            $("input[name='contactEMail']").attr("value", team.contactEMail);
-            $("input[name='poloShirtColor']").attr("value", team.poloShirtColor);
-        }
-    }
-});
 </script>

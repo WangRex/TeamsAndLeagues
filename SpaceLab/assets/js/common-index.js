@@ -10,7 +10,8 @@ var commonIndexModule = (function(cim) {
             if (gameStatus == '0') {
                 $("#enrollBtnDiv").html($("#enrollBtns").removeClass("hide"));
                 $("#enrollBtnDiv").removeClass("hide");
-                globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/getEnrollGameList', params, im.fillinEnrollGameList);
+                params.GUID = "";
+                globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/getEnrollGameList', params, cim.fillinEnrollGameList);
             } else {
                 $("#enrollTeams").addClass("hide");
                 $("#enrollBtnDiv").addClass("hide");
@@ -20,6 +21,54 @@ var commonIndexModule = (function(cim) {
             $("#matchList").click();
             app.bread();
         });
+    }
+    cim.fillinEnrollGameList = function(result) {
+        if (result.length > 0) {
+            var html = "";
+            for (var i = 0; i < result.length; i++) {
+                var enrollTeam = result[i];
+                html += template('enrollTeam-common-template', enrollTeam);
+            }
+            if (html) {
+                $("#enrollTeams").removeClass("hide");
+                $("#enrollTeamsCommonHead").after(html);
+                $("#enrollTeamsCommon").removeClass("hide");
+            }
+        }
+    }
+    cim.enrollGame = function(gameId) {
+        globalModule.loadPage("main-content", "enrollGame", cim.enrollGameInit, { gameId: gameId });
+    }
+    cim.enrollGameInit = function(params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGamePlaceByGameId", params, function(result) {
+            var html = template('gamePlace-template', result);
+            $("#gamePlace").html(html);
+            app.bread();
+            $('#gamePlace').selectpicker({
+                liveSearch: true
+            });
+            $("#enrollGameBtn").attr("data-value", params.gameId);
+        });
+    }
+    cim.enrollGameInfo = function() {
+        var data = $("#enrollGameInfoForm").serializeJson();
+        var gameId = $("#enrollGameBtn").attr("data-value");
+        data.gameId = gameId;
+        if (globalModule.isArray(data.gamePlace)) {
+            var gamePlaces = "";
+            for (var i = 0; i < data.gamePlace.length; i++) {
+                gamePlaces += "," + data.gamePlace[i];
+            }
+            gamePlaces = gamePlaces.substring(1);
+            data.gamePlace = gamePlaces;
+        }
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/addEnrollGameInfoCommon", data, function(result) {
+            if (result.Code == 1) {
+                cim.loadGameDetailsPage("gameDetails", gameId);
+            } else {
+                $("#enrollGameResult").html("报名信息添加失败！");
+            }
+        }, 'post');
     }
     cim.bindGameDetails = function() {
         var gameId = $("#gameInfo").attr("data-gameid");
