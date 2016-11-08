@@ -109,7 +109,7 @@
             </div>
             <div class="mui-button-row" style="margin-bottom: 20px;margin-top: 10px;">
                 <button id="enrollGameBtn" data-value="48" type="button" class="mui-btn mui-btn-success" style="border-radius: 10px;margin-right: 1em;width: 5em;">报名</button>
-                <button type="button" class="mui-btn mui-btn-blue" style="border-radius: 10px;width: 5em;">取消</button>
+                <button id="enrollGameCancelBtn" type="button" class="mui-btn mui-btn-blue" style="border-radius: 10px;width: 5em;">取消</button>
             </div>
             <!--页脚，放置补充信息或支持的操作-->
             <script>
@@ -148,6 +148,14 @@
                     $("#contactEMail").val("");
                     $("#poloShirtColor").val("");
                 }
+            });
+            $("#enrollGameCancelBtn").on("click", function() {
+                $("#teamName").val("");
+                $("#teamNumber").val("");
+                $("#contactName").val("");
+                $("#contactPhone").val("");
+                $("#contactEMail").val("");
+                $("#poloShirtColor").val("");
             });
             </script>
         </div>
