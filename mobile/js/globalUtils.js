@@ -132,21 +132,41 @@ var globalModule = (function(gm) {
 
         });
     }
-    /*gm.alert = function(content) {
-        //用jquery获取模板
-        var tpl = $("#alert-tpl").html();
-        //预编译模板
-        var template = Handlebars.compile(tpl);
-        //模拟json数据
-        var context = { title: "友情提醒", content: content };
-        //匹配json内容
-        var html = template(context);
-        //输入模板
-        $("#my-alert").html(html).modal('open');
-    }
-    gm.loading = function(action) {
-        //输入模板
-        $("#my-modal-loading").modal(action);
-    }*/
+    gm.getParameter = function(param) {
+            //获取URL地址中？后的所有字符 
+            var query = window.location.search;
+            //获取你的参数名称长度   
+            var iLen = param.length;
+            //获取你该参数名称的其实索引  
+            var iStart = query.indexOf(param);
+            //-1为没有该参数  
+            if (iStart == -1)
+                return "";
+            iStart += iLen + 1;
+            //获取第二个参数的其实索引
+            var iEnd = query.indexOf("&", iStart);
+            //只有一个参数 
+            if (iEnd == -1)
+            //获取单个参数的参数值 
+                return query.substring(iStart);
+            //获取第二个参数的值  
+            return query.substring(iStart, iEnd);
+        }
+        /*gm.alert = function(content) {
+            //用jquery获取模板
+            var tpl = $("#alert-tpl").html();
+            //预编译模板
+            var template = Handlebars.compile(tpl);
+            //模拟json数据
+            var context = { title: "友情提醒", content: content };
+            //匹配json内容
+            var html = template(context);
+            //输入模板
+            $("#my-alert").html(html).modal('open');
+        }
+        gm.loading = function(action) {
+            //输入模板
+            $("#my-modal-loading").modal(action);
+        }*/
     return gm;
 }(globalModule || {}));
