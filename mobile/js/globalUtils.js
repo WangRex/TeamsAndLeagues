@@ -4,6 +4,7 @@ var globalModule = (function(gm) {
      *   ajax
      */
     gm.globalAjax = function(url, data, successCallback, type, async, params) {
+        
         console.log('接口:' + url);
         console.log('类型:' + type || "get");
         console.log('输入:' + JSON.stringify(data));
