@@ -133,8 +133,8 @@
                     } else {
                         check = false;
                         mui.alert("请输入正确的联系方式！");
+                        return false;
                     };
-                    return false;
                 }
                 mui("#input_example input").each(function() {
                     //若当前input为空，则alert提醒 
