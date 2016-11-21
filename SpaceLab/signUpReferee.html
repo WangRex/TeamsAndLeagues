@@ -126,13 +126,16 @@
             $("#enrollRefereeBtn").on("click", function() {
                 var check = true;
                 var tel = $("#mobile").val();
-                var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
-                if (reg.test(tel)) {
-                    check = true;
-                } else {
-                    check = false;
-                    mui.alert("请输入正确的联系方式！");
-                };
+                if (tel) {
+                    var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+                    if (reg.test(tel)) {
+                        check = true;
+                    } else {
+                        check = false;
+                        mui.alert("请输入正确的联系方式！");
+                    };
+                    return false;
+                }
                 mui("#input_example input").each(function() {
                     //若当前input为空，则alert提醒 
                     if (!this.value || this.value.trim() == "") {
