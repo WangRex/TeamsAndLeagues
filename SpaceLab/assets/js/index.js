@@ -516,7 +516,8 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersForMVP", { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId }, im.fillinTeamMembersSelectorViewGameResult, null, null, null, fillinParams);
 
     }
-    im.addGameResult = function() {
+    im.addGameResult = function(obj) {
+        $(obj).attr("disabled", "disabled");
         globalModule.CKupdate();
         var data = $("#addGameResultForm").serializeJson();
         var gameResultData = {};
