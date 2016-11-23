@@ -327,11 +327,13 @@ var commonIndexModule = (function(cim) {
         var fillinParams = { tmplId: 'attendGameList-template', target: $("#attendGameList"), way: "html" };
         globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/FindAllEnrollTeamsCommon', { teamId: result.DataTable.ID }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         var teamId = $("#teamInfo").attr("data-teamid");
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersCommon", { teamId: teamId }, cim.showTeamMembersDetails);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersCommon", { teamId: teamId }, cim.showTeamMembersDetails, null, null, null, {teamId: teamId});
     }
-    cim.showTeamMembersDetails = function(result) {
-        var html = template('teamMemberList-template', result);
-        $("#teamMembersHead").after(html);
+    cim.showTeamMembersDetails = function(result, params) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/FindEnrollGameIdByTeamId", params, function(data) {
+            var html = template('teamMemberList'+data.DataTable+'-template', result);
+            $("#teamMembersHead" + data.DataTable).removeClass("hide").after(html);
+        });
     }
     cim.viewMemberPage = function(memberId) {
         globalModule.loadPage("main-content", "viewMember", cim.viewMember, { memberId: memberId });
