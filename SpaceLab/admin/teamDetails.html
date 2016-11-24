@@ -19,21 +19,11 @@
                     <div class="col-xs-1">头像</div>
                     <div class="col-xs-1">球员名称</div>
                     <div class="col-xs-1">球员球号</div>
-                    <div class="col-xs-2">身高</div>
-                    <div class="col-xs-2">位置</div>
-                    <div class="col-xs-2">联系电话</div>
-                    <div class="col-xs-2">操作</div>
+                    <div class="col-xs-2">球员身高</div>
+                    <div class="col-xs-1">位置</div>
+                    <div class="col-xs-2">身份证号</div>
+                    <div class="col-xs-3">操作</div>
                 </div>
-                <!-- <div id="tj_container" class="tj_container" style="z-index: 99;">
-                    <div class="tj_nav">
-                        <span id="tj_prev" class="tj_prev">Previous</span>
-                        <span id="tj_next" class="tj_next">Next</span>
-                    </div>
-                    <div class="tj_wrapper">
-                        <ul class="tj_gallery" id="teamMembersBodyUl">
-                        </ul>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -96,20 +86,15 @@
 </script>
 <script id="teamMemberList-template" type="text/html">
     {{each DataTable as value i}}
-    <!-- <li>
-        <a href="javascript:void(0);"><img src="/assets/img/memberPic/{{value.memberName}}.jpg" alt="{{value.memberName}}" /></a>
-        <div>{{value.memberNumber}}</div>
-    </li> -->
     <div class="row boardData">
-        <!-- <div class="col-xs-2"><img src="/assets/img/memberPic/{{value.teamName}}/{{value.memberNumber}}{{value.memberName}}.jpg"></div> -->
         <div class="col-xs-1">{{i + 1}}</div>
         <div class="col-xs-1"><img src="/assets/img/memberPic/{{value.teamName}}/{{value.memberNumber}}{{value.memberName}}.jpg" width="48px;"></div>
         <div class="col-xs-1">{{value.memberName}}</div>
         <div class="col-xs-1">{{value.memberNumber}}</div>
         <div class="col-xs-2">{{value.memberHeight}}</div>
-        <div class="col-xs-2">{{value.memberPosition}}</div>
-        <div class="col-xs-2">{{value.memberPhone}}</div>
-        <div class="col-xs-2">
+        <div class="col-xs-1">{{value.memberPosition}}</div>
+        <div class="col-xs-2">{{value.memberIDNumber}}</div>
+        <div class="col-xs-3">
             <input type="button" class="btn btn-success btn-3d btn-sm" onclick="indexModule.viewMemberPage('{{value.ID}}');" value="查看">
         </div>
     </div>

@@ -254,17 +254,6 @@ var indexModule = (function(im) {
     im.showTeamMembersDetails = function(result) {
         var html = template('teamMemberList-template', result);
         $("#teamMembersHead").after(html);
-        // $("#teamMembersBodyUl").html(html);
-        // $('#tj_container').gridnav({
-        //     rows: 3,
-        //     type: {
-        //         mode: 'disperse',
-        //         speed: 700,
-        //         easing: '',
-        //         factor: '',
-        //         reverse: ''
-        //     }
-        // });
     }
     im.addGameRule = function() {
         var data = $("#addGameRuleForm").serializeJson();
