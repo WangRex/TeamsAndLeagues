@@ -18,16 +18,3 @@
     </div>
     {{/each}}
 </script>
-<script>
-$(document).ready(function() {
-
-    commonIndexModule.getTeamList(fillinTeamList);
-
-    function fillinTeamList(result) {
-        if (result.Code == 1) {
-            var html = template('teamList-template', result);
-            $("#boradData").after(html);
-        }
-    }
-});
-</script>

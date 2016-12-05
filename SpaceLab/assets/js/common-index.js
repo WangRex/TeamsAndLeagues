@@ -305,6 +305,12 @@ var commonIndexModule = (function(cim) {
             });
         }, { ttId: ttId });
     }
+    cim.loadTeamListPage = function(gameId) {
+        globalModule.loadPage("main-content", "teamList", cim.getGameTeamList, gameId);
+    }
+    cim.getGameTeamList = function(gameId) {
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamListCommonByGameId", { gameId: gameId }, cim.fillinTeamList);
+    }
     cim.getTeamList = function(callback) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Team/getTeamListCommon", null, callback);
     }
@@ -327,11 +333,11 @@ var commonIndexModule = (function(cim) {
         var fillinParams = { tmplId: 'attendGameList-template', target: $("#attendGameList"), way: "html" };
         globalModule.globalAjax(globalModule.globalHomeUrl + 'api/EnrollGame/FindAllEnrollTeamsCommon', { teamId: result.DataTable.ID }, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
         var teamId = $("#teamInfo").attr("data-teamid");
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersCommon", { teamId: teamId }, cim.showTeamMembersDetails, null, null, null, {teamId: teamId});
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersCommon", { teamId: teamId }, cim.showTeamMembersDetails, null, null, null, { teamId: teamId });
     }
     cim.showTeamMembersDetails = function(result, params) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/EnrollGame/FindEnrollGameIdByTeamId", params, function(data) {
-            var html = template('teamMemberList'+data.DataTable+'-template', result);
+            var html = template('teamMemberList' + data.DataTable + '-template', result);
             $("#teamMembersHead" + data.DataTable).removeClass("hide").after(html);
         });
     }

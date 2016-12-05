@@ -1,0 +1,28 @@
+<div class="row boardData" id="boradData">
+    <div class="col-xs-10">赛事名称</div>
+    <div class="col-xs-2">操作</div>
+</div>
+<script id="gameTeamList-template" type="text/html">
+    {{each DataTable as value i}}
+    <div class="row boardData">
+        <div class="col-xs-10">{{value.gameName}}</div>
+        <div class="col-xs-2" data-teamId="{{value.ID}}">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="commonIndexModule.loadTeamListPage('{{value.gameId}}');" value="查看">
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script>
+$(document).ready(function() {
+
+    globalModule.globalAjax(globalModule.globalHomeUrl + 'api/GameList/getGameList', null, fillinGameTeamList);
+
+    function fillinGameTeamList(result) {
+        if (result.Code == 1) {
+            var html = template('gameTeamList-template', result);
+            $("#boradData").after(html);
+        }
+    }
+
+});
+</script>

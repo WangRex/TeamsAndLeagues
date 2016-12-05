@@ -1,6 +1,6 @@
 var globalModule = (function(gm) {
-    gm.globalHomeUrl = "http://210.83.195.229:8095/";
-    // gm.globalHomeUrl = "http://localhost:4349/";
+    gm.globalHomeUrl = "http://175.166.132.14:8081/";
+    gm.globalHomeUrl = "http://localhost:4349/";
     gm.devUrl = "http://localhost:8081/";
     gm.proUrl = "http://www.leyisports.com/";
     gm.globalAjax = function(url, data, successCallback, type, dataType, async, params) {
