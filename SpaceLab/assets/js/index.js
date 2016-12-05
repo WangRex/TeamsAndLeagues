@@ -510,8 +510,8 @@ var indexModule = (function(im) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/Member/getMembersForMVP", { mainTeamId: params.mainTeamId, subTeamId: params.subTeamId }, im.fillinTeamMembersSelectorViewGameResult, null, null, null, fillinParams);
 
     }
-    im.addGameResult = function(obj) {
-        $(obj).attr("disabled", "disabled");
+    im.addGameResult = function() {
+        $("#addGameResultBtn").attr("disabled", "disabled");
         globalModule.CKupdate();
         var data = $("#addGameResultForm").serializeJson();
         console.log(data);
@@ -527,8 +527,8 @@ var indexModule = (function(im) {
         gameResultData.subTeamGoal = data.subTeamGoal;
         gameResultData.mvp = data.mvp;
         gameResultData.remark = data.remark;
-        console.log(gameResultData);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
+        // console.log(gameResultData);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
 
         var memberScoreData = {};
         memberScoreData.timeTableId = data.timeTableId;
@@ -536,8 +536,8 @@ var indexModule = (function(im) {
         memberScoreData.round = data.round;
         memberScoreData.memberIds = globalModule.arrayToString(data.mainGoalMembers) + ',' + globalModule.arrayToString(data.subGoalMembers);
         memberScoreData.goalMinute = globalModule.arrayToString(data.mainMemberScoreDateTime) + ',' + globalModule.arrayToString(data.subMemberScoreDateTime);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
-        console.log(memberScoreData);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
+        // console.log(memberScoreData);
 
         var memberRedData = {};
         memberRedData.timeTableId = data.timeTableId;
@@ -545,8 +545,8 @@ var indexModule = (function(im) {
         memberRedData.round = data.round;
         memberRedData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
         memberRedData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
-        console.log(memberRedData);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
+        // console.log(memberRedData);
 
         var memberYellowData = {};
         memberYellowData.timeTableId = data.timeTableId;
@@ -554,11 +554,11 @@ var indexModule = (function(im) {
         memberYellowData.round = data.round;
         memberYellowData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
         memberYellowData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
-        console.log(memberYellowData);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
+        // console.log(memberYellowData);
 
         var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
-        // globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
+        globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
 
     }
     im.editGameComment = function() {
