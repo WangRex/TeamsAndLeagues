@@ -8,6 +8,9 @@ var globalModule = (function(gm) {
         if (data) {
             $.extend(data, guid);
         }
+        console.log('接口:' + url);
+        console.log('类型:' + type);
+        console.log('输入:' + data);
         $.ajax({
             type: type || "get",
             dataType: dataType || "json",
@@ -77,7 +80,7 @@ var globalModule = (function(gm) {
         }
     }
     gm.arrayToString = function(array) {
-        var result = array;
+        var result = array || '';
         if (gm.isArray(array) && array.length > 1) {
             result = "";
             for (var i = 0; i < array.length; i++) {

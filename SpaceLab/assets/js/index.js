@@ -527,7 +527,7 @@ var indexModule = (function(im) {
         gameResultData.subTeamGoal = data.subTeamGoal;
         gameResultData.mvp = data.mvp;
         gameResultData.remark = data.remark;
-        // console.log(gameResultData);
+        console.log(gameResultData);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
 
         var memberScoreData = {};
@@ -537,7 +537,7 @@ var indexModule = (function(im) {
         memberScoreData.memberIds = globalModule.arrayToString(data.mainGoalMembers) + ',' + globalModule.arrayToString(data.subGoalMembers);
         memberScoreData.goalMinute = globalModule.arrayToString(data.mainMemberScoreDateTime) + ',' + globalModule.arrayToString(data.subMemberScoreDateTime);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
-        // console.log(memberScoreData);
+        console.log(memberScoreData);
 
         var memberRedData = {};
         memberRedData.timeTableId = data.timeTableId;
@@ -546,7 +546,7 @@ var indexModule = (function(im) {
         memberRedData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
         memberRedData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
-        // console.log(memberRedData);
+        console.log(memberRedData);
 
         var memberYellowData = {};
         memberYellowData.timeTableId = data.timeTableId;
@@ -555,7 +555,7 @@ var indexModule = (function(im) {
         memberYellowData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
         memberYellowData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
-        // console.log(memberYellowData);
+        console.log(memberYellowData);
 
         var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
         globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
