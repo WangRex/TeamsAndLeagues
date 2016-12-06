@@ -10,7 +10,7 @@ var globalModule = (function(gm) {
         }
         console.log('接口:' + url);
         console.log('类型:' + type);
-        console.log('输入:' + data);
+        console.log('输入:' + JSON.stringify(data));
         $.ajax({
             type: type || "get",
             dataType: dataType || "json",
