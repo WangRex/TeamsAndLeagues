@@ -9,8 +9,8 @@ var globalModule = (function(gm) {
             $.extend(data, guid);
         }
         console.log('接口:' + url);
-        console.log('类型:' + type);
-        console.log('输入:' + JSON.stringify(data));
+        console.log('类型:' + type || "get");
+        console.log('输入:' + JSON.stringify(data) || {});
         $.ajax({
             type: type || "get",
             dataType: dataType || "json",
@@ -18,6 +18,9 @@ var globalModule = (function(gm) {
             data: data || guid,
             cache: false,
             async: async || "false",
+            beforeSend: function(request) {
+                gm.loaderShow();
+            },
             success: function(result) {
                 if (result.Code == 2) {
                     window.location.href = window.location.href;
@@ -25,6 +28,9 @@ var globalModule = (function(gm) {
                 if (successCallback) {
                     successCallback(result, params || {});
                 }
+            },
+            complete: function() {
+                gm.loaderHide();
             }
         });
     }
@@ -112,6 +118,12 @@ var globalModule = (function(gm) {
             }
 
         });
+    }
+    gm.loaderShow = function() {
+        layer.load(2);
+    }
+    gm.loaderHide = function() {
+        layer.closeAll('loading');
     }
     return gm;
 }(globalModule || {}));
