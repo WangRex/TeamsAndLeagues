@@ -198,7 +198,7 @@ var indexModule = (function(im) {
                     $("#addMemberBtn").removeAttr("disabled");
                 }, 2000);
             } else {
-                $("#addMemberResult").html("添加球员失败，请重新添加!");
+                $("#addMemberResult").html(result.Message || "添加球员失败，请重新添加!");
             }
         }, 'post');
     }
@@ -527,41 +527,38 @@ var indexModule = (function(im) {
         gameResultData.subTeamGoal = data.subTeamGoal;
         gameResultData.mvp = data.mvp;
         gameResultData.remark = data.remark;
-        console.log(gameResultData);
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
+        // console.log(gameResultData);
+        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
 
         var memberScoreData = {};
         memberScoreData.timeTableId = data.timeTableId;
         memberScoreData.gameId = data.gameId;
         memberScoreData.round = data.round;
-        if (data.mainGoalMembers) {
-            
-        }
         memberScoreData.memberIds = globalModule.arrayToString(data.mainGoalMembers) + ',' + globalModule.arrayToString(data.subGoalMembers);
         memberScoreData.goalMinute = globalModule.arrayToString(data.mainMemberScoreDateTime) + ',' + globalModule.arrayToString(data.subMemberScoreDateTime);
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
-        console.log(memberScoreData);
+        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
+        // console.log(memberScoreData);
 
         var memberRedData = {};
         memberRedData.timeTableId = data.timeTableId;
         memberRedData.gameId = data.gameId;
         memberRedData.round = data.round;
         memberRedData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
-        memberRedData.redMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
-        console.log(memberRedData);
+        memberRedData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
+        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
+        // console.log(memberRedData);
 
         var memberYellowData = {};
         memberYellowData.timeTableId = data.timeTableId;
         memberYellowData.gameId = data.gameId;
         memberYellowData.round = data.round;
         memberYellowData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
-        memberYellowData.yellowMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
-        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
-        console.log(memberYellowData);
+        memberYellowData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
+        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
+        // console.log(memberYellowData);
 
         var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
-        globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
+        // globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
 
     }
     im.editGameComment = function() {
