@@ -103,6 +103,9 @@ var commonIndexModule = (function(cim) {
             params.groupName = "A";
             fillinParams = { tmplId: 'scoreDetails-template', target: $(".groupA"), way: "after" };
             globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+            var title = "欢乐颂";
+            var content = "2016城市社区业余足球联赛从9月24号开赛以来，历时两个半月的激战，B组比赛顺利结束。在十一轮比赛中，各队风雨无阻，积极配合组委会安排，按时参赛，大家虽不是专业球员，但是大家表现出的足球精神，都是堪比专业的，大家赛出的风采都是有目共睹的，你们是大连草根足球的榜样。在此祝贺PLA和天宇腾飞顺利出线，感谢友情俱乐部、友医酷、疯狂石头、金益贷、鹰盈、兄弟联、宏顺重工精彩的完成比赛，大家都是以球会友，在比赛结束之际，胜负已然没有那么重要，大家能够聚到一起踢球，玩的开心，玩的尽兴，才是最圆满的结果。期待大家的再次相聚！祝愿大家2017年家庭幸福，工作顺利，周周赢球";
+            $("#match-score-brief").html(template("match-score-brief-template", {title: title, content: content}));
         } else {
             var group = '<div class="row boardData boardTitle" id="boradDataGroup"><div class="col-xs-1">排名</div><div class="col-xs-2">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-2">积分</div></div>';
             $("#boradData").after(group);
