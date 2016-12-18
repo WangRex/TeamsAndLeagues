@@ -528,7 +528,7 @@ var indexModule = (function(im) {
         gameResultData.mvp = data.mvp;
         gameResultData.remark = data.remark;
         // console.log(gameResultData);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addGameResult", gameResultData, null, "post");
 
         var memberScoreData = {};
         memberScoreData.timeTableId = data.timeTableId;
@@ -536,7 +536,7 @@ var indexModule = (function(im) {
         memberScoreData.round = data.round;
         memberScoreData.memberIds = globalModule.arrayToString(data.mainGoalMembers) + ',' + globalModule.arrayToString(data.subGoalMembers);
         memberScoreData.goalMinute = globalModule.arrayToString(data.mainMemberScoreDateTime) + ',' + globalModule.arrayToString(data.subMemberScoreDateTime);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberScoreDetailsString", memberScoreData);
         // console.log(memberScoreData);
 
         var memberRedData = {};
@@ -545,7 +545,7 @@ var indexModule = (function(im) {
         memberRedData.round = data.round;
         memberRedData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
         memberRedData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
         // console.log(memberRedData);
 
         var memberYellowData = {};
@@ -554,11 +554,11 @@ var indexModule = (function(im) {
         memberYellowData.round = data.round;
         memberYellowData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
         memberYellowData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
-        // globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
         // console.log(memberYellowData);
 
         var params = { ttId: data.timeTableId, mainTeamId: data.mainTeamID, subTeamId: data.subTeamID };
-        // globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
+        globalModule.loadPage("main-content", "viewGameResult", im.viewGameResultInit, params);
 
     }
     im.editGameComment = function() {
@@ -821,14 +821,9 @@ var indexModule = (function(im) {
         globalModule.loadPage("main-content", "editGame", im.loadEditGame, params);
     }
     im.loadEditGame = function(params) {
-        $.ajax({
-            type: 'get',
-            dataType: "json",
-            url: '/assets/json/gameInfo.json',
-            data: { gameId: params.gameId },
-            async: false,
-            success: function(result) {
-                var html = template('editGame-template', result.gameInfo);
+        globalModule.globalAjax(globalModule.globalHomeUrl + "api/GameList/getGameInfoByGameId", params, function(result) {
+            console.log(result);
+            var html = template('editGame-template', result);
                 $("#editGame").html(html);
                 $('.form_date').datetimepicker({
                     weekStart: 1,
@@ -840,7 +835,6 @@ var indexModule = (function(im) {
                     language: 'zh-CN', //汉化 
                     forceParse: 0
                 });
-            }
         });
     }
     im.extendFunc = function() {
