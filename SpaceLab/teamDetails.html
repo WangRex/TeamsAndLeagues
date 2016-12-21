@@ -29,6 +29,15 @@
                     <div class="col-xs-3">身份证号</div>
                     <div class="col-xs-3">操作</div>
                 </div>
+                <div class="row boardData hide" id="teamMembersHead50">
+                    <div class="col-xs-1">序号</div>
+                    <div class="col-xs-1">头像</div>
+                    <div class="col-xs-1">球员名称</div>
+                    <div class="col-xs-1">球员球号</div>
+                    <div class="col-xs-2">球员年龄</div>
+                    <div class="col-xs-3">身份证号</div>
+                    <div class="col-xs-3">操作</div>
+                </div>
             </div>
         </div>
     </div>
@@ -111,6 +120,21 @@
     {{/each}}
 </script>
 <script id="teamMemberList48-template" type="text/html">
+    {{each DataTable as value i}}
+    <div class="row boardData">
+        <div class="col-xs-1">{{i + 1}}</div>
+        <div class="col-xs-1"><img src="/assets/img/memberPic/{{value.teamName}}/{{value.memberNumber}}{{value.memberName}}.jpg" width="48px;"></div>
+        <div class="col-xs-1">{{value.memberName}}</div>
+        <div class="col-xs-1">{{value.memberNumber}}</div>
+        <div class="col-xs-2">{{value.memberAge}}</div>
+        <div class="col-xs-3">{{value.memberIDNumber}}</div>
+        <div class="col-xs-3">
+            <input type="button" class="btn btn-success btn-3d btn-sm" onclick="commonIndexModule.viewMemberPage('{{value.ID}}');" value="查看">
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script id="teamMemberList50-template" type="text/html">
     {{each DataTable as value i}}
     <div class="row boardData">
         <div class="col-xs-1">{{i + 1}}</div>
