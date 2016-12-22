@@ -544,7 +544,7 @@ var indexModule = (function(im) {
         memberRedData.gameId = data.gameId;
         memberRedData.round = data.round;
         memberRedData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
-        memberRedData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
+        memberRedData.redMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberRedDetailsString", memberRedData);
         // console.log(memberRedData);
 
@@ -552,8 +552,8 @@ var indexModule = (function(im) {
         memberYellowData.timeTableId = data.timeTableId;
         memberYellowData.gameId = data.gameId;
         memberYellowData.round = data.round;
-        memberYellowData.memberIds = globalModule.arrayToString(data.mainRedMembers) + ',' + globalModule.arrayToString(data.subRedMembers);
-        memberYellowData.goalMinute = globalModule.arrayToString(data.mainMemberRedDateTime) + ',' + globalModule.arrayToString(data.subMemberRedDateTime);
+        memberYellowData.memberIds = globalModule.arrayToString(data.mainYellowMembers) + ',' + globalModule.arrayToString(data.subYellowMembers);
+        memberYellowData.yellowMinute = globalModule.arrayToString(data.mainMemberYellowDateTime) + ',' + globalModule.arrayToString(data.subMemberYellowDateTime);
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/addMemberYellowDetailsString", memberYellowData);
         // console.log(memberYellowData);
 

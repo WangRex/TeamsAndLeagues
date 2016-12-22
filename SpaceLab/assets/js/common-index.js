@@ -110,7 +110,7 @@ var commonIndexModule = (function(cim) {
             var group = '<div class="row boardData boardTitle" id="boradDataGroup"><div class="col-xs-1">排名</div><div class="col-xs-2">球队</div><div class="col-xs-1">轮次</div><div class="col-xs-1">胜</div><div class="col-xs-1">平</div><div class="col-xs-1">负</div><div class="col-xs-1">进球数</div><div class="col-xs-1">失球数</div><div class="col-xs-1">净胜球</div><div class="col-xs-2">积分</div></div>';
             $("#boradData").after(group);
             var fillinParams = { tmplId: 'scoreDetails-template', target: $("#boradDataGroup"), way: "after" };
-            globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScore", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
+            globalModule.globalAjax(globalModule.globalHomeUrl + "api/MatchScore/getAllMatchScoreSingleGroup", params, globalModule.fillinInfoFromTmpl, null, null, null, fillinParams);
 
         }
     }
