@@ -28,8 +28,8 @@
 
 <body>
     <div id="gameResultPage"></div>
-    <script id="gameResultPage-template" type="text/html">
-        <div class="soccer" style="background-repeat: round;background-image: url(/assets/img/gameResultBackground.jpg);">
+    <script id="gameResultPage-template37" type="text/html">
+        <div class="soccer" style="background-repeat: round;background-image: url(/assets/img/gameResultBackground{{DataTable.ttGameId}}.jpg);">
             <div class="header-top">
                 <div class="logo" style="width: 20%;">
                     <a href="#"><img src="/assets/img/gameLogo/{{DataTable.ttGameId}}.png" style="width:100%;"></a>
@@ -117,6 +117,110 @@
                                     </div>
                                     <div class="game-scores" style="color: #fff; font-size: 12px;">
                                         <div style="float: left;"><span>主办方：小刘体育</span></div>
+                                        <div style="float: right;"><span>赞助商：大连动心科技</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                    </div>
+                </div>
+                <!----- tabs-box ---->
+            </div>
+        </div>
+    </script>
+    <script id="gameResultPage-template50" type="text/html">
+        <div id="matchList" data-gameid={{DataTable.ttGameId}} data-round={{DataTable.ttRound}}><i class="fa fa-reply"></i></div>
+        <div class="soccer" style="background-repeat: round;background-image: url(/assets/img/gameResultBackground{{DataTable.ttGameId}}.jpg);">
+            <div class="header-top">
+                <div class="logo" style="width: 20%;">
+                    <a href="#"><img src="/assets/img/gameLogo/{{DataTable.ttGameId}}.png" style="width:100%;"></a>
+                </div>
+                <div class="livers">
+                    <div class="liver-pool-buttons">
+                        <h4 style="font-size: 9px;color: white; font-family: '微软雅黑';line-height: 1.5;">{{DataTable.ttGameName}}</h4>
+                    </div>
+                    <div class="search">
+                        <div style="font-size: 9px;font-family: '微软雅黑'; margin-top: 1px;float: left;list-style: none;color: white;">
+                            <ul>
+                                <li>第 {{DataTable.ttRound}} 轮 {{DataTable.ttDate}}</li>
+                            </ul>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                <div class="clear"> </div>
+            </div>
+            <!---->
+            <div class="header-bottom">
+                <!----- tabs-box ---->
+                <div class="tabs-box">
+                    <div class="clearfix"> </div>
+                    <div class="tab-grids" style="margin-left: 0px;">
+                        <div id="tab1" class="tab-grid">
+                            <div class="soccer-items">
+                                <div class="main-box">
+                                    <div class="logo-names">
+                                        <div class="logo-name-1">
+                                            <h2></h2>
+                                        </div>
+                                        <div class="logo-name-2">
+                                            <h3></h3>
+                                        </div>
+                                        <div class="clear"> </div>
+                                    </div>
+                                    <div class="awards">
+                                        <div class="ablam">
+                                            <img src="/assets/img/teamLogo/{{DataTable.ttMainTeamName}}.png">
+                                        </div>
+                                        <!-- 
+                                        <div style="float: left; margin-left: 20px;font-size: 9px;width: 30%;">
+                                            <ul class="sport-scor" id="mainData">
+                                            </ul>
+                                        </div> -->
+                                        <div class="time">
+                                            <h3>{{DataTable.mainTeamGoal}}:{{DataTable.subTeamGoal}}</h3>
+                                        </div>
+                                        <!-- 
+                                        <div style="float: left;font-size: 9px;width: 30%;">
+                                            <ul class="sport-scor" id="subData">
+                                            </ul>
+                                        </div> -->
+                                        <div class="troffy">
+                                            <img src="/assets/img/teamLogo/{{DataTable.ttSubTeamName}}.png">
+                                        </div>
+                                        <div class="clear"> </div>
+                                    </div>
+                                    <div class="game-scores">
+                                        <ul class="sport-scor" id="mainData">
+                                        </ul>
+                                        <ul class="sport-scor" id="subData">
+                                        </ul>
+                                        <div class="clear"> </div>
+                                        <div class="plater-names">
+                                            <h3 style="color: yellow;" id="mainStarting">{{DataTable.ttMainTeamName}}</h3>
+                                        </div>
+                                        <div class="plater-names" style="float: right;padding-right: 10px;">
+                                            <h3 style="color: yellow;" id="subStarting">{{DataTable.ttSubTeamName}}</h3>
+                                        </div>
+                                        <div class="clear"> </div>
+                                        <div class="plater-names">
+                                            <h3 style="color: yellow;" id="mainSubstitutes"></h3>
+                                        </div>
+                                        <div class="plater-names" style="float: right;width: 30%;">
+                                            <h3 style="color: yellow;" id="subSubstitutes"></h3>
+                                        </div>
+                                        <div class="clear"> </div>
+                                    </div>
+                                    <div class="game-scores" style="text-align: center;">
+                                        <span style="color: yellow;"></span>
+                                    </div>
+                                    <div class="game-scores" id="gameBrief">
+                                        {{DataTable.ttGameBrief}}
+                                    </div>
+                                    <div class="game-scores" style="color: #fff; font-size: 12px;">
+                                        <div style="float: left;"><span>主办方：青春工作室</span></div>
                                         <div style="float: right;"><span>赞助商：大连动心科技</span></div>
                                     </div>
                                 </div>

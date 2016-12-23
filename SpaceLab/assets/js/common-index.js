@@ -171,6 +171,7 @@ var commonIndexModule = (function(cim) {
         globalModule.globalAjax(globalModule.globalHomeUrl + "api/TimeTable/viewGameResultCommon", { ttId: params.ttId }, cim.fillinGameResultPage, null, null, null, fillinParams);
     }
     cim.fillinGameResultPage = function(result, params) {
+        params.tmplId = params.tmplId + result.DataTable.ttGameId;
         globalModule.fillinInfoFromTmpl(result, params);
         document.title = result.DataTable.ttMainTeamName + " VS " + result.DataTable.ttSubTeamName;
         var mainStarting = result.DataTable.mainStarting;
