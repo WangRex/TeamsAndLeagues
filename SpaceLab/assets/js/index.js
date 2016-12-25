@@ -376,6 +376,9 @@ var indexModule = (function(im) {
         }
 
         var mainYellowMemberNameMinute = result.DataTable.mainYellowMemberNameMinute;
+        if(result.DataTable.ttGameId == 50) {
+            mainYellowMemberNameMinute = result.DataTable.mainYellowMemberName;
+        }
         if (mainYellowMemberNameMinute) {
             var mainYellowMemberNameMinuteArray = new Array();
             if (mainYellowMemberNameMinute.indexOf(",") != -1) {
@@ -388,6 +391,9 @@ var indexModule = (function(im) {
         }
 
         var mainRedMemberNameMinute = result.DataTable.mainRedMemberNameMinute;
+        if(result.DataTable.ttGameId == 50) {
+            mainRedMemberNameMinute = result.DataTable.mainRedMemberName;
+        }
         if (mainRedMemberNameMinute) {
             var mainRedMemberNameMinuteArray = new Array();
             if (mainRedMemberNameMinute.indexOf(",") != -1) {
@@ -400,6 +406,9 @@ var indexModule = (function(im) {
         }
 
         var mainMemberNameMinute = result.DataTable.mainMemberNameMinute;
+        if(result.DataTable.ttGameId == 50) {
+            mainMemberNameMinute = result.DataTable.mainMemberName;
+        }
         if (mainMemberNameMinute) {
             var mainMemberNameMinuteArray = new Array();
             if (mainMemberNameMinute.indexOf(",") != -1) {
@@ -412,6 +421,9 @@ var indexModule = (function(im) {
         }
 
         var subYellowMemberNameMinute = result.DataTable.subYellowMemberNameMinute;
+        if(result.DataTable.ttGameId == 50) {
+            subYellowMemberNameMinute = result.DataTable.subYellowMemberName;
+        }
         if (subYellowMemberNameMinute) {
             var subYellowMemberNameMinuteArray = new Array();
             if (subYellowMemberNameMinute.indexOf(",") != -1) {
@@ -423,6 +435,9 @@ var indexModule = (function(im) {
             globalModule.fillinInfoFromTmpl({ DataTable: subYellowMemberNameMinuteArray }, fillinParams);
         }
         var subRedMemberNameMinute = result.DataTable.subRedMemberNameMinute;
+        if(result.DataTable.ttGameId == 50) {
+            subRedMemberNameMinute = result.DataTable.subRedMemberName;
+        }
         if (subRedMemberNameMinute) {
             var subRedMemberNameMinuteArray = new Array();
             if (subRedMemberNameMinute.indexOf(",") != -1) {
@@ -435,6 +450,9 @@ var indexModule = (function(im) {
         }
 
         var subMemberNameMinute = result.DataTable.subMemberNameMinute;
+        if(result.DataTable.ttGameId == 50) {
+            subMemberNameMinute = result.DataTable.subMemberName;
+        }
         if (subMemberNameMinute) {
             var subMemberNameMinuteArray = new Array();
             if (subMemberNameMinute.indexOf(",") != -1) {
