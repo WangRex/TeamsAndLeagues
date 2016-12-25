@@ -326,6 +326,7 @@ var indexModule = (function(im) {
         globalModule.loadPage("main-content", "editGameResult", im.editGameResultInit, params);
     }
     im.fillinGameResultPage = function(result, params) {
+        params.tmplId = params.tmplId + result.DataTable.ttGameId;
         globalModule.fillinInfoFromTmpl(result, params);
         document.title = result.DataTable.ttMainTeamName + " VS " + result.DataTable.ttSubTeamName;
         var mainStarting = result.DataTable.mainStarting;
